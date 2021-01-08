@@ -161,7 +161,6 @@
     </Compile>
     <Compile Include="Models\Enfermedad.cs" />
     <Compile Include="Models\Medicamento.cs" />
-    <Compile Include="Models\modelosjuntos.cs" />
     <Compile Include="Models\EnfermedadSintoma.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Registro.cs" />
