@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "LoginV";
+}
+
+
+<form action="action_page.php" method="post" id="frm" timeout="30" slidingExpiration="true">
+    <table @*border="1"*@ class="login">
+        <tr>
+            <td>
+                <div class="avatar_login">
+                    <img src="~/Content/Images/Datanetsvlogo.png" alt="Avatar" class="avatar">
+                </div>
+            </td>
+            <td>
+                <div class="container">
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <label for="uname" class="user"><b>Usuario</b></label>
+                            <input type="text" class="form-control boxuser" placeholder="Ingrese su Usuario" name="user" required>
+                        </div>
+                        <div class="col-md-10">
+                            <label for="psw" class="pass"><b>Contraseña</b></label>
+                            <input type="password" class="form-control boxpass" placeholder="Ingrese su Contraseña" name="password" required>
+                        </div>
+                    </div>
+
+                </div>
+                @*<br /><br />*@
+            </td>
+        </tr>
+        <tr>
+        </tr>
+    </table>
+    <br />
+    <table align="center">
+        <tr>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="button" class="btn btn-danger btncancel">Cancelar</button>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" class="btn btn-success btnlogin">Iniciar Sesión</button>
+                    </div>
+
+                </div>
+            </td>
+
+        </tr>
+    </table>
+</form>
+
+@section scripts{
+   
+    <script>
+$(document).ready(function (){
+    $("#frm").submit(function (e){
+            e.preventDefault();
+            url = "@Url.Content("~/Login/confirmarlogeo")";
+            parametros = $(this).serialize();
+            $.post(url, parametros, function (data)
+            {
+                if (data == "1") {
+                    document.location.href = "@Url.Action("Index", "Home")";
+                } else if (data == "2") {
+                    document.location.href = "@Url.Action("Index", "Home")";
+                } else if (data == "3") {
+                    document.location.href = "@Url.Action("Index", "Home")";
+                } else if (data == "4") {
+                    document.location.href = "@Url.Action("Index", "Home")";
+                } else
+                {
+                    alert("Credenciales Incorrectas");
+                    document.location.href = "@Url.Action("LoginV", "Login")";
+                }
+            })
+
+    })
+
+})
+    </script>
+}
+

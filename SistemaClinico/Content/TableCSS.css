@@ -1,0 +1,49 @@
+﻿body {
+    font-family: monospace;
+}
+
+.container2 {
+    width: 100%;
+    max-width: 1000px;
+    
+}
+
+.table2 {
+    width: auto;
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    table-layout: fixed;
+}
+
+    .table2 caption {
+        font-size: 28px;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin: 8px 0px;
+    }
+
+    .table2 tr {
+        background-color: #f8f8f8;
+        border: 1px solid #ddd;
+    }
+
+    .table2 th, .table2 td {
+        font-size: 16px;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .table2 thead th {
+        text-transform: uppercase;
+        background-color: #ddd;
+    }
+
+    .table2 tbody tr:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .table2 tbody td:hover {
+        background-color: rgba(0, 0, 0, 0.3);
+    }

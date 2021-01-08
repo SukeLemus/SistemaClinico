@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_sintomas">
+        <s:complexType />
+      </s:element>
+      <s:element name="lista_sintomasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_sintomasResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="actualizar_sintomas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id_sintoma" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="actualizar_sintomasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="actualizar_sintomasResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_enfermedades">
+        <s:complexType />
+      </s:element>
+      <s:element name="lista_enfermedadesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_enfermedadesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_enfermedades_sintomas">
+        <s:complexType />
+      </s:element>
+      <s:element name="lista_enfermedades_sintomasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_enfermedades_sintomasResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertar_enfermedad">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertar_enfermedadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="insertar_enfermedadResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertar_enfermedad_sintomas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id_enfermedad" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="id_sintoma" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertar_enfermedad_sintomasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="insertar_enfermedad_sintomasResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="actualizar_enfermedad">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id_enfermedad" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="actualizar_enfermedadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="actualizar_enfermedadResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="actualizar_enfermedad_sintomas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id_enfermedad" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="id_sintoma" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="actualizar_enfermedad_sintomasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="actualizar_enfermedad_sintomasResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertar_sintomas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertar_sintomasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="insertar_sintomasResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="eliminar_sintomas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idsintoma" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="eliminar_sintomasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="eliminar_sintomasResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Login2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clave" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Login2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Login2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Login3">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clave" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Login3Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Login3Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TodoslosPacientes">
+        <s:complexType />
+      </s:element>
+      <s:element name="TodoslosPacientesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TodoslosPacientesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_sintomasSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_sintomas" />
+  </wsdl:message>
+  <wsdl:message name="lista_sintomasSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_sintomasResponse" />
+  </wsdl:message>
+  <wsdl:message name="actualizar_sintomasSoapIn">
+    <wsdl:part name="parameters" element="tns:actualizar_sintomas" />
+  </wsdl:message>
+  <wsdl:message name="actualizar_sintomasSoapOut">
+    <wsdl:part name="parameters" element="tns:actualizar_sintomasResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_enfermedadesSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_enfermedades" />
+  </wsdl:message>
+  <wsdl:message name="lista_enfermedadesSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_enfermedadesResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_enfermedades_sintomasSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_enfermedades_sintomas" />
+  </wsdl:message>
+  <wsdl:message name="lista_enfermedades_sintomasSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_enfermedades_sintomasResponse" />
+  </wsdl:message>
+  <wsdl:message name="insertar_enfermedadSoapIn">
+    <wsdl:part name="parameters" element="tns:insertar_enfermedad" />
+  </wsdl:message>
+  <wsdl:message name="insertar_enfermedadSoapOut">
+    <wsdl:part name="parameters" element="tns:insertar_enfermedadResponse" />
+  </wsdl:message>
+  <wsdl:message name="insertar_enfermedad_sintomasSoapIn">
+    <wsdl:part name="parameters" element="tns:insertar_enfermedad_sintomas" />
+  </wsdl:message>
+  <wsdl:message name="insertar_enfermedad_sintomasSoapOut">
+    <wsdl:part name="parameters" element="tns:insertar_enfermedad_sintomasResponse" />
+  </wsdl:message>
+  <wsdl:message name="actualizar_enfermedadSoapIn">
+    <wsdl:part name="parameters" element="tns:actualizar_enfermedad" />
+  </wsdl:message>
+  <wsdl:message name="actualizar_enfermedadSoapOut">
+    <wsdl:part name="parameters" element="tns:actualizar_enfermedadResponse" />
+  </wsdl:message>
+  <wsdl:message name="actualizar_enfermedad_sintomasSoapIn">
+    <wsdl:part name="parameters" element="tns:actualizar_enfermedad_sintomas" />
+  </wsdl:message>
+  <wsdl:message name="actualizar_enfermedad_sintomasSoapOut">
+    <wsdl:part name="parameters" element="tns:actualizar_enfermedad_sintomasResponse" />
+  </wsdl:message>
+  <wsdl:message name="insertar_sintomasSoapIn">
+    <wsdl:part name="parameters" element="tns:insertar_sintomas" />
+  </wsdl:message>
+  <wsdl:message name="insertar_sintomasSoapOut">
+    <wsdl:part name="parameters" element="tns:insertar_sintomasResponse" />
+  </wsdl:message>
+  <wsdl:message name="eliminar_sintomasSoapIn">
+    <wsdl:part name="parameters" element="tns:eliminar_sintomas" />
+  </wsdl:message>
+  <wsdl:message name="eliminar_sintomasSoapOut">
+    <wsdl:part name="parameters" element="tns:eliminar_sintomasResponse" />
+  </wsdl:message>
+  <wsdl:message name="Login2SoapIn">
+    <wsdl:part name="parameters" element="tns:Login2" />
+  </wsdl:message>
+  <wsdl:message name="Login2SoapOut">
+    <wsdl:part name="parameters" element="tns:Login2Response" />
+  </wsdl:message>
+  <wsdl:message name="Login3SoapIn">
+    <wsdl:part name="parameters" element="tns:Login3" />
+  </wsdl:message>
+  <wsdl:message name="Login3SoapOut">
+    <wsdl:part name="parameters" element="tns:Login3Response" />
+  </wsdl:message>
+  <wsdl:message name="TodoslosPacientesSoapIn">
+    <wsdl:part name="parameters" element="tns:TodoslosPacientes" />
+  </wsdl:message>
+  <wsdl:message name="TodoslosPacientesSoapOut">
+    <wsdl:part name="parameters" element="tns:TodoslosPacientesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ClinicaWebServiceSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_sintomas">
+      <wsdl:input message="tns:lista_sintomasSoapIn" />
+      <wsdl:output message="tns:lista_sintomasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="actualizar_sintomas">
+      <wsdl:input message="tns:actualizar_sintomasSoapIn" />
+      <wsdl:output message="tns:actualizar_sintomasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_enfermedades">
+      <wsdl:input message="tns:lista_enfermedadesSoapIn" />
+      <wsdl:output message="tns:lista_enfermedadesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_enfermedades_sintomas">
+      <wsdl:input message="tns:lista_enfermedades_sintomasSoapIn" />
+      <wsdl:output message="tns:lista_enfermedades_sintomasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="insertar_enfermedad">
+      <wsdl:input message="tns:insertar_enfermedadSoapIn" />
+      <wsdl:output message="tns:insertar_enfermedadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="insertar_enfermedad_sintomas">
+      <wsdl:input message="tns:insertar_enfermedad_sintomasSoapIn" />
+      <wsdl:output message="tns:insertar_enfermedad_sintomasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="actualizar_enfermedad">
+      <wsdl:input message="tns:actualizar_enfermedadSoapIn" />
+      <wsdl:output message="tns:actualizar_enfermedadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="actualizar_enfermedad_sintomas">
+      <wsdl:input message="tns:actualizar_enfermedad_sintomasSoapIn" />
+      <wsdl:output message="tns:actualizar_enfermedad_sintomasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="insertar_sintomas">
+      <wsdl:input message="tns:insertar_sintomasSoapIn" />
+      <wsdl:output message="tns:insertar_sintomasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="eliminar_sintomas">
+      <wsdl:input message="tns:eliminar_sintomasSoapIn" />
+      <wsdl:output message="tns:eliminar_sintomasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Login2">
+      <wsdl:input message="tns:Login2SoapIn" />
+      <wsdl:output message="tns:Login2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Login3">
+      <wsdl:input message="tns:Login3SoapIn" />
+      <wsdl:output message="tns:Login3SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TodoslosPacientes">
+      <wsdl:input message="tns:TodoslosPacientesSoapIn" />
+      <wsdl:output message="tns:TodoslosPacientesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ClinicaWebServiceSoap" type="tns:ClinicaWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_sintomas">
+      <soap:operation soapAction="http://tempuri.org/lista_sintomas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizar_sintomas">
+      <soap:operation soapAction="http://tempuri.org/actualizar_sintomas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_enfermedades">
+      <soap:operation soapAction="http://tempuri.org/lista_enfermedades" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_enfermedades_sintomas">
+      <soap:operation soapAction="http://tempuri.org/lista_enfermedades_sintomas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertar_enfermedad">
+      <soap:operation soapAction="http://tempuri.org/insertar_enfermedad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertar_enfermedad_sintomas">
+      <soap:operation soapAction="http://tempuri.org/insertar_enfermedad_sintomas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizar_enfermedad">
+      <soap:operation soapAction="http://tempuri.org/actualizar_enfermedad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizar_enfermedad_sintomas">
+      <soap:operation soapAction="http://tempuri.org/actualizar_enfermedad_sintomas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertar_sintomas">
+      <soap:operation soapAction="http://tempuri.org/insertar_sintomas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="eliminar_sintomas">
+      <soap:operation soapAction="http://tempuri.org/eliminar_sintomas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login2">
+      <soap:operation soapAction="http://tempuri.org/Login2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login3">
+      <soap:operation soapAction="http://tempuri.org/Login3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TodoslosPacientes">
+      <soap:operation soapAction="http://tempuri.org/TodoslosPacientes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ClinicaWebServiceSoap12" type="tns:ClinicaWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_sintomas">
+      <soap12:operation soapAction="http://tempuri.org/lista_sintomas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizar_sintomas">
+      <soap12:operation soapAction="http://tempuri.org/actualizar_sintomas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_enfermedades">
+      <soap12:operation soapAction="http://tempuri.org/lista_enfermedades" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_enfermedades_sintomas">
+      <soap12:operation soapAction="http://tempuri.org/lista_enfermedades_sintomas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertar_enfermedad">
+      <soap12:operation soapAction="http://tempuri.org/insertar_enfermedad" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertar_enfermedad_sintomas">
+      <soap12:operation soapAction="http://tempuri.org/insertar_enfermedad_sintomas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizar_enfermedad">
+      <soap12:operation soapAction="http://tempuri.org/actualizar_enfermedad" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizar_enfermedad_sintomas">
+      <soap12:operation soapAction="http://tempuri.org/actualizar_enfermedad_sintomas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertar_sintomas">
+      <soap12:operation soapAction="http://tempuri.org/insertar_sintomas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="eliminar_sintomas">
+      <soap12:operation soapAction="http://tempuri.org/eliminar_sintomas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login2">
+      <soap12:operation soapAction="http://tempuri.org/Login2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login3">
+      <soap12:operation soapAction="http://tempuri.org/Login3" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TodoslosPacientes">
+      <soap12:operation soapAction="http://tempuri.org/TodoslosPacientes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ClinicaWebService">
+    <wsdl:port name="ClinicaWebServiceSoap" binding="tns:ClinicaWebServiceSoap">
+      <soap:address location="http://localhost:55805/ClinicaWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ClinicaWebServiceSoap12" binding="tns:ClinicaWebServiceSoap12">
+      <soap12:address location="http://localhost:55805/ClinicaWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

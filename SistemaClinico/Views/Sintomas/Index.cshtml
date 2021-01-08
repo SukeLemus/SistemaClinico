@@ -1,0 +1,139 @@
+﻿@*@model IEnumerable<SistemaClinico.Models.Sintoma>*@
+@model IPagedList<SistemaClinico.Models.Sintoma>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using PagedList;
+@using PagedList.Mvc;
+@using SistemaClinico.Controllers;
+
+
+<div class="titulo_general"><h1>Síntomas</h1></div>
+@using (Html.BeginForm("Index", "Sintomas", FormMethod.Get))
+{
+
+
+    <p class="buscador">
+        Nombre: @Html.TextBox("BuscarNombre")
+
+        <input type="submit" value="Buscar" />
+    </p>
+}
+<div class="titulo_contactenos">
+    <h2>Síntomas Comunes</h2>
+</div>
+<div class="contenido_contactenos">
+    <p>
+        A continuación se muestra el listado de los síntomas mas comunes, debe considerar que la
+        información que se visualiza es solo una referencia informativa y en caso de presentar alguno de
+        ellos, debe evitar automedicarse y solicitar un diagnóstico médico profesional, en Clínica Datanet puede
+        solicitar una consulta médica en caso de manifestar alguno de los sintomas, solo registrese y denos su dinero.
+
+        <br />
+        <br />
+        <br />
+        O vaya al hospital
+        <br />
+        <br />
+        BORRAR ESTO
+    </p>
+</div>
+
+@if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
+{
+
+}
+else
+{
+    <p>
+        @Html.ActionLink("Nuevo Sintoma", "Create")
+    </p>
+    <p>
+        @Html.ActionLink("Reporte Sintoma", "Reporte2")
+    </p>
+}
+
+
+<table id="table_id" class="table_lista">
+    <tr class="tr_lista">
+        <th class="th_lista">
+            @*@Html.DisplayNameFor(model => model.First().nombre)*@
+            NOMBRE
+        </th>
+        <th class="th_lista">
+            DESCRIPCION
+            @*@Html.DisplayNameFor(model => model.First().descripcion)*@
+        </th>
+
+            @if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
+            {
+                // @Url.Action("Index", "Home");
+                // @Response.Redirect("~/Views/Home/Index", true);
+
+            }
+            else
+            {
+                <th class="th_lista"> OPCIONES</th>
+            }
+
+    </tr>
+        @foreach (var item in Model)
+        {
+            <tr class="tr_lista">
+                <td class="td_lista">
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td class="td_lista">
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
+                @if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
+                {
+                    // @Url.Action("Index", "Home");
+                    // @Response.Redirect("~/Views/Home/Index", true);
+                }
+                else
+                {
+                    <td class="td_lista">
+                        <table align="center">
+                            <tr>
+                                <td>
+                                    @Html.ActionLink("Detalles", "Details", new { id = item.id })
+                                    <br>
+                                </td>
+                                <td>
+                                    &nbsp;-&nbsp;
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Editar", "Edit", new { id = item.id })
+                                    <br>
+                                </td>
+                                <td>
+                                    &nbsp;-&nbsp;
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                }
+
+            </tr>
+        }
+
+    </table>
+
+@*<nav aria-label="Page navigation example">
+        <ul class="pagination">
+            @for (int i = 0; i <= ViewBag.TotalRegistros; i++)
+            {
+                <li class="page-item">
+                    @Html.ActionLink(pagina++.ToString(), "Index", "Home", new { posicion = i }, null)
+                </li>
+            }
+        </ul>
+    </nav>*@
+
+@Html.PagedListPager(Model, i => Url.Action("Index", "Sintomas", new { i, search = Request.QueryString["search"] }))

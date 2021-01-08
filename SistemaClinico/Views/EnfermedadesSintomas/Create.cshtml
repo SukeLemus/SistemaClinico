@@ -1,0 +1,151 @@
+﻿@*@model IPagedList<SistemaClinico.Models.EnfermedadSintoma>*@
+@*@model SistemaClinico.Models.modelosjuntos*@
+@model SistemaClinico.Models.EnfermedadSintoma
+@*@model dynamic*@
+@using SistemaClinico.Controllers;
+@using System.Data;
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Agregando Sintomas a la Enfermedad:</h2>
+
+@*@Html.AntiForgeryToken()
+    @{
+
+
+
+        string nombreEnf = "";
+        int MaxIdEnfermedad = 0;
+        SistemaClinico.SistemaClinicoSoapWS.ClinicaWebServiceSoapClient swEnf = new SistemaClinico.SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+        SistemaClinicoSoapWS.ClinicaWebServiceSoapClient swEnf = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+        DataSet ds = swEnf.MaxIdEnfermedad();
+        foreach (DataRow dr in ds.Tables[0].Rows)
+        {
+            MaxIdEnfermedad = int.Parse(dr["MAX(ID_ENFERMEDAD)"].ToString());
+            ViewData["max"] = MaxIdEnfermedad;
+        }
+
+        DataSet ds2 = swEnf.nombreMax(MaxIdEnfermedad);
+        foreach (DataRow dr2 in ds2.Tables[0].Rows)
+        {
+            nombreEnf = dr2["NOMBRE_ENFERMEDAD"].ToString();
+        }
+
+
+
+        Agregando la lista sintomas
+        DataSet ds3 = swEnf.lista_sintomas2();
+
+        var selectList = new List<SelectListItem>();
+
+
+        foreach (DataRow dr3 in ds3.Tables[0].Rows)
+        {
+
+            string id = dr3["ID_SINTOMA"].ToString();
+            string name_sintoma = dr3["NOMBRE_SINTOMA"].ToString();
+
+
+            selectList.Add(new SelectListItem
+            {
+                Value = id,
+                Text = name_sintoma,
+
+
+
+            }); ;
+            ViewData["chompipollo"] = selectList;
+
+        }
+
+    }*@
+@*@Html.AntiForgeryToken()
+    @{
+        string nombreEnf = ViewData["nombreEnf"].ToString();
+    }*@
+@using (Html.BeginForm())
+{
+    <div class="titulo_general">
+        <h1>@ViewData["nombreEnf"] @*@Html.Label(ViewData["nombreEnf"].ToString(), htmlAttributes: new { @class = "control-label col-md-2" })*@ </h1>
+    </div>
+
+    <div class="form-horizontal">
+        <hr />
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.ID_ENFERMEDAD, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.ID_ENFERMEDAD, new { @Value = @ViewData["max"] })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("SINTOMAS", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.DropDownList("ID_SINTOMA", (IEnumerable<SelectListItem>)@ViewData["chompipollo"], "Seleccione un Sintoma", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ID_SINTOMA, "", new { @class = "text-danger" })
+                @if (TempData["UserMessage"] != null)
+                {
+                    var message = TempData["UserMessage"];
+                    <div class="text-danger" >
+                        @*<strong>@message</strong>*@
+                        @message
+                    </div>
+                }
+            </div>
+        </div>
+
+
+
+        <table align="center">
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Agregar Sintoma" class="btn btn-success" />
+                        </div>
+                    </div>
+                </td>
+                <td>&nbsp;  &nbsp; &nbsp;  &nbsp;</td>
+                <td>
+                    <div div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input onclick="location.href='@Url.Action("Index", "Enfermedades")'" type="button" value="Finalizar" class="btn btn-finalizar" />
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    <h2>Sintomas Agregados:</h2>
+    <div class="lista-sintoEnf">
+
+        <div class="col-md-10">
+
+            @Html.ListBox("ID_SINTOMA", (IEnumerable<SelectListItem>)@ViewData["chompipollo2"], htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ID_SINTOMA, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+}
+
+<div>
+    @*@Html.ActionLink("Back to List", "Index")*@
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+   
+}

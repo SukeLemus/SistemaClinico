@@ -1,0 +1,82 @@
+﻿@model SistemaClinico.Models.EnfermedadSintoma
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+@*<div>
+        <h4>EnfermedadSintoma</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ID_ENF_SINTOMAS)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ID_ENF_SINTOMAS)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ID_ENFERMEDAD)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ID_ENFERMEDAD)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ID_SINTOMA)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ID_SINTOMA)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
+<table class="table_lista">
+    <tr class="tr_lista">
+        <th class="th_lista">Enfermedad</th>
+        <th class="th_lista">Síntomas Asociados</th>
+    </tr>
+    <tr class="tr_lista">
+        <td class="td_lista">
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.Label(ViewData["Enfermedad"].ToString(), new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </td>
+
+        <td class="td_lista">
+            <table align="center" >
+                @{
+                    foreach (var Sintoma in ViewBag.sint)
+                    {
+                        <tr class="tr_lista">
+                            <td class="td_lista">@Sintoma.nombre</td>
+                        </tr>
+                    }
+                }
+
+            </table>
+        </td>
+    </tr>
+</table>
+@{
+
+}
+@*<p>
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
+<div div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input onclick="location.href='@Url.Action("Index", "Enfermedades")'" type="button" value="Volver" class="btn btn-finalizar" />
+    </div>
+</div>

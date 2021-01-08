@@ -1,0 +1,311 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+
+.buscador {
+
+}
+
+img.avatar {
+    max-width: 110%;
+    max-height: 110%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table.login {
+    text-align: center;
+    align-content:baseline;
+    max-width: 70%;
+    max-height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5px;
+    display:block;
+}
+label.user {
+    font-size: 20px;
+}
+label.pass {
+    font-size: 20px;
+}
+input.boxuser {
+    font-size: 14px;
+}
+input.boxpass {
+    font-size: 14px;
+}
+button.btnlogin {
+    font-size: 16px;
+}
+
+button.btncancel {
+    font-size: 16px;
+}
+
+.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+div.dropdown {
+    width: 180px;
+    height: auto;
+}
+
+
+.imgSlider {
+    max-width: 350%;
+    height: 50%;
+}
+
+
+.sheetSlider {
+    max-width: 100%;
+    height: 20%;
+    background-color: #1b6ec2;
+    text-align: center;
+}
+
+/*Slider automatico*/
+.slider {
+    max-width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+    .slider ul {
+        display: flex;
+        padding: 0;
+        width: 300%;
+        animation: cambio 20s infinite alternate linear;
+    }
+
+    .slider li {
+        width: 100%;
+        list-style: none;
+    }
+
+    .slider img {
+        width: 100%;
+    }
+
+@keyframes cambio {
+    0% {
+        margin-left: 0;
+    }
+
+    28% {
+        margin-left: 0;
+    }
+
+    33% {
+        margin-left: -100%;
+    }
+
+    61% {
+        margin-left: -100%;
+    }
+
+    66% {
+        margin-left: -200%;
+    }
+
+    100% {
+        margin-left: -200%;
+    }
+}
+
+.imglogo {
+    max-width: 30%;
+}
+
+.imgicono {
+    max-width: 14%;
+    max-height: 14%;
+}
+.imgiconoavatar {
+    max-width: 20%;
+    max-height: 20%;
+}
+.imgiconodepamedico {
+    max-width: 15%;
+    max-height: 15%;
+}
+
+.navbar-brand {
+    max-width: 30%;
+/*    max-height: 5%;*/
+}
+
+/*menu dropeado*/
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    .dropdown-content a {
+        float: none;
+        color: black;
+        padding: 10px 16px 5px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+
+    }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+.nav-item a {
+    float: none;
+    color: black;
+    padding: 10px 2px 10px 2px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    width: auto;
+
+}
+
+    .nav-item a:hover {
+        background-color: #CEFFED;
+
+    }
+
+.nav-item2 a {
+    float: none;
+    color: black;
+    padding: 10px 10px 10px 10px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+    .nav-item2 a:hover {
+        background-color: #CEFFED;
+    }
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+/*menu dropeado*/
+
+
+
+
+/* Provide sufficient contrast against white background */
+a {
+    color: #0366d6;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 12px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 12px;
+        font-style: normal;
+    }
+
+    .imgSlider {
+        max-width: 100%;
+        height: 275px;
+    }
+
+    .sheetSlider {
+        max-width: 100%;
+        height: 275px;
+        background-color: #1b6ec2;
+        text-align: center;
+    }
+
+    .sh__meta span, .sh__meta h4 {
+        align-content: center;
+        color: brown;
+    }
+
+    .sh__meta img {
+        max-width: 30%;
+    }
+
+    .sh__meta {
+        display: flex;
+        align-items: end;
+        justify-content: right;
+    }
+
+}
+
+.navbar-light .navbar-brand2 {
+    color: rgba(0,0,0,.9);
+}
+
+.navbar-brand2 {
+    max-width: 125px;
+    font-size: 14px;
+}
+
+.navbar-brand2 {
+    white-space: normal;
+    text-align: justify;
+    word-break: break-all;
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}

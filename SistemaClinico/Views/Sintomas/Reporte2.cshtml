@@ -1,0 +1,100 @@
+﻿@model IEnumerable<SistemaClinico.Models.Sintoma>
+
+@{
+    //ViewBag.Title = "Reporte2";
+    //Layout = "~/Views/Sintomas/Index.cshtml";
+    Layout = null;
+}
+
+<html>
+    <head>
+        <title>Reporte</title>
+        <meta charset="utf-8">
+        <style>
+                hr {
+                    height: 5px;
+                    background-color: black;
+                }
+        </style>
+
+        <link rel="stylesheet" href="~/Content/TableCSS.css" />
+    </head>
+    <body>
+
+        @*Banner*@
+        <img src="~/Content/Images/banergeneral.jpg" width="1000" height="200" />
+        @*Titulo del reporte*@
+        <hr />
+        <div style='text-align:right'><h1>Datanet SV</h1></div>
+        <hr />
+        <div style='text-align:center'><h1>Sintomas</h1></div>
+
+        @if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
+        {
+
+        }
+        else
+        {
+            <div class="container2">
+                <table class="table2">
+                    <tr>
+                        <th style="background-color:white">
+                            @Html.DisplayNameFor(model => model.nombre)
+                        </th>
+                        <th style="background-color:white">
+                            @Html.DisplayNameFor(model => model.descripcion)
+                        </th>
+
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.descripcion)
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        }
+    </body>
+    </html>
+
+@*<h2>Reporte2</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            </td>
+        </tr>
+    }
+
+    </table>*@

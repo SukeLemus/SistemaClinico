@@ -1,0 +1,190 @@
+﻿@model SistemaClinico.Models.RegistroPaciente2
+@using SistemaClinico.Models;
+@using SistemaClinico.Controllers;
+
+@{
+    ViewBag.Title = "Create";
+}
+<center>
+    <div class="Registro">
+        <img src="~/Content/Images/Datanetsvlogo.png" alt="registro" class="imglogo">
+    </div>
+</center>
+<div class="titulo_general"><h1>Registro de Paciente</h1></div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Llene los campos cuidadosamente y guarde la información en un lugar seguro, para iniciar sesión usará su Usuario y Contraseña que cree aquí. </h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.NOMBRE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingerese su Nombre" } })
+                @Html.ValidationMessageFor(model => model.NOMBRE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.APELLIDO, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.APELLIDO, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingerese su Apellido" } })
+                @Html.ValidationMessageFor(model => model.APELLIDO, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DUI, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DUI, new { htmlAttributes = new { @class = "form-control", maxlength = 9, @placeholder = "Ingerese su DUI *campo opcional" } })
+                @Html.ValidationMessageFor(model => model.DUI, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NIT, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NIT, new { htmlAttributes = new { @class = "form-control", maxlength = 14, @placeholder = "Ingerese su NIT" } })
+                @Html.ValidationMessageFor(model => model.NIT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.GENERO, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.GENERO,
+                         new SelectList(Enum.GetValues(typeof(GENERO))),
+                         "Seleccione su género", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.GENERO, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.Label("TIPO DE SANGRE", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TIPO_SANGRE,
+                          new SelectList(Enum.GetValues(typeof(TIPO_SANGRE))),
+                          "Seleccione su tipo se sangre *campo opcional", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TIPO_SANGRE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TELEFONO, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TELEFONO, new { htmlAttributes = new { @class = "form-control", maxlength = 8, @placeholder = "Ingerese su Teléfono" } })
+                @Html.ValidationMessageFor(model => model.TELEFONO, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CORREO, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CORREO, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingerese su Correo" } })
+                @Html.ValidationMessageFor(model => model.CORREO, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @using SistemaClinico.Controllers;
+        @using System.Data;
+
+        @{
+            SistemaClinico.SistemaClinicoSoapWS.ClinicaWebServiceSoapClient WSMunicipios = new SistemaClinico.SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+            DataSet ds = WSMunicipios.SelectIdDireccion();
+
+            var selectList = new List<SelectListItem>();
+
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+
+                string id = dr["ID_DIRECCION"].ToString();
+                string municipio = dr["MUNICIPIO"].ToString();
+
+
+                selectList.Add(new SelectListItem
+                {
+                    Value = id,
+                    Text = municipio,
+
+
+
+                }); ;
+                ViewData["chumpe"] = selectList;
+
+            }
+        }
+
+
+        <div class="form-group">
+            @Html.Label("MUNICIPIO", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Municipio", (IEnumerable<SelectListItem>)ViewData["chumpe"], "Seleccione su Municipio", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ID_DIRECCION, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.Label("DIRECCION", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DIRECCION_COM, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingerese su Direccion segun DUI" } })
+                @Html.ValidationMessageFor(model => model.DIRECCION_COM, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.USUARIO, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.USUARIO, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingerese su Usuario" } })
+                @Html.ValidationMessageFor(model => model.USUARIO, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PASSWORD, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.PASSWORD, new { @class = "form-control", @placeholder = "Ingerese su Contraseña" })
+                @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <table align="center">
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Registrarse" class="btn btn-success" />
+                        </div>
+                    </div>
+                </td>
+                <td>""</td>
+                <td>
+                    <div div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input onclick="location.href='@Url.Action("Index", "Home")'" type="button" value="Cancelar" class="btn btn-danger" />
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

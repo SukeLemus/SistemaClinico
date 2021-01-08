@@ -1,0 +1,66 @@
+﻿@model SistemaClinico.Models.Medicamento
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Medicamento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBRE_MEDICAMENTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRE_MEDICAMENTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPCION_MEDICAMENTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPCION_MEDICAMENTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CANTIDAD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CANTIDAD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRESENTACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRESENTACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRECIO_UNITARIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRECIO_UNITARIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ESTADO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ESTADO)
+        </dd>
+
+    </dl>
+</div>
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@

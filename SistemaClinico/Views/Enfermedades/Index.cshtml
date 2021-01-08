@@ -1,0 +1,92 @@
+﻿@*@model IEnumerable<SistemaClinico.Models.Enfermedad>*@
+@model IPagedList<SistemaClinico.Models.Enfermedad>
+
+@{
+    ViewBag.Title = "Index";
+}
+@using PagedList;
+@using PagedList.Mvc;
+@using SistemaClinico.Controllers;
+<h2>Index</h2>
+
+@if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
+{
+
+}
+else
+{
+    <p>
+        @Html.ActionLink("Nueva Enfermedad", "Create")
+    </p>
+    <p>
+        @Html.ActionLink("Reporte Sintoma", "Reporte2")
+    </p>
+}
+<table id="table_id" class="table_lista">
+    <tr class="tr_lista">
+        <th class="th_lista">
+            @*@Html.DisplayNameFor(model => model.First().nombre_enfermedad)*@
+            NOMBRE
+        </th>
+        <th class="th_lista">
+            DESCRIPCION
+            @*@Html.DisplayNameFor(model => model.First().descripcion)*@
+        </th>
+        @if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
+        {
+            // @Url.Action("Index", "Home");
+            // @Response.Redirect("~/Views/Home/Index", true);
+
+        }
+        else
+        {
+            <th class="th_lista"> OPCIONES</th>
+        }
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="tr_lista">
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.nombre_enfermedad)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            @if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
+            {
+                // @Url.Action("Index", "Home");
+                // @Response.Redirect("~/Views/Home/Index", true);
+            }
+            else
+            {
+                <td class="td_lista">
+                    <table align="center">
+                        <tr>
+                            <td>
+                                @Html.ActionLink("Detalles", "Details", new { id = item.id })
+                                <br>
+                            </td>
+                            <td>
+                                &nbsp;-&nbsp;
+                            </td>
+                            <td>
+                                @Html.ActionLink("Editar", "Edit", new { id = item.id })
+                                <br>
+                            </td>
+                            <td>
+                                &nbsp;-&nbsp;
+                            </td>
+                            <td>
+                                @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            }
+        </tr>
+    }
+
+</table>
+
+@Html.PagedListPager(Model, i => Url.Action("Index", "Enfermedades", new { i, search = Request.QueryString["search"] }))

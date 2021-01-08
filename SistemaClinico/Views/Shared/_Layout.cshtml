@@ -1,0 +1,887 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SistemaClinico</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/sheetslider.min.css" />
+    <link rel="stylesheet" href="~/Content/Site.css" />
+    <link rel="stylesheet" href="~/Content/estilito.css" />
+    <link rel="stylesheet" href="~/Content/Tablas.css" />
+    @Styles.Render("~/Content/css")
+
+</head>
+<body>
+    
+
+
+    <div class="sheetSlider sh--default">
+        <input id="s1" type="radio" name="slide1" checked />
+        <input id="s2" type="radio" name="slide1" />
+        <input id="s3" type="radio" name="slide1" />
+        <input id="s4" type="radio" name="slide1" />
+        <div class="sh__content">
+
+
+            <div class="slider">
+                <ul>
+                    <li>
+
+                        <img src="~/Content/Images/banergeneral2.jpg" alt="imgText" class="imgSlider" />
+                        <div class="sh__meta">
+                            <img src="~/Content/Images/Datanetsvlogo.png" class="imgbanner" />
+                        </div>
+
+                    </li>
+                    <li>
+
+                        <img src="~/Content/Images/bannerfrase2.png" alt="imgText" class="imgSlider" />
+
+                    </li>
+                    <li>
+
+                        <img src="~/Content/Images/bannercuidatushijos2.png" alt="imgText" class="imgSlider" />
+
+
+                    </li>
+                </ul>
+            </div>
+            <div class="sh__item">
+
+                <img src="~/Content/Images/banergeneral2.jpg" alt="imgText" class="imgSlider" />
+                <div class="sh__meta">
+                    <img src="~/Content/Images/Datanetsvlogo.png" class="imgbanner" />
+                </div>
+            </div>
+            <div class="sh__item">
+
+                <img src="~/Content/Images/bannerfrase2.png" alt="imgText" class="imgSlider" />
+                <div class="sh__meta">
+
+                </div>
+            </div>
+
+            <div class="sh__item">
+
+                <img src="~/Content/Images/bannercuidatushijos2.png" alt="imgText" class="imgSlider" />
+                <div class="sh__meta">
+
+                </div>
+            </div>
+
+        </div>
+        <div class="sh__btns">
+            <label for="s1"></label>
+            <label for="s2"></label>
+            <label for="s3"></label>
+            <label for="s4"></label>
+        </div>
+
+        <div class="sh__arrows">
+            <label for="s1"></label>
+            <label for="s2"></label>
+            <label for="s3"></label>
+            <label for="s4"></label>
+        </div>
+
+    </div>
+
+
+    <header>
+
+        @if (Session["Rol"] == null)
+        {
+            //No logueado
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+
+            &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+            <a class="navbar-brand2" href="@Url.Action("Index", "Home")">
+
+
+                <img src="~/Content/Images/Datanetsv.png" class="imglogo" />
+                Bienvenidos
+
+            </a>
+            <div class="container">
+
+
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a>
+                                    Informacion de Salud
+                                    <img src="~/Content/Images/info.png" class="imgicono" />
+
+
+                                </a>
+                                <div class="dropdown-content">
+
+                                    <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                        Sintomas
+                                    </a>
+                                    <a class="nav-link text-dark" href="@Url.Action("Index", "Enfermedades")">
+                                        Enfermedades y Afecciones
+                                    </a>
+                                    <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                        Consultas
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a>
+                                    Departamentos
+                                    <img src="~/Content/Images/depamedico.png" class="imgiconodepamedico" />
+
+                                </a>
+                                <div class="dropdown-content">
+                                    <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                        Departamentos y Centros
+                                    </a>
+                                    <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                        Doctores y Personal Medico
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a>
+                                    Medicamentos
+                                    <img src="~/Content/Images/medicamentos.png" class="imgicono" />
+
+                                </a>
+                                <div class="dropdown-content">
+                                    <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                        Tabletas
+                                    </a>
+                                    <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                        Pildoras
+                                    </a>
+                                    <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                        Liquidos
+                                    </a>
+                                </div>
+                            </div>
+
+                        </li>
+                        <li class="nav-item">
+
+                            <div class="dropdown">
+                                <a href="@Url.Action("Contact", "Home")">
+
+                                    Contactenos
+                                    <img src="~/Content/Images/contactenos.png" class="imgicono" />
+                                </a>
+                            </div>
+
+
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+
+
+            @if (Session["User"] == null)
+            {
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item2">
+                <div class="dropdown2">
+                    <a href="@Url.Action("Create", "Registro")">
+                        Registrarse
+                    </a>
+
+                </div>
+            </li>
+            <li class="nav-item2">
+                <div class="dropdown2">
+                    <a href="@Url.Action("LoginV", "Login")">
+                        Login
+                    </a>
+
+                </div>
+            </li>
+        </ul>
+            }
+            else
+            {
+                <div class="dropdown">
+
+                    <div class="nav-item">
+                        <div class="dropdown2">
+                            Usuario: @Session["User"]
+                        </div>
+
+                    </div>
+                    <div class="nav-item">
+
+                        <div class="dropdown2">
+                            <a href="@Url.Content("~/Login/Salir")">Salir</a>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            }
+            &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+
+
+
+
+        </nav>
+        }
+        else if (Session["Rol"].Equals(1))
+        {
+            //Logeado paciente
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+        <a class="navbar-brand2" href="@Url.Action("Index", "Home")">
+
+            <img src="~/Content/Images/Datanetsv.png" class="imglogo" />
+            Bienvenidos
+
+        </a>
+        <div class="container">
+
+
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <partial name="_LoginPartial" />
+                <ul class="navbar-nav flex-grow-1">
+
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a>
+                                Informacion de Salud
+                                <img src="~/Content/Images/info.png" class="imgicono" />
+
+                            </a>
+                            <div class="dropdown-content">
+
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Sintomas
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Enfermedades")">
+                                    Enfermedades y Afecciones
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a>
+                                Atención al Paciente
+                                <img src="~/Content/Images/atencionpaciente.png" class="imgicono" />
+                            </a>
+                            <div class="dropdown-content">
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Solicitar Cita
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Generar Constancia Medica
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Generar Prescripción Médica
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a>
+                                Mi Expediente
+                                <img src="~/Content/Images/expediente.png" class="imgicono" />
+                            </a>
+                            <div class="dropdown-content">
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Mi informacion Medica
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Mis Citas Medicas
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Mis Consultas Medicas
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Mis Constancias Medicas
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Mis Prescripciones Medicas
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a>
+                                Departamentos
+                                <img src="~/Content/Images/depamedico.png" class="imgiconodepamedico" />
+
+                            </a>
+                            <div class="dropdown-content">
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Departamentos y Centros
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Doctores y Personal Medico
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a>
+                                Medicamentos
+                                <img src="~/Content/Images/medicamentos.png" class="imgicono" />
+
+                            </a>
+                            <div class="dropdown-content">
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Tabletas
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Pildoras
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Liquidos
+                                </a>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li class="nav-item">
+
+                        <div class="dropdown">
+                            <a href="@Url.Action("Contact", "Home")">
+
+                                Contactenos
+                                <img src="~/Content/Images/contactenos.png" class="imgicono" />
+                            </a>
+                        </div>
+
+
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+
+        @if (Session["User"] == null)
+        {
+            <div class="dropdown">
+                <partial name="_LoginPartial" />
+                <a href="@Url.Action("LoginV", "Login")">
+                    Login
+                </a>
+            </div>
+        }
+        else
+        {
+
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item2">
+                <div class="dropdown">
+                    <a>
+                        @Session["Nombre"] @Session["Apellido"]
+                    </a>
+                    <div class="dropdown-content">
+                        <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                            Mi perfil
+                        </a>
+                        <a class="nav-link text-dark"  href="@Url.Content("~/Login/Salir")">Salir</a>
+                    </div>
+                </div>
+
+            </li>
+        </ul>
+
+        }
+        &nbsp;  &nbsp;  &nbsp; 
+
+
+
+    </nav>
+        }
+        else if (Session["Rol"].Equals(2))
+        {
+            //Logeado enfermero
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+        <a class="navbar-brand2" href="@Url.Action("Index", "Home")">
+            <img src="~/Content/Images/Datanetsv.png" class="imglogo" />
+            Bienvenidos
+
+        </a>
+        <div class="container">
+
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <partial name="_LoginPartial" />
+                <ul class="navbar-nav flex-grow-1">
+
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a>
+                                Pacientes
+                                <img src="~/Content/Images/pacientes.png" class="imgicono" />
+                            </a>
+                            <div class="dropdown-content">
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Perfil paciente
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Citas
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Constancias médicas
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    prescripciones médicas
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                Solicitud de citas
+                                <img src="~/Content/Images/solicitud.png" class="imgicono" />
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                Agenda de Citas
+                                <img src="~/Content/Images/agenda.png" class="imgicono" />
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a>
+                                Medicamentos
+                                <img src="~/Content/Images/medicamentos.png" class="imgicono" />
+
+                            </a>
+                            <div class="dropdown-content">
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Tabletas
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Pildoras
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Liquidos
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                Historial de Citas
+                                <img src="~/Content/Images/historial.png" class="imgicono" />
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a>
+                                Departamentos
+                                <img src="~/Content/Images/depamedico.png" class="imgiconodepamedico" />
+                            </a>
+                            <div class="dropdown-content">
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Departamentos y Centros
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Doctores y Personal Medico
+                                </a>
+                            </div>
+                        </div>
+
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        @if (Session["User"] == null)
+        {
+            <div class="dropdown">
+                <partial name="_LoginPartial" />
+                <a href="@Url.Action("LoginV", "Login")">
+                    Login
+                </a>
+            </div>
+        }
+        else
+        {
+    <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item2">
+            <div class="dropdown">
+                <a>
+                  @Session["Nombre"] @Session["Apellido"]
+                </a>
+                <div class="dropdown-content">
+                    <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                        Mi perfil
+                    </a>
+                    <a class="nav-link text-dark" href="@Url.Content("~/Login/Salir")">Salir</a>
+                </div>
+            </div>
+
+        </li>
+    </ul>
+        }
+        &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+
+    </nav>
+        }
+        else if (Session["Rol"].Equals(3))
+        {
+            //Logeado doctor
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+        <a class="navbar-brand2" href="@Url.Action("Index", "Home")">
+
+            <img src="~/Content/Images/Datanetsv.png" class="imglogo" />
+            Bienvenidos
+
+        </a>
+        <div class="container">
+
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <partial name="_LoginPartial" />
+                <ul class="navbar-nav flex-grow-1">
+
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a>
+                                Pacientes
+                                <img src="~/Content/Images/pacientes.png" class="imgicono" />
+                            </a>
+                            <div class="dropdown-content">
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Perfil paciente
+                                </a>
+
+
+
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Información médica
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Citas
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Consultas médicas
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Constancias médicas
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    prescripciones médicas
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                Agenda de Citas
+                                <img src="~/Content/Images/agenda.png" class="imgicono" />
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a>
+                                Medicamentos
+                                <img src="~/Content/Images/medicamentos.png" class="imgicono" />
+
+                            </a>
+                            <div class="dropdown-content">
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Tabletas
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Pildoras
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Liquidos
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                Historial de Citas
+                                <img src="~/Content/Images/historial.png" class="imgicono" />
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a>
+                                Departamentos
+                                <img src="~/Content/Images/depamedico.png" class="imgiconodepamedico" />
+                            </a>
+                            <div class="dropdown-content">
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Departamentos y Centros
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Doctores y Personal Medico
+                                </a>
+                            </div>
+                        </div>
+
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        @if (Session["User"] == null)
+        {
+            <div class="dropdown">
+                <partial name="_LoginPartial" />
+                <a href="@Url.Action("LoginV", "Login")">
+                    Login
+                </a>
+            </div>
+        }
+        else
+        {
+    <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item2">
+            <div class="dropdown">
+                <a>
+                   @Session["Nombre"] @Session["Apellido"]
+                </a>
+                <div class="dropdown-content">
+                    <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                        Mi perfil
+                    </a>
+                    <a class="nav-link text-dark" href="@Url.Content("~/Login/Salir")">Salir</a>
+                </div>
+            </div>
+
+        </li>
+    </ul>
+        }
+        &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+    </nav>
+        }
+        else if (Session["Rol"].Equals(4))
+        {
+            //Logeado administrador
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+        <a class="navbar-brand2" href="@Url.Action("Index", "Home")">
+
+            <img src="~/Content/Images/Datanetsv.png" class="imglogo" />
+            Bienvenidos
+
+        </a>
+        <div class="container">
+
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <partial name="_LoginPartial" />
+                <ul class="navbar-nav flex-grow-1">
+
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a>
+                                Informacion General
+                                <img src="~/Content/Images/infogeneral.png" class="imgicono" />
+                            </a>
+                            <div class="dropdown-content">
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Informacion de Bienvenida
+                                </a>
+
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Enfermedades")">
+                                    Sintomas
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Enfermedades")">
+                                    Enfermedades
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Enfermedades")">
+                                    Contactenos
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a>
+                                Usuarios
+                                <img src="~/Content/Images/avatar-usuario-m.png" class="imgiconoavatar" />
+                            </a>
+                            <div class="dropdown-content">
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Lista Pacientes
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Lista Personal
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Nuevo Paciente
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Nuevo Personal
+                                </a>
+                            </div>
+                    </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a>
+                                Departamentos
+                                <img src="~/Content/Images/depamedico.png" class="imgiconodepamedico" />
+                            </a>
+                            <div class="dropdown-content">
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Nueva Area
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Nuevo Departamento
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a>
+                                Medicamentos
+                                <img src="~/Content/Images/medicamentos.png" class="imgicono" />
+
+                            </a>
+                            <div class="dropdown-content">
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Tabletas
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Pildoras
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Liquidos
+                                </a>
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                    Nuevo Medicamento
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+
+
+
+        @if (Session["User"] == null)
+        {
+            <div class="dropdown">
+                <partial name="_LoginPartial" />
+                <a href="@Url.Action("LoginV", "Login")">
+                    Login
+                </a>
+            </div>
+        }
+        else
+        {
+    <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item2">
+            <div class="dropdown">
+                <a>
+                    @Session["Nombre"] @Session["Apellido"]
+                </a>
+                <div class="dropdown-content">
+                    <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                        Mi perfil
+                    </a>
+                    <a class="nav-link text-dark" href="@Url.Content("~/Login/Salir")">Salir</a>
+                </div>
+            </div>
+
+        </li>
+    </ul>
+        }
+        &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+    </nav>
+
+        }
+
+
+
+
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - SistemaClinico - Desarrollado por - <a href="@Url.Action("Datanetsv", "Home")">DatanetSV</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

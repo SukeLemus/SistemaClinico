@@ -1,0 +1,62 @@
+﻿body {
+}
+
+
+.titulo_contactenos h2 {
+
+    height: 50%;
+    width: 50%;
+    color: gray;
+}
+
+
+h4{
+    color: #000;
+}
+
+
+.tablas_abc{
+
+}
+    .tablas_abc td {
+    width: 50%;
+    }
+
+
+.imagen_presentacion {
+    width: auto;
+    text-align: right;
+}
+
+
+
+
+
+
+.lista-sintoEnf {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+/*.form-control {
+    text-align: center;
+}*/
+
+
+.msj_parrafo p {
+    text-align: justify;
+}
+
+.titulo_general
+{
+}
+    .titulo_general h1 {
+        text-align: center;
+        color: #10A6F1;
+    }
+.titulo_datanetsv {
+}
+
+    .titulo_datanetsv h1 {
+        color: #10A6F1;
+    }

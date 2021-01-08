@@ -1,0 +1,66 @@
+﻿@model SistemaClinico.Models.Enfermedad
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+
+@if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
+{
+    Response.Redirect("Index");
+}
+else
+{
+    <h2>Eliminar Enfermedad</h2>
+
+    <h3>¿Está seguro de eliminar esta enfermedad?</h3>
+    <div>
+        @*<h4>Enfermedad</h4>*@
+        
+
+        <table class="table_lista">
+            <tr class="tr_lista">
+                <th class="th_lista">
+                    @Html.DisplayNameFor(model => model.nombre_enfermedad)
+                </th>
+                <th class="th_lista">
+                    @Html.DisplayNameFor(model => model.descripcion)
+                </th>
+            </tr>
+            <tr class="tr_lista">
+                <td class="td_lista">
+                    @Html.DisplayFor(model => model.nombre_enfermedad)
+                </td>
+                <td class="td_lista">
+                    @Html.DisplayFor(model => model.descripcion)
+                </td>
+            </tr>
+        </table>
+
+        <table align="center">
+            <tr>
+                <td>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Eliminar" class="btn btn-danger" />
+
+                        </div>
+                    }
+                </td>
+                <td>
+                    <div div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input onclick="location.href='@Url.Action("Index", "Enfermedades")'" type="button" value="Volver" class="btn btn-finalizar" />
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+
+    </div>
+}
