@@ -58,13 +58,6 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_enfermedades_sintomas", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataSet> lista_enfermedades_sintomasAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_enfermedades_sintomas_segun_dosid", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Data.DataSet lista_enfermedades_sintomas_segun_dosid(int idenfermedad, int id_sintoma);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_enfermedades_sintomas_segun_dosid", ReplyAction="*")]
-        System.Threading.Tasks.Task<System.Data.DataSet> lista_enfermedades_sintomas_segun_dosidAsync(int idenfermedad, int id_sintoma);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_enfermedades_sintomas_detail", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Data.DataSet lista_enfermedades_sintomas_detail();
@@ -225,6 +218,34 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/actualizar_medicamento", ReplyAction="*")]
         System.Threading.Tasks.Task<int> actualizar_medicamentoAsync(int idmedicamento, string nombre, string descripcion, int cantidad, string presentacion, double precio, string estado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaAreas", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet ListaAreas();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaAreas", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> ListaAreasAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertArea", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int InsertArea(string nombre);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertArea", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> InsertAreaAsync(string nombre);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateAreas", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int UpdateAreas(int id, string nombre);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateAreas", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> UpdateAreasAsync(int id, string nombre);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EliminarArea", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int EliminarArea(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EliminarArea", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> EliminarAreaAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -300,14 +321,6 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> lista_enfermedades_sintomasAsync(int id) {
             return base.Channel.lista_enfermedades_sintomasAsync(id);
-        }
-        
-        public System.Data.DataSet lista_enfermedades_sintomas_segun_dosid(int idenfermedad, int id_sintoma) {
-            return base.Channel.lista_enfermedades_sintomas_segun_dosid(idenfermedad, id_sintoma);
-        }
-        
-        public System.Threading.Tasks.Task<System.Data.DataSet> lista_enfermedades_sintomas_segun_dosidAsync(int idenfermedad, int id_sintoma) {
-            return base.Channel.lista_enfermedades_sintomas_segun_dosidAsync(idenfermedad, id_sintoma);
         }
         
         public System.Data.DataSet lista_enfermedades_sintomas_detail() {
@@ -492,6 +505,38 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         public System.Threading.Tasks.Task<int> actualizar_medicamentoAsync(int idmedicamento, string nombre, string descripcion, int cantidad, string presentacion, double precio, string estado) {
             return base.Channel.actualizar_medicamentoAsync(idmedicamento, nombre, descripcion, cantidad, presentacion, precio, estado);
+        }
+        
+        public System.Data.DataSet ListaAreas() {
+            return base.Channel.ListaAreas();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> ListaAreasAsync() {
+            return base.Channel.ListaAreasAsync();
+        }
+        
+        public int InsertArea(string nombre) {
+            return base.Channel.InsertArea(nombre);
+        }
+        
+        public System.Threading.Tasks.Task<int> InsertAreaAsync(string nombre) {
+            return base.Channel.InsertAreaAsync(nombre);
+        }
+        
+        public int UpdateAreas(int id, string nombre) {
+            return base.Channel.UpdateAreas(id, nombre);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateAreasAsync(int id, string nombre) {
+            return base.Channel.UpdateAreasAsync(id, nombre);
+        }
+        
+        public int EliminarArea(int id) {
+            return base.Channel.EliminarArea(id);
+        }
+        
+        public System.Threading.Tasks.Task<int> EliminarAreaAsync(int id) {
+            return base.Channel.EliminarAreaAsync(id);
         }
     }
 }

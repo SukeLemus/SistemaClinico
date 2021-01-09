@@ -1,0 +1,53 @@
+﻿@*@model IEnumerable<SistemaClinico.Models.Area>*@
+@model IPagedList<SistemaClinico.Models.Area>
+
+@{
+    ViewBag.Title = "Index";
+}
+@using PagedList;
+@using PagedList.Mvc;
+@using SistemaClinico.Controllers;
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<p class="buscador">
+    Nombre: @Html.TextBox("BuscarNombre")
+
+    <input type="submit" value="Buscar" />
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().NOMBRE_AREA)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOMBRE_AREA)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID}) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID}) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID})
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.PagedListPager(Model, i => Url.Action("Index", "Areas", new { i, search = Request.QueryString["search"] }))

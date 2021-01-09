@@ -191,10 +191,12 @@ namespace SistemaClinico.Controllers
                 SistemaClinicoSoapWS.ClinicaWebServiceSoapClient sinto = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
                 List<Sintoma> sintList = SintList();
                 var sint = sintList.Single(m => m.id == id);
+
                 Sintoma nuevoSin = new Models.Sintoma();
                 nuevoSin.nombre = sint.nombre.ToString();
                 nuevoSin.descripcion = sint.descripcion.ToString();
                 sinto.eliminar_sintomas(id);
+
                 if (TryUpdateModel(sint))
                 {
                     sinto.eliminar_sintomas(sint.id);

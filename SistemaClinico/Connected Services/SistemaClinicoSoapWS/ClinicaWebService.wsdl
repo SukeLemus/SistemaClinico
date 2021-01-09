@@ -100,28 +100,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="lista_enfermedades_sintomas_segun_dosid">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="idenfermedad" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="id_sintoma" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="lista_enfermedades_sintomas_segun_dosidResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="lista_enfermedades_sintomas_segun_dosidResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="lista_enfermedades_sintomas_detail">
         <s:complexType />
       </s:element>
@@ -515,6 +493,66 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="ListaAreas">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListaAreasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaAreasResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertAreaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAreas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAreasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateAreasResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EliminarAreaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -552,12 +590,6 @@
   </wsdl:message>
   <wsdl:message name="lista_enfermedades_sintomasSoapOut">
     <wsdl:part name="parameters" element="tns:lista_enfermedades_sintomasResponse" />
-  </wsdl:message>
-  <wsdl:message name="lista_enfermedades_sintomas_segun_dosidSoapIn">
-    <wsdl:part name="parameters" element="tns:lista_enfermedades_sintomas_segun_dosid" />
-  </wsdl:message>
-  <wsdl:message name="lista_enfermedades_sintomas_segun_dosidSoapOut">
-    <wsdl:part name="parameters" element="tns:lista_enfermedades_sintomas_segun_dosidResponse" />
   </wsdl:message>
   <wsdl:message name="lista_enfermedades_sintomas_detailSoapIn">
     <wsdl:part name="parameters" element="tns:lista_enfermedades_sintomas_detail" />
@@ -697,6 +729,30 @@
   <wsdl:message name="actualizar_medicamentoSoapOut">
     <wsdl:part name="parameters" element="tns:actualizar_medicamentoResponse" />
   </wsdl:message>
+  <wsdl:message name="ListaAreasSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaAreas" />
+  </wsdl:message>
+  <wsdl:message name="ListaAreasSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaAreasResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertArea" />
+  </wsdl:message>
+  <wsdl:message name="InsertAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAreasSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAreas" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAreasSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAreasResponse" />
+  </wsdl:message>
+  <wsdl:message name="EliminarAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:EliminarArea" />
+  </wsdl:message>
+  <wsdl:message name="EliminarAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:EliminarAreaResponse" />
+  </wsdl:message>
   <wsdl:portType name="ClinicaWebServiceSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -721,10 +777,6 @@
     <wsdl:operation name="lista_enfermedades_sintomas">
       <wsdl:input message="tns:lista_enfermedades_sintomasSoapIn" />
       <wsdl:output message="tns:lista_enfermedades_sintomasSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="lista_enfermedades_sintomas_segun_dosid">
-      <wsdl:input message="tns:lista_enfermedades_sintomas_segun_dosidSoapIn" />
-      <wsdl:output message="tns:lista_enfermedades_sintomas_segun_dosidSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="lista_enfermedades_sintomas_detail">
       <wsdl:input message="tns:lista_enfermedades_sintomas_detailSoapIn" />
@@ -818,6 +870,22 @@
       <wsdl:input message="tns:actualizar_medicamentoSoapIn" />
       <wsdl:output message="tns:actualizar_medicamentoSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="ListaAreas">
+      <wsdl:input message="tns:ListaAreasSoapIn" />
+      <wsdl:output message="tns:ListaAreasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertArea">
+      <wsdl:input message="tns:InsertAreaSoapIn" />
+      <wsdl:output message="tns:InsertAreaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAreas">
+      <wsdl:input message="tns:UpdateAreasSoapIn" />
+      <wsdl:output message="tns:UpdateAreasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarArea">
+      <wsdl:input message="tns:EliminarAreaSoapIn" />
+      <wsdl:output message="tns:EliminarAreaSoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ClinicaWebServiceSoap" type="tns:ClinicaWebServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -868,15 +936,6 @@
     </wsdl:operation>
     <wsdl:operation name="lista_enfermedades_sintomas">
       <soap:operation soapAction="http://tempuri.org/lista_enfermedades_sintomas" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="lista_enfermedades_sintomas_segun_dosid">
-      <soap:operation soapAction="http://tempuri.org/lista_enfermedades_sintomas_segun_dosid" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1091,6 +1150,42 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListaAreas">
+      <soap:operation soapAction="http://tempuri.org/ListaAreas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertArea">
+      <soap:operation soapAction="http://tempuri.org/InsertArea" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAreas">
+      <soap:operation soapAction="http://tempuri.org/UpdateAreas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarArea">
+      <soap:operation soapAction="http://tempuri.org/EliminarArea" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ClinicaWebServiceSoap12" type="tns:ClinicaWebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -1141,15 +1236,6 @@
     </wsdl:operation>
     <wsdl:operation name="lista_enfermedades_sintomas">
       <soap12:operation soapAction="http://tempuri.org/lista_enfermedades_sintomas" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="lista_enfermedades_sintomas_segun_dosid">
-      <soap12:operation soapAction="http://tempuri.org/lista_enfermedades_sintomas_segun_dosid" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1357,6 +1443,42 @@
     </wsdl:operation>
     <wsdl:operation name="actualizar_medicamento">
       <soap12:operation soapAction="http://tempuri.org/actualizar_medicamento" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaAreas">
+      <soap12:operation soapAction="http://tempuri.org/ListaAreas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertArea">
+      <soap12:operation soapAction="http://tempuri.org/InsertArea" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAreas">
+      <soap12:operation soapAction="http://tempuri.org/UpdateAreas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarArea">
+      <soap12:operation soapAction="http://tempuri.org/EliminarArea" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
