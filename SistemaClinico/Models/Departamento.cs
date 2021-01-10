@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -10,8 +11,10 @@ namespace SistemaClinico.Models
 
         public int ID { get; set; }
 
+        [Required]
         public String NOMBRE_DEPARTAMENTO { get; set; }
-  
+
+        [Required]
         public String DESCRIPCION { get; set; }
         public String ESTADO { get; set; }
        

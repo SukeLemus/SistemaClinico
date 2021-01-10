@@ -8,10 +8,14 @@
 @using PagedList.Mvc;
 @using SistemaClinico.Controllers;
 
-<h2>Index</h2>
+<div class="titulo_general"><h1>Areas</h1></div>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    A continuación se muestran las distintas áreas que dividen al centro médico.
+</p>
+
+<p>
+    @Html.ActionLink("Nueva Area", "Create")
 </p>
 
 <p class="buscador">
@@ -20,30 +24,32 @@
     <input type="submit" value="Buscar" />
 </p>
 
-<table class="table">
-    <tr>
-        <th>
+<table class="table_lista">
+    <tr class="tr_lista">
+        @*<th class="th_lista">
             @Html.DisplayNameFor(model => model.First().ID)
+        </th>*@
+        <th class="th_lista">
+            @Html.DisplayName("Nombre Area")
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().NOMBRE_AREA)
+        <th class="th_lista">
+            @Html.DisplayName("Acciones")
         </th>
-        <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
+        <tr class="tr_lista">
+            @*<td class="td_lista">
                 @Html.DisplayFor(modelItem => item.ID)
-            </td>
-            <td>
+            </td>*@
+            <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.NOMBRE_AREA)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID}) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID}) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID})
+            <td class="td_lista">
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID}) |
+                @*@Html.ActionLink("Details", "Details", new { id = item.ID}) |*@
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.ID})
             </td>
         </tr>
     }

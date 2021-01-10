@@ -41,6 +41,8 @@ namespace SistemaClinico.Controllers
             
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
+                
+
                 //    int id = int.Parse(dr["ID"].ToString());
                 //    string nombre = dr["NOMBRE_AREA"].ToString();
 
@@ -49,17 +51,19 @@ namespace SistemaClinico.Controllers
                 depa.NOMBRE_DEPARTAMENTO = dr["NOMBRE_DEPARTAMENTO"].ToString();
                 depa.DESCRIPCION= dr["DESCRIPCION"].ToString();
                 depa.ESTADO= dr["ESTADO"].ToString();
-                //depa.ID_AREA= int.Parse(dr["ID_AREA"].ToString());
+                depa.ID_AREA= int.Parse(dr["ID_AREA"].ToString());
                 //Area are = new Area();
+                //DataSet ds2= null;
+                //ds2.Clear();
+                DataSet ds2 = dptoWS.NombreArea_Departamento(int.Parse(dr["ID_AREA"].ToString()));
+               
 
-                DataSet ds2 = dptoWS.NombreArea_Departamento(int.Parse(dr["ID_DEPARTAMENTO"].ToString()));
                 foreach (DataRow dr2 in ds2.Tables[0].Rows)
                 {
                     //are.NOMBRE_AREA = dr2["NOMBRE_AREA"].ToString();
                     depa.NOM = dr2["NOMBRE_AREA"].ToString();
                 }
-
-                    listaDepas.Add(depa);
+                listaDepas.Add(depa);
             }
 
           
@@ -103,6 +107,22 @@ namespace SistemaClinico.Controllers
         // GET: Departamento/Create
         public ActionResult Create()
         {
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient depaWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+            var selectList = new List<SelectListItem>();
+            DataSet ds = depaWS.ListaAreas();
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                string id = dr["ID_AREA"].ToString();
+                string nombre_area = dr["NOMBRE_AREA"].ToString();
+
+                selectList.Add(new SelectListItem
+                {
+                    Value = id,
+                    Text = nombre_area,
+                });
+            }
+            ViewData["ListaNombreAreas"] = selectList;
             return View();
         }
 
