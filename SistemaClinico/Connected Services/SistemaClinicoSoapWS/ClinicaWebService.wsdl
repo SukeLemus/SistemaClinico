@@ -637,6 +637,74 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="lista_paciente">
+        <s:complexType />
+      </s:element>
+      <s:element name="lista_pacienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_pacienteResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_personal">
+        <s:complexType />
+      </s:element>
+      <s:element name="lista_personalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_personalResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectIdDireccionPaciente">
+        <s:complexType />
+      </s:element>
+      <s:element name="SelectIdDireccionPacienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectIdDireccionPacienteResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_personal2">
+        <s:complexType />
+      </s:element>
+      <s:element name="lista_personal2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_personal2Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -867,6 +935,30 @@
   <wsdl:message name="NombreArea_DepartamentoSoapOut">
     <wsdl:part name="parameters" element="tns:NombreArea_DepartamentoResponse" />
   </wsdl:message>
+  <wsdl:message name="lista_pacienteSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_paciente" />
+  </wsdl:message>
+  <wsdl:message name="lista_pacienteSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_pacienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_personalSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_personal" />
+  </wsdl:message>
+  <wsdl:message name="lista_personalSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_personalResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectIdDireccionPacienteSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectIdDireccionPaciente" />
+  </wsdl:message>
+  <wsdl:message name="SelectIdDireccionPacienteSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectIdDireccionPacienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_personal2SoapIn">
+    <wsdl:part name="parameters" element="tns:lista_personal2" />
+  </wsdl:message>
+  <wsdl:message name="lista_personal2SoapOut">
+    <wsdl:part name="parameters" element="tns:lista_personal2Response" />
+  </wsdl:message>
   <wsdl:portType name="ClinicaWebServiceSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -1019,6 +1111,22 @@
     <wsdl:operation name="NombreArea_Departamento">
       <wsdl:input message="tns:NombreArea_DepartamentoSoapIn" />
       <wsdl:output message="tns:NombreArea_DepartamentoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_paciente">
+      <wsdl:input message="tns:lista_pacienteSoapIn" />
+      <wsdl:output message="tns:lista_pacienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_personal">
+      <wsdl:input message="tns:lista_personalSoapIn" />
+      <wsdl:output message="tns:lista_personalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectIdDireccionPaciente">
+      <wsdl:input message="tns:SelectIdDireccionPacienteSoapIn" />
+      <wsdl:output message="tns:SelectIdDireccionPacienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_personal2">
+      <wsdl:input message="tns:lista_personal2SoapIn" />
+      <wsdl:output message="tns:lista_personal2SoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ClinicaWebServiceSoap" type="tns:ClinicaWebServiceSoap">
@@ -1365,6 +1473,42 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="lista_paciente">
+      <soap:operation soapAction="http://tempuri.org/lista_paciente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_personal">
+      <soap:operation soapAction="http://tempuri.org/lista_personal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectIdDireccionPaciente">
+      <soap:operation soapAction="http://tempuri.org/SelectIdDireccionPaciente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_personal2">
+      <soap:operation soapAction="http://tempuri.org/lista_personal2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ClinicaWebServiceSoap12" type="tns:ClinicaWebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -1703,6 +1847,42 @@
     </wsdl:operation>
     <wsdl:operation name="NombreArea_Departamento">
       <soap12:operation soapAction="http://tempuri.org/NombreArea_Departamento" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_paciente">
+      <soap12:operation soapAction="http://tempuri.org/lista_paciente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_personal">
+      <soap12:operation soapAction="http://tempuri.org/lista_personal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectIdDireccionPaciente">
+      <soap12:operation soapAction="http://tempuri.org/SelectIdDireccionPaciente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_personal2">
+      <soap12:operation soapAction="http://tempuri.org/lista_personal2" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

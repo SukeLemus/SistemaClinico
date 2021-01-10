@@ -1,0 +1,88 @@
+﻿@*@model IEnumerable<SistemaClinico.Models.UsuarioPersonalJoin>*@
+@model IPagedList<SistemaClinico.Models.UsuarioPersonalJoin>
+
+@{
+    ViewBag.Title = "Index";
+}
+@using PagedList;
+@using PagedList.Mvc;
+@using SistemaClinico.Controllers;
+<div class="titulo_general"><h1>Lista de Personal</h1></div>
+<br />
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="table_id" class="table_lista">
+    <tr class="tr_lista">
+        @*<th class="th_lista">
+                @Html.DisplayNameFor(model => model.ID_PERSONAL)
+            </th>*@
+        <th class="th_lista">
+            @*@Html.DisplayNameFor(model => model.NOMBRES)*@
+            Nombres
+        </th>
+        <th class="th_lista">
+            @*@Html.DisplayNameFor(model => model.APELLIDOS)*@
+            Apellidos
+        </th>
+        <th class="th_lista">
+            @*@Html.DisplayNameFor(model => model.MUNICIPIO)*@
+            Municipio
+        </th>
+        <th class="th_lista">
+            @*@Html.DisplayNameFor(model => model.NOMBRE_CONSULTORIO)*@
+            Consultorio Asignado
+        </th>
+        <th class="th_lista">
+            @*@Html.DisplayNameFor(model => model.NOMBRE_DEPARTAMENTO)*@
+            Departamento
+        </th>
+        <th class="th_lista">
+            @*@Html.DisplayNameFor(model => model.NOMBRE_AREA)*@
+            Area
+        </th>
+        <th class="th_lista">
+            @*@Html.DisplayNameFor(model => model.NOMBRE_ROL)*@
+            Rol
+        </th>
+        <th class="th_lista">Opciones</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="tr_lista">
+            @*<td class="td_lista">
+                    @Html.DisplayFor(modelItem => item.ID_PERSONAL)
+                </td>*@
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.NOMBRES)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.APELLIDOS)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.MUNICIPIO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.NOMBRE_CONSULTORIO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.NOMBRE_DEPARTAMENTO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.NOMBRE_AREA)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.NOMBRE_ROL)
+            </td>
+            <td class="td_lista">
+                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) 
+                @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager(Model, i => Url.Action("Index", "UsuariosPersonal", new { i, search = Request.QueryString["search"] }))

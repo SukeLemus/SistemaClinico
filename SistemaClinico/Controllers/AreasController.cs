@@ -12,7 +12,7 @@ namespace SistemaClinico.Controllers
 {
     public class AreasController : Controller
     {
-        cambios salvavida
+        //cambios salvavida
         public static List<Area> ListaAreas()
         {
             List<Area> listaAreas = new List<Area>();

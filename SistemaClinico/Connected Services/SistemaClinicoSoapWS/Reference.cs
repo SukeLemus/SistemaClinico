@@ -281,6 +281,34 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/NombreArea_Departamento", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataSet> NombreArea_DepartamentoAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_paciente", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet lista_paciente();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_paciente", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> lista_pacienteAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_personal", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet lista_personal();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_personal", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> lista_personalAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SelectIdDireccionPaciente", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet SelectIdDireccionPaciente();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SelectIdDireccionPaciente", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectIdDireccionPacienteAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_personal2", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet lista_personal2();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_personal2", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> lista_personal2Async();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -612,6 +640,38 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> NombreArea_DepartamentoAsync(int id) {
             return base.Channel.NombreArea_DepartamentoAsync(id);
+        }
+        
+        public System.Data.DataSet lista_paciente() {
+            return base.Channel.lista_paciente();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> lista_pacienteAsync() {
+            return base.Channel.lista_pacienteAsync();
+        }
+        
+        public System.Data.DataSet lista_personal() {
+            return base.Channel.lista_personal();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> lista_personalAsync() {
+            return base.Channel.lista_personalAsync();
+        }
+        
+        public System.Data.DataSet SelectIdDireccionPaciente() {
+            return base.Channel.SelectIdDireccionPaciente();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectIdDireccionPacienteAsync() {
+            return base.Channel.SelectIdDireccionPacienteAsync();
+        }
+        
+        public System.Data.DataSet lista_personal2() {
+            return base.Channel.lista_personal2();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> lista_personal2Async() {
+            return base.Channel.lista_personal2Async();
         }
     }
 }

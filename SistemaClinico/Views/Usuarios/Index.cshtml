@@ -1,0 +1,79 @@
+﻿@*@model IEnumerable<SistemaClinico.Models.UsuarioMunicipio>*@
+@model IPagedList<SistemaClinico.Models.UsuarioMunicipio>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+@using PagedList;
+@using PagedList.Mvc;
+@using SistemaClinico.Controllers;
+
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<p>
+    <a class="nav-link text-dark" href="@Url.Action("Create", "Registro")">Nuevo </a>
+</p>
+<div class="titulo_general"><h1>Lista de Pacientes</h1></div> <br />
+<table id="table_id" class="table_lista">
+    <tr class="tr_lista">
+        @*<th>
+                @Html.DisplayNameFor(model => model.ID_PACIENTE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ID_DIRECCION)
+            </th>*@
+        <th class="th_lista">
+            @*@Html.DisplayNameFor(model => model.NOMBRE)*@
+            Nombres
+        </th>
+        <th class="th_lista">
+            @*@Html.DisplayNameFor(model => model.APELLIDO)*@
+            Apellidos
+        </th>
+        <th class="th_lista">
+            @*@Html.DisplayNameFor(model => model.TELEFONO)*@
+            Telefono
+        </th>
+        <th class="th_lista">
+            @*@Html.DisplayNameFor(model => model.MUNICIPIO)*@
+            Dirección completa
+        </th>
+        <th class="th_lista">Opciones</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="tr_lista">
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.ID_PACIENTE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_DIRECCION)
+                </td>*@
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.NOMBRE)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.APELLIDO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.TELEFONO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.DIRECCION_COM),
+                @Html.DisplayFor(modelItem => item.MUNICIPIO)
+
+            </td>
+            <td class="td_lista">
+                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+                @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager(Model, i => Url.Action("Index", "Usuarios", new { i, search = Request.QueryString["search"] }))

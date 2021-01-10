@@ -6,34 +6,35 @@
 @using PagedList;
 @using PagedList.Mvc;
 @using SistemaClinico.Controllers;
-<h2>Index</h2>
+<div class="titulo_general"><h1>Medicamentos</h1></div>
+<br />
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
+<table id="table_id" class="table_lista">
+    <tr class="tr_lista">
+        <th class="th_lista">
             @*@Html.DisplayNameFor(model => model.nombre_medicamento)*@
             NOmbre
         </th>
-        <th>
+        <th class="th_lista">
             @*@Html.DisplayNameFor(model => model.descripcion_medicamento)*@
             Descripcion
         </th>
-        <th>
+        <th class="th_lista">
             @*@Html.DisplayNameFor(model => model.catidad)*@
             cantidad
         </th>
-        <th>
+        <th class="th_lista">
             @*@Html.DisplayNameFor(model => model.presentacion)*@
             presentacion
         </th>
-        <th>
+        <th class="th_lista">
             @*@Html.DisplayNameFor(model => model.precio)*@
             precio
         </th>
-        <th>
+        <th class="th_lista">
             @*@Html.DisplayNameFor(model => model.estado)*@
             estado
         </th>
@@ -42,23 +43,23 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
+        <tr class="tr_lista">
+            <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.NOMBRE_MEDICAMENTO)
             </td>
-            <td>
+            <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.DESCRIPCION_MEDICAMENTO)
             </td>
-            <td>
+            <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.CANTIDAD)
             </td>
-            <td>
+            <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.PRESENTACION)
             </td>
-            <td>
+            <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.PRECIO_UNITARIO)
             </td>
-            <td>
+            <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.ESTADO)
             </td>
             <td>
