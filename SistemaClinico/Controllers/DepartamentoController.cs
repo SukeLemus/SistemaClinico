@@ -49,10 +49,10 @@ namespace SistemaClinico.Controllers
                 depa.NOMBRE_DEPARTAMENTO = dr["NOMBRE_DEPARTAMENTO"].ToString();
                 depa.DESCRIPCION= dr["DESCRIPCION"].ToString();
                 depa.ESTADO= dr["ESTADO"].ToString();
-                depa.ID_AREA= int.Parse(dr["ID_AREA"].ToString());
+                //depa.ID_AREA= int.Parse(dr["ID_AREA"].ToString());
                 //Area are = new Area();
 
-                DataSet ds2 = dptoWS.NombreArea_Departamento(int.Parse(dr["ID_AREA"].ToString()));
+                DataSet ds2 = dptoWS.NombreArea_Departamento(int.Parse(dr["ID_DEPARTAMENTO"].ToString()));
                 foreach (DataRow dr2 in ds2.Tables[0].Rows)
                 {
                     //are.NOMBRE_AREA = dr2["NOMBRE_AREA"].ToString();
