@@ -309,6 +309,20 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_personal2", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataSet> lista_personal2Async();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/update_paciente", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int update_paciente(int id_paciente, string nombre, string apellido, string dui, string nit, string genero, string tipo_sangre, string tel, string correo, int id_direccion, string dir_com, string estado, string usuario, string pass);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/update_paciente", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> update_pacienteAsync(int id_paciente, string nombre, string apellido, string dui, string nit, string genero, string tipo_sangre, string tel, string correo, int id_direccion, string dir_com, string estado, string usuario, string pass);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/eliminar_paciente", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int eliminar_paciente(int id_paciente);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/eliminar_paciente", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> eliminar_pacienteAsync(int id_paciente);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -672,6 +686,22 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> lista_personal2Async() {
             return base.Channel.lista_personal2Async();
+        }
+        
+        public int update_paciente(int id_paciente, string nombre, string apellido, string dui, string nit, string genero, string tipo_sangre, string tel, string correo, int id_direccion, string dir_com, string estado, string usuario, string pass) {
+            return base.Channel.update_paciente(id_paciente, nombre, apellido, dui, nit, genero, tipo_sangre, tel, correo, id_direccion, dir_com, estado, usuario, pass);
+        }
+        
+        public System.Threading.Tasks.Task<int> update_pacienteAsync(int id_paciente, string nombre, string apellido, string dui, string nit, string genero, string tipo_sangre, string tel, string correo, int id_direccion, string dir_com, string estado, string usuario, string pass) {
+            return base.Channel.update_pacienteAsync(id_paciente, nombre, apellido, dui, nit, genero, tipo_sangre, tel, correo, id_direccion, dir_com, estado, usuario, pass);
+        }
+        
+        public int eliminar_paciente(int id_paciente) {
+            return base.Channel.eliminar_paciente(id_paciente);
+        }
+        
+        public System.Threading.Tasks.Task<int> eliminar_pacienteAsync(int id_paciente) {
+            return base.Channel.eliminar_pacienteAsync(id_paciente);
         }
     }
 }

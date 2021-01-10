@@ -705,6 +705,47 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="update_paciente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id_paciente" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="apellido" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dui" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nit" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="genero" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_sangre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tel" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="correo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id_direccion" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="dir_com" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="estado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="update_pacienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="update_pacienteResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="eliminar_paciente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id_paciente" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="eliminar_pacienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="eliminar_pacienteResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -959,6 +1000,18 @@
   <wsdl:message name="lista_personal2SoapOut">
     <wsdl:part name="parameters" element="tns:lista_personal2Response" />
   </wsdl:message>
+  <wsdl:message name="update_pacienteSoapIn">
+    <wsdl:part name="parameters" element="tns:update_paciente" />
+  </wsdl:message>
+  <wsdl:message name="update_pacienteSoapOut">
+    <wsdl:part name="parameters" element="tns:update_pacienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="eliminar_pacienteSoapIn">
+    <wsdl:part name="parameters" element="tns:eliminar_paciente" />
+  </wsdl:message>
+  <wsdl:message name="eliminar_pacienteSoapOut">
+    <wsdl:part name="parameters" element="tns:eliminar_pacienteResponse" />
+  </wsdl:message>
   <wsdl:portType name="ClinicaWebServiceSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -1127,6 +1180,14 @@
     <wsdl:operation name="lista_personal2">
       <wsdl:input message="tns:lista_personal2SoapIn" />
       <wsdl:output message="tns:lista_personal2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="update_paciente">
+      <wsdl:input message="tns:update_pacienteSoapIn" />
+      <wsdl:output message="tns:update_pacienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="eliminar_paciente">
+      <wsdl:input message="tns:eliminar_pacienteSoapIn" />
+      <wsdl:output message="tns:eliminar_pacienteSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ClinicaWebServiceSoap" type="tns:ClinicaWebServiceSoap">
@@ -1509,6 +1570,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="update_paciente">
+      <soap:operation soapAction="http://tempuri.org/update_paciente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="eliminar_paciente">
+      <soap:operation soapAction="http://tempuri.org/eliminar_paciente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ClinicaWebServiceSoap12" type="tns:ClinicaWebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -1883,6 +1962,24 @@
     </wsdl:operation>
     <wsdl:operation name="lista_personal2">
       <soap12:operation soapAction="http://tempuri.org/lista_personal2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update_paciente">
+      <soap12:operation soapAction="http://tempuri.org/update_paciente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="eliminar_paciente">
+      <soap12:operation soapAction="http://tempuri.org/eliminar_paciente" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

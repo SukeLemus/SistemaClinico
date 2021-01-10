@@ -10,13 +10,14 @@
 @using SistemaClinico.Controllers;
 
 
+
 @*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>*@
-<p>
     <a class="nav-link text-dark" href="@Url.Action("Create", "Registro")">Nuevo </a>
-</p>
+</p>*@
 <div class="titulo_general"><h1>Lista de Pacientes</h1></div> <br />
+<p>
+  @Html.ActionLink("Create New", "Create")
+</p>
 <table id="table_id" class="table_lista">
     <tr class="tr_lista">
         @*<th>
@@ -68,9 +69,9 @@
 
             </td>
             <td class="td_lista">
-                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
-                @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                @Html.ActionLink("Edit", "Edit", new {  id=item.ID_PACIENTE  }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID_PACIENTE })
             </td>
         </tr>
     }
