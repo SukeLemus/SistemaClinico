@@ -246,6 +246,41 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EliminarArea", ReplyAction="*")]
         System.Threading.Tasks.Task<int> EliminarAreaAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaDepa", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet ListaDepa();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaDepa", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> ListaDepaAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertDepa", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int InsertDepa(string nombre, string descripcion, string estado, int area);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertDepa", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> InsertDepaAsync(string nombre, string descripcion, string estado, int area);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateDepa", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int UpdateDepa(int id, string nombre);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateDepa", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> UpdateDepaAsync(int id, string nombre);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EliminarDepa", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int EliminarDepa(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EliminarDepa", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> EliminarDepaAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/NombreArea_Departamento", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet NombreArea_Departamento(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/NombreArea_Departamento", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> NombreArea_DepartamentoAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -537,6 +572,46 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         public System.Threading.Tasks.Task<int> EliminarAreaAsync(int id) {
             return base.Channel.EliminarAreaAsync(id);
+        }
+        
+        public System.Data.DataSet ListaDepa() {
+            return base.Channel.ListaDepa();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> ListaDepaAsync() {
+            return base.Channel.ListaDepaAsync();
+        }
+        
+        public int InsertDepa(string nombre, string descripcion, string estado, int area) {
+            return base.Channel.InsertDepa(nombre, descripcion, estado, area);
+        }
+        
+        public System.Threading.Tasks.Task<int> InsertDepaAsync(string nombre, string descripcion, string estado, int area) {
+            return base.Channel.InsertDepaAsync(nombre, descripcion, estado, area);
+        }
+        
+        public int UpdateDepa(int id, string nombre) {
+            return base.Channel.UpdateDepa(id, nombre);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateDepaAsync(int id, string nombre) {
+            return base.Channel.UpdateDepaAsync(id, nombre);
+        }
+        
+        public int EliminarDepa(int id) {
+            return base.Channel.EliminarDepa(id);
+        }
+        
+        public System.Threading.Tasks.Task<int> EliminarDepaAsync(int id) {
+            return base.Channel.EliminarDepaAsync(id);
+        }
+        
+        public System.Data.DataSet NombreArea_Departamento(int id) {
+            return base.Channel.NombreArea_Departamento(id);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> NombreArea_DepartamentoAsync(int id) {
+            return base.Channel.NombreArea_DepartamentoAsync(id);
         }
     }
 }

@@ -553,6 +553,90 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="ListaDepa">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListaDepaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaDepaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertDepa">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="estado" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="area" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertDepaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertDepaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDepa">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDepaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateDepaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarDepa">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarDepaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EliminarDepaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NombreArea_Departamento">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NombreArea_DepartamentoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NombreArea_DepartamentoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -753,6 +837,36 @@
   <wsdl:message name="EliminarAreaSoapOut">
     <wsdl:part name="parameters" element="tns:EliminarAreaResponse" />
   </wsdl:message>
+  <wsdl:message name="ListaDepaSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaDepa" />
+  </wsdl:message>
+  <wsdl:message name="ListaDepaSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaDepaResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertDepaSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertDepa" />
+  </wsdl:message>
+  <wsdl:message name="InsertDepaSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertDepaResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDepaSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateDepa" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDepaSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateDepaResponse" />
+  </wsdl:message>
+  <wsdl:message name="EliminarDepaSoapIn">
+    <wsdl:part name="parameters" element="tns:EliminarDepa" />
+  </wsdl:message>
+  <wsdl:message name="EliminarDepaSoapOut">
+    <wsdl:part name="parameters" element="tns:EliminarDepaResponse" />
+  </wsdl:message>
+  <wsdl:message name="NombreArea_DepartamentoSoapIn">
+    <wsdl:part name="parameters" element="tns:NombreArea_Departamento" />
+  </wsdl:message>
+  <wsdl:message name="NombreArea_DepartamentoSoapOut">
+    <wsdl:part name="parameters" element="tns:NombreArea_DepartamentoResponse" />
+  </wsdl:message>
   <wsdl:portType name="ClinicaWebServiceSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -885,6 +999,26 @@
     <wsdl:operation name="EliminarArea">
       <wsdl:input message="tns:EliminarAreaSoapIn" />
       <wsdl:output message="tns:EliminarAreaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaDepa">
+      <wsdl:input message="tns:ListaDepaSoapIn" />
+      <wsdl:output message="tns:ListaDepaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertDepa">
+      <wsdl:input message="tns:InsertDepaSoapIn" />
+      <wsdl:output message="tns:InsertDepaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDepa">
+      <wsdl:input message="tns:UpdateDepaSoapIn" />
+      <wsdl:output message="tns:UpdateDepaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarDepa">
+      <wsdl:input message="tns:EliminarDepaSoapIn" />
+      <wsdl:output message="tns:EliminarDepaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NombreArea_Departamento">
+      <wsdl:input message="tns:NombreArea_DepartamentoSoapIn" />
+      <wsdl:output message="tns:NombreArea_DepartamentoSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ClinicaWebServiceSoap" type="tns:ClinicaWebServiceSoap">
@@ -1186,6 +1320,51 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListaDepa">
+      <soap:operation soapAction="http://tempuri.org/ListaDepa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDepa">
+      <soap:operation soapAction="http://tempuri.org/InsertDepa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDepa">
+      <soap:operation soapAction="http://tempuri.org/UpdateDepa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarDepa">
+      <soap:operation soapAction="http://tempuri.org/EliminarDepa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NombreArea_Departamento">
+      <soap:operation soapAction="http://tempuri.org/NombreArea_Departamento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ClinicaWebServiceSoap12" type="tns:ClinicaWebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -1479,6 +1658,51 @@
     </wsdl:operation>
     <wsdl:operation name="EliminarArea">
       <soap12:operation soapAction="http://tempuri.org/EliminarArea" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaDepa">
+      <soap12:operation soapAction="http://tempuri.org/ListaDepa" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDepa">
+      <soap12:operation soapAction="http://tempuri.org/InsertDepa" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDepa">
+      <soap12:operation soapAction="http://tempuri.org/UpdateDepa" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarDepa">
+      <soap12:operation soapAction="http://tempuri.org/EliminarDepa" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NombreArea_Departamento">
+      <soap12:operation soapAction="http://tempuri.org/NombreArea_Departamento" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

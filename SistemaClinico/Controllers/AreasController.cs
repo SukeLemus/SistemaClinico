@@ -12,7 +12,7 @@ namespace SistemaClinico.Controllers
 {
     public class AreasController : Controller
     {
-        hola
+
         public static List<Area> ListaAreas()
         {
             List<Area> listaAreas = new List<Area>();
