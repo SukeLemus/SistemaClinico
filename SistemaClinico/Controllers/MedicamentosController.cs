@@ -66,15 +66,51 @@ namespace SistemaClinico.Controllers
             return listaS;
         }
         // GET: Medicamentos
-        public ActionResult Index(int? i, string BuscarNombre)
+        public ActionResult Index(int? i, string BuscarTipo)
         {
+            SistemaClinico.SistemaClinicoSoapWS.ClinicaWebServiceSoapClient swEnf = new SistemaClinico.SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+            List<SelectListItem> listatipo = new List<SelectListItem>();
+            listatipo.Add(new SelectListItem
+            {
+                Text = "Todos",
+                Value = ""
+            });
+            listatipo.Add(new SelectListItem
+            {
+                Text = "Líquido",
+                Value = "LIQUIDO"
+            });
+            listatipo.Add(new SelectListItem
+            {
+                Text = "Tableta",
+                Value = "TABLETA"
+            });
+            listatipo.Add(new SelectListItem
+            {
+                Text = "Píldora",
+                Value = "PILDORA"
+            });
+            listatipo.Add(new SelectListItem
+            {
+                Text = "Inyectable",
+                Value = "INYECTABLE"
+            });
+            listatipo.Add(new SelectListItem
+            {
+                Text = "Tópico",
+                Value = "TOPICO"
+            });
+
             var Medicamento = from e in MedtList()
                                   //orderby e.nombre
                               select e;
-            if (!String.IsNullOrEmpty(BuscarNombre))
+            if (!String.IsNullOrEmpty(BuscarTipo))
             {
-                Medicamento = Medicamento.Where(c => c.NOMBRE_MEDICAMENTO.ToLower().Contains(BuscarNombre.ToLower()));
+                Medicamento = Medicamento.Where(c => c.PRESENTACION.ToLower().Contains(BuscarTipo.ToLower()));
             }
+            ViewData["listaTipo"] = listatipo;
+
             return View(Medicamento.ToPagedList(i ?? 1, 3));
         }
 

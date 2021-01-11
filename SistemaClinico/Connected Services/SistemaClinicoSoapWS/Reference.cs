@@ -330,6 +330,90 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/eliminar_paciente", ReplyAction="*")]
         System.Threading.Tasks.Task<int> eliminar_pacienteAsync(int id_paciente);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaAlergias", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet ListaAlergias();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaAlergias", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> ListaAlergiasAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertAlergia", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int InsertAlergia(string nombre, string desc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertAlergia", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> InsertAlergiaAsync(string nombre, string desc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateAlergias", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int UpdateAlergias(int id, string nombre, string descripcion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateAlergias", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> UpdateAlergiasAsync(int id, string nombre, string descripcion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EliminarAlergia", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int EliminarAlergia(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EliminarAlergia", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> EliminarAlergiaAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaCirugias", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet ListaCirugias();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaCirugias", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> ListaCirugiasAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertCirugia", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int InsertCirugia(string nombre, string desc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertCirugia", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> InsertCirugiaAsync(string nombre, string desc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateCirugia", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int UpdateCirugia(int id, string nombre, string descripcion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateCirugia", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> UpdateCirugiaAsync(int id, string nombre, string descripcion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EliminarCirugia", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int EliminarCirugia(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EliminarCirugia", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> EliminarCirugiaAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaFracturas", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet ListaFracturas();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaFracturas", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> ListaFracturasAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertFracturas", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int InsertFracturas(string nombre, string desc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertFracturas", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> InsertFracturasAsync(string nombre, string desc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateFracturas", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int UpdateFracturas(int id, string nombre, string descripcion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateFracturas", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> UpdateFracturasAsync(int id, string nombre, string descripcion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EliminarFracturas", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int EliminarFracturas(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EliminarFracturas", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> EliminarFracturasAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -717,6 +801,102 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         public System.Threading.Tasks.Task<int> eliminar_pacienteAsync(int id_paciente) {
             return base.Channel.eliminar_pacienteAsync(id_paciente);
+        }
+        
+        public System.Data.DataSet ListaAlergias() {
+            return base.Channel.ListaAlergias();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> ListaAlergiasAsync() {
+            return base.Channel.ListaAlergiasAsync();
+        }
+        
+        public int InsertAlergia(string nombre, string desc) {
+            return base.Channel.InsertAlergia(nombre, desc);
+        }
+        
+        public System.Threading.Tasks.Task<int> InsertAlergiaAsync(string nombre, string desc) {
+            return base.Channel.InsertAlergiaAsync(nombre, desc);
+        }
+        
+        public int UpdateAlergias(int id, string nombre, string descripcion) {
+            return base.Channel.UpdateAlergias(id, nombre, descripcion);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateAlergiasAsync(int id, string nombre, string descripcion) {
+            return base.Channel.UpdateAlergiasAsync(id, nombre, descripcion);
+        }
+        
+        public int EliminarAlergia(int id) {
+            return base.Channel.EliminarAlergia(id);
+        }
+        
+        public System.Threading.Tasks.Task<int> EliminarAlergiaAsync(int id) {
+            return base.Channel.EliminarAlergiaAsync(id);
+        }
+        
+        public System.Data.DataSet ListaCirugias() {
+            return base.Channel.ListaCirugias();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> ListaCirugiasAsync() {
+            return base.Channel.ListaCirugiasAsync();
+        }
+        
+        public int InsertCirugia(string nombre, string desc) {
+            return base.Channel.InsertCirugia(nombre, desc);
+        }
+        
+        public System.Threading.Tasks.Task<int> InsertCirugiaAsync(string nombre, string desc) {
+            return base.Channel.InsertCirugiaAsync(nombre, desc);
+        }
+        
+        public int UpdateCirugia(int id, string nombre, string descripcion) {
+            return base.Channel.UpdateCirugia(id, nombre, descripcion);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateCirugiaAsync(int id, string nombre, string descripcion) {
+            return base.Channel.UpdateCirugiaAsync(id, nombre, descripcion);
+        }
+        
+        public int EliminarCirugia(int id) {
+            return base.Channel.EliminarCirugia(id);
+        }
+        
+        public System.Threading.Tasks.Task<int> EliminarCirugiaAsync(int id) {
+            return base.Channel.EliminarCirugiaAsync(id);
+        }
+        
+        public System.Data.DataSet ListaFracturas() {
+            return base.Channel.ListaFracturas();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> ListaFracturasAsync() {
+            return base.Channel.ListaFracturasAsync();
+        }
+        
+        public int InsertFracturas(string nombre, string desc) {
+            return base.Channel.InsertFracturas(nombre, desc);
+        }
+        
+        public System.Threading.Tasks.Task<int> InsertFracturasAsync(string nombre, string desc) {
+            return base.Channel.InsertFracturasAsync(nombre, desc);
+        }
+        
+        public int UpdateFracturas(int id, string nombre, string descripcion) {
+            return base.Channel.UpdateFracturas(id, nombre, descripcion);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateFracturasAsync(int id, string nombre, string descripcion) {
+            return base.Channel.UpdateFracturasAsync(id, nombre, descripcion);
+        }
+        
+        public int EliminarFracturas(int id) {
+            return base.Channel.EliminarFracturas(id);
+        }
+        
+        public System.Threading.Tasks.Task<int> EliminarFracturasAsync(int id) {
+            return base.Channel.EliminarFracturasAsync(id);
         }
     }
 }

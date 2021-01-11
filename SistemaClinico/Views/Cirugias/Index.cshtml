@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SistemaClinico.Models.Cirugias>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table  class="table_lista">
+    <tr class="tr_lista">
+        <th class="th_lista">
+            @Html.DisplayName("NOMBRE")
+        </th>
+        <th class="th_lista">
+            @Html.DisplayName("DESCRIPCION")
+        </th>
+        <th class="th_lista">
+            @Html.DisplayName("OPCIONES")
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr class="tr_lista">
+        <td class="td_lista">
+            @Html.DisplayFor(modelItem => item.NOMBRE_CIRUGIA)
+        </td>
+        <td class="td_lista">
+            @Html.DisplayFor(modelItem => item.DESCRIPCION)
+        </td>
+        <td class="td_lista">
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

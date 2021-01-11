@@ -8,7 +8,20 @@
 @using SistemaClinico.Controllers;
 <div class="titulo_general"><h1>Medicamentos</h1></div>
 <br />
+@using (Html.BeginForm("Index", "Medicamentos", FormMethod.Get))
+{
 
+
+    <p class="buscador">
+
+
+
+        @*Nombre: @Html.TextBox("BuscarActivo", value: "ACTIVO")*@
+        @*@Html.DropDownList("BuscarActivo", (IEnumerable<SelectListItem>)@ViewData["chompipollo"], "Seleccione un Sintoma")*@
+        @Html.DropDownList("BuscarTipo", (IEnumerable<SelectListItem>)@ViewData["listaTipo"], "-- Ver tipo de medicamentos --")
+        <input type="submit" value="Filtrar" />
+    </p>
+}
 <p>
     @Html.ActionLink("Crear Nuevo Medicamento", "Create")
 </p>
@@ -18,14 +31,14 @@
             @*@Html.DisplayNameFor(model => model.nombre_medicamento)*@
             Nombre
         </th>
-        <th class="th_lista">
-            @*@Html.DisplayNameFor(model => model.descripcion_medicamento)*@
-            Descripción
+        <!--<th class="th_lista">-->
+        @*@Html.DisplayNameFor(model => model.descripcion_medicamento)*@
+        <!--Descripción
         </th>
-        <th class="th_lista">
-            @*@Html.DisplayNameFor(model => model.catidad)*@
-            Cantidad
-        </th>
+        <th class="th_lista">-->
+        @*@Html.DisplayNameFor(model => model.catidad)*@
+        <!--Cantidad
+        </th>-->
         <th class="th_lista">
             @*@Html.DisplayNameFor(model => model.presentacion)*@
             Presentación
@@ -34,10 +47,10 @@
             @*@Html.DisplayNameFor(model => model.precio)*@
             Precio
         </th>
-        <th class="th_lista">
-            @*@Html.DisplayNameFor(model => model.estado)*@
-            Estado
-        </th>
+        <!--<th class="th_lista">-->
+        @*@Html.DisplayNameFor(model => model.estado)*@
+        <!--Estado
+        </th>-->
         <th class="th_lista">
             @*@Html.DisplayNameFor(model => model.estado)*@
             Acciones
@@ -50,22 +63,22 @@
             <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.NOMBRE_MEDICAMENTO)
             </td>
-            <td class="td_lista">
-                @Html.DisplayFor(modelItem => item.DESCRIPCION_MEDICAMENTO)
-            </td>
-            <td class="td_lista">
-                @Html.DisplayFor(modelItem => item.CANTIDAD)
-            </td>
+            @*<td class="td_lista">
+                    @Html.DisplayFor(modelItem => item.DESCRIPCION_MEDICAMENTO)
+                </td>
+                <td class="td_lista">
+                    @Html.DisplayFor(modelItem => item.CANTIDAD)
+                </td>*@
             <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.PRESENTACION)
             </td>
             <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.PRECIO_UNITARIO)
             </td>
+            @*<td class="td_lista">
+                    @Html.DisplayFor(modelItem => item.ESTADO)
+                </td>*@
             <td class="td_lista">
-                @Html.DisplayFor(modelItem => item.ESTADO)
-            </td>
-            <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
                 @Html.ActionLink("Detalle", "Details", new { id = item.id }) |
                 @Html.ActionLink("Eliminar", "Delete", new { id = item.id })

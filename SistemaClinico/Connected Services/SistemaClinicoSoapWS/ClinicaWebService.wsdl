@@ -764,6 +764,192 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="ListaAlergias">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListaAlergiasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaAlergiasResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertAlergia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="desc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertAlergiaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertAlergiaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAlergias">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAlergiasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateAlergiasResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarAlergia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarAlergiaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EliminarAlergiaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaCirugias">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListaCirugiasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaCirugiasResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertCirugia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="desc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertCirugiaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertCirugiaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCirugia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCirugiaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateCirugiaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarCirugia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarCirugiaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EliminarCirugiaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaFracturas">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListaFracturasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaFracturasResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertFracturas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="desc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertFracturasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertFracturasResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateFracturas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateFracturasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateFracturasResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarFracturas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarFracturasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EliminarFracturasResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -1036,6 +1222,78 @@
   <wsdl:message name="eliminar_pacienteSoapOut">
     <wsdl:part name="parameters" element="tns:eliminar_pacienteResponse" />
   </wsdl:message>
+  <wsdl:message name="ListaAlergiasSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaAlergias" />
+  </wsdl:message>
+  <wsdl:message name="ListaAlergiasSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaAlergiasResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertAlergiaSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertAlergia" />
+  </wsdl:message>
+  <wsdl:message name="InsertAlergiaSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertAlergiaResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAlergiasSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAlergias" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAlergiasSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAlergiasResponse" />
+  </wsdl:message>
+  <wsdl:message name="EliminarAlergiaSoapIn">
+    <wsdl:part name="parameters" element="tns:EliminarAlergia" />
+  </wsdl:message>
+  <wsdl:message name="EliminarAlergiaSoapOut">
+    <wsdl:part name="parameters" element="tns:EliminarAlergiaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListaCirugiasSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaCirugias" />
+  </wsdl:message>
+  <wsdl:message name="ListaCirugiasSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaCirugiasResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertCirugiaSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertCirugia" />
+  </wsdl:message>
+  <wsdl:message name="InsertCirugiaSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertCirugiaResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCirugiaSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateCirugia" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCirugiaSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateCirugiaResponse" />
+  </wsdl:message>
+  <wsdl:message name="EliminarCirugiaSoapIn">
+    <wsdl:part name="parameters" element="tns:EliminarCirugia" />
+  </wsdl:message>
+  <wsdl:message name="EliminarCirugiaSoapOut">
+    <wsdl:part name="parameters" element="tns:EliminarCirugiaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListaFracturasSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaFracturas" />
+  </wsdl:message>
+  <wsdl:message name="ListaFracturasSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaFracturasResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertFracturasSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertFracturas" />
+  </wsdl:message>
+  <wsdl:message name="InsertFracturasSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertFracturasResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFracturasSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateFracturas" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFracturasSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateFracturasResponse" />
+  </wsdl:message>
+  <wsdl:message name="EliminarFracturasSoapIn">
+    <wsdl:part name="parameters" element="tns:EliminarFracturas" />
+  </wsdl:message>
+  <wsdl:message name="EliminarFracturasSoapOut">
+    <wsdl:part name="parameters" element="tns:EliminarFracturasResponse" />
+  </wsdl:message>
   <wsdl:portType name="ClinicaWebServiceSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -1216,6 +1474,54 @@
     <wsdl:operation name="eliminar_paciente">
       <wsdl:input message="tns:eliminar_pacienteSoapIn" />
       <wsdl:output message="tns:eliminar_pacienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaAlergias">
+      <wsdl:input message="tns:ListaAlergiasSoapIn" />
+      <wsdl:output message="tns:ListaAlergiasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertAlergia">
+      <wsdl:input message="tns:InsertAlergiaSoapIn" />
+      <wsdl:output message="tns:InsertAlergiaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAlergias">
+      <wsdl:input message="tns:UpdateAlergiasSoapIn" />
+      <wsdl:output message="tns:UpdateAlergiasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarAlergia">
+      <wsdl:input message="tns:EliminarAlergiaSoapIn" />
+      <wsdl:output message="tns:EliminarAlergiaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaCirugias">
+      <wsdl:input message="tns:ListaCirugiasSoapIn" />
+      <wsdl:output message="tns:ListaCirugiasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertCirugia">
+      <wsdl:input message="tns:InsertCirugiaSoapIn" />
+      <wsdl:output message="tns:InsertCirugiaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCirugia">
+      <wsdl:input message="tns:UpdateCirugiaSoapIn" />
+      <wsdl:output message="tns:UpdateCirugiaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarCirugia">
+      <wsdl:input message="tns:EliminarCirugiaSoapIn" />
+      <wsdl:output message="tns:EliminarCirugiaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaFracturas">
+      <wsdl:input message="tns:ListaFracturasSoapIn" />
+      <wsdl:output message="tns:ListaFracturasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertFracturas">
+      <wsdl:input message="tns:InsertFracturasSoapIn" />
+      <wsdl:output message="tns:InsertFracturasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFracturas">
+      <wsdl:input message="tns:UpdateFracturasSoapIn" />
+      <wsdl:output message="tns:UpdateFracturasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarFracturas">
+      <wsdl:input message="tns:EliminarFracturasSoapIn" />
+      <wsdl:output message="tns:EliminarFracturasSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ClinicaWebServiceSoap" type="tns:ClinicaWebServiceSoap">
@@ -1625,6 +1931,114 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListaAlergias">
+      <soap:operation soapAction="http://tempuri.org/ListaAlergias" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAlergia">
+      <soap:operation soapAction="http://tempuri.org/InsertAlergia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAlergias">
+      <soap:operation soapAction="http://tempuri.org/UpdateAlergias" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarAlergia">
+      <soap:operation soapAction="http://tempuri.org/EliminarAlergia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaCirugias">
+      <soap:operation soapAction="http://tempuri.org/ListaCirugias" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertCirugia">
+      <soap:operation soapAction="http://tempuri.org/InsertCirugia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCirugia">
+      <soap:operation soapAction="http://tempuri.org/UpdateCirugia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarCirugia">
+      <soap:operation soapAction="http://tempuri.org/EliminarCirugia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaFracturas">
+      <soap:operation soapAction="http://tempuri.org/ListaFracturas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertFracturas">
+      <soap:operation soapAction="http://tempuri.org/InsertFracturas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFracturas">
+      <soap:operation soapAction="http://tempuri.org/UpdateFracturas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarFracturas">
+      <soap:operation soapAction="http://tempuri.org/EliminarFracturas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ClinicaWebServiceSoap12" type="tns:ClinicaWebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -2026,6 +2440,114 @@
     </wsdl:operation>
     <wsdl:operation name="eliminar_paciente">
       <soap12:operation soapAction="http://tempuri.org/eliminar_paciente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaAlergias">
+      <soap12:operation soapAction="http://tempuri.org/ListaAlergias" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAlergia">
+      <soap12:operation soapAction="http://tempuri.org/InsertAlergia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAlergias">
+      <soap12:operation soapAction="http://tempuri.org/UpdateAlergias" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarAlergia">
+      <soap12:operation soapAction="http://tempuri.org/EliminarAlergia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaCirugias">
+      <soap12:operation soapAction="http://tempuri.org/ListaCirugias" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertCirugia">
+      <soap12:operation soapAction="http://tempuri.org/InsertCirugia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCirugia">
+      <soap12:operation soapAction="http://tempuri.org/UpdateCirugia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarCirugia">
+      <soap12:operation soapAction="http://tempuri.org/EliminarCirugia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaFracturas">
+      <soap12:operation soapAction="http://tempuri.org/ListaFracturas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertFracturas">
+      <soap12:operation soapAction="http://tempuri.org/InsertFracturas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFracturas">
+      <soap12:operation soapAction="http://tempuri.org/UpdateFracturas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarFracturas">
+      <soap12:operation soapAction="http://tempuri.org/EliminarFracturas" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

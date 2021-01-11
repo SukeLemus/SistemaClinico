@@ -148,10 +148,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AlergiasController.cs" />
     <Compile Include="Controllers\AreasController.cs" />
+    <Compile Include="Controllers\CirugiasController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\EnfermedadesController.cs" />
     <Compile Include="Controllers\EnfermedadesSintomasController.cs" />
+    <Compile Include="Controllers\FracturasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MedicamentosController.cs" />
@@ -163,9 +166,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Alergias.cs" />
     <Compile Include="Models\Area.cs" />
+    <Compile Include="Models\Cirugias.cs" />
     <Compile Include="Models\Departamento.cs" />
     <Compile Include="Models\Enfermedad.cs" />
+    <Compile Include="Models\Fracturas.cs" />
     <Compile Include="Models\Medicamento.cs" />
     <Compile Include="Models\EnfermedadSintoma.cs" />
     <Compile Include="Models\Login.cs" />
@@ -288,6 +294,18 @@
     <Content Include="Views\Usuarios\Edit.cshtml" />
     <Content Include="Views\Departamento\Inactivo.cshtml" />
     <Content Include="Views\Departamento\Edit.cshtml" />
+    <Content Include="Views\Alergias\Index.cshtml" />
+    <Content Include="Views\Alergias\Create.cshtml" />
+    <Content Include="Views\Alergias\Delete.cshtml" />
+    <Content Include="Views\Alergias\Edit.cshtml" />
+    <Content Include="Views\Cirugias\Index.cshtml" />
+    <Content Include="Views\Cirugias\Create.cshtml" />
+    <Content Include="Views\Cirugias\Edit.cshtml" />
+    <Content Include="Views\Cirugias\Delete.cshtml" />
+    <Content Include="Views\Fracturas\Index.cshtml" />
+    <Content Include="Views\Fracturas\Create.cshtml" />
+    <Content Include="Views\Fracturas\Edit.cshtml" />
+    <Content Include="Views\Fracturas\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
