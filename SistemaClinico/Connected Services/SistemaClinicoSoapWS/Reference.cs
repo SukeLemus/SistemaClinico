@@ -414,6 +414,41 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EliminarFracturas", ReplyAction="*")]
         System.Threading.Tasks.Task<int> EliminarFracturasAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaConsultorio", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet ListaConsultorio();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaConsultorio", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> ListaConsultorioAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertConsultorio", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int InsertConsultorio(int id_depa, string nombre, int nivel, string estado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertConsultorio", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> InsertConsultorioAsync(int id_depa, string nombre, int nivel, string estado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateConsultorio", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int UpdateConsultorio(int id, int id_depa, string nombre, int nivel, string estado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateConsultorio", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> UpdateConsultorioAsync(int id, int id_depa, string nombre, int nivel, string estado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EliminarConsultorio", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int EliminarConsultorio(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EliminarConsultorio", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> EliminarConsultorioAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/NombreDptoConsultorios", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet NombreDptoConsultorios(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/NombreDptoConsultorios", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> NombreDptoConsultoriosAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -897,6 +932,46 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         public System.Threading.Tasks.Task<int> EliminarFracturasAsync(int id) {
             return base.Channel.EliminarFracturasAsync(id);
+        }
+        
+        public System.Data.DataSet ListaConsultorio() {
+            return base.Channel.ListaConsultorio();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> ListaConsultorioAsync() {
+            return base.Channel.ListaConsultorioAsync();
+        }
+        
+        public int InsertConsultorio(int id_depa, string nombre, int nivel, string estado) {
+            return base.Channel.InsertConsultorio(id_depa, nombre, nivel, estado);
+        }
+        
+        public System.Threading.Tasks.Task<int> InsertConsultorioAsync(int id_depa, string nombre, int nivel, string estado) {
+            return base.Channel.InsertConsultorioAsync(id_depa, nombre, nivel, estado);
+        }
+        
+        public int UpdateConsultorio(int id, int id_depa, string nombre, int nivel, string estado) {
+            return base.Channel.UpdateConsultorio(id, id_depa, nombre, nivel, estado);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateConsultorioAsync(int id, int id_depa, string nombre, int nivel, string estado) {
+            return base.Channel.UpdateConsultorioAsync(id, id_depa, nombre, nivel, estado);
+        }
+        
+        public int EliminarConsultorio(int id) {
+            return base.Channel.EliminarConsultorio(id);
+        }
+        
+        public System.Threading.Tasks.Task<int> EliminarConsultorioAsync(int id) {
+            return base.Channel.EliminarConsultorioAsync(id);
+        }
+        
+        public System.Data.DataSet NombreDptoConsultorios(int id) {
+            return base.Channel.NombreDptoConsultorios(id);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> NombreDptoConsultoriosAsync(int id) {
+            return base.Channel.NombreDptoConsultoriosAsync(id);
         }
     }
 }

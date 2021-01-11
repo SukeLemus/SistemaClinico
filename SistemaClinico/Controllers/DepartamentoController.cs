@@ -12,7 +12,6 @@ namespace SistemaClinico.Controllers
     public class DepartamentoController : Controller
     {
 
-
         public static List<Departamento> ListaDepartamentos()
         {
             List<Departamento> listaDepas = new List<Departamento>();
@@ -21,9 +20,7 @@ namespace SistemaClinico.Controllers
             
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
-                
 
- 
                 Departamento depa = new Departamento();
                 depa.ID= int.Parse(dr["ID_DEPARTAMENTO"].ToString());
                 depa.NOMBRE_DEPARTAMENTO = dr["NOMBRE_DEPARTAMENTO"].ToString();
@@ -110,6 +107,11 @@ namespace SistemaClinico.Controllers
                 });
             }
             ViewData["ListaNombreAreas"] = selectList;
+
+         
+
+
+
             return View();
         }
 

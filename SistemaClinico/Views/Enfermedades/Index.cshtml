@@ -7,7 +7,8 @@
 @using PagedList;
 @using PagedList.Mvc;
 @using SistemaClinico.Controllers;
-<h2>Index</h2>
+
+<div class="titulo_general"><h1>Enfermedades</h1></div>
 
 @if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
 {
@@ -26,10 +27,10 @@ else
     <tr class="tr_lista">
         <th class="th_lista">
             @*@Html.DisplayNameFor(model => model.First().nombre_enfermedad)*@
-            NOMBRE
+            Nombre Enfermedad
         </th>
         <th class="th_lista">
-            DESCRIPCION
+            Descripción
             @*@Html.DisplayNameFor(model => model.First().descripcion)*@
         </th>
         @if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
@@ -40,7 +41,7 @@ else
         }
         else
         {
-            <th class="th_lista"> OPCIONES</th>
+            <th class="th_lista"> Opciones</th>
         }
     </tr>
 

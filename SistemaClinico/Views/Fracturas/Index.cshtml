@@ -1,41 +1,46 @@
-﻿@model IEnumerable<SistemaClinico.Models.Fracturas>
-
+﻿@*@model IEnumerable<SistemaClinico.Models.Fracturas>*@
+@model IPagedList<SistemaClinico.Models.Fracturas>
 @{
     ViewBag.Title = "Index";
 }
+@using PagedList;
+@using PagedList.Mvc;
+@using SistemaClinico.Controllers;
 
-<h2>Index</h2>
+<div class="titulo_general"><h1>Fracturas</h1></div>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nueva Fractura", "Create")
 </p>
 <table class="table_lista">
     <tr class="tr_lista">
         <th class="th_lista">
-            @Html.DisplayName("NOMBRE")
+            @Html.DisplayName("Nombre")
         </th>
         <th class="th_lista">
-            @Html.DisplayName("DESCIPCION")
+            @Html.DisplayName("Descripción")
         </th>
         <th class="th_lista">
-            @Html.DisplayName("OPCIONES")
+            @Html.DisplayName("Opciones")
 
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr class="tr_lista">
-        <td class="td_lista">
-            @Html.DisplayFor(modelItem => item.NOMBRE_FRACTURA)
-        </td>
-        <td class="td_lista">
-            @Html.DisplayFor(modelItem => item.DESCRIPCION)
-        </td>
-        <td class="td_lista">
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr class="tr_lista">
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.NOMBRE_FRACTURA)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.DESCRIPCION)
+            </td>
+            <td class="td_lista">
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>
+@Html.PagedListPager(Model, i => Url.Action("Index", "Fracturas", new { i, search = Request.QueryString["search"] }))

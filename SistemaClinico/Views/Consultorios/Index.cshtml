@@ -1,0 +1,65 @@
+﻿@*@model IEnumerable<SistemaClinico.Models.Consultorio>*@
+@model IPagedList<SistemaClinico.Models.Consultorio>
+@{
+    ViewBag.Title = "Index";
+}
+@using PagedList;
+@using PagedList.Mvc;
+@using SistemaClinico.Controllers;
+
+<div class="titulo_general"><h1>Consultorios</h1></div>
+
+<p class="buscador">
+    Nombre: @Html.TextBox("BuscarNombre")
+
+    <input type="submit" value="Buscar" />
+</p>
+<p>
+    @Html.ActionLink("Crear nuevo consultorio", "Create")
+</p>
+<table class="table_lista">
+    <tr class="tr_lista">
+        <th class="th_lista">
+            @Html.DisplayName("Nombre Consultorio")
+        </th>
+        <th class="th_lista">
+            @Html.DisplayName("Nivel")
+        </th>
+        <th class="th_lista">
+            @Html.DisplayName("Estado")
+        </th>
+        <th class="th_lista">
+            @Html.DisplayName("Departamento")
+        </th>
+        <th class="th_lista">
+            @Html.DisplayName("Opciones")
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="tr_lista">
+         
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.NOMBRE_CONSULTORIO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.NIVEL)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.ESTADO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.NOM)
+            </td>
+            <td class="td_lista">
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID }) @*|*@
+                @*@Html.ActionLink("Details", "Details", new { id = item.ID }) |*@
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager(Model, i => Url.Action("Index", "Consultorios", new { i, search = Request.QueryString["search"] }))

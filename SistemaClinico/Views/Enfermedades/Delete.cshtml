@@ -4,7 +4,7 @@
     ViewBag.Title = "Delete";
 }
 
-
+<div class="titulo_general"><h1>Enfermedades</h1></div>
 
 @if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
 {
@@ -12,7 +12,7 @@
 }
 else
 {
-    <h2>Eliminar Enfermedad</h2>
+   
 
     <h3>¿Está seguro de eliminar esta enfermedad?</h3>
     <div>
@@ -22,10 +22,10 @@ else
         <table class="table_lista">
             <tr class="tr_lista">
                 <th class="th_lista">
-                    @Html.DisplayNameFor(model => model.nombre_enfermedad)
+                    @Html.DisplayName("Nombre Enfermedad")
                 </th>
                 <th class="th_lista">
-                    @Html.DisplayNameFor(model => model.descripcion)
+                    @Html.DisplayName("Descripción")
                 </th>
             </tr>
             <tr class="tr_lista">

@@ -29,15 +29,8 @@
         A continuación se muestra el listado de los síntomas mas comunes, debe considerar que la
         información que se visualiza es solo una referencia informativa y en caso de presentar alguno de
         ellos, debe evitar automedicarse y solicitar un diagnóstico médico profesional, en Clínica Datanet puede
-        solicitar una consulta médica en caso de manifestar alguno de los sintomas, solo registrese y denos su dinero.
+        solicitar una consulta médica en caso de manifestar alguno de los sintomas, solo registrese y comience a usar nuestros servicios.
 
-        <br />
-        <br />
-        <br />
-        O vaya al hospital
-        <br />
-        <br />
-        BORRAR ESTO
     </p>
 </div>
 
@@ -60,10 +53,10 @@ else
     <tr class="tr_lista">
         <th class="th_lista">
             @*@Html.DisplayNameFor(model => model.First().nombre)*@
-            NOMBRE
+            Nombre
         </th>
         <th class="th_lista">
-            DESCRIPCION
+            Descripción
             @*@Html.DisplayNameFor(model => model.First().descripcion)*@
         </th>
 
@@ -75,7 +68,7 @@ else
             }
             else
             {
-                <th class="th_lista"> OPCIONES</th>
+                <th class="th_lista"> Opciones</th>
             }
 
     </tr>
@@ -98,13 +91,13 @@ else
                     <td class="td_lista">
                         <table align="center">
                             <tr>
-                                <td>
+                                @*<td>
                                     @Html.ActionLink("Detalles", "Details", new { id = item.id })
                                     <br>
-                                </td>
-                                <td>
+                                </td>*@
+                                @*<td>
                                     &nbsp;-&nbsp;
-                                </td>
+                                </td>*@
                                 <td>
                                     @Html.ActionLink("Editar", "Edit", new { id = item.id })
                                     <br>

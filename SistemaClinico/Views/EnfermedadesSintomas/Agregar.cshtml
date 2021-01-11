@@ -10,13 +10,14 @@
     ViewBag.Title = "Agregar";
 }
 
-<h2>Agregando Sintomas a la Enfermedad:</h2>
+<div class="titulo_general"><h1>Enfermedades</h1></div>
+
 
 
 @using (Html.BeginForm())
 {
     <div class="titulo_general">
-        <h1>@ViewData["nombreEnf"] </h1>
+        <h2>Agregando Sintomas a la Enfermedad: @ViewData["nombreEnf"] </h2>
     </div>
 
     <div class="form-horizontal">
@@ -29,7 +30,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("SINTOMAS", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Síntomas", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-9">
                 @Html.DropDownList("ID_SINTOMA", (IEnumerable<SelectListItem>)@ViewData["chompipollo"], "Seleccione un Sintoma", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ID_SINTOMA, "", new { @class = "text-danger" })
@@ -67,7 +68,7 @@
         </table>
 
     </div>
-    <h2>Sintomas Agregados:</h2>
+    <h2>Síntomas Agregados:</h2>
     <div class="lista-sintoEnf">
 
         <div class="col-md-10">

@@ -950,6 +950,93 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="ListaConsultorio">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListaConsultorioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaConsultorioResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertConsultorio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id_depa" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="nivel" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="estado" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertConsultorioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertConsultorioResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateConsultorio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="id_depa" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="nivel" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="estado" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateConsultorioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateConsultorioResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarConsultorio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarConsultorioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EliminarConsultorioResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NombreDptoConsultorios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NombreDptoConsultoriosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NombreDptoConsultoriosResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -1294,6 +1381,36 @@
   <wsdl:message name="EliminarFracturasSoapOut">
     <wsdl:part name="parameters" element="tns:EliminarFracturasResponse" />
   </wsdl:message>
+  <wsdl:message name="ListaConsultorioSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaConsultorio" />
+  </wsdl:message>
+  <wsdl:message name="ListaConsultorioSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaConsultorioResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertConsultorioSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertConsultorio" />
+  </wsdl:message>
+  <wsdl:message name="InsertConsultorioSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertConsultorioResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateConsultorioSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateConsultorio" />
+  </wsdl:message>
+  <wsdl:message name="UpdateConsultorioSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateConsultorioResponse" />
+  </wsdl:message>
+  <wsdl:message name="EliminarConsultorioSoapIn">
+    <wsdl:part name="parameters" element="tns:EliminarConsultorio" />
+  </wsdl:message>
+  <wsdl:message name="EliminarConsultorioSoapOut">
+    <wsdl:part name="parameters" element="tns:EliminarConsultorioResponse" />
+  </wsdl:message>
+  <wsdl:message name="NombreDptoConsultoriosSoapIn">
+    <wsdl:part name="parameters" element="tns:NombreDptoConsultorios" />
+  </wsdl:message>
+  <wsdl:message name="NombreDptoConsultoriosSoapOut">
+    <wsdl:part name="parameters" element="tns:NombreDptoConsultoriosResponse" />
+  </wsdl:message>
   <wsdl:portType name="ClinicaWebServiceSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -1522,6 +1639,26 @@
     <wsdl:operation name="EliminarFracturas">
       <wsdl:input message="tns:EliminarFracturasSoapIn" />
       <wsdl:output message="tns:EliminarFracturasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaConsultorio">
+      <wsdl:input message="tns:ListaConsultorioSoapIn" />
+      <wsdl:output message="tns:ListaConsultorioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertConsultorio">
+      <wsdl:input message="tns:InsertConsultorioSoapIn" />
+      <wsdl:output message="tns:InsertConsultorioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateConsultorio">
+      <wsdl:input message="tns:UpdateConsultorioSoapIn" />
+      <wsdl:output message="tns:UpdateConsultorioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarConsultorio">
+      <wsdl:input message="tns:EliminarConsultorioSoapIn" />
+      <wsdl:output message="tns:EliminarConsultorioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NombreDptoConsultorios">
+      <wsdl:input message="tns:NombreDptoConsultoriosSoapIn" />
+      <wsdl:output message="tns:NombreDptoConsultoriosSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ClinicaWebServiceSoap" type="tns:ClinicaWebServiceSoap">
@@ -2039,6 +2176,51 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListaConsultorio">
+      <soap:operation soapAction="http://tempuri.org/ListaConsultorio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertConsultorio">
+      <soap:operation soapAction="http://tempuri.org/InsertConsultorio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateConsultorio">
+      <soap:operation soapAction="http://tempuri.org/UpdateConsultorio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarConsultorio">
+      <soap:operation soapAction="http://tempuri.org/EliminarConsultorio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NombreDptoConsultorios">
+      <soap:operation soapAction="http://tempuri.org/NombreDptoConsultorios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ClinicaWebServiceSoap12" type="tns:ClinicaWebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -2548,6 +2730,51 @@
     </wsdl:operation>
     <wsdl:operation name="EliminarFracturas">
       <soap12:operation soapAction="http://tempuri.org/EliminarFracturas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaConsultorio">
+      <soap12:operation soapAction="http://tempuri.org/ListaConsultorio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertConsultorio">
+      <soap12:operation soapAction="http://tempuri.org/InsertConsultorio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateConsultorio">
+      <soap12:operation soapAction="http://tempuri.org/UpdateConsultorio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarConsultorio">
+      <soap12:operation soapAction="http://tempuri.org/EliminarConsultorio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NombreDptoConsultorios">
+      <soap12:operation soapAction="http://tempuri.org/NombreDptoConsultorios" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

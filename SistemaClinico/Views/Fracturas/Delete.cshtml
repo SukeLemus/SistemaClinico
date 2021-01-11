@@ -4,15 +4,15 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<div class="titulo_general"><h1>Fracturas</h1></div>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>¿Está seguro de eliminar esta fractura?</h3>
 <div>
-    <h4>Fracturas</h4>
+    @*<h4>Fracturas</h4>*@
     <hr />
-    <dl class="dl-horizontal">
+    @*<dl class="dl-horizontal">
         <dt>
-            @Html.DisplayName("NOMBRE")
+            @Html.DisplayName("Nombre")
         </dt>
 
         <dd>
@@ -20,21 +20,61 @@
         </dd>
 
         <dt>
-            @Html.DisplayName("DESCRIPCION")
+            @Html.DisplayName("Descripción")
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.DESCRIPCION)
         </dd>
 
-    </dl>
+    </dl>*@
 
-    @using (Html.BeginForm()) {
+    <table class="table_lista">
+        <tr class="tr_lista">
+            <th class="th_lista">
+                @Html.DisplayName("Nombre")
+            </th>
+            <th class="th_lista">
+                @Html.DisplayName("Descripción")
+            </th>
+        </tr>
+        <tr class="tr_lista">
+            <td class="td_lista">
+                @Html.DisplayFor(model => model.NOMBRE_FRACTURA)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(model => model.DESCRIPCION)
+            </td>
+        </tr>
+    </table>
+
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+        @*<div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>*@
+
+        <table align="center">
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Borrar Fractura" class="btn btn-success" />
+                        </div>
+                    </div>
+                </td>
+                <td>&nbsp;  &nbsp; &nbsp;  &nbsp;</td>
+                <td>
+                    <div div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input onclick="location.href='@Url.Action("Index", "Fracturas")'" type="button" value="Volver" class="btn btn-finalizar" />
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
     }
 </div>

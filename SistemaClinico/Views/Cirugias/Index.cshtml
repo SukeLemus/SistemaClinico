@@ -1,40 +1,44 @@
-﻿@model IEnumerable<SistemaClinico.Models.Cirugias>
-
+﻿@*@model IEnumerable<SistemaClinico.Models.Cirugias>*@
+@model IPagedList<SistemaClinico.Models.Cirugias>
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
+@using PagedList;
+@using PagedList.Mvc;
+@using SistemaClinico.Controllers;
+<div class="titulo_general"><h1>Cirugías</h1></div>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nueva Cirugía", "Create")
 </p>
-<table  class="table_lista">
+<table class="table_lista">
     <tr class="tr_lista">
         <th class="th_lista">
-            @Html.DisplayName("NOMBRE")
+            @Html.DisplayName("Nombre")
         </th>
         <th class="th_lista">
-            @Html.DisplayName("DESCRIPCION")
+            @Html.DisplayName("Descripción")
         </th>
         <th class="th_lista">
-            @Html.DisplayName("OPCIONES")
+            @Html.DisplayName("Opciones")
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr class="tr_lista">
-        <td class="td_lista">
-            @Html.DisplayFor(modelItem => item.NOMBRE_CIRUGIA)
-        </td>
-        <td class="td_lista">
-            @Html.DisplayFor(modelItem => item.DESCRIPCION)
-        </td>
-        <td class="td_lista">
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr class="tr_lista">
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.NOMBRE_CIRUGIA)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.DESCRIPCION)
+            </td>
+            <td class="td_lista">
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>
+@Html.PagedListPager(Model, i => Url.Action("Index", "Cirugias", new { i, search = Request.QueryString["search"] }))

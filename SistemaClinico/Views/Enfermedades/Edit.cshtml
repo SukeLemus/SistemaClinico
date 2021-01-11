@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Editar Enfermedad</h2>
+<div class="titulo_general"><h1>Enfermedades</h1></div>
 
 
 @using (Html.BeginForm())
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        @*<h4>Enfermedad</h4>*@
+        <h4>Editar Enfermedad</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id)
