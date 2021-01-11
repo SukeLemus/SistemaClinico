@@ -154,7 +154,7 @@ namespace SistemaClinico.Controllers
 
 
 
-                }); ;
+                });
 
 
             }

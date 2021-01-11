@@ -4,13 +4,13 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<div class="titulo_general"><h1>Medicamentos</h1></div>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>¿Está seguro de eliminar este medicamento?</h3>
 <div>
-    <h4>Medicamento</h4>
+    
     <hr />
-    <dl class="dl-horizontal">
+    @*<dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.NOMBRE_MEDICAMENTO)
         </dt>
@@ -59,14 +59,78 @@
             @Html.DisplayFor(model => model.ESTADO)
         </dd>
 
-    </dl>
+    </dl>*@
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+    <table class="table_lista">
+        <tr class="tr_lista">
+            <th class="th_lista">
+                @Html.DisplayName("Nombre")
+            </th>
+            <th class="th_lista">
+                @Html.DisplayName("Descripción")
+            </th>
+            <th class="th_lista">
+                @Html.DisplayName("Cantidad ")
+            </th>
+            <th class="th_lista">
+                @Html.DisplayName("Presentación")
+            </th>
+            <th class="th_lista">
+                @Html.DisplayName("Precio Unitario")
+            </th>
+            <th class="th_lista">
+                @Html.DisplayName("Estado ")
+            </th>
+        </tr>
+        <tr class="tr_lista">
+            <td class="td_lista">
+                @Html.DisplayFor(model => model.NOMBRE_MEDICAMENTO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(model => model.DESCRIPCION_MEDICAMENTO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(model => model.CANTIDAD)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(model => model.PRESENTACION)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(model => model.PRECIO_UNITARIO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(model => model.ESTADO)
+            </td>
+        </tr>
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+    </table>
+
+    @using (Html.BeginForm())
+    {
+                    @Html.AntiForgeryToken()
+
+        @*<div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>*@
+        <table align="center">
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Eliminar" class="btn btn-success" />
+                        </div>
+                    </div>
+                </td>
+                <td>&nbsp;  &nbsp; &nbsp;  &nbsp;</td>
+                <td>
+                    <div div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input onclick="location.href='@Url.Action("Index", "Medicamentos")'" type="button" value="Volver" class="btn btn-finalizar" />
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
     }
 </div>

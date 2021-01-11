@@ -91,6 +91,50 @@ namespace SistemaClinico.Controllers
         // GET: Medicamentos/Create
         public ActionResult Create()
         {
+            List<SelectListItem> listaEstados = new List<SelectListItem>();
+            listaEstados.Add(new SelectListItem
+            {
+                Text = "Activo",
+                Value = "ACTIVO"
+            });
+            listaEstados.Add(new SelectListItem
+            {
+                Text = "Inactivo",
+                Value = "INACTIVO"
+            });
+            ViewData["listaEstado"] = listaEstados;
+
+            //Para la lista de presentacion 
+
+            List<SelectListItem> listaPresentacion = new List<SelectListItem>();
+            listaPresentacion.Add(new SelectListItem
+            {
+                Text = "Líquido",
+                Value = "LIQUIDO"
+            });
+            listaPresentacion.Add(new SelectListItem
+            {
+                Text = "Tableta",
+                Value = "TABLETA"
+            });
+            listaPresentacion.Add(new SelectListItem
+            {
+                Text = "Píldora",
+                Value = "PILDORA"
+            });
+            listaPresentacion.Add(new SelectListItem
+            {
+                Text = "Inyectable",
+                Value = "INYECTABLE"
+            });
+            listaPresentacion.Add(new SelectListItem
+            {
+                Text = "Tópico",
+                Value = "TOPICO"
+            });
+            ViewData["listaPresentacion"] = listaPresentacion;
+
+
             return View();
         }
 
@@ -126,6 +170,49 @@ namespace SistemaClinico.Controllers
             List<Medicamento> sintList = TodosMedicamentos();
             if (id.HasValue)
             {
+                List<SelectListItem> listaEstados = new List<SelectListItem>();
+                listaEstados.Add(new SelectListItem
+                {
+                    Text = "Activo",
+                    Value = "ACTIVO"
+                });
+                listaEstados.Add(new SelectListItem
+                {
+                    Text = "Inactivo",
+                    Value = "INACTIVO"
+                });
+                ViewData["listaEstado"] = listaEstados;
+
+                //Para la lista de presentacion 
+
+                List<SelectListItem> listaPresentacion = new List<SelectListItem>();
+                listaPresentacion.Add(new SelectListItem
+                {
+                    Text = "Líquido",
+                    Value = "LIQUIDO"
+                });
+                listaPresentacion.Add(new SelectListItem
+                {
+                    Text = "Tableta",
+                    Value = "TABLETA"
+                });
+                listaPresentacion.Add(new SelectListItem
+                {
+                    Text = "Píldora",
+                    Value = "PILDORA"
+                });
+                listaPresentacion.Add(new SelectListItem
+                {
+                    Text = "Inyectable",
+                    Value = "INYECTABLE"
+                });
+                listaPresentacion.Add(new SelectListItem
+                {
+                    Text = "Tópico",
+                    Value = "TOPICO"
+                });
+                ViewData["listaPresentacion"] = listaPresentacion;
+
                 var sint = sintList.Single(m => m.id == id);
                 return View(sint);
             }

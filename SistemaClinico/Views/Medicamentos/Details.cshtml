@@ -4,63 +4,71 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="titulo_general"><h1>Medicamentos</h1></div>
 
 <div>
-    <h4>Medicamento</h4>
+    <h4>Detalle de características de medicamentos registrados en el sistema</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NOMBRE_MEDICAMENTO)
-        </dt>
+    <table class="table_lista">
+        <tr class="tr_lista">
+            <th class="th_lista">
+                @Html.DisplayName("Nombre")
+            </th>
+            <th class="th_lista">
+                @Html.DisplayName("Descripción")
+            </th>
+            <th class="th_lista">
+                @Html.DisplayName("Cantidad ")
+            </th>
+            <th class="th_lista">
+                @Html.DisplayName("Presentación")
+            </th>
+            <th class="th_lista">
+                @Html.DisplayName("Precio Unitario")
+            </th>
+            <th class="th_lista">
+                @Html.DisplayName("Estado ")
+            </th>
+        </tr>
+        <tr class="tr_lista">
+            <td class="td_lista">
+                @Html.DisplayFor(model => model.NOMBRE_MEDICAMENTO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(model => model.DESCRIPCION_MEDICAMENTO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(model => model.CANTIDAD)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(model => model.PRESENTACION)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(model => model.PRECIO_UNITARIO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(model => model.ESTADO)
+            </td>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.NOMBRE_MEDICAMENTO)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DESCRIPCION_MEDICAMENTO)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DESCRIPCION_MEDICAMENTO)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CANTIDAD)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CANTIDAD)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PRESENTACION)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PRESENTACION)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PRECIO_UNITARIO)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PRECIO_UNITARIO)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ESTADO)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ESTADO)
-        </dd>
-
-    </dl>
+    </table>
 </div>
+
+
+
+
 @*<p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>*@
+<table align="center">
+    <tr>
+        <td>
+            <div div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input onclick="location.href='@Url.Action("Index", "Medicamentos")'" type="button" value="Volver" class="btn btn-finalizar" />
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>

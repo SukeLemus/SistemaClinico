@@ -18,7 +18,7 @@
     @Html.ActionLink("Nueva Area", "Create")
 </p>
 
-<p class="buscador">
+<p class="rounded">
     Nombre: @Html.TextBox("BuscarNombre")
 
     <input type="submit" value="Buscar" />
@@ -47,9 +47,9 @@
                 @Html.DisplayFor(modelItem => item.NOMBRE_AREA)
             </td>
             <td class="td_lista">
-                @Html.ActionLink("Editar", "Edit", new { id = item.ID}) |
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID}) 
                 @*@Html.ActionLink("Details", "Details", new { id = item.ID}) |*@
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.ID})
+                @*@Html.ActionLink("Eliminar", "Delete", new { id = item.ID})*@
             </td>
         </tr>
     }

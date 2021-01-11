@@ -592,6 +592,9 @@
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="estado" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="area" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -599,6 +602,21 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="UpdateDepaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateEstadoDpartamento">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="estado" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateEstadoDpartamentoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateEstadoDpartamentoResult" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -964,6 +982,12 @@
   <wsdl:message name="UpdateDepaSoapOut">
     <wsdl:part name="parameters" element="tns:UpdateDepaResponse" />
   </wsdl:message>
+  <wsdl:message name="UpdateEstadoDpartamentoSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateEstadoDpartamento" />
+  </wsdl:message>
+  <wsdl:message name="UpdateEstadoDpartamentoSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateEstadoDpartamentoResponse" />
+  </wsdl:message>
   <wsdl:message name="EliminarDepaSoapIn">
     <wsdl:part name="parameters" element="tns:EliminarDepa" />
   </wsdl:message>
@@ -1156,6 +1180,10 @@
     <wsdl:operation name="UpdateDepa">
       <wsdl:input message="tns:UpdateDepaSoapIn" />
       <wsdl:output message="tns:UpdateDepaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEstadoDpartamento">
+      <wsdl:input message="tns:UpdateEstadoDpartamentoSoapIn" />
+      <wsdl:output message="tns:UpdateEstadoDpartamentoSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="EliminarDepa">
       <wsdl:input message="tns:EliminarDepaSoapIn" />
@@ -1509,6 +1537,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateDepa">
       <soap:operation soapAction="http://tempuri.org/UpdateDepa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEstadoDpartamento">
+      <soap:operation soapAction="http://tempuri.org/UpdateEstadoDpartamento" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1908,6 +1945,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateDepa">
       <soap12:operation soapAction="http://tempuri.org/UpdateDepa" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEstadoDpartamento">
+      <soap12:operation soapAction="http://tempuri.org/UpdateEstadoDpartamento" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

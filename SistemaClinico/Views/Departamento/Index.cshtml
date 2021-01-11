@@ -1,11 +1,26 @@
-﻿@model IEnumerable<SistemaClinico.Models.Departamento>
+﻿@model IPagedList<SistemaClinico.Models.Departamento>
 
 @{
     ViewBag.Title = "Index";
 }
-
+@using PagedList;
+@using PagedList.Mvc;
+@using SistemaClinico.Controllers;
 <div class="titulo_general"><h1>Departamentos</h1></div>
+@using (Html.BeginForm("Index", "Departamento", FormMethod.Get))
+{
 
+
+<p class="buscador">
+
+
+
+    @*Nombre: @Html.TextBox("BuscarActivo", value: "ACTIVO")*@
+    @*@Html.DropDownList("BuscarActivo", (IEnumerable<SelectListItem>)@ViewData["chompipollo"], "Seleccione un Sintoma")*@
+    @Html.DropDownList("BuscarActivo", (IEnumerable<SelectListItem>)@ViewData["listaEstado"], "-- Ver estatus departamentos --")
+    <input type="submit" value="Filtrar" />
+</p>
+}
 <p>
     @Html.ActionLink("Nuevo Departamento", "Create")
 </p>
@@ -21,8 +36,8 @@
             @Html.DisplayName("Estado")
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.ID_AREA)
-        </th>*@
+                @Html.DisplayNameFor(model => model.ID_AREA)
+            </th>*@
         <th class="th_lista">
             @Html.DisplayName("Area")
         </th>
@@ -31,29 +46,31 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr class="tr_lista">
-        <td  class="td_lista">
-            @Html.DisplayFor(modelItem => item.NOMBRE_DEPARTAMENTO)
-        </td>
-        <td  class="td_lista">
-            @Html.DisplayFor(modelItem => item.DESCRIPCION)
-        </td>
-        <td  class="td_lista">
-            @Html.DisplayFor(modelItem => item.ESTADO)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.ID_AREA)
-        </td>*@
-        <td class="td_lista">
-            @Html.DisplayFor(modelItem => item.NOM)
-        </td>
-        <td class="td_lista">
-            @Html.ActionLink("Eitar", "Edit", new { id=item.ID }) |
-            @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
-            @Html.ActionLink("Borrar", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr class="tr_lista">
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.NOMBRE_DEPARTAMENTO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.DESCRIPCION)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.ESTADO)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.ID_AREA)
+                </td>*@
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.NOM)
+            </td>
+            <td class="td_lista">
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID }) 
+                @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
+                @*@Html.ActionLink("Inactivar", "Inactivo", new { id = item.ID })*@
+            </td>
+        </tr>
+    }
 
 </table>
+@Html.PagedListPager(Model, i => Url.Action("Index", "Departamento", new { i, search = Request.QueryString["search"] }))

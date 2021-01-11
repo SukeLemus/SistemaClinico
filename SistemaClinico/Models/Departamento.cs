@@ -17,7 +17,7 @@ namespace SistemaClinico.Models
         [Required]
         public String DESCRIPCION { get; set; }
         public String ESTADO { get; set; }
-       
+        [Required]
         public int ID_AREA { get; set; }
 
         public String NOM { get; set; }

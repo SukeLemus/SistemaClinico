@@ -4,33 +4,13 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using SistemaClinico.Models;
 
 namespace SistemaClinico.Controllers
 {
     public class DepartamentoController : Controller
     {
-
-        //public static List<Area> listaAreas(int id)
-        //{
-        //    List<Area> listaDepas = new List<Area>();
-        //    SistemaClinicoSoapWS.ClinicaWebServiceSoapClient dptoWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
-        //    DataSet ds = dptoWS.NombreArea_Departamento(id);
-        //    foreach (DataRow dr in ds.Tables[0].Rows)
-        //    {
-        //        //    int id = int.Parse(dr["ID"].ToString());
-        //        //    string nombre = dr["NOMBRE_AREA"].ToString();
-
-        //        Area arre = new Area();
-               
-        //        arre.NOMBRE_AREA = dr["NOMBRE_AREA"].ToString();
-                
-
-        //        listaDepas.Add(arre);
-        //    }
-            
-        //    return listaDepas;
-        //}
 
 
         public static List<Departamento> ListaDepartamentos()
@@ -43,18 +23,14 @@ namespace SistemaClinico.Controllers
             {
                 
 
-                //    int id = int.Parse(dr["ID"].ToString());
-                //    string nombre = dr["NOMBRE_AREA"].ToString();
-
+ 
                 Departamento depa = new Departamento();
                 depa.ID= int.Parse(dr["ID_DEPARTAMENTO"].ToString());
                 depa.NOMBRE_DEPARTAMENTO = dr["NOMBRE_DEPARTAMENTO"].ToString();
                 depa.DESCRIPCION= dr["DESCRIPCION"].ToString();
                 depa.ESTADO= dr["ESTADO"].ToString();
                 depa.ID_AREA= int.Parse(dr["ID_AREA"].ToString());
-                //Area are = new Area();
-                //DataSet ds2= null;
-                //ds2.Clear();
+
                 DataSet ds2 = dptoWS.NombreArea_Departamento(int.Parse(dr["ID_AREA"].ToString()));
                
 
@@ -72,30 +48,41 @@ namespace SistemaClinico.Controllers
 
 
         // GET: Departamento
-        public ActionResult Index()
+        public ActionResult Index(int? i, string BuscarActivo)
         {
             SistemaClinico.SistemaClinicoSoapWS.ClinicaWebServiceSoapClient swEnf = new SistemaClinico.SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
 
+            List<SelectListItem> listaEstados = new List<SelectListItem>();
+            listaEstados.Add(new SelectListItem
+            {
+                Text = "Todos",
+                Value = ""
+            });
+            listaEstados.Add(new SelectListItem
+            {
+                Text = "Activos",
+                Value = "ACTIVO"
+            });
+            listaEstados.Add(new SelectListItem
+            {
+                Text = "Inactivos",
+                Value = "INACTIVO"
+            });
+
+
             var Departamento = from e in ListaDepartamentos()
-                            orderby e.NOMBRE_DEPARTAMENTO
-                            select e;
-            //List<Departamento> listaD = new List<Departamento>();
+                               select e;
 
-            //DataSet ds = swEnf.ListaDepa();
-            //foreach (DataRow dr in ds.Tables[0].Rows)
-            //{
-            //    MaxIdEnfermedad = int.Parse(dr["MAX(ID_ENFERMEDAD)"].ToString());
+            
 
-            //}
-            //DataSet ds2 = swEnf.nombreMax(MaxIdEnfermedad);
-            //foreach (DataRow dr2 in ds2.Tables[0].Rows)
-            //{
-            //    nombreEnf = dr2["NOMBRE_ENFERMEDAD"].ToString();
+            if (!String.IsNullOrEmpty(BuscarActivo))
+            {
+                Departamento = Departamento.Where(c => c.ESTADO.ToLower().Equals(BuscarActivo.ToLower()));
+            }
+            ViewData["listaEstado"] = listaEstados;
 
 
-            //}
-
-            return View(Departamento);
+            return View(Departamento.ToPagedList(i ?? 1, 3));
         }
 
         // GET: Departamento/Details/5
@@ -157,8 +144,53 @@ namespace SistemaClinico.Controllers
         }
 
         // GET: Departamento/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
+            List<SelectListItem> listaEstados = new List<SelectListItem>();
+            List<SelectListItem> listaArea = new List<SelectListItem>();
+
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient depaWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+            DataSet ds = depaWS.ListaAreas();
+
+            listaEstados.Add(new SelectListItem
+            {
+                Text = "Activo",
+                Value = "ACTIVO"
+            });
+            listaEstados.Add(new SelectListItem
+            {
+                Text = "Inactivo",
+                Value = "INACTIVO"
+            });
+
+            //ViewData["estados"] = listaEstados;
+
+            List<Departamento> deplist = ListaDepartamentos();
+            if (id.HasValue)
+            {
+                var depa = deplist.Single(m => m.ID == id);
+                ViewData["estados"] = listaEstados;
+
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    string idArea = dr["ID_AREA"].ToString();
+                    string nombre = dr["NOMBRE_AREA"].ToString();
+
+
+                    listaArea.Add(new SelectListItem
+                    {
+                        Text = nombre,
+                        Value = idArea
+                    });  
+                }
+
+                ViewData["listaAreas"] = listaArea;
+
+                return View(depa);
+            }
+
+            
+
             return View();
         }
 
@@ -166,33 +198,66 @@ namespace SistemaClinico.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient updateEnfermedad = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+
+
             try
             {
-                // TODO: Add update logic here
+                List<Departamento> deplist = ListaDepartamentos();
+                var depa = deplist.Single(m => m.ID == id);
 
-                return RedirectToAction("Index");
+                if (TryUpdateModel(depa))
+                {
+                    updateEnfermedad.UpdateDepa(depa.ID, depa.NOMBRE_DEPARTAMENTO, depa.DESCRIPCION, depa.ESTADO, depa.ID_AREA);
+                    return RedirectToAction("Index", new { id = id });
+
+                }
+                return View(depa);
+
             }
             catch
             {
                 return View();
             }
+
+
         }
 
         // GET: Departamento/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Inactivo(int? id)
         {
+            List<Departamento> listDepa = ListaDepartamentos();
+            if (id.HasValue)
+            {
+                var depa = listDepa.Single(m => m.ID == id);
+                return View(depa);
+            }
             return View();
         }
 
         // POST: Departamento/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Inactivo(int id, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient depaWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+                List<Departamento> listaDepa = ListaDepartamentos();
+                var depa = listaDepa.Single(m => m.ID == id);
 
-                return RedirectToAction("Index");
+                Departamento borraDepa = new Models.Departamento();
+                borraDepa.NOMBRE_DEPARTAMENTO = depa.NOMBRE_DEPARTAMENTO.ToString();
+                
+
+                depaWS.UpdateEstadoDpartamento(id, "INACTIVO");
+
+                if (TryUpdateModel(depa))
+                {
+                    depaWS.UpdateEstadoDpartamento(depa.ID, "INACTIVO");
+                    return RedirectToAction("Index");
+                }
+                return View(depa);
             }
             catch
             {

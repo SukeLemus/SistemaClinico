@@ -10,35 +10,38 @@
 <br />
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nuevo Medicamento", "Create")
 </p>
 <table id="table_id" class="table_lista">
     <tr class="tr_lista">
         <th class="th_lista">
             @*@Html.DisplayNameFor(model => model.nombre_medicamento)*@
-            NOmbre
+            Nombre
         </th>
         <th class="th_lista">
             @*@Html.DisplayNameFor(model => model.descripcion_medicamento)*@
-            Descripcion
+            Descripción
         </th>
         <th class="th_lista">
             @*@Html.DisplayNameFor(model => model.catidad)*@
-            cantidad
+            Cantidad
         </th>
         <th class="th_lista">
             @*@Html.DisplayNameFor(model => model.presentacion)*@
-            presentacion
+            Presentación
         </th>
         <th class="th_lista">
             @*@Html.DisplayNameFor(model => model.precio)*@
-            precio
+            Precio
         </th>
         <th class="th_lista">
             @*@Html.DisplayNameFor(model => model.estado)*@
-            estado
+            Estado
         </th>
-        <th></th>
+        <th class="th_lista">
+            @*@Html.DisplayNameFor(model => model.estado)*@
+            Acciones
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -63,9 +66,9 @@
                 @Html.DisplayFor(modelItem => item.ESTADO)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Detalle", "Details", new { id = item.id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
             </td>
         </tr>
     }

@@ -263,10 +263,17 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateDepa", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        int UpdateDepa(int id, string nombre);
+        int UpdateDepa(int id, string nombre, string descripcion, string estado, int area);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateDepa", ReplyAction="*")]
-        System.Threading.Tasks.Task<int> UpdateDepaAsync(int id, string nombre);
+        System.Threading.Tasks.Task<int> UpdateDepaAsync(int id, string nombre, string descripcion, string estado, int area);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateEstadoDpartamento", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int UpdateEstadoDpartamento(int id, string estado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateEstadoDpartamento", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> UpdateEstadoDpartamentoAsync(int id, string estado);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EliminarDepa", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -632,12 +639,20 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
             return base.Channel.InsertDepaAsync(nombre, descripcion, estado, area);
         }
         
-        public int UpdateDepa(int id, string nombre) {
-            return base.Channel.UpdateDepa(id, nombre);
+        public int UpdateDepa(int id, string nombre, string descripcion, string estado, int area) {
+            return base.Channel.UpdateDepa(id, nombre, descripcion, estado, area);
         }
         
-        public System.Threading.Tasks.Task<int> UpdateDepaAsync(int id, string nombre) {
-            return base.Channel.UpdateDepaAsync(id, nombre);
+        public System.Threading.Tasks.Task<int> UpdateDepaAsync(int id, string nombre, string descripcion, string estado, int area) {
+            return base.Channel.UpdateDepaAsync(id, nombre, descripcion, estado, area);
+        }
+        
+        public int UpdateEstadoDpartamento(int id, string estado) {
+            return base.Channel.UpdateEstadoDpartamento(id, estado);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateEstadoDpartamentoAsync(int id, string estado) {
+            return base.Channel.UpdateEstadoDpartamentoAsync(id, estado);
         }
         
         public int EliminarDepa(int id) {
