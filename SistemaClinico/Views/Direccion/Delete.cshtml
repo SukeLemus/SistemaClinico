@@ -1,0 +1,82 @@
+﻿@model SistemaClinico.Models.Direccion
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="titulo_general"><h1>Direccion</h1></div>
+
+<h3>¿Está seguro de eliminar esta direccion?</h3>
+<div>
+    @*<h4>Direccion</h4>*@
+    <hr />
+    @*<dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.PAIS)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PAIS)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DEPARTAMENTO)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DEPARTAMENTO)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MUNICIPIO)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MUNICIPIO)
+            </dd>
+
+        </dl>*@
+
+    <table class="table_lista">
+        <tr class="tr_lista">
+            <th class="th_lista">@Html.DisplayName("Pais")</th>
+            <th class="th_lista">@Html.DisplayName("Departamento")</th>
+            <th class="th_lista">@Html.DisplayName("Municipio")</th>
+        </tr>
+        <tr class="tr_lista">
+            <td class="td_lista">@Html.DisplayFor(model => model.PAIS)</td>
+            <td class="td_lista">@Html.DisplayFor(model => model.DEPARTAMENTO)</td>
+            <td class="td_lista">@Html.DisplayFor(model => model.MUNICIPIO)</td>
+        </tr>
+    </table>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @*<div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>*@
+
+        <table align="center">
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Borrar Direccion" class="btn btn-success" />
+                        </div>
+                    </div>
+                </td>
+                <td>&nbsp;  &nbsp; &nbsp;  &nbsp;</td>
+                <td>
+                    <div div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input onclick="location.href='@Url.Action("Index", "Direccion")'" type="button" value="Volver" class="btn btn-finalizar" />
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    }
+</div>

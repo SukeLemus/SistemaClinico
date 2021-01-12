@@ -2,6 +2,37 @@
 <wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="UpdateDireccion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pais" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="departamento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="municipio" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDireccionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateDireccionResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarDireccion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarDireccionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EliminarDireccionResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -1037,8 +1068,53 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="ListaDireccion">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListaDireccionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaDireccionResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertDireccion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pais" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="departamento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="municipio" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertDireccionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertDireccionResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="UpdateDireccionSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateDireccion" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDireccionSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateDireccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="EliminarDireccionSoapIn">
+    <wsdl:part name="parameters" element="tns:EliminarDireccion" />
+  </wsdl:message>
+  <wsdl:message name="EliminarDireccionSoapOut">
+    <wsdl:part name="parameters" element="tns:EliminarDireccionResponse" />
+  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -1411,7 +1487,27 @@
   <wsdl:message name="NombreDptoConsultoriosSoapOut">
     <wsdl:part name="parameters" element="tns:NombreDptoConsultoriosResponse" />
   </wsdl:message>
+  <wsdl:message name="ListaDireccionSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaDireccion" />
+  </wsdl:message>
+  <wsdl:message name="ListaDireccionSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaDireccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertDireccionSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertDireccion" />
+  </wsdl:message>
+  <wsdl:message name="InsertDireccionSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertDireccionResponse" />
+  </wsdl:message>
   <wsdl:portType name="ClinicaWebServiceSoap">
+    <wsdl:operation name="UpdateDireccion">
+      <wsdl:input message="tns:UpdateDireccionSoapIn" />
+      <wsdl:output message="tns:UpdateDireccionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarDireccion">
+      <wsdl:input message="tns:EliminarDireccionSoapIn" />
+      <wsdl:output message="tns:EliminarDireccionSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
@@ -1660,9 +1756,35 @@
       <wsdl:input message="tns:NombreDptoConsultoriosSoapIn" />
       <wsdl:output message="tns:NombreDptoConsultoriosSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="ListaDireccion">
+      <wsdl:input message="tns:ListaDireccionSoapIn" />
+      <wsdl:output message="tns:ListaDireccionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertDireccion">
+      <wsdl:input message="tns:InsertDireccionSoapIn" />
+      <wsdl:output message="tns:InsertDireccionSoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ClinicaWebServiceSoap" type="tns:ClinicaWebServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UpdateDireccion">
+      <soap:operation soapAction="http://tempuri.org/UpdateDireccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarDireccion">
+      <soap:operation soapAction="http://tempuri.org/EliminarDireccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -2221,9 +2343,45 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListaDireccion">
+      <soap:operation soapAction="http://tempuri.org/ListaDireccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDireccion">
+      <soap:operation soapAction="http://tempuri.org/InsertDireccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ClinicaWebServiceSoap12" type="tns:ClinicaWebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UpdateDireccion">
+      <soap12:operation soapAction="http://tempuri.org/UpdateDireccion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarDireccion">
+      <soap12:operation soapAction="http://tempuri.org/EliminarDireccion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -2775,6 +2933,24 @@
     </wsdl:operation>
     <wsdl:operation name="NombreDptoConsultorios">
       <soap12:operation soapAction="http://tempuri.org/NombreDptoConsultorios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaDireccion">
+      <soap12:operation soapAction="http://tempuri.org/ListaDireccion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDireccion">
+      <soap12:operation soapAction="http://tempuri.org/InsertDireccion" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

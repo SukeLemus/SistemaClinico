@@ -153,6 +153,7 @@
     <Compile Include="Controllers\CirugiasController.cs" />
     <Compile Include="Controllers\ConsultoriosController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
+    <Compile Include="Controllers\DireccionController.cs" />
     <Compile Include="Controllers\EnfermedadesController.cs" />
     <Compile Include="Controllers\EnfermedadesSintomasController.cs" />
     <Compile Include="Controllers\FracturasController.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="Models\Cirugias.cs" />
     <Compile Include="Models\Consultorio.cs" />
     <Compile Include="Models\Departamento.cs" />
+    <Compile Include="Models\Direccion.cs" />
     <Compile Include="Models\Enfermedad.cs" />
     <Compile Include="Models\Fracturas.cs" />
     <Compile Include="Models\Medicamento.cs" />
@@ -311,6 +313,10 @@
     <Content Include="Views\Consultorios\Index.cshtml" />
     <Content Include="Views\Consultorios\Create.cshtml" />
     <Content Include="Views\Consultorios\Edit.cshtml" />
+    <Content Include="Views\Direccion\Index.cshtml" />
+    <Content Include="Views\Direccion\Create.cshtml" />
+    <Content Include="Views\Direccion\Edit.cshtml" />
+    <Content Include="Views\Direccion\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

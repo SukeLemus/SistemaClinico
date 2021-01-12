@@ -16,6 +16,20 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SistemaClinicoSoapWS.ClinicaWebServiceSoap")]
     public interface ClinicaWebServiceSoap {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateDireccion", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int UpdateDireccion(int id, string pais, string departamento, string municipio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateDireccion", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> UpdateDireccionAsync(int id, string pais, string departamento, string municipio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EliminarDireccion", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int EliminarDireccion(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EliminarDireccion", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> EliminarDireccionAsync(int id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorld", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string HelloWorld();
@@ -449,6 +463,20 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/NombreDptoConsultorios", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataSet> NombreDptoConsultoriosAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaDireccion", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet ListaDireccion();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaDireccion", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> ListaDireccionAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertDireccion", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int InsertDireccion(string pais, string departamento, string municipio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertDireccion", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> InsertDireccionAsync(string pais, string departamento, string municipio);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -476,6 +504,22 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         public ClinicaWebServiceSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public int UpdateDireccion(int id, string pais, string departamento, string municipio) {
+            return base.Channel.UpdateDireccion(id, pais, departamento, municipio);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateDireccionAsync(int id, string pais, string departamento, string municipio) {
+            return base.Channel.UpdateDireccionAsync(id, pais, departamento, municipio);
+        }
+        
+        public int EliminarDireccion(int id) {
+            return base.Channel.EliminarDireccion(id);
+        }
+        
+        public System.Threading.Tasks.Task<int> EliminarDireccionAsync(int id) {
+            return base.Channel.EliminarDireccionAsync(id);
         }
         
         public string HelloWorld() {
@@ -972,6 +1016,22 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> NombreDptoConsultoriosAsync(int id) {
             return base.Channel.NombreDptoConsultoriosAsync(id);
+        }
+        
+        public System.Data.DataSet ListaDireccion() {
+            return base.Channel.ListaDireccion();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> ListaDireccionAsync() {
+            return base.Channel.ListaDireccionAsync();
+        }
+        
+        public int InsertDireccion(string pais, string departamento, string municipio) {
+            return base.Channel.InsertDireccion(pais, departamento, municipio);
+        }
+        
+        public System.Threading.Tasks.Task<int> InsertDireccionAsync(string pais, string departamento, string municipio) {
+            return base.Channel.InsertDireccionAsync(pais, departamento, municipio);
         }
     }
 }
