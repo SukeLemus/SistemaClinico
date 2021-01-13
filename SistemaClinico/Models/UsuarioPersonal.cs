@@ -112,7 +112,7 @@ namespace SistemaClinico.Models
     public enum EstadoPersonal
     {
         Activo,
-        Inacti
+        Inactivo
     }
 
     public class DireccionesPersonal

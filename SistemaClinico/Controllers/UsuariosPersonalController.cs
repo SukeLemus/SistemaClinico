@@ -102,7 +102,7 @@ namespace SistemaClinico.Controllers
             {
                 personal = personal.Where(c => c.NOMBRES.ToLower().Contains(BuscarNombre.ToLower()));
             }
-            return View(personal.ToPagedList(i ?? 1, 3));
+            return View(personal.ToPagedList(i ?? 1, 10));
         }
 
         // GET: UsuariosPersonal/Details/5
@@ -532,6 +532,8 @@ namespace SistemaClinico.Controllers
             if (id.HasValue)
             {
                 var p = PaList.Single(m => m.ID_PERSONAL == id);
+                string pass = p.PASSWORD;
+                ViewData["pass"] = pass;
                 return View(p);
             }
             return View();
@@ -671,6 +673,8 @@ namespace SistemaClinico.Controllers
             if (id.HasValue)
             {
                 var p = PaList.Single(m => m.ID_PERSONAL == id);
+                string pass = p.PASSWORD;
+                ViewData["pass"] = pass;
                 return View(p);
             }
             return View();

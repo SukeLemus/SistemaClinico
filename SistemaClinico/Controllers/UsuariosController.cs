@@ -95,7 +95,7 @@ namespace SistemaClinico.Controllers
             //{
             //    usu = usu.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
             //}
-            return View(usu.ToPagedList(i ?? 1, 3));
+            return View(usu.ToPagedList(i ?? 1, 10));
         }
 
         // GET: Usuarios/Details/5
@@ -306,7 +306,8 @@ namespace SistemaClinico.Controllers
                 var p = PaList.Single(m => m.id == id);
 
                 ViewData["listaEstados"] = listaEstados;
-
+                string pass = p.PASSWORD;
+                ViewData["pass"] = pass;
                 return View(p);
             }
             return View();
@@ -396,7 +397,8 @@ namespace SistemaClinico.Controllers
                 var p = PaList.Single(m => m.id == id);
 
                 ViewData["listaEstados"] = listaEstados;
-
+                string pass = p.PASSWORD;
+                ViewData["pass"] = pass;
                 return View(p);
             }
             return View();

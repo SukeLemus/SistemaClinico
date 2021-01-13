@@ -19,7 +19,7 @@
 
 
         <div class="form-group">
-            @Html.Label("Nombre", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Nombre ", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
             </div>
@@ -115,18 +115,18 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Dirección completa", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Dirección de residencia ", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DIRECCION_COM, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.Label("Estado ", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ESTADO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.Label("Usuario ", htmlAttributes: new { @class = "control-label col-md-2" })

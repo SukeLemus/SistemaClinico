@@ -7,124 +7,6 @@
        @using System.Data;
 <div class="titulo_general"><h1>Pacientes</h1></div>
 
-@*<div>
-    <h4>Detalles del Paciente</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NOMBRE)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NOMBRE)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.APELLIDO)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.APELLIDO)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DUI)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DUI)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NIT)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NIT)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GENERO)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GENERO)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TIPO_SANGRE)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TIPO_SANGRE)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TELEFONO)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TELEFONO)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CORREO)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CORREO)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ID_DIRECCION)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ID_DIRECCION)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DIRECCION_COM)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DIRECCION_COM)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ID_ROL)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ID_ROL)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ESTADO)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ESTADO)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.USUARIO)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.USUARIO)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PASSWORD)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PASSWORD)
-        </dd>
-
-    </dl>*@
-
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -137,7 +19,7 @@
 
 
             <div class="form-group">
-                @Html.Label("Nombre", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("Nombre ", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
                 </div>
