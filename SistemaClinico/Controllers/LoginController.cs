@@ -136,6 +136,7 @@ namespace SistemaClinico.Controllers
                             Session["Nombre"] = datopaciente.NOMBRE;
                             Session["Apellido"] = datopaciente.APELLIDO;
                             Session["Rol"] = datopaciente.ID_ROL;
+                            Session["id"] = datopaciente.ID_PACIENTE;
                             retornoRol = 1;
                             Url.Action("Index", "Home");
                         }
@@ -156,6 +157,7 @@ namespace SistemaClinico.Controllers
                             Session["Nombre"] = datopersonal.NOMBRES;
                             Session["Apellido"] = datopersonal.APELLIDOS;
                             Session["Rol"] = datopersonal.ID_ROL2;
+                            Session["id"] = datopersonal.ID_PERSONAL;
                             retornoRol = 2;
                         }
                         else if (datopersonal.ID_ROL2.Equals(3))
@@ -164,6 +166,7 @@ namespace SistemaClinico.Controllers
                             Session["Nombre"] = datopersonal.NOMBRES;
                             Session["Apellido"] = datopersonal.APELLIDOS;
                             Session["Rol"] = datopersonal.ID_ROL2;
+                            Session["id"] = datopersonal.ID_PERSONAL;
                             retornoRol = 3;
                         }
                         else if (datopersonal.ID_ROL2.Equals(4))
@@ -172,6 +175,7 @@ namespace SistemaClinico.Controllers
                             Session["Nombre"] = datopersonal.NOMBRES;
                             Session["Apellido"] = datopersonal.APELLIDOS;
                             Session["Rol"] = datopersonal.ID_ROL2;
+                            Session["id"] = datopersonal.ID_PERSONAL;
                             retornoRol = 4;
                         }
                         else

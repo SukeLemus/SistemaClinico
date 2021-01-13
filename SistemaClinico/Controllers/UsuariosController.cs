@@ -110,6 +110,17 @@ namespace SistemaClinico.Controllers
             }
             return View();
         }
+        public ActionResult miperfil(int? id)
+        {
+            List<RegistroPacienteUsuario> PaList = TodosUsuarios();
+            if (id.HasValue)
+            {
+                var p = PaList.Single(m => m.id == id);
+
+                return View(p);
+            }
+            return View();
+        }
 
         // GET: Usuarios/Create
         public ActionResult Create()
@@ -317,6 +328,96 @@ namespace SistemaClinico.Controllers
                     updatePaciente.update_paciente(nuevoPaciente.id, nuevoPaciente.NOMBRE, nuevoPaciente.APELLIDO, nuevoPaciente.DUI, nuevoPaciente.NIT, nuevoPaciente.GENERO, nuevoPaciente.TIPO_SANGRE, nuevoPaciente.TELEFONO,
                     nuevoPaciente.CORREO, nuevoPaciente.ID_DIRECCION, nuevoPaciente.DIRECCION_COM, nuevoPaciente.ESTADO, nuevoPaciente.USUARIO, nuevoPaciente.PASSWORD);
                     return RedirectToAction("Index");
+                }
+                return View(nuevoPaciente);
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        //EditarPERFIL
+        public ActionResult EditPerfil(int? id)
+        {
+            List<SelectListItem> listaSangre = new List<SelectListItem>();
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "No lo sé",
+                Value = "NO SABE"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "O-",
+                Value = "O-"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "O+",
+                Value = "O+"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "A-",
+                Value = "A-"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "A+",
+                Value = "A+"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "AB-",
+                Value = "AB-"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "AB+",
+                Value = "AB+"
+            });
+            ViewData["listaSangre"] = listaSangre;
+            List<SelectListItem> listaEstados = new List<SelectListItem>();
+
+            listaEstados.Add(new SelectListItem
+            {
+                Text = "Activo",
+                Value = "ACTIVO"
+            });
+            listaEstados.Add(new SelectListItem
+            {
+                Text = "Inactivo",
+                Value = "INACTIVO"
+            });
+
+
+            List<RegistroPacienteUsuario> PaList = TodosUsuarios();
+            if (id.HasValue)
+            {
+                var p = PaList.Single(m => m.id == id);
+
+                ViewData["listaEstados"] = listaEstados;
+
+                return View(p);
+            }
+            return View();
+        }
+
+        // POST: Usuarios/Edit/5
+        [HttpPost]
+        public ActionResult EditPerfil(int id, FormCollection collection)
+        {
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient updatePaciente = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+            try
+            {
+                // TODO: Add update logic here
+                List<RegistroPacienteUsuario> MedList = TodosUsuarios();
+                var nuevoPaciente = MedList.Single(m => m.id == id);
+                if (TryUpdateModel(nuevoPaciente))
+                {
+                    updatePaciente.update_paciente(nuevoPaciente.id, nuevoPaciente.NOMBRE, nuevoPaciente.APELLIDO, nuevoPaciente.DUI, nuevoPaciente.NIT, nuevoPaciente.GENERO, nuevoPaciente.TIPO_SANGRE, nuevoPaciente.TELEFONO,
+                    nuevoPaciente.CORREO, nuevoPaciente.ID_DIRECCION, nuevoPaciente.DIRECCION_COM, nuevoPaciente.ESTADO, nuevoPaciente.USUARIO, nuevoPaciente.PASSWORD);
+                    return RedirectToAction("miperfil", new { id = Session["id"] });
                 }
                 return View(nuevoPaciente);
             }

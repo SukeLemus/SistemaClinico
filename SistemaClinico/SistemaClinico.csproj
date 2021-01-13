@@ -321,6 +321,10 @@
     <Content Include="Views\UsuariosPersonal\Index.cshtml" />
     <Content Include="Views\Usuarios\Details.cshtml" />
     <Content Include="Views\UsuariosPersonal\Details.cshtml" />
+    <Content Include="Views\Usuarios\miperfil.cshtml" />
+    <Content Include="Views\UsuariosPersonal\miperfil.cshtml" />
+    <Content Include="Views\Usuarios\EditPerfil.cshtml" />
+    <Content Include="Views\UsuariosPersonal\EditPerfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

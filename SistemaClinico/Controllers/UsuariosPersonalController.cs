@@ -208,7 +208,108 @@ namespace SistemaClinico.Controllers
             return View();
 
         }
+        public ActionResult miperfil(int? id)
+        {
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient dep = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
 
+            //Llenar lista de departamentos
+            DataSet ds = dep.ListaDepa();
+
+            var selectListDepa = new List<SelectListItem>();
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+
+
+                selectListDepa.Add(new SelectListItem
+                {
+                    Value = dr["ID_DEPARTAMENTO"].ToString(),
+                    Text = dr["NOMBRE_DEPARTAMENTO"].ToString()
+                });
+            }
+            ViewData["listaDepartamentos"] = selectListDepa;
+
+            //llenar lista de roles
+            DataSet ds2 = dep.ListaRol();
+
+            var selectListRol = new List<SelectListItem>();
+
+            foreach (DataRow dr2 in ds2.Tables[0].Rows)
+            {
+
+                if (!dr2["ID_ROL"].ToString().Equals("1"))
+                {
+                    selectListRol.Add(new SelectListItem
+                    {
+                        Value = dr2["ID_ROL"].ToString(),
+                        Text = dr2["NOMBRE_ROL"].ToString()
+                    });
+                }
+
+
+            }
+            ViewData["listaRoles"] = selectListRol;
+
+            //Llenar una lista de muinicipios
+            DataSet ds3 = dep.ListaDireccion();
+
+            var selectListDir = new List<SelectListItem>();
+
+            foreach (DataRow dr3 in ds3.Tables[0].Rows)
+            {
+                selectListDir.Add(new SelectListItem
+                {
+                    Value = dr3["ID_DIRECCION"].ToString(),
+                    Text = dr3["MUNICIPIO"].ToString()
+                });
+
+            }
+            ViewData["listaDirecciones"] = selectListDir;
+
+
+            //lista de genero
+            var selectListGen = new List<SelectListItem>();
+            selectListGen.Add(new SelectListItem
+            {
+                Value = "MASCULINO",
+                Text = "Masculino"
+            });
+            selectListGen.Add(new SelectListItem
+            {
+                Value = "FEMENINO",
+                Text = "Femenino"
+            });
+            ViewData["listaGeneros"] = selectListGen;
+
+
+
+
+            //Lista de consultorios
+            DataSet ds4 = dep.ListaConsultorio();
+
+            var selectListConsul = new List<SelectListItem>();
+
+            foreach (DataRow dr4 in ds4.Tables[0].Rows)
+            {
+                selectListConsul.Add(new SelectListItem
+                {
+                    Value = dr4["ID_CONSULTORIO"].ToString(),
+                    Text = dr4["NOMBRE_CONSULTORIO"].ToString()
+                });
+
+            }
+            ViewData["listaConsultorios"] = selectListConsul;
+
+
+            List<UsuarioPersonal> PaList = TodosPersonal();
+            if (id.HasValue)
+            {
+                var p = PaList.Single(m => m.ID_PERSONAL == id);
+                return View(p);
+            }
+            return View();
+
+        }
         // GET: UsuariosPersonal/Create
         public ActionResult Create()
         {
@@ -452,6 +553,145 @@ namespace SistemaClinico.Controllers
                     updatePaciente.update_personal(nuevoPersonal.ID_PERSONAL, nuevoPersonal.NOMBRES, nuevoPersonal.APELLIDOS, nuevoPersonal.DUI, nuevoPersonal.NIT, nuevoPersonal.GENERO, nuevoPersonal.ID_DEPARTAMENTO, nuevoPersonal.TELEFONO,
                     nuevoPersonal.ID_ROL, nuevoPersonal.CORREO, nuevoPersonal.ESTADO, nuevoPersonal.ID_DIRECCION, nuevoPersonal.DIRECCION_COM, nuevoPersonal.ID_CONSULTORIO, nuevoPersonal.USUARIO, nuevoPersonal.PASSWORD);
                     return RedirectToAction("Index");
+                }
+                return View(nuevoPersonal);
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        //EDITAR PERFIL
+        public ActionResult EditPerfil(int? id)
+        {
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient dep = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+            //Llenar lista de departamentos
+            DataSet ds = dep.ListaDepa();
+
+            var selectListDepa = new List<SelectListItem>();
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+
+
+                selectListDepa.Add(new SelectListItem
+                {
+                    Value = dr["ID_DEPARTAMENTO"].ToString(),
+                    Text = dr["NOMBRE_DEPARTAMENTO"].ToString()
+                });
+            }
+            ViewData["listaDepartamentos"] = selectListDepa;
+
+            //llenar lista de roles
+            DataSet ds2 = dep.ListaRol();
+
+            var selectListRol = new List<SelectListItem>();
+
+            foreach (DataRow dr2 in ds2.Tables[0].Rows)
+            {
+
+                if (!dr2["ID_ROL"].ToString().Equals("1"))
+                {
+                    selectListRol.Add(new SelectListItem
+                    {
+                        Value = dr2["ID_ROL"].ToString(),
+                        Text = dr2["NOMBRE_ROL"].ToString()
+                    });
+                }
+
+
+            }
+            ViewData["listaRoles"] = selectListRol;
+
+            //Llenar una lista de muinicipios
+            DataSet ds3 = dep.ListaDireccion();
+
+            var selectListDir = new List<SelectListItem>();
+
+            foreach (DataRow dr3 in ds3.Tables[0].Rows)
+            {
+                selectListDir.Add(new SelectListItem
+                {
+                    Value = dr3["ID_DIRECCION"].ToString(),
+                    Text = dr3["MUNICIPIO"].ToString()
+                });
+
+            }
+            ViewData["listaDirecciones"] = selectListDir;
+
+
+            //lista de genero
+            var selectListGen = new List<SelectListItem>();
+            selectListGen.Add(new SelectListItem
+            {
+                Value = "MASCULINO",
+                Text = "Masculino"
+            });
+            selectListGen.Add(new SelectListItem
+            {
+                Value = "FEMENINO",
+                Text = "Femenino"
+            });
+            ViewData["listaGeneros"] = selectListGen;
+
+
+            //lista de Estados
+            var selectListEstado = new List<SelectListItem>();
+            selectListEstado.Add(new SelectListItem
+            {
+                Value = "ACTIVO",
+                Text = "Activo"
+            });
+            selectListEstado.Add(new SelectListItem
+            {
+                Value = "INACTIVO",
+                Text = "Inactivo"
+            });
+            ViewData["listaEstados"] = selectListEstado;
+
+            //Lista de consultorios
+            DataSet ds4 = dep.ListaConsultorio();
+
+            var selectListConsul = new List<SelectListItem>();
+
+            foreach (DataRow dr4 in ds4.Tables[0].Rows)
+            {
+                selectListConsul.Add(new SelectListItem
+                {
+                    Value = dr4["ID_CONSULTORIO"].ToString(),
+                    Text = dr4["NOMBRE_CONSULTORIO"].ToString()
+                });
+
+            }
+            ViewData["listaConsultorios"] = selectListConsul;
+
+
+            List<UsuarioPersonal> PaList = TodosPersonal();
+            if (id.HasValue)
+            {
+                var p = PaList.Single(m => m.ID_PERSONAL == id);
+                return View(p);
+            }
+            return View();
+        }
+
+        // POST: UsuariosPersonal/Edit/5
+        [HttpPost]
+        public ActionResult EditPerfil(int id, FormCollection collection)
+        {
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient updatePaciente = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+            try
+            {
+                // TODO: Add update logic here
+                List<UsuarioPersonal> MedList = TodosPersonal();
+                var nuevoPersonal = MedList.Single(m => m.ID_PERSONAL == id);
+                if (TryUpdateModel(nuevoPersonal))
+                {
+                    updatePaciente.update_personal(nuevoPersonal.ID_PERSONAL, nuevoPersonal.NOMBRES, nuevoPersonal.APELLIDOS, nuevoPersonal.DUI, nuevoPersonal.NIT, nuevoPersonal.GENERO, nuevoPersonal.ID_DEPARTAMENTO, nuevoPersonal.TELEFONO,
+                    nuevoPersonal.ID_ROL, nuevoPersonal.CORREO, nuevoPersonal.ESTADO, nuevoPersonal.ID_DIRECCION, nuevoPersonal.DIRECCION_COM, nuevoPersonal.ID_CONSULTORIO, nuevoPersonal.USUARIO, nuevoPersonal.PASSWORD);
+                    return RedirectToAction("miperfil", new { id = Session["id"] });
                 }
                 return View(nuevoPersonal);
             }
