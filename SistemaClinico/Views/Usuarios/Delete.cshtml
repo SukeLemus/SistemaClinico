@@ -4,13 +4,14 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<div class="titulo_general"><h1>Pacientes</h1></div>
+<br />
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>¿Está seguro de borrar este paciente?</h3>
 <div>
-    <h4>UsuarioMunicipio</h4>
+    @*<h4>UsuarioMunicipio</h4>*@
     <hr />
-    <dl class="dl-horizontal">
+    @*<dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.ID_PACIENTE)
         </dt>
@@ -67,14 +68,52 @@
             @Html.DisplayFor(model => model.DIRECCION_COM)
         </dd>
 
-    </dl>
+    </dl>*@
 
-    @using (Html.BeginForm()) {
+    <table class="table_lista">
+        <tr class="tr_lista">
+            <th class="th_lista">@Html.DisplayName("Nombre ")</th>
+            <th class="th_lista">@Html.DisplayName("Apellido ")</th>
+            <th class="th_lista">@Html.DisplayName("Teléfono ")</th>
+            <th class="th_lista">@Html.DisplayName("Municipio ")</th>
+            <th class="th_lista">@Html.DisplayName("Dirección de residencia")</th>
+        </tr>
+        <tr class="tr_lista">
+            <td class="td_lista">@Html.DisplayFor(model => model.NOMBRE)</td>
+            <td class="td_lista">@Html.DisplayFor(model => model.APELLIDO)</td>
+            <td class="td_lista">@Html.DisplayFor(model => model.TELEFONO)</td>
+            <td class="td_lista">@Html.DisplayFor(model => model.MUNICIPIO)</td>
+            <td class="td_lista">@Html.DisplayFor(model => model.DIRECCION_COM)</td>
+        </tr>
+    </table>
+
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+        @*<div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>*@
+
+        <table align="center">
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Borrar Paciente" class="btn btn-success" />
+                        </div>
+                    </div>
+                </td>
+                <td>&nbsp;  &nbsp; &nbsp;  &nbsp;</td>
+                <td>
+                    <div div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input onclick="location.href='@Url.Action("Index", "Usuarios")'" type="button" value="Volver" class="btn btn-finalizar" />
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
     }
 </div>

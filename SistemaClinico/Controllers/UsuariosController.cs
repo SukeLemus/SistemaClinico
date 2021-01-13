@@ -89,8 +89,8 @@ namespace SistemaClinico.Controllers
         public ActionResult Index(int? i, string BuscarNombre)
         {
             var usu = from e in TodosUsuarioMunicipio()
-                                  //orderby e.nombre
-                              select e;
+                          //orderby e.nombre
+                      select e;
             //if (!String.IsNullOrEmpty(BuscarNombre))
             //{
             //    usu = usu.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
@@ -99,14 +99,59 @@ namespace SistemaClinico.Controllers
         }
 
         // GET: Usuarios/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
+            List<RegistroPacienteUsuario> PaList = TodosUsuarios();
+            if (id.HasValue)
+            {
+                var p = PaList.Single(m => m.id == id);
+
+                return View(p);
+            }
             return View();
         }
 
         // GET: Usuarios/Create
         public ActionResult Create()
         {
+            List<SelectListItem> listaSangre = new List<SelectListItem>();
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "No lo sé",
+                Value = "NO SABE"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "O-",
+                Value = "O-"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "O+",
+                Value = "O+"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "A-",
+                Value = "A-"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "A+",
+                Value = "A+"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "AB-",
+                Value = "AB-"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "AB+",
+                Value = "AB+"
+            });
+            ViewData["listaSangre"] = listaSangre;
+
             return View();
         }
 
@@ -114,6 +159,8 @@ namespace SistemaClinico.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
+            
+          
             try
             {
                 SistemaClinicoSoapWS.ClinicaWebServiceSoapClient swEnf = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
@@ -127,9 +174,8 @@ namespace SistemaClinico.Controllers
                 nuevoPaciente.TIPO_SANGRE = collection["TIPO_SANGRE"];
                 nuevoPaciente.TELEFONO = collection["TELEFONO"];
                 nuevoPaciente.CORREO = collection["CORREO"];
-                nuevoPaciente.ID_DIRECCION = int.Parse(collection["Municipio"]);
+                nuevoPaciente.ID_DIRECCION = int.Parse(collection["ID_DIRECCION"]);
                 nuevoPaciente.DIRECCION_COM = collection["DIRECCION_COM"];
-                nuevoPaciente.ID_ROL = 1;
                 nuevoPaciente.ESTADO = "ACTIVO";
                 nuevoPaciente.USUARIO = collection["USUARIO"];
                 nuevoPaciente.PASSWORD = collection["PASSWORD"];
@@ -140,7 +186,7 @@ namespace SistemaClinico.Controllers
             catch
             {
                 // return View();
-                return RedirectToAction("Index", "Usuarios");
+                return RedirectToAction("Index", "Sintomas");
 
             }
         }
@@ -192,10 +238,64 @@ namespace SistemaClinico.Controllers
         // GET: Usuarios/Edit/5
         public ActionResult Edit(int? id)
         {
+            List<SelectListItem> listaSangre = new List<SelectListItem>();
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "No lo sé",
+                Value = "NO SABE"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "O-",
+                Value = "O-"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "O+",
+                Value = "O+"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "A-",
+                Value = "A-"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "A+",
+                Value = "A+"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "AB-",
+                Value = "AB-"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "AB+",
+                Value = "AB+"
+            });
+            ViewData["listaSangre"] = listaSangre;
+            List<SelectListItem> listaEstados = new List<SelectListItem>();
+
+            listaEstados.Add(new SelectListItem
+            {
+                Text = "Activo",
+                Value = "ACTIVO"
+            });
+            listaEstados.Add(new SelectListItem
+            {
+                Text = "Inactivo",
+                Value = "INACTIVO"
+            });
+
+
             List<RegistroPacienteUsuario> PaList = TodosUsuarios();
             if (id.HasValue)
             {
                 var p = PaList.Single(m => m.id == id);
+
+                ViewData["listaEstados"] = listaEstados;
+
                 return View(p);
             }
             return View();
@@ -214,7 +314,7 @@ namespace SistemaClinico.Controllers
                 var nuevoPaciente = MedList.Single(m => m.id == id);
                 if (TryUpdateModel(nuevoPaciente))
                 {
-                    updatePaciente.update_paciente(nuevoPaciente.id,nuevoPaciente.NOMBRE, nuevoPaciente.APELLIDO, nuevoPaciente.DUI, nuevoPaciente.NIT, nuevoPaciente.GENERO, nuevoPaciente.TIPO_SANGRE, nuevoPaciente.TELEFONO,
+                    updatePaciente.update_paciente(nuevoPaciente.id, nuevoPaciente.NOMBRE, nuevoPaciente.APELLIDO, nuevoPaciente.DUI, nuevoPaciente.NIT, nuevoPaciente.GENERO, nuevoPaciente.TIPO_SANGRE, nuevoPaciente.TELEFONO,
                     nuevoPaciente.CORREO, nuevoPaciente.ID_DIRECCION, nuevoPaciente.DIRECCION_COM, nuevoPaciente.ESTADO, nuevoPaciente.USUARIO, nuevoPaciente.PASSWORD);
                     return RedirectToAction("Index");
                 }

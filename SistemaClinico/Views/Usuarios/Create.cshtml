@@ -6,51 +6,56 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<div class="titulo_general"><h1>Crear nuevo Paciente</h1></div>
 
+<p>Con el siguiente formulario se puede registrar un nuevo paciente en el sistema</p>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>RegistroPacienteUsuario</h4>
     <hr />
+    <br />
+    <h3>Datos personales</h3>
+    <p>Ingrese sus datos personales. Si no conoce cuál es su tipo de sangre elija "No sabe" de la lista</p>
+    <p>En caso de ser menor de edad, puede dejar en blanco los campos DUI y NIT</p>
+    @*<hr />*@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
-        @Html.LabelFor(model => model.NOMBRE, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label("Nombre", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control" ,@placeholder = "Ingerese sus Nombres" } })
             @Html.ValidationMessageFor(model => model.NOMBRE, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.APELLIDO, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label("Apellido", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.APELLIDO, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.APELLIDO, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingerese sus Apellidos" } })
             @Html.ValidationMessageFor(model => model.APELLIDO, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.DUI, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label("DUI", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.DUI, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.DUI, new { htmlAttributes = new { @class = "form-control", maxlength = 9, @placeholder = "Ingerese su DUI" } })
             @Html.ValidationMessageFor(model => model.DUI, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.NIT, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label("NIT", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.NIT, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.NIT, new { htmlAttributes = new { @class = "form-control" , maxlength = 14, @placeholder = "Ingerese su NIT" } })
             @Html.ValidationMessageFor(model => model.NIT, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.GENERO, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label("Género", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownListFor(model => model.GENERO,
                      new SelectList(Enum.GetValues(typeof(GENEROUsuario))),
@@ -60,27 +65,27 @@
     </div>
 
     <div class="form-group">
-        @Html.Label("TIPO DE SANGRE", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label("Tipo de sangre", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.TIPO_SANGRE,
-                      new SelectList(Enum.GetValues(typeof(TIPO_SANGREUsuario))),
-                      "Seleccione su tipo se sangre *campo opcional", htmlAttributes: new { @class = "form-control" })
+            @Html.DropDownList("TIPO_SANGRE",
+                      (IEnumerable<SelectListItem>)ViewData["listaSangre"],
+                      "Tipo de sangre", htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.TIPO_SANGRE, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.TELEFONO, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label("Teléfono", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.TELEFONO, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.TELEFONO, new { htmlAttributes = new { @class = "form-control", maxlength = 8, @placeholder = "Ingerese su Teléfono" } })
             @Html.ValidationMessageFor(model => model.TELEFONO, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.CORREO, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label("Correo electrónico", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.CORREO, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.CORREO, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingerese su correo electrónico" } })
             @Html.ValidationMessageFor(model => model.CORREO, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -114,66 +119,95 @@
 
         }
     }
-
-<div class="form-group">
-    @Html.Label("MUNICIPIO", htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.DropDownList("Municipio", (IEnumerable<SelectListItem>)ViewData["chumpe"], "Seleccione su Municipio", htmlAttributes: new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.ID_DIRECCION, "", new { @class = "text-danger" })
+    <hr />
+    <br />
+    <h3>Datos de residencia</h3>
+    @*<hr />*@
+    <p>Seleccione el municipio donde actualmente reside e ingrese su dirección completa de residencia</p>
+    <div class="form-group">
+        @Html.Label("Municipio", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("ID_DIRECCION", (IEnumerable<SelectListItem>)ViewData["chumpe"], "Seleccione su Municipio de residencia", htmlAttributes: new { @class = "form-control"})
+            @Html.ValidationMessageFor(model => model.ID_DIRECCION, "", new { @class = "text-danger" })
+        </div>
     </div>
-</div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.DIRECCION_COM, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label("Dirección completa", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.DIRECCION_COM, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.DIRECCION_COM, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingerese su dirección de habitación" } })
             @Html.ValidationMessageFor(model => model.DIRECCION_COM, "", new { @class = "text-danger" })
         </div>
     </div>
+    <hr />
+    @*<div class="form-group">
+            @Html.Label(model => model.ID_ROL, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ID_ROL, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ID_ROL, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
 
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.ESTADO, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ESTADO, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ESTADO, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+    <br />
+    <h3>Datos de Usuario</h3>
+    <p>Con estos datos podrá iniciar sesión en el sistema</p>
+    <hr />
     <div class="form-group">
-        @Html.LabelFor(model => model.ID_ROL, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label("Usuario", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.ID_ROL, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ID_ROL, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.ESTADO, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ESTADO, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ESTADO, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.USUARIO, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.USUARIO, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.USUARIO, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingerese su Usuario" } })
             @Html.ValidationMessageFor(model => model.USUARIO, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.PASSWORD, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label("Contraseña", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control" } })
+            @*@Html.PasswordFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingerese su Contraseña" } })*@
+            @Html.PasswordFor(model => model.PASSWORD, new { @class = "form-control", @placeholder = "Ingerese su Contraseña" })
             @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
         </div>
     </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
+    @*<div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>*@
+
+    <table align="center">
+        <tr>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Crear Paciente" class="btn btn-success" />
+                    </div>
+                </div>
+            </td>
+            <td>&nbsp;  &nbsp; &nbsp;  &nbsp;</td>
+            <td>
+                <div div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input onclick="location.href='@Url.Action("Index", "Usuarios")'" type="button" value="Volver" class="btn btn-finalizar" />
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
 </div>
 }
 
-<div>
+@*<div>
     @Html.ActionLink("Back to List", "Index")
-</div>
+</div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

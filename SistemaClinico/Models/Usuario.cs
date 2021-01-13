@@ -10,40 +10,58 @@ namespace SistemaClinico.Models
     public class RegistroPacienteUsuario
     {
         public int id { get; set; }
+
         //[Required(ErrorMessage = "mensaje personalizado")]
-        [Required]
+        [Required(ErrorMessage = "* El Nombre es obligatorio")]
         public String NOMBRE { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "* El Apellido es obligatorio")]
         public String APELLIDO { get; set; }
+
         [MinLength(9)]
         [MaxLength(9)]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "* Solo se permiten números.")]
         public String DUI { get; set; }
+
+        [RegularExpression("^[0-9]*$", ErrorMessage = "* Solo se permiten números.")]
         [MinLength(14)]
         [MaxLength(14)]
         public String NIT { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "* Elija su género")]
         public String GENERO { get; set; }
+
         //public DateTime FECHA_NACIMIENTO { get; set; }
+        [Required(ErrorMessage = "* El Tipo de sangre es obligatorio (si no lo sabe elija 'No lo sé')")]
         public String TIPO_SANGRE { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "* El Teléfono es obligatorio")]
         [Phone]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "* Solo se permiten números.")]
         [MinLength(8)]
         [MaxLength(8)]
         public String TELEFONO { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "* El e-mail es obligatorio")]
         [EmailAddress]
         public String CORREO { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "* El Municipio es obligatorio")]
         public int ID_DIRECCION { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "* la Dirección es obligatoria")]
         public String DIRECCION_COM { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "* El Rol es obligatorio")]
         public int ID_ROL { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "* El Estado es obligatorio")]
         public String ESTADO { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "* El Usuario es obligatorio")]
         public String USUARIO { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "* La Contraseña es obligatoria")]
         public String PASSWORD { get; set; }
 
     }
@@ -61,8 +79,11 @@ namespace SistemaClinico.Models
         Masculino
     }
 
+
+
     public enum TIPO_SANGREUsuario
     {
+       
         O_negativo,
         O_positivo,
         A_negativo,
@@ -125,9 +146,9 @@ namespace SistemaClinico.Models
     public class Usuario
     {
         public int id { get; set; }
-     
+
         public String NOMBRE { get; set; }
- 
+
         public String APELLIDO { get; set; }
 
         public String DUI { get; set; }

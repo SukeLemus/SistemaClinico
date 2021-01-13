@@ -30,6 +30,80 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EliminarDireccion", ReplyAction="*")]
         System.Threading.Tasks.Task<int> EliminarDireccionAsync(int id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertPersonal", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int InsertPersonal(string nombres, string apellidos, string dui, string nit, string genero, int id_departamento, string tel, int rol, string corre, string estado, int id_direccion, string dir_com, int id_consultorio, string usuario, string pass);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertPersonal", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> InsertPersonalAsync(string nombres, string apellidos, string dui, string nit, string genero, int id_departamento, string tel, int rol, string corre, string estado, int id_direccion, string dir_com, int id_consultorio, string usuario, string pass);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/update_personal", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int update_personal(
+                    int id_personal, 
+                    string nombres, 
+                    string apellidos, 
+                    string dui, 
+                    string nit, 
+                    string genero, 
+                    int id_departamento, 
+                    string tel, 
+                    int rol, 
+                    string corre, 
+                    string estado, 
+                    int id_direccion, 
+                    string dir_com, 
+                    int id_consultorio, 
+                    string usuario, 
+                    string pass);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/update_personal", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> update_personalAsync(
+                    int id_personal, 
+                    string nombres, 
+                    string apellidos, 
+                    string dui, 
+                    string nit, 
+                    string genero, 
+                    int id_departamento, 
+                    string tel, 
+                    int rol, 
+                    string corre, 
+                    string estado, 
+                    int id_direccion, 
+                    string dir_com, 
+                    int id_consultorio, 
+                    string usuario, 
+                    string pass);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SelectIdDepartamento", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet SelectIdDepartamento();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SelectIdDepartamento", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectIdDepartamentoAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SelectIdRol", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet SelectIdRol();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SelectIdRol", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectIdRolAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SelectIdConsultorio", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet SelectIdConsultorio();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SelectIdConsultorio", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectIdConsultorioAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaRol", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet ListaRol();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaRol", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> ListaRolAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorld", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string HelloWorld();
@@ -520,6 +594,86 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         public System.Threading.Tasks.Task<int> EliminarDireccionAsync(int id) {
             return base.Channel.EliminarDireccionAsync(id);
+        }
+        
+        public int InsertPersonal(string nombres, string apellidos, string dui, string nit, string genero, int id_departamento, string tel, int rol, string corre, string estado, int id_direccion, string dir_com, int id_consultorio, string usuario, string pass) {
+            return base.Channel.InsertPersonal(nombres, apellidos, dui, nit, genero, id_departamento, tel, rol, corre, estado, id_direccion, dir_com, id_consultorio, usuario, pass);
+        }
+        
+        public System.Threading.Tasks.Task<int> InsertPersonalAsync(string nombres, string apellidos, string dui, string nit, string genero, int id_departamento, string tel, int rol, string corre, string estado, int id_direccion, string dir_com, int id_consultorio, string usuario, string pass) {
+            return base.Channel.InsertPersonalAsync(nombres, apellidos, dui, nit, genero, id_departamento, tel, rol, corre, estado, id_direccion, dir_com, id_consultorio, usuario, pass);
+        }
+        
+        public int update_personal(
+                    int id_personal, 
+                    string nombres, 
+                    string apellidos, 
+                    string dui, 
+                    string nit, 
+                    string genero, 
+                    int id_departamento, 
+                    string tel, 
+                    int rol, 
+                    string corre, 
+                    string estado, 
+                    int id_direccion, 
+                    string dir_com, 
+                    int id_consultorio, 
+                    string usuario, 
+                    string pass) {
+            return base.Channel.update_personal(id_personal, nombres, apellidos, dui, nit, genero, id_departamento, tel, rol, corre, estado, id_direccion, dir_com, id_consultorio, usuario, pass);
+        }
+        
+        public System.Threading.Tasks.Task<int> update_personalAsync(
+                    int id_personal, 
+                    string nombres, 
+                    string apellidos, 
+                    string dui, 
+                    string nit, 
+                    string genero, 
+                    int id_departamento, 
+                    string tel, 
+                    int rol, 
+                    string corre, 
+                    string estado, 
+                    int id_direccion, 
+                    string dir_com, 
+                    int id_consultorio, 
+                    string usuario, 
+                    string pass) {
+            return base.Channel.update_personalAsync(id_personal, nombres, apellidos, dui, nit, genero, id_departamento, tel, rol, corre, estado, id_direccion, dir_com, id_consultorio, usuario, pass);
+        }
+        
+        public System.Data.DataSet SelectIdDepartamento() {
+            return base.Channel.SelectIdDepartamento();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectIdDepartamentoAsync() {
+            return base.Channel.SelectIdDepartamentoAsync();
+        }
+        
+        public System.Data.DataSet SelectIdRol() {
+            return base.Channel.SelectIdRol();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectIdRolAsync() {
+            return base.Channel.SelectIdRolAsync();
+        }
+        
+        public System.Data.DataSet SelectIdConsultorio() {
+            return base.Channel.SelectIdConsultorio();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectIdConsultorioAsync() {
+            return base.Channel.SelectIdConsultorioAsync();
+        }
+        
+        public System.Data.DataSet ListaRol() {
+            return base.Channel.ListaRol();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> ListaRolAsync() {
+            return base.Channel.ListaRolAsync();
         }
         
         public string HelloWorld() {

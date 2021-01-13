@@ -291,11 +291,6 @@
     <Content Include="Views\Areas\Delete.cshtml" />
     <Content Include="Views\Departamento\Index.cshtml" />
     <Content Include="Views\Departamento\Create.cshtml" />
-    <Content Include="Views\UsuariosPersonal\Index.cshtml" />
-    <Content Include="Views\Usuarios\Index.cshtml" />
-    <Content Include="Views\Usuarios\Create.cshtml" />
-    <Content Include="Views\Usuarios\Delete.cshtml" />
-    <Content Include="Views\Usuarios\Edit.cshtml" />
     <Content Include="Views\Departamento\Inactivo.cshtml" />
     <Content Include="Views\Departamento\Edit.cshtml" />
     <Content Include="Views\Alergias\Index.cshtml" />
@@ -317,6 +312,15 @@
     <Content Include="Views\Direccion\Create.cshtml" />
     <Content Include="Views\Direccion\Edit.cshtml" />
     <Content Include="Views\Direccion\Delete.cshtml" />
+    <Content Include="Views\Usuarios\Create.cshtml" />
+    <Content Include="Views\Usuarios\Delete.cshtml" />
+    <Content Include="Views\Usuarios\Edit.cshtml" />
+    <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\UsuariosPersonal\Create.cshtml" />
+    <Content Include="Views\UsuariosPersonal\Edit.cshtml" />
+    <Content Include="Views\UsuariosPersonal\Index.cshtml" />
+    <Content Include="Views\Usuarios\Details.cshtml" />
+    <Content Include="Views\UsuariosPersonal\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

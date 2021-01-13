@@ -33,6 +33,131 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="InsertPersonal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombres" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="apellidos" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dui" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nit" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="genero" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id_departamento" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="tel" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="rol" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="corre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="estado" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id_direccion" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="dir_com" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id_consultorio" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertPersonalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertPersonalResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="update_personal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id_personal" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombres" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="apellidos" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dui" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nit" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="genero" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id_departamento" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="tel" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="rol" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="corre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="estado" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id_direccion" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="dir_com" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id_consultorio" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="update_personalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="update_personalResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectIdDepartamento">
+        <s:complexType />
+      </s:element>
+      <s:element name="SelectIdDepartamentoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectIdDepartamentoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectIdRol">
+        <s:complexType />
+      </s:element>
+      <s:element name="SelectIdRolResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectIdRolResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectIdConsultorio">
+        <s:complexType />
+      </s:element>
+      <s:element name="SelectIdConsultorioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectIdConsultorioResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaRol">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListaRolResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaRolResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -1115,6 +1240,42 @@
   <wsdl:message name="EliminarDireccionSoapOut">
     <wsdl:part name="parameters" element="tns:EliminarDireccionResponse" />
   </wsdl:message>
+  <wsdl:message name="InsertPersonalSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertPersonal" />
+  </wsdl:message>
+  <wsdl:message name="InsertPersonalSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertPersonalResponse" />
+  </wsdl:message>
+  <wsdl:message name="update_personalSoapIn">
+    <wsdl:part name="parameters" element="tns:update_personal" />
+  </wsdl:message>
+  <wsdl:message name="update_personalSoapOut">
+    <wsdl:part name="parameters" element="tns:update_personalResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectIdDepartamentoSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectIdDepartamento" />
+  </wsdl:message>
+  <wsdl:message name="SelectIdDepartamentoSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectIdDepartamentoResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectIdRolSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectIdRol" />
+  </wsdl:message>
+  <wsdl:message name="SelectIdRolSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectIdRolResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectIdConsultorioSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectIdConsultorio" />
+  </wsdl:message>
+  <wsdl:message name="SelectIdConsultorioSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectIdConsultorioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListaRolSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaRol" />
+  </wsdl:message>
+  <wsdl:message name="ListaRolSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaRolResponse" />
+  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -1508,6 +1669,30 @@
       <wsdl:input message="tns:EliminarDireccionSoapIn" />
       <wsdl:output message="tns:EliminarDireccionSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="InsertPersonal">
+      <wsdl:input message="tns:InsertPersonalSoapIn" />
+      <wsdl:output message="tns:InsertPersonalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="update_personal">
+      <wsdl:input message="tns:update_personalSoapIn" />
+      <wsdl:output message="tns:update_personalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectIdDepartamento">
+      <wsdl:input message="tns:SelectIdDepartamentoSoapIn" />
+      <wsdl:output message="tns:SelectIdDepartamentoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectIdRol">
+      <wsdl:input message="tns:SelectIdRolSoapIn" />
+      <wsdl:output message="tns:SelectIdRolSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectIdConsultorio">
+      <wsdl:input message="tns:SelectIdConsultorioSoapIn" />
+      <wsdl:output message="tns:SelectIdConsultorioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaRol">
+      <wsdl:input message="tns:ListaRolSoapIn" />
+      <wsdl:output message="tns:ListaRolSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
@@ -1778,6 +1963,60 @@
     </wsdl:operation>
     <wsdl:operation name="EliminarDireccion">
       <soap:operation soapAction="http://tempuri.org/EliminarDireccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPersonal">
+      <soap:operation soapAction="http://tempuri.org/InsertPersonal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update_personal">
+      <soap:operation soapAction="http://tempuri.org/update_personal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectIdDepartamento">
+      <soap:operation soapAction="http://tempuri.org/SelectIdDepartamento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectIdRol">
+      <soap:operation soapAction="http://tempuri.org/SelectIdRol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectIdConsultorio">
+      <soap:operation soapAction="http://tempuri.org/SelectIdConsultorio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaRol">
+      <soap:operation soapAction="http://tempuri.org/ListaRol" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2375,6 +2614,60 @@
     </wsdl:operation>
     <wsdl:operation name="EliminarDireccion">
       <soap12:operation soapAction="http://tempuri.org/EliminarDireccion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPersonal">
+      <soap12:operation soapAction="http://tempuri.org/InsertPersonal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update_personal">
+      <soap12:operation soapAction="http://tempuri.org/update_personal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectIdDepartamento">
+      <soap12:operation soapAction="http://tempuri.org/SelectIdDepartamento" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectIdRol">
+      <soap12:operation soapAction="http://tempuri.org/SelectIdRol" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectIdConsultorio">
+      <soap12:operation soapAction="http://tempuri.org/SelectIdConsultorio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaRol">
+      <soap12:operation soapAction="http://tempuri.org/ListaRol" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

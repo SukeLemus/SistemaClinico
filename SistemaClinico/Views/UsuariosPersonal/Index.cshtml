@@ -11,7 +11,7 @@
 <br />
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear nuevo personal", "Create")
 </p>
 <table id="table_id" class="table_lista">
     <tr class="tr_lista">
@@ -34,19 +34,19 @@
             @*@Html.DisplayNameFor(model => model.NOMBRE_CONSULTORIO)*@
             Consultorio Asignado
         </th>
-        <th class="th_lista">
+        <!--<th class="th_lista">-->
             @*@Html.DisplayNameFor(model => model.NOMBRE_DEPARTAMENTO)*@
-            Departamento
+            <!--Departamento
         </th>
-        <th class="th_lista">
+        <th class="th_lista">-->
             @*@Html.DisplayNameFor(model => model.NOMBRE_AREA)*@
-            Area
-        </th>
+            <!--Area
+        </th>-->
         <th class="th_lista">
             @*@Html.DisplayNameFor(model => model.NOMBRE_ROL)*@
             Rol
         </th>
-        <th class="th_lista">Opciones</th>
+        <th class="th_lista">Opciones    </th>
     </tr>
 
     @foreach (var item in Model)
@@ -67,19 +67,19 @@
             <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.NOMBRE_CONSULTORIO)
             </td>
-            <td class="td_lista">
+            @*<td class="td_lista">
                 @Html.DisplayFor(modelItem => item.NOMBRE_DEPARTAMENTO)
             </td>
             <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.NOMBRE_AREA)
-            </td>
+            </td>*@
             <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.NOMBRE_ROL)
             </td>
             <td class="td_lista">
-                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) 
-                @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID_PERSONAL }) |
+                @Html.ActionLink("Detalles", "Details", new {  id=item.ID_PERSONAL }) 
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.ID_PERSONAL })*@
             </td>
         </tr>
     }
