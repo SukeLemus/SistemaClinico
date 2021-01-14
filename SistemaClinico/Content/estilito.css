@@ -54,6 +54,10 @@ h4{
         text-align: center;
         color: #10A6F1;
     }
+    .titulo_general h4 {
+        /*text-align: center;*/
+        color: #10A6F1;
+    }
 .titulo_datanetsv {
 }
 
