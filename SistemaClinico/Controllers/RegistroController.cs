@@ -77,8 +77,8 @@ namespace SistemaClinico.Controllers
                 nuevoPaciente.APELLIDO = collection["APELLIDO"];
                 nuevoPaciente.DUI = collection["DUI"];
                 nuevoPaciente.NIT = collection["NIT"];
-                nuevoPaciente.GENERO = collection["GENERO"];
-                nuevoPaciente.FECHA_NACIMIENTO = DateTime.Parse(collection["FECHA_NACIMIENTO"]);
+                nuevoPaciente.GENERO = collection["GENERO"]; //DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")
+                nuevoPaciente.FECHA_NACIMIENTO = collection["FECHA_NACIMIENTO"];
                 nuevoPaciente.TIPO_SANGRE = collection["TIPO_SANGRE"];
                 nuevoPaciente.TELEFONO = collection["TELEFONO"];
                 nuevoPaciente.CORREO = collection["CORREO"];

@@ -182,7 +182,7 @@ namespace SistemaClinico.Controllers
                 nuevoPaciente.DUI = collection["DUI"];
                 nuevoPaciente.NIT = collection["NIT"];
                 nuevoPaciente.GENERO = collection["GENERO"];
-                nuevoPaciente.FECHA_NACIMIENTO = DateTime.Parse(collection["FECHA_NACIMIENTO"]);
+                nuevoPaciente.FECHA_NACIMIENTO = collection["FECHA_NACIMIENTO"];
                 nuevoPaciente.TIPO_SANGRE = collection["TIPO_SANGRE"];
                 nuevoPaciente.TELEFONO = collection["TELEFONO"];
                 nuevoPaciente.CORREO = collection["CORREO"];
@@ -215,7 +215,7 @@ namespace SistemaClinico.Controllers
                 string dui = dr["DUI"].ToString();
                 string nit = dr["NIT"].ToString();
                 string genero = dr["GENERO"].ToString();
-                DateTime fecha = DateTime.Parse(dr["FECHA_NACIMIENTO"].ToString());
+                string fecha = dr["FECHA_NACIMIENTO"].ToString();
                 string tipo_sangre = dr["TIPO_SANGRE"].ToString();
                 string telefono = dr["TELEFONO"].ToString();
                 string correo = dr["CORREO"].ToString();

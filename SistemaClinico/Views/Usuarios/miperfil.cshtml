@@ -54,11 +54,13 @@
     </div>
 
     <div class="form-group">
-        @Html.Label("Fecha de Nacimiento ", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.FECHA_NACIMIENTO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            @Html.Label("Fecha de Nacimiento ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.FECHA_NACIMIENTO, new { htmlAttributes = new { @class = "form-control", maxlength = 14, @placeholder = "Ingerese su Fecha de Nacimiento" } })*@
+                @Html.EditorFor(model => model.FECHA_NACIMIENTO, new { htmlAttributes = new { @class = "form-control datepicker", disabled = "disabled" @*type = "datetime-local"*@ @*@type = "date"*@ } })
+                @Html.ValidationMessageFor(model => model.FECHA_NACIMIENTO, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
     <div class="form-group">
         @Html.Label("Tipo de sangre ", htmlAttributes: new { @class = "control-label col-md-2" })
