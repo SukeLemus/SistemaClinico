@@ -32,6 +32,7 @@ namespace SistemaClinico.Models
         public String GENERO { get; set; }
 
         [Required(ErrorMessage = "* Elija su fecha de nacimiento")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public string FECHA_NACIMIENTO { get; set; }
        
         [Required(ErrorMessage = "* El Tipo de sangre es obligatorio (si no lo sabe elija 'No lo sé')")]

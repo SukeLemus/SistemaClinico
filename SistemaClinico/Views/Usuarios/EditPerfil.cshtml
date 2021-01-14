@@ -64,12 +64,15 @@
             @Html.Label("Fecha de Nacimiento ", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @*@Html.EditorFor(model => model.FECHA_NACIMIENTO, new { htmlAttributes = new { @class = "form-control", maxlength = 14, @placeholder = "Ingerese su Fecha de Nacimiento" } })*@
-                @Html.EditorFor(model => model.FECHA_NACIMIENTO, new
-                {
-                    htmlAttributes = new
-                    {
-                        @class = "form-control datepicker"@*type = "datetime-local"*@ @*@type = "date"*@}
-})
+                @Html.Editor("FECHA_NACIMIENTO", new
+           {
+               htmlAttributes = new
+               {
+                   /*  @type = "date" */
+                   @class = "form-control datepicker",
+                        @value = ViewData["FECHA_NACIMIENTO"].ToString() /*type = "datetime-local"*/
+               }
+           })
                 @Html.ValidationMessageFor(model => model.FECHA_NACIMIENTO, "", new { @class = "text-danger" })
             </div>
         </div>

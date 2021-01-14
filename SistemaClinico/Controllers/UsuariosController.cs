@@ -105,7 +105,8 @@ namespace SistemaClinico.Controllers
             if (id.HasValue)
             {
                 var p = PaList.Single(m => m.id == id);
-
+                string f = p.FECHA_NACIMIENTO.ToString().Remove(10);
+                ViewData["FECHA_NACIMIENTO"] = f.ToString();
                 return View(p);
             }
             return View();
@@ -116,7 +117,8 @@ namespace SistemaClinico.Controllers
             if (id.HasValue)
             {
                 var p = PaList.Single(m => m.id == id);
-
+                string f = p.FECHA_NACIMIENTO.ToString().Remove(10);
+                ViewData["FECHA_NACIMIENTO"] = f.ToString();
                 return View(p);
             }
             return View();
@@ -305,7 +307,8 @@ namespace SistemaClinico.Controllers
             if (id.HasValue)
             {
                 var p = PaList.Single(m => m.id == id);
-
+                string f = p.FECHA_NACIMIENTO.ToString().Remove(10);
+                ViewData["FECHA_NACIMIENTO"] = f.ToString();
                 ViewData["listaEstados"] = listaEstados;
                 string pass = p.PASSWORD;
                 ViewData["pass"] = pass;
@@ -396,7 +399,8 @@ namespace SistemaClinico.Controllers
             if (id.HasValue)
             {
                 var p = PaList.Single(m => m.id == id);
-
+                string f = p.FECHA_NACIMIENTO.ToString().Remove(10);
+                ViewData["FECHA_NACIMIENTO"] = f.ToString();
                 ViewData["listaEstados"] = listaEstados;
                 string pass = p.PASSWORD;
                 ViewData["pass"] = pass;
