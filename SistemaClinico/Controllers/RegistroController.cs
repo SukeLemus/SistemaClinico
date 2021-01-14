@@ -62,6 +62,43 @@ namespace SistemaClinico.Controllers
         // GET: Registro2/Create
         public ActionResult Create()
         {
+            List<SelectListItem> listaSangre = new List<SelectListItem>();
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "No lo sé",
+                Value = "NO SABE"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "O-",
+                Value = "O-"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "O+",
+                Value = "O+"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "A-",
+                Value = "A-"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "A+",
+                Value = "A+"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "AB-",
+                Value = "AB-"
+            });
+            listaSangre.Add(new SelectListItem
+            {
+                Text = "AB+",
+                Value = "AB+"
+            });
+            ViewData["listaSangre"] = listaSangre;
             return View();
         }
         // POST: Registro2/Create

@@ -372,6 +372,8 @@ namespace SistemaClinico.Controllers
                 return RedirectToAction("Index", "UsuariosPersonal");
 
             }
+
+
         }
        
 

@@ -290,7 +290,7 @@
                                 <img src="~/Content/Images/atencionpaciente.png" class="imgicono" />
                             </a>
                             <div class="dropdown-content">
-                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                <a class="nav-link text-dark" href="@Url.Action("Create", "CitasPaciente", new {  id2=Session["id"] })">
                                     Solicitar Cita
                                 </a>
                                 <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">

@@ -151,6 +151,7 @@
     <Compile Include="Controllers\AlergiasController.cs" />
     <Compile Include="Controllers\AreasController.cs" />
     <Compile Include="Controllers\CirugiasController.cs" />
+    <Compile Include="Controllers\CitasPacienteController.cs" />
     <Compile Include="Controllers\ConsultoriosController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\DireccionController.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="Models\Alergias.cs" />
     <Compile Include="Models\Area.cs" />
     <Compile Include="Models\Cirugias.cs" />
+    <Compile Include="Models\CitasPaciente.cs" />
     <Compile Include="Models\Consultorio.cs" />
     <Compile Include="Models\Departamento.cs" />
     <Compile Include="Models\Direccion.cs" />
@@ -368,6 +370,7 @@
     <Content Include="Views\UsuariosPersonal\miperfil.cshtml" />
     <Content Include="Views\Usuarios\EditPerfil.cshtml" />
     <Content Include="Views\UsuariosPersonal\EditPerfil.cshtml" />
+    <Content Include="Views\CitasPaciente\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

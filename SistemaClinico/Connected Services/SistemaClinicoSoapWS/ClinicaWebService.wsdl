@@ -158,6 +158,27 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="InsertCita">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idpaciente" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="fecha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="hora" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="turno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipocita" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iddepa" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="estado" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertCitaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertCitaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -1278,6 +1299,12 @@
   <wsdl:message name="ListaRolSoapOut">
     <wsdl:part name="parameters" element="tns:ListaRolResponse" />
   </wsdl:message>
+  <wsdl:message name="InsertCitaSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertCita" />
+  </wsdl:message>
+  <wsdl:message name="InsertCitaSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertCitaResponse" />
+  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -1695,6 +1722,10 @@
       <wsdl:input message="tns:ListaRolSoapIn" />
       <wsdl:output message="tns:ListaRolSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="InsertCita">
+      <wsdl:input message="tns:InsertCitaSoapIn" />
+      <wsdl:output message="tns:InsertCitaSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
@@ -2019,6 +2050,15 @@
     </wsdl:operation>
     <wsdl:operation name="ListaRol">
       <soap:operation soapAction="http://tempuri.org/ListaRol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertCita">
+      <soap:operation soapAction="http://tempuri.org/InsertCita" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2670,6 +2710,15 @@
     </wsdl:operation>
     <wsdl:operation name="ListaRol">
       <soap12:operation soapAction="http://tempuri.org/ListaRol" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertCita">
+      <soap12:operation soapAction="http://tempuri.org/InsertCita" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
