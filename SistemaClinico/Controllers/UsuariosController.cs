@@ -182,6 +182,7 @@ namespace SistemaClinico.Controllers
                 nuevoPaciente.DUI = collection["DUI"];
                 nuevoPaciente.NIT = collection["NIT"];
                 nuevoPaciente.GENERO = collection["GENERO"];
+                nuevoPaciente.FECHA_NACIMIENTO = DateTime.Parse(collection["FECHA_NACIMIENTO"]);
                 nuevoPaciente.TIPO_SANGRE = collection["TIPO_SANGRE"];
                 nuevoPaciente.TELEFONO = collection["TELEFONO"];
                 nuevoPaciente.CORREO = collection["CORREO"];
@@ -190,7 +191,7 @@ namespace SistemaClinico.Controllers
                 nuevoPaciente.ESTADO = "ACTIVO";
                 nuevoPaciente.USUARIO = collection["USUARIO"];
                 nuevoPaciente.PASSWORD = collection["PASSWORD"];
-                swEnf.InsertPaciente(nuevoPaciente.NOMBRE, nuevoPaciente.APELLIDO, nuevoPaciente.DUI, nuevoPaciente.NIT, nuevoPaciente.GENERO, nuevoPaciente.TIPO_SANGRE, nuevoPaciente.TELEFONO,
+                swEnf.InsertPaciente(nuevoPaciente.NOMBRE, nuevoPaciente.APELLIDO, nuevoPaciente.DUI, nuevoPaciente.NIT, nuevoPaciente.GENERO, nuevoPaciente.FECHA_NACIMIENTO, nuevoPaciente.TIPO_SANGRE, nuevoPaciente.TELEFONO,
                     nuevoPaciente.CORREO, nuevoPaciente.ID_DIRECCION, nuevoPaciente.DIRECCION_COM, nuevoPaciente.ESTADO, nuevoPaciente.USUARIO, nuevoPaciente.PASSWORD);
                 return RedirectToAction("Index", "Usuarios");
             }
@@ -214,7 +215,7 @@ namespace SistemaClinico.Controllers
                 string dui = dr["DUI"].ToString();
                 string nit = dr["NIT"].ToString();
                 string genero = dr["GENERO"].ToString();
-                //string fecha = dr["FECHA_NACIMIENTO"].ToString();
+                DateTime fecha = DateTime.Parse(dr["FECHA_NACIMIENTO"].ToString());
                 string tipo_sangre = dr["TIPO_SANGRE"].ToString();
                 string telefono = dr["TELEFONO"].ToString();
                 string correo = dr["CORREO"].ToString();
@@ -231,7 +232,7 @@ namespace SistemaClinico.Controllers
                 US.DUI = dui;
                 US.NIT = nit;
                 US.GENERO = genero;
-                //US.fecha = fecha;
+                US.FECHA_NACIMIENTO = fecha;
                 US.TIPO_SANGRE = tipo_sangre;
                 US.TELEFONO = telefono;
                 US.CORREO = correo;
@@ -326,7 +327,7 @@ namespace SistemaClinico.Controllers
                 var nuevoPaciente = MedList.Single(m => m.id == id);
                 if (TryUpdateModel(nuevoPaciente))
                 {
-                    updatePaciente.update_paciente(nuevoPaciente.id, nuevoPaciente.NOMBRE, nuevoPaciente.APELLIDO, nuevoPaciente.DUI, nuevoPaciente.NIT, nuevoPaciente.GENERO, nuevoPaciente.TIPO_SANGRE, nuevoPaciente.TELEFONO,
+                    updatePaciente.update_paciente(nuevoPaciente.id, nuevoPaciente.NOMBRE, nuevoPaciente.APELLIDO, nuevoPaciente.DUI, nuevoPaciente.NIT, nuevoPaciente.GENERO, nuevoPaciente.FECHA_NACIMIENTO, nuevoPaciente.TIPO_SANGRE, nuevoPaciente.TELEFONO,
                     nuevoPaciente.CORREO, nuevoPaciente.ID_DIRECCION, nuevoPaciente.DIRECCION_COM, nuevoPaciente.ESTADO, nuevoPaciente.USUARIO, nuevoPaciente.PASSWORD);
                     return RedirectToAction("Index");
                 }
@@ -417,7 +418,7 @@ namespace SistemaClinico.Controllers
                 var nuevoPaciente = MedList.Single(m => m.id == id);
                 if (TryUpdateModel(nuevoPaciente))
                 {
-                    updatePaciente.update_paciente(nuevoPaciente.id, nuevoPaciente.NOMBRE, nuevoPaciente.APELLIDO, nuevoPaciente.DUI, nuevoPaciente.NIT, nuevoPaciente.GENERO, nuevoPaciente.TIPO_SANGRE, nuevoPaciente.TELEFONO,
+                    updatePaciente.update_paciente(nuevoPaciente.id, nuevoPaciente.NOMBRE, nuevoPaciente.APELLIDO, nuevoPaciente.DUI, nuevoPaciente.NIT, nuevoPaciente.GENERO, nuevoPaciente.FECHA_NACIMIENTO, nuevoPaciente.TIPO_SANGRE, nuevoPaciente.TELEFONO,
                     nuevoPaciente.CORREO, nuevoPaciente.ID_DIRECCION, nuevoPaciente.DIRECCION_COM, nuevoPaciente.ESTADO, nuevoPaciente.USUARIO, nuevoPaciente.PASSWORD);
                     return RedirectToAction("miperfil", new { id = Session["id"] });
                 }

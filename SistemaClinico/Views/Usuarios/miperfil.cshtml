@@ -11,151 +11,158 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Mi Perfil</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.id)
+<div class="form-horizontal">
+    <h4>Mi Perfil</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.id)
 
 
-        <div class="form-group">
-            @Html.Label("Nombre ", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-            </div>
+    <div class="form-group">
+        @Html.Label("Nombre ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.Label("Apellido ", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.APELLIDO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-            </div>
+    <div class="form-group">
+        @Html.Label("Apellido ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.APELLIDO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DUI, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DUI, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DUI, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DUI, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.NIT, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NIT, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.NIT, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NIT, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.Label("Género ", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.GENERO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-            </div>
+    <div class="form-group">
+        @Html.Label("Género ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GENERO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.Label("Tipo de sangre ", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TIPO_SANGRE, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-            </div>
+    <div class="form-group">
+        @Html.Label("Fecha de Nacimiento ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FECHA_NACIMIENTO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.Label("Teléfono ", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TELEFONO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-            </div>
+    <div class="form-group">
+        @Html.Label("Tipo de sangre ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TIPO_SANGRE, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.Label("Correo electrónico ", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CORREO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-            </div>
+    <div class="form-group">
+        @Html.Label("Teléfono ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TELEFONO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
         </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Correo electrónico ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CORREO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        </div>
+    </div>
 
 
 
-        @{
-            SistemaClinico.SistemaClinicoSoapWS.ClinicaWebServiceSoapClient WSMunicipios = new SistemaClinico.SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
-            DataSet ds = WSMunicipios.SelectIdDireccion();
+    @{
+        SistemaClinico.SistemaClinicoSoapWS.ClinicaWebServiceSoapClient WSMunicipios = new SistemaClinico.SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+        DataSet ds = WSMunicipios.SelectIdDireccion();
 
-            var selectList = new List<SelectListItem>();
+        var selectList = new List<SelectListItem>();
 
 
-            foreach (DataRow dr in ds.Tables[0].Rows)
+        foreach (DataRow dr in ds.Tables[0].Rows)
+        {
+
+            string id = dr["ID_DIRECCION"].ToString();
+            string municipio = dr["MUNICIPIO"].ToString();
+
+
+            selectList.Add(new SelectListItem
             {
-
-                string id = dr["ID_DIRECCION"].ToString();
-                string municipio = dr["MUNICIPIO"].ToString();
-
-
-                selectList.Add(new SelectListItem
-                {
-                    Value = id,
-                    Text = municipio,
+                Value = id,
+                Text = municipio,
 
 
 
-                }); ;
-                ViewData["chumpe"] = selectList;
+            }); ;
+            ViewData["chumpe"] = selectList;
 
-            }
         }
+    }
 
 
 
-        <div class="form-group">
-            @Html.Label("Municipio ", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.ID_DIRECCION,
-                          (IEnumerable<SelectListItem>)ViewData["chumpe"],
-                          "Seleccione su tipo se municipio", htmlAttributes: new { @class = "form-control", disabled = "disabled" })
-            </div>
+    <div class="form-group">
+        @Html.Label("Municipio ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.ID_DIRECCION,
+                      (IEnumerable<SelectListItem>)ViewData["chumpe"],
+                      "Seleccione su tipo se municipio", htmlAttributes: new { @class = "form-control", disabled = "disabled" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.Label("Dirección de residencia ", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DIRECCION_COM, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-            </div>
+    <div class="form-group">
+        @Html.Label("Dirección de residencia ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DIRECCION_COM, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
         </div>
+    </div>
 
-        @*<div class="form-group">
+    @*<div class="form-group">
             @Html.Label("Estado ", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ESTADO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
             </div>
         </div>*@
 
-        <div class="form-group">
-            @Html.Label("Usuario ", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.USUARIO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-            </div>
+    <div class="form-group">
+        @Html.Label("Usuario ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.USUARIO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
         </div>
-
-        <table align="center">
-            <tr>
-                <td>
-                    <div div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input onclick="location.href='@Url.Action("Index", "Home")'" type="button" value="Volver" class="btn btn-finalizar" />
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    &nbsp; &nbsp;
-                </td>
-                <td>
-                    <div div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input onclick="location.href='@Url.Action("EditPerfil", "Usuarios", new { id =Session["id"] })'" type="button" value="Editar Mi Perfil" class="btn btn-success" />
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        </table>
     </div>
+
+    <table align="center">
+        <tr>
+            <td>
+                <div div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input onclick="location.href='@Url.Action("Index", "Home")'" type="button" value="Volver" class="btn btn-finalizar" />
+                    </div>
+                </div>
+            </td>
+            <td>
+                &nbsp; &nbsp;
+            </td>
+            <td>
+                <div div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input onclick="location.href='@Url.Action("EditPerfil", "Usuarios", new { id =Session["id"] })'" type="button" value="Editar Mi Perfil" class="btn btn-success" />
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
 }
 

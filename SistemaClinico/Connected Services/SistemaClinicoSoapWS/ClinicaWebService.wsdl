@@ -491,6 +491,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="dui" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="nit" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="genero" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="fecha" type="s:dateTime" />
             <s:element minOccurs="0" maxOccurs="1" name="tipo_sangre" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="tel" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="corre" type="s:string" />
@@ -888,6 +889,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="dui" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="nit" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="genero" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="fecha" type="s:dateTime" />
             <s:element minOccurs="0" maxOccurs="1" name="tipo_sangre" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="tel" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="correo" type="s:string" />

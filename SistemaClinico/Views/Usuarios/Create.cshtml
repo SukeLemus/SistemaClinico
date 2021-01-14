@@ -25,7 +25,7 @@
     <div class="form-group">
         @Html.Label("Nombre", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control" ,@placeholder = "Ingerese sus Nombres" } })
+            @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingerese sus Nombres" } })
             @Html.ValidationMessageFor(model => model.NOMBRE, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -49,7 +49,7 @@
     <div class="form-group">
         @Html.Label("NIT", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.NIT, new { htmlAttributes = new { @class = "form-control" , maxlength = 14, @placeholder = "Ingerese su NIT" } })
+            @Html.EditorFor(model => model.NIT, new { htmlAttributes = new { @class = "form-control", maxlength = 14, @placeholder = "Ingerese su NIT" } })
             @Html.ValidationMessageFor(model => model.NIT, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -63,6 +63,15 @@
             @Html.ValidationMessageFor(model => model.GENERO, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.Label("Fecha de Nacimiento ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FECHA_NACIMIENTO, new { htmlAttributes = new { @class = "form-control", maxlength = 14, @placeholder = "Ingerese su Fecha de Nacimiento" } })
+            @Html.ValidationMessageFor(model => model.FECHA_NACIMIENTO, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
 
     <div class="form-group">
         @Html.Label("Tipo de sangre", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -127,7 +136,7 @@
     <div class="form-group">
         @Html.Label("Municipio", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownList("ID_DIRECCION", (IEnumerable<SelectListItem>)ViewData["chumpe"], "Seleccione su Municipio de residencia", htmlAttributes: new { @class = "form-control"})
+            @Html.DropDownList("ID_DIRECCION", (IEnumerable<SelectListItem>)ViewData["chumpe"], "Seleccione su Municipio de residencia", htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.ID_DIRECCION, "", new { @class = "text-danger" })
         </div>
     </div>

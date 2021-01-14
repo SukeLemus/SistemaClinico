@@ -78,6 +78,7 @@ namespace SistemaClinico.Controllers
                 nuevoPaciente.DUI = collection["DUI"];
                 nuevoPaciente.NIT = collection["NIT"];
                 nuevoPaciente.GENERO = collection["GENERO"];
+                nuevoPaciente.FECHA_NACIMIENTO = DateTime.Parse(collection["FECHA_NACIMIENTO"]);
                 nuevoPaciente.TIPO_SANGRE = collection["TIPO_SANGRE"];
                 nuevoPaciente.TELEFONO = collection["TELEFONO"];
                 nuevoPaciente.CORREO = collection["CORREO"];
@@ -87,7 +88,7 @@ namespace SistemaClinico.Controllers
                 nuevoPaciente.ESTADO = "ACTIVO";
                 nuevoPaciente.USUARIO = collection["USUARIO"];
                 nuevoPaciente.PASSWORD = collection["PASSWORD"];
-                swEnf.InsertPaciente(nuevoPaciente.NOMBRE, nuevoPaciente.APELLIDO, nuevoPaciente.DUI, nuevoPaciente.NIT, nuevoPaciente.GENERO, nuevoPaciente.TIPO_SANGRE, nuevoPaciente.TELEFONO,
+                swEnf.InsertPaciente(nuevoPaciente.NOMBRE, nuevoPaciente.APELLIDO, nuevoPaciente.DUI, nuevoPaciente.NIT, nuevoPaciente.GENERO, nuevoPaciente.FECHA_NACIMIENTO, nuevoPaciente.TIPO_SANGRE, nuevoPaciente.TELEFONO,
                     nuevoPaciente.CORREO, nuevoPaciente.ID_DIRECCION, nuevoPaciente.DIRECCION_COM, nuevoPaciente.ESTADO, nuevoPaciente.USUARIO, nuevoPaciente.PASSWORD);
                 return RedirectToAction("Index", "Home");
             }
