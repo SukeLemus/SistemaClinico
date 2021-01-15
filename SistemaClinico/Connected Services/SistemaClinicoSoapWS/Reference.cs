@@ -132,6 +132,20 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_citas_comp", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataSet> lista_citas_compAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_citas_comp_aceptada", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet lista_citas_comp_aceptada();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_citas_comp_aceptada", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> lista_citas_comp_aceptadaAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_citas_comp_finalizada", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet lista_citas_comp_finalizada();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_citas_comp_finalizada", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> lista_citas_comp_finalizadaAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorld", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string HelloWorld();
@@ -734,6 +748,22 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> lista_citas_compAsync() {
             return base.Channel.lista_citas_compAsync();
+        }
+        
+        public System.Data.DataSet lista_citas_comp_aceptada() {
+            return base.Channel.lista_citas_comp_aceptada();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> lista_citas_comp_aceptadaAsync() {
+            return base.Channel.lista_citas_comp_aceptadaAsync();
+        }
+        
+        public System.Data.DataSet lista_citas_comp_finalizada() {
+            return base.Channel.lista_citas_comp_finalizada();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> lista_citas_comp_finalizadaAsync() {
+            return base.Channel.lista_citas_comp_finalizadaAsync();
         }
         
         public string HelloWorld() {

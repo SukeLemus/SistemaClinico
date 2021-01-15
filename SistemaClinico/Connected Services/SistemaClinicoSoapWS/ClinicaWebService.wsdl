@@ -235,6 +235,40 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="lista_citas_comp_aceptada">
+        <s:complexType />
+      </s:element>
+      <s:element name="lista_citas_comp_aceptadaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_citas_comp_aceptadaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_citas_comp_finalizada">
+        <s:complexType />
+      </s:element>
+      <s:element name="lista_citas_comp_finalizadaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_citas_comp_finalizadaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -1379,6 +1413,18 @@
   <wsdl:message name="lista_citas_compSoapOut">
     <wsdl:part name="parameters" element="tns:lista_citas_compResponse" />
   </wsdl:message>
+  <wsdl:message name="lista_citas_comp_aceptadaSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_citas_comp_aceptada" />
+  </wsdl:message>
+  <wsdl:message name="lista_citas_comp_aceptadaSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_citas_comp_aceptadaResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_citas_comp_finalizadaSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_citas_comp_finalizada" />
+  </wsdl:message>
+  <wsdl:message name="lista_citas_comp_finalizadaSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_citas_comp_finalizadaResponse" />
+  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -1812,6 +1858,14 @@
       <wsdl:input message="tns:lista_citas_compSoapIn" />
       <wsdl:output message="tns:lista_citas_compSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="lista_citas_comp_aceptada">
+      <wsdl:input message="tns:lista_citas_comp_aceptadaSoapIn" />
+      <wsdl:output message="tns:lista_citas_comp_aceptadaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_citas_comp_finalizada">
+      <wsdl:input message="tns:lista_citas_comp_finalizadaSoapIn" />
+      <wsdl:output message="tns:lista_citas_comp_finalizadaSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
@@ -2172,6 +2226,24 @@
     </wsdl:operation>
     <wsdl:operation name="lista_citas_comp">
       <soap:operation soapAction="http://tempuri.org/lista_citas_comp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_citas_comp_aceptada">
+      <soap:operation soapAction="http://tempuri.org/lista_citas_comp_aceptada" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_citas_comp_finalizada">
+      <soap:operation soapAction="http://tempuri.org/lista_citas_comp_finalizada" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2859,6 +2931,24 @@
     </wsdl:operation>
     <wsdl:operation name="lista_citas_comp">
       <soap12:operation soapAction="http://tempuri.org/lista_citas_comp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_citas_comp_aceptada">
+      <soap12:operation soapAction="http://tempuri.org/lista_citas_comp_aceptada" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_citas_comp_finalizada">
+      <soap12:operation soapAction="http://tempuri.org/lista_citas_comp_finalizada" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

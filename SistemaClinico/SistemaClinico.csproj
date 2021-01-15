@@ -200,6 +200,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\bootstrap-timepicker.css" />
+    <Content Include="Content\css\bootstrap-timepicker.min.css" />
     <Content Include="Content\estilito.css" />
     <Content Include="Content\Images\agenda.png" />
     <Content Include="Content\Images\atencionpaciente.png" />
@@ -224,6 +226,8 @@
     <Content Include="Content\Images\pacientes.png" />
     <Content Include="Content\Images\solicitud.png" />
     <Content Include="Content\Images\Twitter.png" />
+    <Content Include="Content\js\bootstrap-timepicker.js" />
+    <Content Include="Content\js\bootstrap-timepicker.min.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\sheetslider.min.css" />
     <Content Include="Content\Tablas.css" />
@@ -281,6 +285,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Connected Services\SistemaClinicoSoapWS\ClinicaWebService.wsdl" />
+    <Content Include="Content\css\timepicker.less" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -373,6 +378,14 @@
     <Content Include="Views\CitasPaciente\Create.cshtml" />
     <Content Include="Views\CitasPaciente\ListadoCitasPaciente.cshtml" />
     <Content Include="Views\CitasPaciente\Edit.cshtml" />
+    <Content Include="Views\CitasPaciente\DetailsCitaP.cshtml" />
+    <Content Include="Views\CitasPaciente\ListadoCitasPacienteAceptada.cshtml" />
+    <Content Include="Views\CitasPaciente\FinalizarCita.cshtml" />
+    <Content Include="Views\CitasPaciente\DetailsCitaAceptada.cshtml" />
+    <Content Include="Views\CitasPaciente\ListadoCitasPacienteHistorial.cshtml" />
+    <Content Include="Views\CitasPaciente\DetailsCitaFinalizada.cshtml" />
+    <Content Include="Views\CitasPaciente\AgendaCitaDoctor.cshtml" />
+    <Content Include="Views\CitasPaciente\RealizarConsulta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

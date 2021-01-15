@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="~/Content/estilito.css" />
     <link rel="stylesheet" href="~/Content/Tablas.css" />
     <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap-timepicker.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
 
 </head>
@@ -444,11 +446,8 @@
                                 <img src="~/Content/Images/pacientes.png" class="imgicono" />
                             </a>
                             <div class="dropdown-content">
-                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
-                                    Perfil paciente
-                                </a>
-                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
-                                    Citas
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Usuarios")">
+                                    Perfil pacientes
                                 </a>
                                 <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
                                     Constancias médicas
@@ -469,7 +468,7 @@
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
-                            <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                            <a class="nav-link text-dark" href="@Url.Action("ListadoCitasPacienteAceptada", "CitasPaciente")">
                                 Agenda de Citas
                                 <img src="~/Content/Images/agenda.png" class="imgicono" />
                             </a>
@@ -487,7 +486,7 @@
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
-                            <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                            <a class="nav-link text-dark" href="@Url.Action("ListadoCitasPacienteHistorial", "CitasPaciente")">
                                 Historial de Citas
                                 <img src="~/Content/Images/historial.png" class="imgicono" />
                             </a>
@@ -583,20 +582,11 @@
                                 <img src="~/Content/Images/pacientes.png" class="imgicono" />
                             </a>
                             <div class="dropdown-content">
-                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                <a class="nav-link text-dark" href="@Url.Action("Index", "Usuarios")">
                                     Perfil paciente
                                 </a>
-
-
-
                                 <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
                                     Información médica
-                                </a>
-                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
-                                    Citas
-                                </a>
-                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
-                                    Consultas médicas
                                 </a>
                                 <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
                                     Constancias médicas
@@ -609,7 +599,15 @@
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
-                            <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                            <a class="nav-link text-dark" href="@Url.Action("ListadoCitasPacienteHistorial", "CitasPaciente")">
+                                Consultas Medicas
+                                <img src="~/Content/Images/historial.png" class="imgicono" />
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link text-dark" href="@Url.Action("AgendaCitaDoctor", "CitasPaciente")">
                                 Agenda de Citas
                                 <img src="~/Content/Images/agenda.png" class="imgicono" />
                             </a>
@@ -627,7 +625,7 @@
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
-                            <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                            <a class="nav-link text-dark" href="@Url.Action("ListadoCitasPacienteHistorial", "CitasPaciente")">
                                 Historial de Citas
                                 <img src="~/Content/Images/historial.png" class="imgicono" />
                             </a>

@@ -4,7 +4,7 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="titulo_general"><h1>Aceptando Cita</h1></div>
+    <div class="titulo_general"><h1>Detalle Cita Pendiente</h1></div>
     <div class="form-horizontal">
         @*<h4>Solicitud de Citas</h4>*@
 
@@ -47,51 +47,51 @@
 
                 @*<td></td>*@
 
-            <td width="50%">
-                <hr />
-                <div class="titulo_general">
-                    <h4>Datos de la cita</h4>
-                </div>
-                <br />
+                <td width="50%">
+                    <hr />
+                    <div class="titulo_general">
+                        <h4>Datos de la cita</h4>
+                    </div>
+                    <br />
 
-                <div class="form-group">
-                    @Html.Label("Tipo de Cita ", htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        @Html.DropDownListFor(model => model.TIPO_CITA,
-                                  (IEnumerable<SelectListItem>)ViewData["listaTipo"],
-                                  "Seleccione el tipo de cita que necesita", htmlAttributes: new { @class = "form-control", disabled = "" })
-                        @Html.ValidationMessageFor(model => model.TIPO_CITA, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("Tipo de Cita ", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.DropDownListFor(model => model.TIPO_CITA,
+                                      (IEnumerable<SelectListItem>)ViewData["listaTipo"],
+                                      "Seleccione el tipo de cita que necesita", htmlAttributes: new { @class = "form-control", disabled = "" })
+                            @Html.ValidationMessageFor(model => model.TIPO_CITA, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.Label("Departamento ", htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        @Html.DropDownList("ID_DEPARTAMENTO",
-                                  (IEnumerable<SelectListItem>)ViewData["ListaNombreDeptos"],
-                                  "Seleccione el Departamento donde desea ser atendido", htmlAttributes: new { @class = "form-control", disabled = "" })
-                        @Html.ValidationMessageFor(model => model.ID_DEPARTAMENTO, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("Departamento ", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.DropDownList("ID_DEPARTAMENTO",
+                                      (IEnumerable<SelectListItem>)ViewData["ListaNombreDeptos"],
+                                      "Seleccione el Departamento donde desea ser atendido", htmlAttributes: new { @class = "form-control", disabled = "" })
+                            @Html.ValidationMessageFor(model => model.ID_DEPARTAMENTO, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.Label("Descripcion ", htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        @Html.EditorFor(model => model.DESCRIPCION, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
-                        @Html.ValidationMessageFor(model => model.DESCRIPCION, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("Descripcion ", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.DESCRIPCION, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
+                            @Html.ValidationMessageFor(model => model.DESCRIPCION, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
-                @*<div class="form-group">
-            <div class="col-md-5">
-                @Html.Hidden("espacio", new { htmlAttributes = new { @class = "form-control", @value = "", disabled = "" } })
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-5">
-                @Html.Hidden("espacio2", new { htmlAttributes = new { @class = "form-control", @value = "", disabled = "" } })
-            </div>
-        </div>*@
+                    @*<div class="form-group">
+                            <div class="col-md-5">
+                                @Html.Hidden("espacio", new { htmlAttributes = new { @class = "form-control", @value = "", disabled = "" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                @Html.Hidden("espacio2", new { htmlAttributes = new { @class = "form-control", @value = "", disabled = "" } })
+                            </div>
+                        </div>*@
 
-                
-            </td>
+
+                </td>
 
 
 
@@ -115,7 +115,8 @@
                            {
                                @class = "form-control datepicker",
                                @value = ViewData["FECHA"].ToString(),
-                               @placeholder = "Ingerese su fecha deseada"@*type = "datetime-local"*@ @*@type = "date"*@}
+                               @placeholder = "Ingerese su fecha deseada",
+                               disabled = "" @*type = "datetime-local"*@ @*@type = "date"*@}
 })
                             @Html.ValidationMessageFor(model => model.FECHA, "", new { @class = "text-danger" })
                         </div>
@@ -126,38 +127,23 @@
                         <div class="col-md-9">
                             @Html.DropDownList("TURNO",
                                       (IEnumerable<SelectListItem>)ViewData["listaTurno"],
-                                      "Seleccione un turno para su horario de atencion", htmlAttributes: new { @class = "form-control" })
+                                      "Seleccione un turno para su horario de atencion", htmlAttributes: new { @class = "form-control", disabled = "" })
                             @Html.ValidationMessageFor(model => model.TURNO, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
-                    
-                        @*<div class="form-group">
-                @Html.LabelFor(model => model.TIME_OUT, "End Time", htmlAttributes: new { @class = "col-xs-4 col-sm-offset-1 col-sm-4" })
-                <div class='input-group date col-xs-8 col-sm-6' id='timeout'>
-                    @Html.TextBoxFor(model => model.TIME_OUT, new { @class = "form-control" })
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-time">
-                        </span>
-                    </span>
-                </div>
-            </div>*@
 
-                </td>
-                <td>
-
-                    <div class="form-group">
-                        @Html.Label("Hora ", htmlAttributes: new { @class = "control-label col-md-3" })
-                        <div class="col-md-9">
-                            @*<div class='input-group date col-xl-9 col-sm-10' id='timeout'>*@
-
-                            <div class="input-group bootstrap-timepicker timepicker">
-                                @Html.EditorFor(model => model.HORA, new { htmlAttributes = new { @class = "form-control timepicker", @ID = "txtTime" } })
-                                <span class="input-group-addon col-md-2"><i class="glyphicon glyphicon-time"></i></span>
+                    @*<div class="form-group">
+                            @Html.LabelFor(model => model.TIME_OUT, "End Time", htmlAttributes: new { @class = "col-xs-4 col-sm-offset-1 col-sm-4" })
+                            <div class='input-group date col-xs-8 col-sm-6' id='timeout'>
+                                @Html.TextBoxFor(model => model.TIME_OUT, new { @class = "form-control" })
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time">
+                                    </span>
+                                </span>
                             </div>
-                            @Html.ValidationMessageFor(model => model.HORA, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+                        </div>*@
+
                 </td>
             </tr>
         </table>
@@ -220,13 +206,13 @@
 
         <table align="center">
             <tr>
-                <td>
+                @*<td>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <input type="submit" value="Aceptar Cita" class="btn btn-success" />
                         </div>
                     </div>
-                </td>
+                </td>*@
                 <td>&nbsp;  &nbsp; &nbsp;  &nbsp;</td>
                 <td>
                     <div div class="form-group">
@@ -257,13 +243,7 @@
             });
         });
 
-       
+
     </script>
-    <script>
-        $(function () {
-            $("#txtTime").timepicker({
-                showInputs: false //Set showInputs to false
-            });
-        })
-    </script>
+
 }

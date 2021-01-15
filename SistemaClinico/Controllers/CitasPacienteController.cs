@@ -60,6 +60,88 @@ namespace SistemaClinico.Controllers
 
 
         ////GET TODO LOS PACIENTES segun cita
+        public static List<ListadoCitasPaciente> TodasLasCitasSegunpacienteFinalizada()
+        {
+            List<ListadoCitasPaciente> listaS = new List<ListadoCitasPaciente>();
+        SistemaClinicoSoapWS.ClinicaWebServiceSoapClient citas = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+        DataSet ds = citas.lista_citas_comp_finalizada();
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                int id = int.Parse(dr["ID_CITAS"].ToString());
+        int idpaciente = int.Parse(dr["ID_PACIENTE"].ToString());
+        string nombrepaciente = dr["NOMBRE"].ToString();
+        string apellidopaciente = dr["APELLIDO"].ToString();
+        string telefono = dr["TELEFONO"].ToString();
+        string correo = dr["CORREO"].ToString();
+        string fecha = dr["FECHA"].ToString();
+        string hora = dr["HORA"].ToString();
+        string turno = dr["TURNO"].ToString();
+        string tipocita = dr["TIPO_CITA"].ToString();
+        int iddepa = int.Parse(dr["ID_DEPARTAMENTO"].ToString());
+        string nombredepa = dr["NOMBRE_DEPARTAMENTO"].ToString();
+        string descripcion = dr["DESCRIPCION"].ToString();
+        string estado = dr["ESTADO"].ToString();
+        ListadoCitasPaciente US = new ListadoCitasPaciente();
+        US.ID = id;
+                US.ID_PACIENTE = idpaciente;
+                US.NOMBRE = nombrepaciente;
+                US.APELLIDO = apellidopaciente;
+                US.TELEFONO = telefono;
+                US.CORREO = correo;
+                US.FECHA = fecha.Remove(10);
+                US.HORA = hora;
+                US.TURNO = turno;
+                US.TIPO_CITA = tipocita;
+                US.ID_DEPARTAMENTO = iddepa;
+                US.NOMBRE_DEPARTAMENTO = nombredepa;
+                US.DESCRIPCION = descripcion;
+                US.ESTADO = estado;
+                listaS.Add(US);
+            }
+            return listaS;
+
+        }
+public static List<ListadoCitasPaciente> TodasLasCitasSegunpacienteAceptada()
+        {
+            List<ListadoCitasPaciente> listaS = new List<ListadoCitasPaciente>();
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient citas = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+            DataSet ds = citas.lista_citas_comp_aceptada();
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                int id = int.Parse(dr["ID_CITAS"].ToString());
+                int idpaciente = int.Parse(dr["ID_PACIENTE"].ToString());
+                string nombrepaciente = dr["NOMBRE"].ToString();
+                string apellidopaciente = dr["APELLIDO"].ToString();
+                string telefono = dr["TELEFONO"].ToString();
+                string correo = dr["CORREO"].ToString();
+                string fecha = dr["FECHA"].ToString();
+                string hora = dr["HORA"].ToString();
+                string turno = dr["TURNO"].ToString();
+                string tipocita = dr["TIPO_CITA"].ToString();
+                int iddepa = int.Parse(dr["ID_DEPARTAMENTO"].ToString());
+                string nombredepa = dr["NOMBRE_DEPARTAMENTO"].ToString();
+                string descripcion = dr["DESCRIPCION"].ToString();
+                string estado = dr["ESTADO"].ToString();
+                ListadoCitasPaciente US = new ListadoCitasPaciente();
+                US.ID = id;
+                US.ID_PACIENTE = idpaciente;
+                US.NOMBRE = nombrepaciente;
+                US.APELLIDO = apellidopaciente;
+                US.TELEFONO = telefono;
+                US.CORREO = correo;
+                US.FECHA = fecha.Remove(10);
+                US.HORA = hora;
+                US.TURNO = turno;
+                US.TIPO_CITA = tipocita;
+                US.ID_DEPARTAMENTO = iddepa;
+                US.NOMBRE_DEPARTAMENTO = nombredepa;
+                US.DESCRIPCION = descripcion;
+                US.ESTADO = estado;
+                listaS.Add(US);
+            }
+            return listaS;
+
+        }
         public static List<ListadoCitasPaciente> TodasLasCitasSegunpaciente()
         {
             List<ListadoCitasPaciente> listaS = new List<ListadoCitasPaciente>();
@@ -161,12 +243,344 @@ namespace SistemaClinico.Controllers
             //return View();
         }
 
-        // GET: CitasPaciente/Details/5
-        public ActionResult Details(int id)
+        public ActionResult ListadoCitasPacienteAceptada(int? i, string BuscarNombre)
         {
-            return View();
+
+            var citas = from e in TodasLasCitasSegunpacienteAceptada()
+                        select e;
+
+
+
+            if (!String.IsNullOrEmpty(BuscarNombre))
+            {
+                citas = citas.Where(c => c.NOMBRE.ToLower().Equals(BuscarNombre.ToLower()));
+            }
+
+
+            return View(citas.ToPagedList(i ?? 1, 3));
+            //return View();
+        }
+        public ActionResult AgendaCitaDoctor(int? i, string BuscarNombre)
+        {
+
+            var citas = from e in TodasLasCitasSegunpacienteAceptada()
+                        select e;
+
+
+
+            if (!String.IsNullOrEmpty(BuscarNombre))
+            {
+                citas = citas.Where(c => c.NOMBRE.ToLower().Equals(BuscarNombre.ToLower()));
+            }
+
+
+            return View(citas.ToPagedList(i ?? 1, 3));
+            //return View();
+        }
+        public ActionResult ListadoCitasPacienteHistorial(int? i, string BuscarNombre)
+        {
+
+            var citas = from e in TodasLasCitasSegunpacienteFinalizada()
+                        select e;
+
+
+
+            if (!String.IsNullOrEmpty(BuscarNombre))
+            {
+                citas = citas.Where(c => c.NOMBRE.ToLower().Equals(BuscarNombre.ToLower()));
+            }
+
+
+            return View(citas.ToPagedList(i ?? 1, 3));
+            //return View();
         }
 
+        // GET: CitasPaciente/Details/5
+        public ActionResult DetailsCitaP(int? id2, int? id3)
+        {
+
+            //Lista de turnos de cita (AM o PM)
+            List<SelectListItem> listaTurno = new List<SelectListItem>();
+            listaTurno.Add(new SelectListItem
+            {
+                Text = "Matutino",
+                Value = "Matutino"
+            });
+            listaTurno.Add(new SelectListItem
+            {
+                Text = "Vespertino",
+                Value = "Vespertino"
+            });
+            ViewData["listaTurno"] = listaTurno;
+
+            // lista de tipo de cita(consulta, emergencia)
+            List<SelectListItem> listaTipo = new List<SelectListItem>();
+            listaTipo.Add(new SelectListItem
+            {
+                Text = "Consulta médica",
+                Value = "Consulta médica"
+            });
+            listaTipo.Add(new SelectListItem
+            {
+                Text = "Control",
+                Value = "Control"
+            });
+            listaTipo.Add(new SelectListItem
+            {
+                Text = "Emergencia",
+                Value = "Emergencia"
+            });
+            ViewData["listaTipo"] = listaTipo;
+            //LISTA AREA
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient depaWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+            var selectList = new List<SelectListItem>();
+            DataSet ds = depaWS.ListaAreas();
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                string id = dr["ID_AREA"].ToString();
+                string nombre_area = dr["NOMBRE_AREA"].ToString();
+
+                selectList.Add(new SelectListItem
+                {
+                    Value = id,
+                    Text = nombre_area,
+                });
+            }
+            ViewData["ListaNombreAreas"] = selectList;
+            //LISTA DEPARTAMENTO
+            var selectList2 = new List<SelectListItem>();
+            DataSet ds2 = depaWS.ListaDepa();
+
+            foreach (DataRow dr in ds2.Tables[0].Rows)
+            {
+                string id = dr["ID_DEPARTAMENTO"].ToString();
+                string nombre_dpto = dr["NOMBRE_DEPARTAMENTO"].ToString();
+
+                selectList2.Add(new SelectListItem
+                {
+                    Value = id,
+                    Text = nombre_dpto,
+                });
+            }
+            ViewData["ListaNombreDeptos"] = selectList2;
+
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient updatecita = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+
+            List<RegistroPacienteUsuario> PaList = TodosUsuarios();
+            if (id3.HasValue)
+            {
+                var p = PaList.Single(m => m.id == id3);
+                string nombre_paciente = p.NOMBRE;
+                string telefono = p.TELEFONO;
+                string correo = p.CORREO;
+                ViewData["NOMBRE"] = nombre_paciente;
+                ViewData["TELEFONO"] = telefono;
+                ViewData["CORREO"] = correo;
+                //return View(p);
+            }
+
+            List<CitasPaciente> deplist = TodasLasCitas();
+            if (id2.HasValue)
+            {
+                var depa = deplist.Single(m => m.ID == id2);
+                ViewData["FECHA"] = depa.FECHA.ToString().Remove(10);
+                return View(depa);
+            }
+            return View();
+
+        }
+        public ActionResult DetailsCitaAceptada(int? id2, int? id3)
+        {
+
+            //Lista de turnos de cita (AM o PM)
+            List<SelectListItem> listaTurno = new List<SelectListItem>();
+            listaTurno.Add(new SelectListItem
+            {
+                Text = "Matutino",
+                Value = "Matutino"
+            });
+            listaTurno.Add(new SelectListItem
+            {
+                Text = "Vespertino",
+                Value = "Vespertino"
+            });
+            ViewData["listaTurno"] = listaTurno;
+
+            // lista de tipo de cita(consulta, emergencia)
+            List<SelectListItem> listaTipo = new List<SelectListItem>();
+            listaTipo.Add(new SelectListItem
+            {
+                Text = "Consulta médica",
+                Value = "Consulta médica"
+            });
+            listaTipo.Add(new SelectListItem
+            {
+                Text = "Control",
+                Value = "Control"
+            });
+            listaTipo.Add(new SelectListItem
+            {
+                Text = "Emergencia",
+                Value = "Emergencia"
+            });
+            ViewData["listaTipo"] = listaTipo;
+            //LISTA AREA
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient depaWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+            var selectList = new List<SelectListItem>();
+            DataSet ds = depaWS.ListaAreas();
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                string id = dr["ID_AREA"].ToString();
+                string nombre_area = dr["NOMBRE_AREA"].ToString();
+
+                selectList.Add(new SelectListItem
+                {
+                    Value = id,
+                    Text = nombre_area,
+                });
+            }
+            ViewData["ListaNombreAreas"] = selectList;
+            //LISTA DEPARTAMENTO
+            var selectList2 = new List<SelectListItem>();
+            DataSet ds2 = depaWS.ListaDepa();
+
+            foreach (DataRow dr in ds2.Tables[0].Rows)
+            {
+                string id = dr["ID_DEPARTAMENTO"].ToString();
+                string nombre_dpto = dr["NOMBRE_DEPARTAMENTO"].ToString();
+
+                selectList2.Add(new SelectListItem
+                {
+                    Value = id,
+                    Text = nombre_dpto,
+                });
+            }
+            ViewData["ListaNombreDeptos"] = selectList2;
+
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient updatecita = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+
+            List<RegistroPacienteUsuario> PaList = TodosUsuarios();
+            if (id3.HasValue)
+            {
+                var p = PaList.Single(m => m.id == id3);
+                string nombre_paciente = p.NOMBRE;
+                string telefono = p.TELEFONO;
+                string correo = p.CORREO;
+                ViewData["NOMBRE"] = nombre_paciente;
+                ViewData["TELEFONO"] = telefono;
+                ViewData["CORREO"] = correo;
+                //return View(p);
+            }
+
+            List<CitasPaciente> deplist = TodasLasCitas();
+            if (id2.HasValue)
+            {
+                var depa = deplist.Single(m => m.ID == id2);
+                ViewData["FECHA"] = depa.FECHA.ToString().Remove(10);
+                return View(depa);
+            }
+            return View();
+
+        }
+        public ActionResult DetailsCitaFinalizada(int? id2, int? id3)
+        {
+
+            //Lista de turnos de cita (AM o PM)
+            List<SelectListItem> listaTurno = new List<SelectListItem>();
+            listaTurno.Add(new SelectListItem
+            {
+                Text = "Matutino",
+                Value = "Matutino"
+            });
+            listaTurno.Add(new SelectListItem
+            {
+                Text = "Vespertino",
+                Value = "Vespertino"
+            });
+            ViewData["listaTurno"] = listaTurno;
+
+            // lista de tipo de cita(consulta, emergencia)
+            List<SelectListItem> listaTipo = new List<SelectListItem>();
+            listaTipo.Add(new SelectListItem
+            {
+                Text = "Consulta médica",
+                Value = "Consulta médica"
+            });
+            listaTipo.Add(new SelectListItem
+            {
+                Text = "Control",
+                Value = "Control"
+            });
+            listaTipo.Add(new SelectListItem
+            {
+                Text = "Emergencia",
+                Value = "Emergencia"
+            });
+            ViewData["listaTipo"] = listaTipo;
+            //LISTA AREA
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient depaWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+            var selectList = new List<SelectListItem>();
+            DataSet ds = depaWS.ListaAreas();
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                string id = dr["ID_AREA"].ToString();
+                string nombre_area = dr["NOMBRE_AREA"].ToString();
+
+                selectList.Add(new SelectListItem
+                {
+                    Value = id,
+                    Text = nombre_area,
+                });
+            }
+            ViewData["ListaNombreAreas"] = selectList;
+            //LISTA DEPARTAMENTO
+            var selectList2 = new List<SelectListItem>();
+            DataSet ds2 = depaWS.ListaDepa();
+
+            foreach (DataRow dr in ds2.Tables[0].Rows)
+            {
+                string id = dr["ID_DEPARTAMENTO"].ToString();
+                string nombre_dpto = dr["NOMBRE_DEPARTAMENTO"].ToString();
+
+                selectList2.Add(new SelectListItem
+                {
+                    Value = id,
+                    Text = nombre_dpto,
+                });
+            }
+            ViewData["ListaNombreDeptos"] = selectList2;
+
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient updatecita = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+
+            List<RegistroPacienteUsuario> PaList = TodosUsuarios();
+            if (id3.HasValue)
+            {
+                var p = PaList.Single(m => m.id == id3);
+                string nombre_paciente = p.NOMBRE;
+                string telefono = p.TELEFONO;
+                string correo = p.CORREO;
+                ViewData["NOMBRE"] = nombre_paciente;
+                ViewData["TELEFONO"] = telefono;
+                ViewData["CORREO"] = correo;
+                //return View(p);
+            }
+
+            List<CitasPaciente> deplist = TodasLasCitas();
+            if (id2.HasValue)
+            {
+                var depa = deplist.Single(m => m.ID == id2);
+                ViewData["FECHA"] = depa.FECHA.ToString().Remove(10);
+                return View(depa);
+            }
+            return View();
+
+        }
         // GET: CitasPaciente/Create
         public ActionResult Create(int? id2)
         {
@@ -395,7 +809,7 @@ namespace SistemaClinico.Controllers
 
                 if (TryUpdateModel(depa))
                     {
-                        updatecita.UpdateCita(id2, depa.ID_PACIENTE, depa.FECHA, depa.HORA, depa.TURNO, depa.TIPO_CITA, depa.ID_DEPARTAMENTO, depa.DESCRIPCION, depa.ESTADO);
+                        updatecita.UpdateCita(id2, depa.ID_PACIENTE, depa.FECHA, depa.HORA, depa.TURNO, depa.TIPO_CITA, depa.ID_DEPARTAMENTO, depa.DESCRIPCION, "ACEPTADA");
                         return RedirectToAction("ListadoCitasPaciente");
 
                     }
@@ -410,7 +824,249 @@ namespace SistemaClinico.Controllers
             
          
         }
+        public ActionResult RealizarConsulta(int? id2, int? id3)
+        {
+            //Lista de turnos de cita (AM o PM)
+            List<SelectListItem> listaTurno = new List<SelectListItem>();
+            listaTurno.Add(new SelectListItem
+            {
+                Text = "Matutino",
+                Value = "Matutino"
+            });
+            listaTurno.Add(new SelectListItem
+            {
+                Text = "Vespertino",
+                Value = "Vespertino"
+            });
+            ViewData["listaTurno"] = listaTurno;
 
+            // lista de tipo de cita(consulta, emergencia)
+            List<SelectListItem> listaTipo = new List<SelectListItem>();
+            listaTipo.Add(new SelectListItem
+            {
+                Text = "Consulta médica",
+                Value = "Consulta médica"
+            });
+            listaTipo.Add(new SelectListItem
+            {
+                Text = "Control",
+                Value = "Control"
+            });
+            listaTipo.Add(new SelectListItem
+            {
+                Text = "Emergencia",
+                Value = "Emergencia"
+            });
+            ViewData["listaTipo"] = listaTipo;
+            //LISTA AREA
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient depaWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+            var selectList = new List<SelectListItem>();
+            DataSet ds = depaWS.ListaAreas();
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                string id = dr["ID_AREA"].ToString();
+                string nombre_area = dr["NOMBRE_AREA"].ToString();
+
+                selectList.Add(new SelectListItem
+                {
+                    Value = id,
+                    Text = nombre_area,
+                });
+            }
+            ViewData["ListaNombreAreas"] = selectList;
+            //LISTA DEPARTAMENTO
+            var selectList2 = new List<SelectListItem>();
+            DataSet ds2 = depaWS.ListaDepa();
+
+            foreach (DataRow dr in ds2.Tables[0].Rows)
+            {
+                string id = dr["ID_DEPARTAMENTO"].ToString();
+                string nombre_dpto = dr["NOMBRE_DEPARTAMENTO"].ToString();
+
+                selectList2.Add(new SelectListItem
+                {
+                    Value = id,
+                    Text = nombre_dpto,
+                });
+            }
+            ViewData["ListaNombreDeptos"] = selectList2;
+
+            //obteniendo datos paciente
+            List<RegistroPacienteUsuario> PaList = TodosUsuarios();
+            if (id3.HasValue)
+            {
+                var p = PaList.Single(m => m.id == id3);
+                string nombre_paciente = p.NOMBRE;
+                string telefono = p.TELEFONO;
+                string correo = p.CORREO;
+                ViewData["NOMBRE"] = nombre_paciente;
+                ViewData["TELEFONO"] = telefono;
+                ViewData["CORREO"] = correo;
+                //return View(p);
+            }
+            List<CitasPaciente> deplist = TodasLasCitas();
+            if (id2.HasValue)
+            {
+                var depa = deplist.Single(m => m.ID == id2);
+                ViewData["FECHA"] = depa.FECHA.ToString().Remove(10);
+                return View(depa);
+            }
+            return View();
+        }
+
+        // POST: CitasPaciente/Edit/5
+        [HttpPost]
+        public ActionResult RealizarConsulta(int id2, int id3, FormCollection collection)
+        {
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient updatecita = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+            List<CitasPaciente> deplist = TodasLasCitas();
+
+
+            try
+            {
+                var depa = deplist.Single(m => m.ID == id2);
+
+                if (TryUpdateModel(depa))
+                {
+                    updatecita.UpdateCita(id2, depa.ID_PACIENTE, depa.FECHA.Remove(10), depa.HORA, depa.TURNO, depa.TIPO_CITA, depa.ID_DEPARTAMENTO, depa.DESCRIPCION, "FINALIZADA");
+                    return RedirectToAction("ListadoCitasPacienteAceptada");
+
+                }
+
+                return View(depa);
+            }
+            catch
+            {
+                return View();
+            }
+
+
+
+        }
+
+        public ActionResult FinalizarCita(int? id2, int? id3)
+        {
+            //Lista de turnos de cita (AM o PM)
+            List<SelectListItem> listaTurno = new List<SelectListItem>();
+            listaTurno.Add(new SelectListItem
+            {
+                Text = "Matutino",
+                Value = "Matutino"
+            });
+            listaTurno.Add(new SelectListItem
+            {
+                Text = "Vespertino",
+                Value = "Vespertino"
+            });
+            ViewData["listaTurno"] = listaTurno;
+
+            // lista de tipo de cita(consulta, emergencia)
+            List<SelectListItem> listaTipo = new List<SelectListItem>();
+            listaTipo.Add(new SelectListItem
+            {
+                Text = "Consulta médica",
+                Value = "Consulta médica"
+            });
+            listaTipo.Add(new SelectListItem
+            {
+                Text = "Control",
+                Value = "Control"
+            });
+            listaTipo.Add(new SelectListItem
+            {
+                Text = "Emergencia",
+                Value = "Emergencia"
+            });
+            ViewData["listaTipo"] = listaTipo;
+            //LISTA AREA
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient depaWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+            var selectList = new List<SelectListItem>();
+            DataSet ds = depaWS.ListaAreas();
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                string id = dr["ID_AREA"].ToString();
+                string nombre_area = dr["NOMBRE_AREA"].ToString();
+
+                selectList.Add(new SelectListItem
+                {
+                    Value = id,
+                    Text = nombre_area,
+                });
+            }
+            ViewData["ListaNombreAreas"] = selectList;
+            //LISTA DEPARTAMENTO
+            var selectList2 = new List<SelectListItem>();
+            DataSet ds2 = depaWS.ListaDepa();
+
+            foreach (DataRow dr in ds2.Tables[0].Rows)
+            {
+                string id = dr["ID_DEPARTAMENTO"].ToString();
+                string nombre_dpto = dr["NOMBRE_DEPARTAMENTO"].ToString();
+
+                selectList2.Add(new SelectListItem
+                {
+                    Value = id,
+                    Text = nombre_dpto,
+                });
+            }
+            ViewData["ListaNombreDeptos"] = selectList2;
+
+            //obteniendo datos paciente
+            List<RegistroPacienteUsuario> PaList = TodosUsuarios();
+            if (id3.HasValue)
+            {
+                var p = PaList.Single(m => m.id == id3);
+                string nombre_paciente = p.NOMBRE;
+                string telefono = p.TELEFONO;
+                string correo = p.CORREO;
+                ViewData["NOMBRE"] = nombre_paciente;
+                ViewData["TELEFONO"] = telefono;
+                ViewData["CORREO"] = correo;
+                //return View(p);
+            }
+            List<CitasPaciente> deplist = TodasLasCitas();
+            if (id2.HasValue)
+            {
+                var depa = deplist.Single(m => m.ID == id2);
+                ViewData["FECHA"] = depa.FECHA.ToString().Remove(10);
+                return View(depa);
+            }
+            return View();
+        }
+
+        // POST: CitasPaciente/Edit/5
+        [HttpPost]
+        public ActionResult FinalizarCita(int id2, int id3, FormCollection collection)
+        {
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient updatecita = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+            List<CitasPaciente> deplist = TodasLasCitas();
+
+
+            try
+            {
+                var depa = deplist.Single(m => m.ID == id2);
+
+                if (TryUpdateModel(depa))
+                {
+                    updatecita.UpdateCita(id2, depa.ID_PACIENTE, depa.FECHA.Remove(10), depa.HORA, depa.TURNO, depa.TIPO_CITA, depa.ID_DEPARTAMENTO, depa.DESCRIPCION, "FINALIZADA");
+                    return RedirectToAction("ListadoCitasPacienteAceptada");
+
+                }
+
+                return View(depa);
+            }
+            catch
+            {
+                return View();
+            }
+
+
+
+        }
         // GET: CitasPaciente/Delete/5
         public ActionResult Delete(int id)
         {
