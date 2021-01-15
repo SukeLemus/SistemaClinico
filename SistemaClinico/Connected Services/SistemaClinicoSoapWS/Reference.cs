@@ -111,6 +111,27 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertCita", ReplyAction="*")]
         System.Threading.Tasks.Task<int> InsertCitaAsync(int idpaciente, string fecha, string hora, string turno, string tipocita, int iddepa, string descripcion, string estado);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateCita", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int UpdateCita(int idcita, int idpaciente, string fecha, string hora, string turno, string tipocita, int iddepa, string descripcion, string estado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateCita", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> UpdateCitaAsync(int idcita, int idpaciente, string fecha, string hora, string turno, string tipocita, int iddepa, string descripcion, string estado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaCitas", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet ListaCitas();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaCitas", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> ListaCitasAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_citas_comp", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet lista_citas_comp();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_citas_comp", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> lista_citas_compAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorld", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string HelloWorld();
@@ -689,6 +710,30 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         public System.Threading.Tasks.Task<int> InsertCitaAsync(int idpaciente, string fecha, string hora, string turno, string tipocita, int iddepa, string descripcion, string estado) {
             return base.Channel.InsertCitaAsync(idpaciente, fecha, hora, turno, tipocita, iddepa, descripcion, estado);
+        }
+        
+        public int UpdateCita(int idcita, int idpaciente, string fecha, string hora, string turno, string tipocita, int iddepa, string descripcion, string estado) {
+            return base.Channel.UpdateCita(idcita, idpaciente, fecha, hora, turno, tipocita, iddepa, descripcion, estado);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateCitaAsync(int idcita, int idpaciente, string fecha, string hora, string turno, string tipocita, int iddepa, string descripcion, string estado) {
+            return base.Channel.UpdateCitaAsync(idcita, idpaciente, fecha, hora, turno, tipocita, iddepa, descripcion, estado);
+        }
+        
+        public System.Data.DataSet ListaCitas() {
+            return base.Channel.ListaCitas();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> ListaCitasAsync() {
+            return base.Channel.ListaCitasAsync();
+        }
+        
+        public System.Data.DataSet lista_citas_comp() {
+            return base.Channel.lista_citas_comp();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> lista_citas_compAsync() {
+            return base.Channel.lista_citas_compAsync();
         }
         
         public string HelloWorld() {

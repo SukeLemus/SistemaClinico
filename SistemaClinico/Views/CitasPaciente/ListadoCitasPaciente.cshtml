@@ -1,0 +1,58 @@
+﻿@model IEnumerable<SistemaClinico.Models.ListadoCitasPaciente>
+
+<div class="titulo_general"><h1>Solicitudes de Citas</h1></div>
+
+<hr />
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr class="tr_lista">
+        <th class="th_lista">
+            @Html.DisplayName("Nombre paciente ")
+        </th>
+        <th class="th_lista">
+            @Html.DisplayName("Fecha solicitada ")
+        </th>
+        <th class="th_lista">
+            @Html.DisplayName("Turno solicitado ")
+        </th>
+        <th class="th_lista">
+            @Html.DisplayName("Tipo de cita ")
+        </th>
+        <th class="th_lista">
+            @Html.DisplayName("Departamento médico")
+        </th>
+        <th class="th_lista">
+            @Html.DisplayName("Opciones ")
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr class="tr_lista">
+        <td class="td_lista">
+            @Html.DisplayFor(modelItem => item.NOMBRE)
+
+            @Html.DisplayFor(modelItem => item.APELLIDO)
+        </td>
+        <td class="td_lista">
+            @Html.DisplayFor(modelItem => item.FECHA)
+        </td>
+        <td class="td_lista">
+            @Html.DisplayFor(modelItem => item.TURNO)
+        </td>
+        <td class="td_lista">
+            @Html.DisplayFor(modelItem => item.TIPO_CITA)
+        </td>
+        <td class="td_lista">
+            @Html.DisplayFor(modelItem => item.NOMBRE_DEPARTAMENTO)
+        </td>
+        <td class="td_lista">
+            @Html.ActionLink("Aprobar Cita", "Edit", new { id2=item.ID, id3=item.ID_PACIENTE }) |
+            @Html.ActionLink("Detalles", "Details", new { id2=item.ID }) 
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.ID })*@
+        </td>
+    </tr>
+}
+
+</table>
