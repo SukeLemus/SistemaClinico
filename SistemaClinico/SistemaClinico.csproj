@@ -152,6 +152,7 @@
     <Compile Include="Controllers\AreasController.cs" />
     <Compile Include="Controllers\CirugiasController.cs" />
     <Compile Include="Controllers\CitasPacienteController.cs" />
+    <Compile Include="Controllers\ConsultasController.cs" />
     <Compile Include="Controllers\ConsultoriosController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\DireccionController.cs" />
@@ -173,6 +174,8 @@
     <Compile Include="Models\Area.cs" />
     <Compile Include="Models\Cirugias.cs" />
     <Compile Include="Models\CitasPaciente.cs" />
+    <Compile Include="Models\Constancia.cs" />
+    <Compile Include="Models\Consulta.cs" />
     <Compile Include="Models\Consultorio.cs" />
     <Compile Include="Models\Departamento.cs" />
     <Compile Include="Models\Direccion.cs" />
@@ -181,6 +184,7 @@
     <Compile Include="Models\Medicamento.cs" />
     <Compile Include="Models\EnfermedadSintoma.cs" />
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Prescripcion.cs" />
     <Compile Include="Models\Registro.cs" />
     <Compile Include="Models\Sintoma.cs" />
     <Compile Include="Models\Usuario.cs" />
@@ -386,6 +390,10 @@
     <Content Include="Views\CitasPaciente\DetailsCitaFinalizada.cshtml" />
     <Content Include="Views\CitasPaciente\AgendaCitaDoctor.cshtml" />
     <Content Include="Views\CitasPaciente\RealizarConsulta.cshtml" />
+    <Content Include="Views\Consultas\Create.cshtml" />
+    <Content Include="Views\Consultas\AgregandoMedica.cshtml" />
+    <Content Include="Views\CitasPaciente\Index.cshtml" />
+    <Content Include="Views\Consultas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

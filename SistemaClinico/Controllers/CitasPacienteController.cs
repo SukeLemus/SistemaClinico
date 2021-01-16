@@ -101,7 +101,51 @@ namespace SistemaClinico.Controllers
             return listaS;
 
         }
-public static List<ListadoCitasPaciente> TodasLasCitasSegunpacienteAceptada()
+
+        public static List<ListadoCitasPaciente> TodasLasCitasSegunpacienteID(int idpa)
+        {
+            List<ListadoCitasPaciente> listaS = new List<ListadoCitasPaciente>();
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient citas = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+            DataSet ds = citas.lista_citas_comp_segun_id(idpa);
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                int id = int.Parse(dr["ID_CITAS"].ToString());
+                int idpaciente = int.Parse(dr["ID_PACIENTE"].ToString());
+                string nombrepaciente = dr["NOMBRE"].ToString();
+                string apellidopaciente = dr["APELLIDO"].ToString();
+                string telefono = dr["TELEFONO"].ToString();
+                string correo = dr["CORREO"].ToString();
+                string fecha = dr["FECHA"].ToString();
+                string hora = dr["HORA"].ToString();
+                string turno = dr["TURNO"].ToString();
+                string tipocita = dr["TIPO_CITA"].ToString();
+                int iddepa = int.Parse(dr["ID_DEPARTAMENTO"].ToString());
+                string nombredepa = dr["NOMBRE_DEPARTAMENTO"].ToString();
+                string descripcion = dr["DESCRIPCION"].ToString();
+                string estado = dr["ESTADO"].ToString();
+                ListadoCitasPaciente US = new ListadoCitasPaciente();
+                US.ID = id;
+                US.ID_PACIENTE = idpaciente;
+                US.NOMBRE = nombrepaciente;
+                US.APELLIDO = apellidopaciente;
+                US.TELEFONO = telefono;
+                US.CORREO = correo;
+                US.FECHA = fecha.Remove(10);
+                US.HORA = hora;
+                US.TURNO = turno;
+                US.TIPO_CITA = tipocita;
+                US.ID_DEPARTAMENTO = iddepa;
+                US.NOMBRE_DEPARTAMENTO = nombredepa;
+                US.DESCRIPCION = descripcion;
+                US.ESTADO = estado;
+                listaS.Add(US);
+            }
+            return listaS;
+
+        }
+
+        public static List<ListadoCitasPaciente> TodasLasCitasSegunpacienteAceptada()
         {
             List<ListadoCitasPaciente> listaS = new List<ListadoCitasPaciente>();
             SistemaClinicoSoapWS.ClinicaWebServiceSoapClient citas = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
@@ -142,8 +186,9 @@ public static List<ListadoCitasPaciente> TodasLasCitasSegunpacienteAceptada()
             return listaS;
 
         }
+        
         public static List<ListadoCitasPaciente> TodasLasCitasSegunpaciente()
-        {
+        {string nombrepaciente = "";
             List<ListadoCitasPaciente> listaS = new List<ListadoCitasPaciente>();
             SistemaClinicoSoapWS.ClinicaWebServiceSoapClient citas = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
             DataSet ds = citas.lista_citas_comp();
@@ -151,7 +196,7 @@ public static List<ListadoCitasPaciente> TodasLasCitasSegunpacienteAceptada()
             {
                 int id = int.Parse(dr["ID_CITAS"].ToString());
                 int idpaciente = int.Parse(dr["ID_PACIENTE"].ToString());
-                string nombrepaciente = dr["NOMBRE"].ToString();
+                nombrepaciente = dr["NOMBRE"].ToString();
                 string apellidopaciente = dr["APELLIDO"].ToString();
                 string telefono = dr["TELEFONO"].ToString();
                 string correo = dr["CORREO"].ToString();
@@ -219,9 +264,27 @@ public static List<ListadoCitasPaciente> TodasLasCitasSegunpacienteAceptada()
 
 
         // GET: CitasPaciente
-        public ActionResult Index()
+        public ActionResult Index(int? i, string BuscarNombre)
         {
-            return View();
+            //List<ListadoCitasPaciente> listaS = new List<ListadoCitasPaciente>();
+            //if (Session["Rol"] != null && Session["Rol"].Equals(1))
+            //{
+            //    //Mostrar citas
+
+
+
+            //    listaS = TodasLasCitasSegunpaciente();
+            //}
+            int idpa = int.Parse(Session["id"].ToString());
+
+            var citas = from e in TodasLasCitasSegunpacienteID(idpa)
+                              //orderby e.nombre
+                          select e;
+            if (!String.IsNullOrEmpty(BuscarNombre))
+            {
+               citas = citas.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+            }
+            return View(citas.ToPagedList(i ?? 1, 3));
         }
 
         // GET: lista CITAS SEGUN PACIENTE
@@ -931,7 +994,7 @@ public static List<ListadoCitasPaciente> TodasLasCitasSegunpacienteAceptada()
                 if (TryUpdateModel(depa))
                 {
                     updatecita.UpdateCita(id2, depa.ID_PACIENTE, depa.FECHA.Remove(10), depa.HORA, depa.TURNO, depa.TIPO_CITA, depa.ID_DEPARTAMENTO, depa.DESCRIPCION, "FINALIZADA");
-                    return RedirectToAction("ListadoCitasPacienteAceptada");
+                    return RedirectToAction("Create","Consultas", new { id = id2 });
 
                 }
 

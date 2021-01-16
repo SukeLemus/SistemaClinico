@@ -1,0 +1,131 @@
+﻿@model SistemaClinico.Models.ConsultaSobrecargada
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="titulo_general"><h1>Creación de Consulta Médica</h1></div>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Después de realizar la consulta, agregue el correspondiente diagnóstico</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+  
+
+
+    <div class="form-group">
+        @Html.Label("Nombre Paciente ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.Editor("NombreP", new { htmlAttributes = new { @class = "form-control", @value = ViewData["NombreP"], disabled = "" } })
+         
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Teléfono  ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.Editor("TelefonoP", new { htmlAttributes = new { @class = "form-control", @value = ViewData["TelefonoP"], disabled = "" } })
+          
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("E-mail ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.Editor("CorreoP", new { htmlAttributes = new { @class = "form-control", @value = ViewData["CorreoP"], disabled = "" } })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Médico ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.Editor("Medico", new { htmlAttributes = new { @class = "form-control", @value = ViewData["Medico"], disabled = "" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Fecha", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.Editor("FECHA", new { htmlAttributes = new { @class = "form-control", @value = ViewData["fecha"] } })
+            @Html.ValidationMessageFor(model => model.FECHA, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Hora", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.Editor("HORA", new { htmlAttributes = new { @class = "form-control", @value = ViewData["hora"] } })
+            @Html.ValidationMessageFor(model => model.HORA, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.Label("Motivo de consulta ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.Editor("DESCRIPCION", new { htmlAttributes = new { @class = "form-control", @value = ViewData["DESCRIPCION"], disabled = "" } })
+           
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.Label("Diagnóstico ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.DIAGNOSTICO, htmlAttributes: new
+            {
+                @class = "form-control"@*, @style = "width: 1000px;"*@})
+            @Html.ValidationMessageFor(model => model.DIAGNOSTICO, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    
+    @*<div class="form-group">
+        @Html.Label("Duracion del tratamiento ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.Editor("CICLO_CONSUMO", new { htmlAttributes = new { @class = "form-control" }, @required = "dwqdreqw" })
+            @Html.ValidationMessageFor(model => model.CICLO_CONSUMO, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Instrucciones adicionales ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.Editor("INSTRUCCIONES_AD", new { htmlAttributes = new { @class = "form-control" }, @required = "" })
+            @Html.ValidationMessageFor(model => model.INSTRUCCIONES_AD, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+
+
+  
+    <table align="center"> 
+        <tr>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Crear Consulta" class="btn btn-success" />
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+}
+
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

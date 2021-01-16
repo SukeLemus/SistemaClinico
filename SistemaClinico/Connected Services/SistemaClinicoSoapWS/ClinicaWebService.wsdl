@@ -252,6 +252,48 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="lista_citas_comp_segun_id">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idpaciente" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_citas_comp_segun_idResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_citas_comp_segun_idResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_consultas_comp_segun_id">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idpaciente" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_consultas_comp_segun_idResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_consultas_comp_segun_idResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="lista_citas_comp_finalizada">
         <s:complexType />
       </s:element>
@@ -259,6 +301,74 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="lista_citas_comp_finalizadaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertConsulta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idpaciente" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="idpersonal" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="fecha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="hora" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="idcita" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="diagnostico" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertConsultaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertConsultaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertPrescripcion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idconsulta" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="idmedicamento" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="cicloconsumo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="viaadmin" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="instrucciones" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertPrescripcionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertPrescripcionResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertConstancia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idconsulta" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertConstanciaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertConstanciaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MaxIdConsulta">
+        <s:complexType />
+      </s:element>
+      <s:element name="MaxIdConsultaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MaxIdConsultaResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1419,11 +1529,47 @@
   <wsdl:message name="lista_citas_comp_aceptadaSoapOut">
     <wsdl:part name="parameters" element="tns:lista_citas_comp_aceptadaResponse" />
   </wsdl:message>
+  <wsdl:message name="lista_citas_comp_segun_idSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_citas_comp_segun_id" />
+  </wsdl:message>
+  <wsdl:message name="lista_citas_comp_segun_idSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_citas_comp_segun_idResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_consultas_comp_segun_idSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_consultas_comp_segun_id" />
+  </wsdl:message>
+  <wsdl:message name="lista_consultas_comp_segun_idSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_consultas_comp_segun_idResponse" />
+  </wsdl:message>
   <wsdl:message name="lista_citas_comp_finalizadaSoapIn">
     <wsdl:part name="parameters" element="tns:lista_citas_comp_finalizada" />
   </wsdl:message>
   <wsdl:message name="lista_citas_comp_finalizadaSoapOut">
     <wsdl:part name="parameters" element="tns:lista_citas_comp_finalizadaResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertConsultaSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertConsulta" />
+  </wsdl:message>
+  <wsdl:message name="InsertConsultaSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertConsultaResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertPrescripcionSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertPrescripcion" />
+  </wsdl:message>
+  <wsdl:message name="InsertPrescripcionSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertPrescripcionResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertConstanciaSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertConstancia" />
+  </wsdl:message>
+  <wsdl:message name="InsertConstanciaSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertConstanciaResponse" />
+  </wsdl:message>
+  <wsdl:message name="MaxIdConsultaSoapIn">
+    <wsdl:part name="parameters" element="tns:MaxIdConsulta" />
+  </wsdl:message>
+  <wsdl:message name="MaxIdConsultaSoapOut">
+    <wsdl:part name="parameters" element="tns:MaxIdConsultaResponse" />
   </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
@@ -1862,9 +2008,33 @@
       <wsdl:input message="tns:lista_citas_comp_aceptadaSoapIn" />
       <wsdl:output message="tns:lista_citas_comp_aceptadaSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="lista_citas_comp_segun_id">
+      <wsdl:input message="tns:lista_citas_comp_segun_idSoapIn" />
+      <wsdl:output message="tns:lista_citas_comp_segun_idSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_consultas_comp_segun_id">
+      <wsdl:input message="tns:lista_consultas_comp_segun_idSoapIn" />
+      <wsdl:output message="tns:lista_consultas_comp_segun_idSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="lista_citas_comp_finalizada">
       <wsdl:input message="tns:lista_citas_comp_finalizadaSoapIn" />
       <wsdl:output message="tns:lista_citas_comp_finalizadaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertConsulta">
+      <wsdl:input message="tns:InsertConsultaSoapIn" />
+      <wsdl:output message="tns:InsertConsultaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertPrescripcion">
+      <wsdl:input message="tns:InsertPrescripcionSoapIn" />
+      <wsdl:output message="tns:InsertPrescripcionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertConstancia">
+      <wsdl:input message="tns:InsertConstanciaSoapIn" />
+      <wsdl:output message="tns:InsertConstanciaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MaxIdConsulta">
+      <wsdl:input message="tns:MaxIdConsultaSoapIn" />
+      <wsdl:output message="tns:MaxIdConsultaSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -2242,8 +2412,62 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="lista_citas_comp_segun_id">
+      <soap:operation soapAction="http://tempuri.org/lista_citas_comp_segun_id" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_consultas_comp_segun_id">
+      <soap:operation soapAction="http://tempuri.org/lista_consultas_comp_segun_id" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="lista_citas_comp_finalizada">
       <soap:operation soapAction="http://tempuri.org/lista_citas_comp_finalizada" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertConsulta">
+      <soap:operation soapAction="http://tempuri.org/InsertConsulta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPrescripcion">
+      <soap:operation soapAction="http://tempuri.org/InsertPrescripcion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertConstancia">
+      <soap:operation soapAction="http://tempuri.org/InsertConstancia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MaxIdConsulta">
+      <soap:operation soapAction="http://tempuri.org/MaxIdConsulta" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2947,8 +3171,62 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="lista_citas_comp_segun_id">
+      <soap12:operation soapAction="http://tempuri.org/lista_citas_comp_segun_id" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_consultas_comp_segun_id">
+      <soap12:operation soapAction="http://tempuri.org/lista_consultas_comp_segun_id" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="lista_citas_comp_finalizada">
       <soap12:operation soapAction="http://tempuri.org/lista_citas_comp_finalizada" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertConsulta">
+      <soap12:operation soapAction="http://tempuri.org/InsertConsulta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPrescripcion">
+      <soap12:operation soapAction="http://tempuri.org/InsertPrescripcion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertConstancia">
+      <soap12:operation soapAction="http://tempuri.org/InsertConstancia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MaxIdConsulta">
+      <soap12:operation soapAction="http://tempuri.org/MaxIdConsulta" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

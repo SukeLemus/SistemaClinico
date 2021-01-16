@@ -139,12 +139,54 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_citas_comp_aceptada", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataSet> lista_citas_comp_aceptadaAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_citas_comp_segun_id", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet lista_citas_comp_segun_id(int idpaciente);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_citas_comp_segun_id", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> lista_citas_comp_segun_idAsync(int idpaciente);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_consultas_comp_segun_id", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet lista_consultas_comp_segun_id(int idpaciente);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_consultas_comp_segun_id", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> lista_consultas_comp_segun_idAsync(int idpaciente);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_citas_comp_finalizada", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Data.DataSet lista_citas_comp_finalizada();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_citas_comp_finalizada", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataSet> lista_citas_comp_finalizadaAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertConsulta", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int InsertConsulta(int idpaciente, int idpersonal, string fecha, string hora, int idcita, string diagnostico);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertConsulta", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> InsertConsultaAsync(int idpaciente, int idpersonal, string fecha, string hora, int idcita, string diagnostico);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertPrescripcion", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int InsertPrescripcion(int idconsulta, int idmedicamento, string cicloconsumo, string viaadmin, string instrucciones);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertPrescripcion", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> InsertPrescripcionAsync(int idconsulta, int idmedicamento, string cicloconsumo, string viaadmin, string instrucciones);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertConstancia", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int InsertConstancia(int idconsulta);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertConstancia", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> InsertConstanciaAsync(int idconsulta);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/MaxIdConsulta", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet MaxIdConsulta();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/MaxIdConsulta", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> MaxIdConsultaAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorld", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -758,12 +800,60 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
             return base.Channel.lista_citas_comp_aceptadaAsync();
         }
         
+        public System.Data.DataSet lista_citas_comp_segun_id(int idpaciente) {
+            return base.Channel.lista_citas_comp_segun_id(idpaciente);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> lista_citas_comp_segun_idAsync(int idpaciente) {
+            return base.Channel.lista_citas_comp_segun_idAsync(idpaciente);
+        }
+        
+        public System.Data.DataSet lista_consultas_comp_segun_id(int idpaciente) {
+            return base.Channel.lista_consultas_comp_segun_id(idpaciente);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> lista_consultas_comp_segun_idAsync(int idpaciente) {
+            return base.Channel.lista_consultas_comp_segun_idAsync(idpaciente);
+        }
+        
         public System.Data.DataSet lista_citas_comp_finalizada() {
             return base.Channel.lista_citas_comp_finalizada();
         }
         
         public System.Threading.Tasks.Task<System.Data.DataSet> lista_citas_comp_finalizadaAsync() {
             return base.Channel.lista_citas_comp_finalizadaAsync();
+        }
+        
+        public int InsertConsulta(int idpaciente, int idpersonal, string fecha, string hora, int idcita, string diagnostico) {
+            return base.Channel.InsertConsulta(idpaciente, idpersonal, fecha, hora, idcita, diagnostico);
+        }
+        
+        public System.Threading.Tasks.Task<int> InsertConsultaAsync(int idpaciente, int idpersonal, string fecha, string hora, int idcita, string diagnostico) {
+            return base.Channel.InsertConsultaAsync(idpaciente, idpersonal, fecha, hora, idcita, diagnostico);
+        }
+        
+        public int InsertPrescripcion(int idconsulta, int idmedicamento, string cicloconsumo, string viaadmin, string instrucciones) {
+            return base.Channel.InsertPrescripcion(idconsulta, idmedicamento, cicloconsumo, viaadmin, instrucciones);
+        }
+        
+        public System.Threading.Tasks.Task<int> InsertPrescripcionAsync(int idconsulta, int idmedicamento, string cicloconsumo, string viaadmin, string instrucciones) {
+            return base.Channel.InsertPrescripcionAsync(idconsulta, idmedicamento, cicloconsumo, viaadmin, instrucciones);
+        }
+        
+        public int InsertConstancia(int idconsulta) {
+            return base.Channel.InsertConstancia(idconsulta);
+        }
+        
+        public System.Threading.Tasks.Task<int> InsertConstanciaAsync(int idconsulta) {
+            return base.Channel.InsertConstanciaAsync(idconsulta);
+        }
+        
+        public System.Data.DataSet MaxIdConsulta() {
+            return base.Channel.MaxIdConsulta();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> MaxIdConsultaAsync() {
+            return base.Channel.MaxIdConsultaAsync();
         }
         
         public string HelloWorld() {

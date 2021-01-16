@@ -1,0 +1,77 @@
+﻿@*@model IEnumerable<SistemaClinico.Models.ConsultaPac>*@
+@model IPagedList<SistemaClinico.Models.ConsultaPac>
+@{
+    ViewBag.Title = "Index";
+}
+@using PagedList;
+@using PagedList.Mvc;
+@using SistemaClinico.Controllers;
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Paciente ")
+        </th>
+
+        <th>
+            @Html.DisplayName("Doctor ")
+        </th>
+        <th>
+            @Html.DisplayName("Fecha consulta ")
+        </th>
+        <th>
+            @Html.DisplayName("Hora ")
+        </th>
+        <th>
+            @Html.DisplayName("Tipo cita ")
+        </th>
+        <th>
+            @Html.DisplayName("Descripción ")
+        </th>
+        <th>
+            @Html.DisplayName("Diagnóstico ")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOMBRE)
+           
+                @Html.DisplayFor(modelItem => item.APELLIDO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOMBRES)
+           
+                @Html.DisplayFor(modelItem => item.APELLIDOS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FECHA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HORA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TIPO_CITA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DESCRIPCION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DIAGNOSTICO)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>

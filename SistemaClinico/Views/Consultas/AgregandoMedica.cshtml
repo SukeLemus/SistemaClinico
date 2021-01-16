@@ -1,0 +1,124 @@
+﻿@model SistemaClinico.Models.Prescripcion
+
+@{
+    ViewBag.Title = "AgregandoMedica";
+}
+
+<div class="titulo_general"><h1>Creación de Consulta Médica</h1></div>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Recetando Medicamentos a la consulta. Puede agregar uno o varios medicamentos o ninguno</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.Label("Nombre paciente ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.Editor("NombreP", new { htmlAttributes = new { @class = "form-control", @value = ViewData["NombreP"], disabled = "" } })
+
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Teléfono  ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.Editor("TelefonoP", new { htmlAttributes = new { @class = "form-control", @value = ViewData["TelefonoP"], disabled = "" } })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("E-mail ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.Editor("CorreoP", new { htmlAttributes = new { @class = "form-control", @value = ViewData["CorreoP"], disabled = "" } })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Médico ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.Editor("Medico", new { htmlAttributes = new { @class = "form-control", @value = ViewData["Medico"], disabled = "" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Medicamento ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("ID_MEDICAMENTO",
+                      (IEnumerable<SelectListItem>)ViewData["listaMedicamentos"],
+                      "Medicamento", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ID_MEDICAMENTO, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Vía administración ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("VIA_ADMI",
+                      (IEnumerable<SelectListItem>)ViewData["listaTipoAdministracion"],
+                      "Vía administración", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.VIA_ADMI, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Ciclo de consumo ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CICLO_CONSUMO, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CICLO_CONSUMO, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Instrucciones adicionales", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.INSTRUCCIONES_AD, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.INSTRUCCIONES_AD, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>*@
+
+    <table align="center">
+        <tr>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Agregar medicamentos" class="btn btn-success" />
+                    </div>
+                </div>
+            </td>
+            <td>&nbsp;  &nbsp; &nbsp;  &nbsp;</td>
+            <td>
+                <div div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input onclick="location.href='@Url.Action("Index", "Home")'" type="button" value="Finalizar consulta" class="btn btn-finalizar" />
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</div>
+}
+
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
