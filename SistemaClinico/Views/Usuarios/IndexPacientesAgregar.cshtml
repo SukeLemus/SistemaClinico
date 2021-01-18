@@ -1,0 +1,56 @@
+﻿@*@model IEnumerable<SistemaClinico.Models.Usuario>*@
+@model IPagedList<SistemaClinico.Models.RegistroPacienteUsuario>
+
+@{
+    ViewBag.Title = "IndexPacientesAgregar";
+}
+@using PagedList;
+@using PagedList.Mvc;
+@using SistemaClinico.Controllers;
+
+<h2>IndexPacientesAgregar</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Paciente")
+
+        <th>
+            @Html.DisplayName("Género ")
+        </th>
+        <th>
+            @Html.DisplayName("Tipo sangre ")
+        </th>
+        <th>
+            @Html.DisplayName("Teléfono ")
+        </th>
+        <th>OPCION</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOMBRE)
+
+                @Html.DisplayFor(modelItem => item.APELLIDO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GENERO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TIPO_SANGRE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TELEFONO)
+            </td>
+            <td>
+                @Html.ActionLink("Ver informacion medica", "InformacionMedica", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>

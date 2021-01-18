@@ -1,0 +1,153 @@
+﻿@model SistemaClinico.Models.ConstanciaPDF
+
+@{
+    //Layout = null;
+}
+
+<h2>Consulta Médica</h2>
+<link rel="stylesheet" href="~/Content/TableCSS.css" />
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<link rel="stylesheet" href="~/Content/sheetslider.min.css" />
+<link rel="stylesheet" href="~/Content/Site.css" />
+<link rel="stylesheet" href="~/Content/estilito.css" />
+<link rel="stylesheet" href="~/Content/Tablas.css" />
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+<link href="~/Content/css/bootstrap-timepicker.css" rel="stylesheet" />
+<hr />
+<div>
+    <h4>Esta constancia médica tiene validéz únicamente si esta debidamente sellada por la administración del centro y la firma y sello del médico que le atendió</h4>
+    <hr />
+    @*<dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ID_CONSTANCIA)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ID_CONSTANCIA)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ID_CONSULTA)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ID_CONSULTA)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NOMBRE)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NOMBRE)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.APELLIDO)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.APELLIDO)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NOMBRES)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NOMBRES)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.APELLIDOS)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.APELLIDOS)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FECHA)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FECHA)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.HORA)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HORA)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DIAGNOSTICO)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DIAGNOSTICO)
+            </dd>
+
+        </dl>*@
+
+
+    <table class="table">
+        <tr>
+            <th>Paciente</th>
+            <th>Doctor</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(model => model.NOMBRE) @Html.DisplayFor(model => model.APELLIDO)</td>
+            <td>@Html.DisplayFor(model => model.NOMBRES) @Html.DisplayFor(model => model.APELLIDOS)</td>
+            <td>@Html.DisplayFor(model => model.FECHA)</td>
+            <td>@Html.DisplayFor(model => model.HORA)</td>
+
+        </tr>
+       
+    </table>
+
+    <table>
+        <tr>
+            <th>Diagnóstico</th>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(model => model.DIAGNOSTICO)</td>
+        </tr>
+    </table>
+</div>
+
+
+
+<div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <table>
+        <tr>
+            <th>Firma</th>
+            <th> </th>
+            <th>Sello</th>
+        </tr>
+        <tr>
+            <td>________________________________________</td>
+            <td>&nbsp; &nbsp; &nbsp;</td>
+            <td>________________________________________</td>
+            
+        </tr>
+    </table>
+
+</div>
+
+
+
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@

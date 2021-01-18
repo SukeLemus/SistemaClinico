@@ -1,0 +1,99 @@
+﻿@model IEnumerable<SistemaClinico.Models.PrescripcionPDF>
+
+@{
+    ViewBag.Title = "GenerarPrescripcion";
+}
+
+<h2>GenerarPrescripcion</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_PRESCRIPCION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_CONSULTA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMBRE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.APELLIDO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMBRES)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.APELLIDOS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HORA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMBRE_MEDICAMENTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CICLO_CONSUMO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VIA_ADMI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.INSTRUCCIONES_AD)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_PRESCRIPCION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_CONSULTA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.APELLIDO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRES)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.APELLIDOS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HORA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRE_MEDICAMENTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CICLO_CONSUMO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VIA_ADMI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.INSTRUCCIONES_AD)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

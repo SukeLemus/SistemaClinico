@@ -6,77 +6,94 @@
 @using PagedList;
 @using PagedList.Mvc;
 @using SistemaClinico.Controllers;
-<h2>Index</h2>
 
-
-<table class="table">
-    <tr>
+<div class="titulo_general"><h1>Mis Citas</h1></div>
+<br />
+<br />
+<table class="table_lista">
+    <tr class="tr_lista">
         @*<th>
-            @Html.DisplayName("ID_PACIENTE")
-        </th>*@
-        <th>
+                @Html.DisplayName("ID_PACIENTE")
+            </th>*@
+        <th class="th_lista">
             @Html.DisplayName("Tipo de cita ")
         </th>
-        <th>
+        <th class="th_lista">
             @Html.DisplayName("Nombre departamento ")
         </th>
 
-        <th>
+        <th class="th_lista">
             @Html.DisplayName("Descripción ")
         </th>
 
-        <th>
+        <th class="th_lista">
             @Html.DisplayName("Turno ")
         </th>
-        <th>
+        <th class="th_lista">
             @Html.DisplayName("Fecha ")
         </th>
-        <th>
+        <th class="th_lista">
             @Html.DisplayName("Hora ")
         </th>
-        <th>
+        <th class="th_lista">
             @Html.DisplayName("Estado ")
         </th>
 
-        <th>Opciones</th>
+        <th class="th_lista">Opciones</th>
     </tr>
 
     @foreach (var item in Model)
     {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.TIPO_CITA)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.NOMBRE_DEPARTAMENTO)
-    </td>
+        <tr class="tr_lista">
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.TIPO_CITA)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.NOMBRE_DEPARTAMENTO)
+            </td>
 
 
 
 
 
-    <td>
-        @Html.DisplayFor(modelItem => item.DESCRIPCION)
-    </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.DESCRIPCION)
+            </td>
 
-    <td>
-        @Html.DisplayFor(modelItem => item.TURNO)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.FECHA)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.HORA)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ESTADO)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-    </td>
-</tr>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.TURNO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.FECHA)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.HORA)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.ESTADO)
+            </td>
+            <td class="td_lista">
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |*@
+                @Html.ActionLink("Detalles", "Details", new { id = int.Parse(Session["id"].ToString()) })
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+            </td>
+        </tr>
     }
 
+
+
+</table>
+
+<br />
+<br />
+<table align="center">
+    <tr>
+        <td>
+            <div div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input onclick="location.href='@Url.Action("Index", "Home")'" type="button" value="Volver" class="btn btn-finalizar" />
+                </div>
+            </div>
+        </td>
+    </tr>
 </table>

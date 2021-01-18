@@ -1,0 +1,183 @@
+﻿@model SistemaClinico.Models.ConsultaPac
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="titulo_general"><h1>Mis Consultas Médicas</h1></div>
+
+<div>
+    <h4>Detalles de la consulta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.APELLIDO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.APELLIDO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBRES)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRES)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.APELLIDOS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.APELLIDOS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HORA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HORA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO_CITA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_CITA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DIAGNOSTICO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DIAGNOSTICO)
+        </dd>
+
+    </dl>
+</div>
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID_CONSULTA }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Detalle de la Cita</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @*@Html.HiddenFor(model => model.ID_PACIENTE)*@
+
+    <div class="form-group">
+        @Html.Label("Nombre ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Apellido ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.APELLIDO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Nombre doctor ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NOMBRES, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.Label("Apellido doctor ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.APELLIDOS, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Fecha ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FECHA, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Hora ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.HORA, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Tipo de cita ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TIPO_CITA, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Motivo de la cita ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DESCRIPCION, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Diagnóstico ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DIAGNOSTICO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        </div>
+    </div>
+
+</div>
+}
+
+
+
+        <table align="center">
+            <tr>
+                <td>
+                    <div div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input onclick="location.href='@Url.Action("Index", "Consultas")'" type="button" value="Volver" class="btn btn-finalizar" />
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>

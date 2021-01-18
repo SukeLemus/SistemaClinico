@@ -187,6 +187,7 @@
     <Compile Include="Models\Prescripcion.cs" />
     <Compile Include="Models\Registro.cs" />
     <Compile Include="Models\Sintoma.cs" />
+    <Compile Include="Models\Tratamiento.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\UsuarioPersonal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -394,6 +395,14 @@
     <Content Include="Views\Consultas\AgregandoMedica.cshtml" />
     <Content Include="Views\CitasPaciente\Index.cshtml" />
     <Content Include="Views\Consultas\Index.cshtml" />
+    <Content Include="Views\Consultas\Details.cshtml" />
+    <Content Include="Views\CitasPaciente\Details.cshtml" />
+    <Content Include="Views\Consultas\GeneracionConstancias.cshtml" />
+    <Content Include="Views\Consultas\GenerarConstancia.cshtml" />
+    <Content Include="Views\Consultas\GeneracionPrescripcion.cshtml" />
+    <Content Include="Views\Consultas\GenerarPrescripcion.cshtml" />
+    <Content Include="Views\Usuarios\IndexPacientesAgregar.cshtml" />
+    <Content Include="Views\Usuarios\InformacionMedica.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -20,7 +20,8 @@ namespace SistemaClinico.Models
 
     public class ConsultaPac
     {
-       
+        public int ID_CONSULTA { get; set; }
+        public int ID_PACIENTE { get; set; }
         public string NOMBRE { get; set; }
         public string APELLIDO { get; set; }
         public string NOMBRES { get; set; }

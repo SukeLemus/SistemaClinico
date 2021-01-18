@@ -1,0 +1,94 @@
+﻿@model SistemaClinico.Models.RegistroPacienteUsuario
+
+@{
+    ViewBag.Title = "InformacionMedica";
+}
+
+<h2>InformacionMedica</h2>
+
+<div>
+    <h4>RegistroPacienteUsuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.APELLIDO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.APELLIDO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DUI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DUI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO_SANGRE)
+
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_SANGRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Tratamientos actuales ")
+
+        </dt>
+
+        <dd>
+            @Html.DropDownList("ID", (IEnumerable<SelectListItem>)ViewData["ListaTratamiento"], "Despliege para mostrar los Tratamientos ", htmlAttributes: new { @class = "form-control" })
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Fracturas que posee ")
+
+        </dt>
+
+        <dd>
+            @Html.DropDownList("ID", (IEnumerable<SelectListItem>)ViewData["ListaFracturas"], "Despliege para mostrar las Fracturas ", htmlAttributes: new { @class = "form-control" })
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Cirugias que posee ")
+
+        </dt>
+
+        <dd>
+            @Html.DropDownList("ID", (IEnumerable<SelectListItem>)ViewData["ListaCirugias"], "Despliege para mostrar las Cirugias ", htmlAttributes: new { @class = "form-control" })
+        </dd>
+        <dt>
+            @Html.DisplayName("Enfermedades que posee ")
+
+        </dt>
+
+        <dd>
+            @Html.DropDownList("id", (IEnumerable<SelectListItem>)ViewData["ListaEnfermedades"], "Despliege para mostrar las Enfermedades ", htmlAttributes: new { @class = "form-control" })
+        </dd>
+        <dt>
+            @Html.DisplayName("Alergias que posee ")
+
+        </dt>
+
+        <dd>
+            @Html.DropDownList("ID", (IEnumerable<SelectListItem>)ViewData["ListaAlergias"], "Despliege para mostrar las Alergias ", htmlAttributes: new { @class = "form-control" })
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

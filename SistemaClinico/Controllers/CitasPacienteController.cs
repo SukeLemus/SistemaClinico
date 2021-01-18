@@ -359,6 +359,15 @@ namespace SistemaClinico.Controllers
         }
 
         // GET: CitasPaciente/Details/5
+        public ActionResult Details(int id)
+        {
+            List<ListadoCitasPaciente> detallesConsulta = TodasLasCitasSegunpacienteID(id);
+
+            var cita = detallesConsulta.Single(m => m.ID_PACIENTE == id);
+
+            return View(cita);
+        
+        }
         public ActionResult DetailsCitaP(int? id2, int? id3)
         {
 

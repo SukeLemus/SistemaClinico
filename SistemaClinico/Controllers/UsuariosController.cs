@@ -83,12 +83,161 @@ namespace SistemaClinico.Controllers
 
         }
 
+        public ActionResult InformacionMedica(int id)
+        {
+            //agregar listas viewdata de paciente
 
+
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient WS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+            /**************ALERGIAS ***************************************************/
+            DataSet ds = WS.Select_AlergiasPaciente(id);
+            List<Alergias> listaAler = new List<Alergias>();
+            var selectListAlergias = new List<SelectListItem>();
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                int idAlergia = int.Parse(dr["ID_ALERGIA"].ToString());
+                // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
+                string nombreAlergia = dr["NOMBRE_ALERGIA"].ToString();
+
+                Alergias aler = new Alergias();
+                aler.ID = idAlergia;
+                aler.NOMBRE_ALERGIA = nombreAlergia;
+                listaAler.Add(aler);
+
+                selectListAlergias.Add(new SelectListItem
+                {
+                    Value = aler.ID.ToString(),
+                    Text = aler.NOMBRE_ALERGIA
+                });
+            }
+
+            ViewData["ListaAlergias"]= selectListAlergias;
+            /*******************************************************************************/
+
+            /************** ENFERMEDADES ***************************************************/
+            DataSet ds2 = WS.Select_EnfermedadesPaciente(id);
+            List<Enfermedad> listaEnfer = new List<Enfermedad>();
+            var selectListEnfermedades = new List<SelectListItem>();
+            foreach (DataRow dr2 in ds2.Tables[0].Rows)
+            {
+                int idEnfermedad = int.Parse(dr2["ID_ENFERMEDAD"].ToString());
+                string nombreEnfermedad = dr2["NOMBRE_ENFERMEDAD"].ToString();
+
+                Enfermedad enfer = new Enfermedad();
+                enfer.id = idEnfermedad;
+                enfer.nombre_enfermedad = nombreEnfermedad;
+
+                listaEnfer.Add(enfer);
+
+                selectListEnfermedades.Add(new SelectListItem
+                {
+                    Value = enfer.id.ToString(),
+                    Text = enfer.nombre_enfermedad
+                });
+            }
+            ViewData["ListaEnfermedades"] = selectListEnfermedades;
+            /*******************************************************************************/
+
+            /************** CIRUGIAS *******************************************************/
+            DataSet ds3 = WS.Select_CirugiasPaciente(id);
+            List<Cirugias> listaCirug = new List<Cirugias>();
+            var selectListCirugias = new List<SelectListItem>();
+            foreach (DataRow dr3 in ds3.Tables[0].Rows)
+            {
+                int idCirugia = int.Parse(dr3["ID_CIRUGIA"].ToString());
+                string nombreCirugia = dr3["NOMBRE_CIRUGIA"].ToString();
+
+                Cirugias ciru = new Cirugias();
+                ciru.ID = idCirugia;
+                ciru.NOMBRE_CIRUGIA = nombreCirugia;
+
+                listaCirug.Add(ciru);
+
+                selectListCirugias.Add(new SelectListItem
+                {
+                    Value = ciru.ID.ToString(),
+                    Text = ciru.NOMBRE_CIRUGIA
+                });
+            }
+            ViewData["ListaCirugias"] = selectListCirugias;
+            /*******************************************************************************/
+
+            /************** FRACTURAS ******************************************************/
+            DataSet ds4 = WS.Select_FracturasPaciente(id);
+            List<Fracturas> listaFract = new List<Fracturas>();
+            var selectListFracturas = new List<SelectListItem>();
+            foreach (DataRow dr4 in ds4.Tables[0].Rows)
+            {
+                int idFractura = int.Parse(dr4["ID_FRACTURA"].ToString());
+                string nombreFractura = dr4["NOMBRE_FRACTURA"].ToString();
+
+                Fracturas fractu = new Fracturas();
+                fractu.ID = idFractura;
+                fractu.NOMBRE_FRACTURA = nombreFractura;
+
+                listaFract.Add(fractu);
+
+                selectListFracturas.Add(new SelectListItem
+                {
+                    Value = fractu.ID.ToString(),
+                    Text = fractu.NOMBRE_FRACTURA
+                });
+            }
+            ViewData["ListaFracturas"] = selectListFracturas;
+            /*******************************************************************************/
+
+            /************** TRATAMIENTOS ***************************************************/
+            DataSet ds5 = WS.Select_TratamientosPaciente(id);
+            List<Tratamiento> listaTratamiento = new List<Tratamiento>();
+            var selectListTratamiento = new List<SelectListItem>();
+            foreach (DataRow dr5 in ds5.Tables[0].Rows)
+            {
+                int idTratamiento = int.Parse(dr5["ID_MEDICAMENTO"].ToString());
+                string nombreTratamiento = dr5["NOMBRE_MEDICAMENTO"].ToString();
+
+                Tratamiento trata = new Tratamiento();
+                trata.ID = idTratamiento;
+                trata.NOMBRE_MEDICAMENTO = nombreTratamiento;
+
+                listaTratamiento.Add(trata);
+
+                selectListFracturas.Add(new SelectListItem
+                {
+                    Value = trata.ID.ToString(),
+                    Text = trata.NOMBRE_MEDICAMENTO
+                });
+            }
+            ViewData["ListaTratamiento"] = selectListTratamiento;
+            /*******************************************************************************/
+
+
+            var usu = from e in TodosUsuarios()
+                          //orderby e.nombre
+                      select e;
+
+            var p = usu.Single(m => m.id == id);
+
+            return View(p);
+        }
 
         // GET: Usuarios
         public ActionResult Index(int? i, string BuscarNombre)
         {
             var usu = from e in TodosUsuarioMunicipio()
+                          //orderby e.nombre
+                      select e;
+            //if (!String.IsNullOrEmpty(BuscarNombre))
+            //{
+            //    usu = usu.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+            //}
+            return View(usu.ToPagedList(i ?? 1, 10));
+        }
+
+        public ActionResult IndexPacientesAgregar(int? i, string BuscarNombre)
+        {
+            var usu = from e in TodosUsuarios()
                           //orderby e.nombre
                       select e;
             //if (!String.IsNullOrEmpty(BuscarNombre))

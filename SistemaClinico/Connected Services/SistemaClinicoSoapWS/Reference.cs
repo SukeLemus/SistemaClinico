@@ -181,6 +181,55 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertConstancia", ReplyAction="*")]
         System.Threading.Tasks.Task<int> InsertConstanciaAsync(int idconsulta);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Select_IDConstancia", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet Select_IDConstancia(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Select_IDConstancia", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> Select_IDConstanciaAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Select_IDPrescripcion", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet Select_IDPrescripcion(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Select_IDPrescripcion", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> Select_IDPrescripcionAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Select_AlergiasPaciente", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet Select_AlergiasPaciente(int idPaciente);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Select_AlergiasPaciente", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> Select_AlergiasPacienteAsync(int idPaciente);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Select_EnfermedadesPaciente", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet Select_EnfermedadesPaciente(int idPaciente);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Select_EnfermedadesPaciente", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> Select_EnfermedadesPacienteAsync(int idPaciente);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Select_CirugiasPaciente", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet Select_CirugiasPaciente(int idPaciente);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Select_CirugiasPaciente", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> Select_CirugiasPacienteAsync(int idPaciente);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Select_FracturasPaciente", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet Select_FracturasPaciente(int idPaciente);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Select_FracturasPaciente", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> Select_FracturasPacienteAsync(int idPaciente);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Select_TratamientosPaciente", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet Select_TratamientosPaciente(int idPaciente);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Select_TratamientosPaciente", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> Select_TratamientosPacienteAsync(int idPaciente);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/MaxIdConsulta", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Data.DataSet MaxIdConsulta();
@@ -846,6 +895,62 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         public System.Threading.Tasks.Task<int> InsertConstanciaAsync(int idconsulta) {
             return base.Channel.InsertConstanciaAsync(idconsulta);
+        }
+        
+        public System.Data.DataSet Select_IDConstancia(int id) {
+            return base.Channel.Select_IDConstancia(id);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> Select_IDConstanciaAsync(int id) {
+            return base.Channel.Select_IDConstanciaAsync(id);
+        }
+        
+        public System.Data.DataSet Select_IDPrescripcion(int id) {
+            return base.Channel.Select_IDPrescripcion(id);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> Select_IDPrescripcionAsync(int id) {
+            return base.Channel.Select_IDPrescripcionAsync(id);
+        }
+        
+        public System.Data.DataSet Select_AlergiasPaciente(int idPaciente) {
+            return base.Channel.Select_AlergiasPaciente(idPaciente);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> Select_AlergiasPacienteAsync(int idPaciente) {
+            return base.Channel.Select_AlergiasPacienteAsync(idPaciente);
+        }
+        
+        public System.Data.DataSet Select_EnfermedadesPaciente(int idPaciente) {
+            return base.Channel.Select_EnfermedadesPaciente(idPaciente);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> Select_EnfermedadesPacienteAsync(int idPaciente) {
+            return base.Channel.Select_EnfermedadesPacienteAsync(idPaciente);
+        }
+        
+        public System.Data.DataSet Select_CirugiasPaciente(int idPaciente) {
+            return base.Channel.Select_CirugiasPaciente(idPaciente);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> Select_CirugiasPacienteAsync(int idPaciente) {
+            return base.Channel.Select_CirugiasPacienteAsync(idPaciente);
+        }
+        
+        public System.Data.DataSet Select_FracturasPaciente(int idPaciente) {
+            return base.Channel.Select_FracturasPaciente(idPaciente);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> Select_FracturasPacienteAsync(int idPaciente) {
+            return base.Channel.Select_FracturasPacienteAsync(idPaciente);
+        }
+        
+        public System.Data.DataSet Select_TratamientosPaciente(int idPaciente) {
+            return base.Channel.Select_TratamientosPaciente(idPaciente);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> Select_TratamientosPacienteAsync(int idPaciente) {
+            return base.Channel.Select_TratamientosPacienteAsync(idPaciente);
         }
         
         public System.Data.DataSet MaxIdConsulta() {

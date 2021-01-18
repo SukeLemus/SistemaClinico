@@ -295,10 +295,10 @@
                                 <a class="nav-link text-dark" href="@Url.Action("Create", "CitasPaciente", new {  id2=Session["id"] })">
                                     Solicitar Cita
                                 </a>
-                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                <a class="nav-link text-dark" href="@Url.Action("GeneracionConstancias", "Consultas")">
                                     Generar Constancia Medica
                                 </a>
-                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                <a class="nav-link text-dark" href="@Url.Action("GeneracionPrescripcion", "Consultas")">
                                     Generar Prescripción Médica
                                 </a>
                             </div>
@@ -320,12 +320,12 @@
                                 <a class="nav-link text-dark" href="@Url.Action("Index", "Consultas")">
                                     Mis Consultas Medicas
                                 </a>
-                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                @*<a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
                                     Mis Constancias Medicas
                                 </a>
                                 <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
                                     Mis Prescripciones Medicas
-                                </a>
+                                </a>*@
                             </div>
                         </div>
                     </li>
@@ -585,7 +585,7 @@
                                 <a class="nav-link text-dark" href="@Url.Action("Index", "Usuarios")">
                                     Perfil paciente
                                 </a>
-                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                <a class="nav-link text-dark" href="@Url.Action("IndexPacientesAgregar", "Usuarios")">
                                     Información médica
                                 </a>
                                 <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">

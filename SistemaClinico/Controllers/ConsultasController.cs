@@ -6,11 +6,98 @@ using System.Web;
 using System.Web.Mvc;
 using SistemaClinico.Models;
 using PagedList;
+using Rotativa;
 
 namespace SistemaClinico.Controllers
 {
     public class ConsultasController : Controller
     {
+        //prescripcion
+        public static List<PrescripcionPDF> Prescripciones(int idPrescri)
+        {
+            List<PrescripcionPDF> listaS = new List<PrescripcionPDF>();
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient prescripcion = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+            DataSet ds = prescripcion.Select_IDPrescripcion(idPrescri);
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                int idPrescripcion = int.Parse(dr["ID_PRESCRIPCION"].ToString());
+                int idConsulta = int.Parse(dr["ID_CONSULTA"].ToString());
+                string nombrepaciente = dr["NOMBRE"].ToString();
+                string apellidopaciente = dr["APELLIDO"].ToString();
+                string nombreDoctor = dr["NOMBRES"].ToString();
+                string apellidoDoctor = dr["APELLIDOS"].ToString();
+                string fecha = dr["FECHA"].ToString();
+                string hora = dr["HORA"].ToString();
+                string nombreMedicamento = dr["NOMBRE_MEDICAMENTO"].ToString();
+                string cicloConsumo = dr["CICLO_CONSUMO"].ToString();
+                string viaAdministracion = dr["VIA_ADMI"].ToString();
+                string instruccionesAdicionales = dr["INSTRUCCIONES_AD"].ToString();
+
+
+                PrescripcionPDF prescri = new PrescripcionPDF();
+                prescri.ID_PRESCRIPCION = idPrescripcion;
+                prescri.ID_CONSULTA = idConsulta;
+                prescri.NOMBRE = nombrepaciente;
+                prescri.APELLIDO = apellidopaciente;
+                prescri.NOMBRES = nombreDoctor;
+                prescri.APELLIDOS = apellidoDoctor;
+                prescri.FECHA = fecha.ToString().Remove(10);
+                prescri.HORA = hora;
+                prescri.NOMBRE_MEDICAMENTO = nombreMedicamento;
+                prescri.CICLO_CONSUMO = cicloConsumo;
+                prescri.VIA_ADMI = viaAdministracion;
+                prescri.INSTRUCCIONES_AD = instruccionesAdicionales;
+
+                listaS.Add(prescri);
+            }
+            return listaS;
+
+        }
+
+
+        //Mostrar los datos de consulta en la Constancia
+        public static List<ConstanciaPDF> Constancias(int idConsu)
+        {
+            List<ConstanciaPDF> listaS = new List<ConstanciaPDF>();
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient constancia = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+            DataSet ds = constancia.Select_IDConstancia(idConsu);
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                //int id = int.Parse(dr["ID_CITAS"].ToString());
+                //int idpaciente = int.Parse(dr["ID_PACIENTE"].ToString());
+                int idConstancia = int.Parse(dr["ID_CONSTANCIA"].ToString());
+                int idConsulta = int.Parse(dr["ID_CONSULTA"].ToString());
+                string nombrepaciente = dr["NOMBRE"].ToString();
+                string apellidopaciente = dr["APELLIDO"].ToString();
+                string nombreDoctor = dr["NOMBRES"].ToString();
+                string apellidoDoctor = dr["APELLIDOS"].ToString();
+                string fecha = dr["FECHA"].ToString();
+                string hora = dr["HORA"].ToString();
+                //string tipoCita = dr["TIPO_CITA"].ToString();
+                //string descripcion = dr["DESCRIPCION"].ToString();
+                string diagnostico = dr["DIAGNOSTICO"].ToString();
+
+
+                ConstanciaPDF consta = new ConstanciaPDF();
+                consta.ID_CONSTANCIA = idConstancia;
+                consta.ID_CONSULTA = idConsulta;
+                consta.NOMBRE = nombrepaciente;
+                consta.APELLIDO = apellidopaciente;
+                consta.NOMBRES = nombreDoctor;
+                consta.APELLIDOS = apellidoDoctor;
+                consta.FECHA = fecha.ToString().Remove(10);
+                consta.HORA = hora;
+                consta.DIAGNOSTICO = diagnostico;
+
+                listaS.Add(consta);
+            }
+            return listaS;
+
+        }
+
+
         ////GET TODO LOS PACIENTES segun cita
         public static List<ListadoCitasPaciente> TodasLasCitasSegunpacienteFinalizada()
         {
@@ -64,6 +151,8 @@ namespace SistemaClinico.Controllers
             {
                 //int id = int.Parse(dr["ID_CITAS"].ToString());
                 //int idpaciente = int.Parse(dr["ID_PACIENTE"].ToString());
+                int idconsulta = int.Parse(dr["ID_CONSULTA"].ToString());
+                int idpaciente = int.Parse(dr["ID_PACIENTE"].ToString());
                 string nombrepaciente = dr["NOMBRE"].ToString();
                 string apellidopaciente = dr["APELLIDO"].ToString();
                 string nombreDoctor = dr["NOMBRES"].ToString();
@@ -76,6 +165,8 @@ namespace SistemaClinico.Controllers
 
 
                 ConsultaPac consultaPac = new ConsultaPac();
+                consultaPac.ID_CONSULTA = idconsulta;
+                consultaPac.ID_PACIENTE = idpaciente;
                 consultaPac.NOMBRE = nombrepaciente;
                 consultaPac.APELLIDO = apellidopaciente;
                 consultaPac.NOMBRES = nombreDoctor;
@@ -90,6 +181,36 @@ namespace SistemaClinico.Controllers
             }
             return listaS;
 
+        }
+
+        public ActionResult GeneracionConstancias(int? i, string BuscarNombre)
+        {
+
+            int idpa = int.Parse(Session["id"].ToString());
+
+            var citas = from e in TodasLasConsultasSegunpacienteID(idpa)
+                            //orderby e.nombre
+                        select e;
+            if (!String.IsNullOrEmpty(BuscarNombre))
+            {
+                citas = citas.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+            }
+            return View(citas.ToPagedList(i ?? 1, 3));
+        }
+
+        public ActionResult GeneracionPrescripcion(int? i, string BuscarNombre)
+        {
+
+            int idpa = int.Parse(Session["id"].ToString());
+
+            var citas = from e in TodasLasConsultasSegunpacienteID(idpa)
+                            //orderby e.nombre
+                        select e;
+            if (!String.IsNullOrEmpty(BuscarNombre))
+            {
+                citas = citas.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+            }
+            return View(citas.ToPagedList(i ?? 1, 3));
         }
 
         // GET: Consultas
@@ -109,11 +230,46 @@ namespace SistemaClinico.Controllers
             return View(citas.ToPagedList(i ?? 1, 3));
         }
 
+
+        public ActionResult GenerarPrescripcion(int id)
+        {
+
+
+
+            var citas = from e in Prescripciones(id)
+                            //orderby e.nombre
+                        select e;
+      
+            return View(citas);
+        }
+
+
+
+        // GET: CONSTANCIAS
+        public ActionResult GenerarConstancia(int id)
+        {
+
+            List<ConstanciaPDF> constan = Constancias(id);
+
+            var con = constan.Single(m => m.ID_CONSULTA == id);
+
+            return new ViewAsPdf(con)
+            {
+                //PageSize = Rotativa.Options.Size.A4,
+                FileName = "Comprobante_consulta.pdf" //para que se abra en otra pestaña y se baja
+                //,PageMargins = new Rotativa.Options.Margins(40, 10, 10, 10)
+            };
+        }
+
         // GET: Consultas/Details/5
         public ActionResult Details(int id)
         {
 
-            return View();
+            List<ConsultaPac> detallesConsulta = TodasLasConsultasSegunpacienteID(id);
+
+            var con = detallesConsulta.Single(m => m.ID_PACIENTE == id);
+
+            return View(con);
         }
 
         // GET: Consultas/Create
