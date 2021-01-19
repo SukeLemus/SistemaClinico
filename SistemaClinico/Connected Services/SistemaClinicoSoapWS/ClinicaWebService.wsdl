@@ -496,6 +496,23 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Select_EnfermedadesP">
+        <s:complexType />
+      </s:element>
+      <s:element name="Select_EnfermedadesPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Select_EnfermedadesPResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Select_CirugiasPaciente">
         <s:complexType>
           <s:sequence>
@@ -517,6 +534,23 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Select_CirugiasP">
+        <s:complexType />
+      </s:element>
+      <s:element name="Select_CirugiasPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Select_CirugiasPResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Select_FracturasPaciente">
         <s:complexType>
           <s:sequence>
@@ -528,6 +562,23 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Select_FracturasPacienteResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Select_FracturasP">
+        <s:complexType />
+      </s:element>
+      <s:element name="Select_FracturasPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Select_FracturasPResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -588,6 +639,51 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="insertar_AlergiasPacienteResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertar_FracturasPaciente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idpaciente" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="idfractura" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertar_FracturasPacienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="insertar_FracturasPacienteResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertar_CirugiasPaciente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idpaciente" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="idcirugia" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertar_CirugiasPacienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="insertar_CirugiasPacienteResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertar_EnfermedadPaciente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idpaciente" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="idenfermedad" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertar_EnfermedadPacienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="insertar_EnfermedadPacienteResult" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1828,17 +1924,35 @@
   <wsdl:message name="Select_EnfermedadesPacienteSoapOut">
     <wsdl:part name="parameters" element="tns:Select_EnfermedadesPacienteResponse" />
   </wsdl:message>
+  <wsdl:message name="Select_EnfermedadesPSoapIn">
+    <wsdl:part name="parameters" element="tns:Select_EnfermedadesP" />
+  </wsdl:message>
+  <wsdl:message name="Select_EnfermedadesPSoapOut">
+    <wsdl:part name="parameters" element="tns:Select_EnfermedadesPResponse" />
+  </wsdl:message>
   <wsdl:message name="Select_CirugiasPacienteSoapIn">
     <wsdl:part name="parameters" element="tns:Select_CirugiasPaciente" />
   </wsdl:message>
   <wsdl:message name="Select_CirugiasPacienteSoapOut">
     <wsdl:part name="parameters" element="tns:Select_CirugiasPacienteResponse" />
   </wsdl:message>
+  <wsdl:message name="Select_CirugiasPSoapIn">
+    <wsdl:part name="parameters" element="tns:Select_CirugiasP" />
+  </wsdl:message>
+  <wsdl:message name="Select_CirugiasPSoapOut">
+    <wsdl:part name="parameters" element="tns:Select_CirugiasPResponse" />
+  </wsdl:message>
   <wsdl:message name="Select_FracturasPacienteSoapIn">
     <wsdl:part name="parameters" element="tns:Select_FracturasPaciente" />
   </wsdl:message>
   <wsdl:message name="Select_FracturasPacienteSoapOut">
     <wsdl:part name="parameters" element="tns:Select_FracturasPacienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="Select_FracturasPSoapIn">
+    <wsdl:part name="parameters" element="tns:Select_FracturasP" />
+  </wsdl:message>
+  <wsdl:message name="Select_FracturasPSoapOut">
+    <wsdl:part name="parameters" element="tns:Select_FracturasPResponse" />
   </wsdl:message>
   <wsdl:message name="Select_TratamientosPacienteSoapIn">
     <wsdl:part name="parameters" element="tns:Select_TratamientosPaciente" />
@@ -1857,6 +1971,24 @@
   </wsdl:message>
   <wsdl:message name="insertar_AlergiasPacienteSoapOut">
     <wsdl:part name="parameters" element="tns:insertar_AlergiasPacienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="insertar_FracturasPacienteSoapIn">
+    <wsdl:part name="parameters" element="tns:insertar_FracturasPaciente" />
+  </wsdl:message>
+  <wsdl:message name="insertar_FracturasPacienteSoapOut">
+    <wsdl:part name="parameters" element="tns:insertar_FracturasPacienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="insertar_CirugiasPacienteSoapIn">
+    <wsdl:part name="parameters" element="tns:insertar_CirugiasPaciente" />
+  </wsdl:message>
+  <wsdl:message name="insertar_CirugiasPacienteSoapOut">
+    <wsdl:part name="parameters" element="tns:insertar_CirugiasPacienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="insertar_EnfermedadPacienteSoapIn">
+    <wsdl:part name="parameters" element="tns:insertar_EnfermedadPaciente" />
+  </wsdl:message>
+  <wsdl:message name="insertar_EnfermedadPacienteSoapOut">
+    <wsdl:part name="parameters" element="tns:insertar_EnfermedadPacienteResponse" />
   </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
@@ -2347,13 +2479,25 @@
       <wsdl:input message="tns:Select_EnfermedadesPacienteSoapIn" />
       <wsdl:output message="tns:Select_EnfermedadesPacienteSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Select_EnfermedadesP">
+      <wsdl:input message="tns:Select_EnfermedadesPSoapIn" />
+      <wsdl:output message="tns:Select_EnfermedadesPSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Select_CirugiasPaciente">
       <wsdl:input message="tns:Select_CirugiasPacienteSoapIn" />
       <wsdl:output message="tns:Select_CirugiasPacienteSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Select_CirugiasP">
+      <wsdl:input message="tns:Select_CirugiasPSoapIn" />
+      <wsdl:output message="tns:Select_CirugiasPSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Select_FracturasPaciente">
       <wsdl:input message="tns:Select_FracturasPacienteSoapIn" />
       <wsdl:output message="tns:Select_FracturasPacienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Select_FracturasP">
+      <wsdl:input message="tns:Select_FracturasPSoapIn" />
+      <wsdl:output message="tns:Select_FracturasPSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Select_TratamientosPaciente">
       <wsdl:input message="tns:Select_TratamientosPacienteSoapIn" />
@@ -2366,6 +2510,18 @@
     <wsdl:operation name="insertar_AlergiasPaciente">
       <wsdl:input message="tns:insertar_AlergiasPacienteSoapIn" />
       <wsdl:output message="tns:insertar_AlergiasPacienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="insertar_FracturasPaciente">
+      <wsdl:input message="tns:insertar_FracturasPacienteSoapIn" />
+      <wsdl:output message="tns:insertar_FracturasPacienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="insertar_CirugiasPaciente">
+      <wsdl:input message="tns:insertar_CirugiasPacienteSoapIn" />
+      <wsdl:output message="tns:insertar_CirugiasPacienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="insertar_EnfermedadPaciente">
+      <wsdl:input message="tns:insertar_EnfermedadPacienteSoapIn" />
+      <wsdl:output message="tns:insertar_EnfermedadPacienteSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -2860,6 +3016,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Select_EnfermedadesP">
+      <soap:operation soapAction="http://tempuri.org/Select_EnfermedadesP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Select_CirugiasPaciente">
       <soap:operation soapAction="http://tempuri.org/Select_CirugiasPaciente" style="document" />
       <wsdl:input>
@@ -2869,8 +3034,26 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Select_CirugiasP">
+      <soap:operation soapAction="http://tempuri.org/Select_CirugiasP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Select_FracturasPaciente">
       <soap:operation soapAction="http://tempuri.org/Select_FracturasPaciente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Select_FracturasP">
+      <soap:operation soapAction="http://tempuri.org/Select_FracturasP" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2898,6 +3081,33 @@
     </wsdl:operation>
     <wsdl:operation name="insertar_AlergiasPaciente">
       <soap:operation soapAction="http://tempuri.org/insertar_AlergiasPaciente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertar_FracturasPaciente">
+      <soap:operation soapAction="http://tempuri.org/insertar_FracturasPaciente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertar_CirugiasPaciente">
+      <soap:operation soapAction="http://tempuri.org/insertar_CirugiasPaciente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertar_EnfermedadPaciente">
+      <soap:operation soapAction="http://tempuri.org/insertar_EnfermedadPaciente" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3718,6 +3928,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Select_EnfermedadesP">
+      <soap12:operation soapAction="http://tempuri.org/Select_EnfermedadesP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Select_CirugiasPaciente">
       <soap12:operation soapAction="http://tempuri.org/Select_CirugiasPaciente" style="document" />
       <wsdl:input>
@@ -3727,8 +3946,26 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Select_CirugiasP">
+      <soap12:operation soapAction="http://tempuri.org/Select_CirugiasP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Select_FracturasPaciente">
       <soap12:operation soapAction="http://tempuri.org/Select_FracturasPaciente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Select_FracturasP">
+      <soap12:operation soapAction="http://tempuri.org/Select_FracturasP" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3756,6 +3993,33 @@
     </wsdl:operation>
     <wsdl:operation name="insertar_AlergiasPaciente">
       <soap12:operation soapAction="http://tempuri.org/insertar_AlergiasPaciente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertar_FracturasPaciente">
+      <soap12:operation soapAction="http://tempuri.org/insertar_FracturasPaciente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertar_CirugiasPaciente">
+      <soap12:operation soapAction="http://tempuri.org/insertar_CirugiasPaciente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertar_EnfermedadPaciente">
+      <soap12:operation soapAction="http://tempuri.org/insertar_EnfermedadPaciente" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

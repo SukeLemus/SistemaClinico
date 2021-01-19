@@ -15,4 +15,17 @@ namespace SistemaClinico.Models
         [Required]
         public string DESCRIPCION { get; set; }
     }
+
+    public class CirugiasPaciente
+    {
+        [Required]
+        public int ID { get; set; }
+        [Required]
+        public int ID_PACIENTE { get; set; }
+        [Required]
+        public int ID_CIRUGIA { get; set; }
+        [Required]
+
+        public string NOMBRE_CIRUGIA { get; set; }
+    }
 }

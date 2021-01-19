@@ -404,6 +404,9 @@
     <Content Include="Views\Usuarios\IndexPacientesAgregar.cshtml" />
     <Content Include="Views\Usuarios\InformacionMedica.cshtml" />
     <Content Include="Views\Usuarios\agregarA.cshtml" />
+    <Content Include="Views\Usuarios\agregarF.cshtml" />
+    <Content Include="Views\Usuarios\agregarC.cshtml" />
+    <Content Include="Views\Usuarios\agregarE.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

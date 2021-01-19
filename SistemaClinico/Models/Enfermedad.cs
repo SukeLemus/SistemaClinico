@@ -14,4 +14,19 @@ namespace SistemaClinico.Models
         [Required]
         public String descripcion { get; set; }
     }
+
+    public class EnfermedadPaciente
+    {
+        public int ID { get; set; }
+        [Required]
+        public int ID_PACIENTE { get; set; }
+        [Required]
+        public int ID_ENFERMEDAD { get; set; }
+        [Required]
+
+        public string NOMBRE_ENFERMEDAD { get; set; }
+
+    }
+
+
 }
