@@ -1,0 +1,94 @@
+﻿@model IEnumerable<SistemaClinico.Models.ConsultaPac>
+
+@if (TempData["UserMessage"] != null)
+{
+    var message = TempData["UserMessage"];
+    <div class="text-danger">
+        @*<strong>@message</strong>*@
+        @message
+    </div>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_CONSULTA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_PACIENTE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMBRE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.APELLIDO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMBRES)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.APELLIDOS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HORA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIPO_CITA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DESCRIPCION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DIAGNOSTICO)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID_CONSULTA)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID_PACIENTE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOMBRE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.APELLIDO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOMBRES)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.APELLIDOS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FECHA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HORA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TIPO_CITA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DESCRIPCION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DIAGNOSTICO)
+            </td>
+            <td>
+
+                @Html.ActionLink("Detalles", "PrescripcionDetalle", new { idconsulta = item.ID_CONSULTA, idpaciente = item.ID_PACIENTE }) |
+
+            </td>
+        </tr>
+    }
+
+</table>

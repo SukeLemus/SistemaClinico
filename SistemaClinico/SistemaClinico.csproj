@@ -410,6 +410,9 @@
     <Content Include="Views\Usuarios\agregarT.cshtml" />
     <Content Include="Views\Consultas\IndexC.cshtml" />
     <Content Include="Views\Consultas\DetailsC.cshtml" />
+    <Content Include="Views\Usuarios\PrescripcionPaciente.cshtml" />
+    <Content Include="Views\Usuarios\ListadoPrescripcionPaciente.cshtml" />
+    <Content Include="Views\Usuarios\PrescripcionDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

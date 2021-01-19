@@ -11,6 +11,47 @@ namespace SistemaClinico.Controllers
 {
     public class UsuariosController : Controller
     {
+        public static List<ConsultaPac> TodasLasConsultasSegunID(int idPaciente)
+        {
+            List<ConsultaPac> listaS = new List<ConsultaPac>();
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient citas = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+            DataSet ds = citas.lista_consultas_comp_segun_id(idPaciente);
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                //int id = int.Parse(dr["ID_CITAS"].ToString());
+                //int idpaciente = int.Parse(dr["ID_PACIENTE"].ToString());
+                int idconsulta = int.Parse(dr["ID_CONSULTA"].ToString());
+                int idpaciente = int.Parse(dr["ID_PACIENTE"].ToString());
+                string nombrepaciente = dr["NOMBRE"].ToString();
+                string apellidopaciente = dr["APELLIDO"].ToString();
+                string nombreDoctor = dr["NOMBRES"].ToString();
+                string apellidoDoctor = dr["APELLIDOS"].ToString();
+                string fecha = dr["FECHA"].ToString();
+                string hora = dr["HORA"].ToString();
+                string tipoCita = dr["TIPO_CITA"].ToString();
+                string descripcion = dr["DESCRIPCION"].ToString();
+                string diagnostico = dr["DIAGNOSTICO"].ToString();
+
+
+                ConsultaPac consultaPac = new ConsultaPac();
+                consultaPac.ID_CONSULTA = idconsulta;
+                consultaPac.ID_PACIENTE = idpaciente;
+                consultaPac.NOMBRE = nombrepaciente;
+                consultaPac.APELLIDO = apellidopaciente;
+                consultaPac.NOMBRES = nombreDoctor;
+                consultaPac.APELLIDOS = apellidoDoctor;
+                consultaPac.FECHA = fecha.ToString().Remove(10);
+                consultaPac.HORA = hora;
+                consultaPac.TIPO_CITA = tipoCita;
+                consultaPac.DESCRIPCION = descripcion;
+                consultaPac.DIAGNOSTICO = diagnostico;
+
+                listaS.Add(consultaPac);
+            }
+            return listaS;
+
+        }
 
         //Tratamientos
         public List<Tratamiento> listaTP()
@@ -325,6 +366,50 @@ namespace SistemaClinico.Controllers
             return selectList;
         }
 
+        //lista de todas las prescripciones de un solo paciente
+        public List<PrescripcionPaciente> ListaPrescripcionesIDPaciente(int idconsulta)
+        {
+           
+                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient prescripcionWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+                List<PrescripcionPaciente> ListaPrescripcion = new List<PrescripcionPaciente>();
+                DataSet ds = prescripcionWS.Select_IDPrescripcionUsuario2(idconsulta);
+
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    int idPrescripcion = int.Parse(dr["ID_PRESCRIPCION"].ToString());
+                    int idConsulta = int.Parse(dr["ID_CONSULTA"].ToString());
+                    string nombrePaciente = dr["NOMBRE"].ToString();
+                    string apellidoPaciente = dr["APELLIDO"].ToString();
+                    string nombreDoctor = dr["NOMBRES"].ToString();
+                    string apellidoDoctor = dr["APELLIDOS"].ToString();
+                    string fecha = dr["FECHA"].ToString();
+                    string hora = dr["HORA"].ToString();
+                    string medicamento = dr["NOMBRE_MEDICAMENTO"].ToString();
+                    string cicloConsumo = dr["CICLO_CONSUMO"].ToString();
+                    string viaAdministracion = dr["VIA_ADMI"].ToString();
+                    string instruccionesAdicionales = dr["INSTRUCCIONES_AD"].ToString();
+
+                    PrescripcionPaciente pres = new PrescripcionPaciente();
+                    pres.ID_PRESCRIPCION = idPrescripcion;
+                    pres.ID_CONSULTA = idConsulta;
+                    pres.NOMBRE = nombrePaciente;
+                    pres.APELLIDO = apellidoPaciente;
+                    pres.NOMBRES = nombreDoctor;
+                    pres.APELLIDOS = apellidoDoctor;
+                    pres.FECHA = fecha.Remove(10);
+                    pres.HORA = hora;
+                    pres.NOMBRE_MEDICAMENTO = medicamento;
+                    pres.CICLO_CONSUMO = cicloConsumo;
+                    pres.VIA_ADMI = viaAdministracion;
+                    pres.INSTRUCCIONES_AD = instruccionesAdicionales;
+
+                    ListaPrescripcion.Add(pres);
+
+                }
+            
+           
+            return ListaPrescripcion;
+        }
 
         public static List<UsuarioMunicipio> TodosUsuarioMunicipio()
         {
@@ -355,6 +440,8 @@ namespace SistemaClinico.Controllers
             return listaS;
 
         }
+
+
         public ActionResult agregarA(int id)
         {
             SistemaClinicoSoapWS.ClinicaWebServiceSoapClient alerWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
@@ -1107,6 +1194,99 @@ namespace SistemaClinico.Controllers
             return View(p);
         }
 
+        /********* Muestra el listado de Pacientes y de ahi ver sus Prescripciones *********/
+  
+        public ActionResult PrescripcionPaciente(int? i, string BuscarNombre)
+        {
+            var usuarios = from e in TodosUsuarioMunicipio()                     
+                      select e;
+       
+            return View(usuarios.ToPagedList(i ?? 1, 10));
+        }
+
+    
+        public ActionResult ListadoPrescripcionPaciente( int idpaciente, int msj)
+        {
+
+            if (msj==0)
+            {
+
+            }
+            else
+            {
+                TempData["UserMessage"] = "No hay medicamentos para generar esta preescripcion";
+
+            }
+
+            var prescripciones = from e in TodasLasConsultasSegunID(idpaciente)
+                                 select e;
+
+            return View(prescripciones);
+
+        }
+
+        public ActionResult PrescripcionDetalle(int idconsulta, int idpaciente)
+        {
+          
+
+            try
+            {
+                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient WS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+                var prescripciones = from e in ListaPrescripcionesIDPaciente(idconsulta)
+                                     select e;
+
+                ViewData["nombrePaciente"] = " ";
+                ViewData["nombreDoctor"] = " ";
+                ViewData["fecha"] = " ";
+                ViewData["hora"] = " ";
+                DataSet ds = WS.Select_IDPrescripcionUsuario2(idconsulta);
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    // string idTratamiento = int.Parse(dr["ID_MEDICAMENTO"].ToString());
+                    string nombrePaciente = dr["NOMBRE"].ToString() + " " + dr["APELLIDO"].ToString();
+                   string nombreDoctor = dr["NOMBRES"].ToString() + " " + dr["APELLIDOS"].ToString();
+                    string fecha = dr["FECHA"].ToString();
+                    string hora = dr["HORA"].ToString();
+                    //string idp = dr["ID_PACIENTE"].ToString();
+               
+
+                    ViewData["nombrePaciente"] = nombrePaciente;
+                    ViewData["nombreDoctor"] = nombreDoctor;
+                    ViewData["fecha"] = fecha.Remove(10);
+                    ViewData["hora"] = hora;
+                    //ViewData["idp"] = idp;
+                }
+
+                ViewData["idpaciente"] = idpaciente;
+
+                if (ViewData["nombrePaciente"].Equals(" "))
+                {
+                    
+                    //mesaje de que no existe prescripcion
+                    //Content("No hay medicamentos para generar esta preescripcion");
+                    //TempData["UserMessage"] = "ya existe esa cirugia para este paciente";
+                    return RedirectToAction("ListadoPrescripcionPaciente", "Usuarios", new { idpaciente = idpaciente, msj = 1 });
+                }
+                else
+                {
+                    return View(prescripciones);
+                }
+
+                
+            }
+            catch
+            {
+
+                ////mesaje de que no existe prescripcion
+                //Content("No hay medicamentos para generar esta preescripcion");
+                //TempData["UserMessage"] = "ya existe esa cirugia para este paciente";
+                return RedirectToAction("ListadoPrescripcionPaciente", "Usuarios", new { idpaciente = idpaciente});
+            }
+            
+
+        }
+
         // GET: Usuarios
         public ActionResult Index(int? i, string BuscarNombre)
         {
@@ -1467,6 +1647,9 @@ namespace SistemaClinico.Controllers
                 return View();
             }
         }
+
+
+ 
 
         // GET: Usuarios/Delete/5
         public ActionResult Delete(int? id)
