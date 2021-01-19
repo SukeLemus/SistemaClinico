@@ -16,6 +16,20 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SistemaClinicoSoapWS.ClinicaWebServiceSoap")]
     public interface ClinicaWebServiceSoap {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaDireccion", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet ListaDireccion();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaDireccion", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> ListaDireccionAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertDireccion", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int InsertDireccion(string pais, string departamento, string municipio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertDireccion", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> InsertDireccionAsync(string pais, string departamento, string municipio);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateDireccion", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         int UpdateDireccion(int id, string pais, string departamento, string municipio);
@@ -202,6 +216,13 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Select_AlergiasPaciente", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataSet> Select_AlergiasPacienteAsync(int idPaciente);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Select_AlergiasP", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet Select_AlergiasP();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Select_AlergiasP", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> Select_AlergiasPAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Select_EnfermedadesPaciente", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Data.DataSet Select_EnfermedadesPaciente(int idPaciente);
@@ -236,6 +257,13 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/MaxIdConsulta", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataSet> MaxIdConsultaAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/insertar_AlergiasPaciente", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int insertar_AlergiasPaciente(int idpaciente, int idalergia);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/insertar_AlergiasPaciente", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> insertar_AlergiasPacienteAsync(int idpaciente, int idalergia);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorld", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -369,6 +397,13 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/TodoslosPacientes", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataSet> TodoslosPacientesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PacienteID", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet PacienteID(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PacienteID", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> PacienteIDAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/TodosElPersonal", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -559,6 +594,13 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaAlergias", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataSet> ListaAlergiasAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaAlergiasID", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet ListaAlergiasID(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaAlergiasID", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> ListaAlergiasIDAsync(int id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertAlergia", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         int InsertAlergia(string nombre, string desc);
@@ -670,20 +712,6 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/NombreDptoConsultorios", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataSet> NombreDptoConsultoriosAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaDireccion", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Data.DataSet ListaDireccion();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaDireccion", ReplyAction="*")]
-        System.Threading.Tasks.Task<System.Data.DataSet> ListaDireccionAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertDireccion", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        int InsertDireccion(string pais, string departamento, string municipio);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertDireccion", ReplyAction="*")]
-        System.Threading.Tasks.Task<int> InsertDireccionAsync(string pais, string departamento, string municipio);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -711,6 +739,22 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         public ClinicaWebServiceSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public System.Data.DataSet ListaDireccion() {
+            return base.Channel.ListaDireccion();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> ListaDireccionAsync() {
+            return base.Channel.ListaDireccionAsync();
+        }
+        
+        public int InsertDireccion(string pais, string departamento, string municipio) {
+            return base.Channel.InsertDireccion(pais, departamento, municipio);
+        }
+        
+        public System.Threading.Tasks.Task<int> InsertDireccionAsync(string pais, string departamento, string municipio) {
+            return base.Channel.InsertDireccionAsync(pais, departamento, municipio);
         }
         
         public int UpdateDireccion(int id, string pais, string departamento, string municipio) {
@@ -921,6 +965,14 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
             return base.Channel.Select_AlergiasPacienteAsync(idPaciente);
         }
         
+        public System.Data.DataSet Select_AlergiasP() {
+            return base.Channel.Select_AlergiasP();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> Select_AlergiasPAsync() {
+            return base.Channel.Select_AlergiasPAsync();
+        }
+        
         public System.Data.DataSet Select_EnfermedadesPaciente(int idPaciente) {
             return base.Channel.Select_EnfermedadesPaciente(idPaciente);
         }
@@ -959,6 +1011,14 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> MaxIdConsultaAsync() {
             return base.Channel.MaxIdConsultaAsync();
+        }
+        
+        public int insertar_AlergiasPaciente(int idpaciente, int idalergia) {
+            return base.Channel.insertar_AlergiasPaciente(idpaciente, idalergia);
+        }
+        
+        public System.Threading.Tasks.Task<int> insertar_AlergiasPacienteAsync(int idpaciente, int idalergia) {
+            return base.Channel.insertar_AlergiasPacienteAsync(idpaciente, idalergia);
         }
         
         public string HelloWorld() {
@@ -1111,6 +1171,14 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> TodoslosPacientesAsync() {
             return base.Channel.TodoslosPacientesAsync();
+        }
+        
+        public System.Data.DataSet PacienteID(int id) {
+            return base.Channel.PacienteID(id);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> PacienteIDAsync(int id) {
+            return base.Channel.PacienteIDAsync(id);
         }
         
         public System.Data.DataSet TodosElPersonal() {
@@ -1329,6 +1397,14 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
             return base.Channel.ListaAlergiasAsync();
         }
         
+        public System.Data.DataSet ListaAlergiasID(int id) {
+            return base.Channel.ListaAlergiasID(id);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> ListaAlergiasIDAsync(int id) {
+            return base.Channel.ListaAlergiasIDAsync(id);
+        }
+        
         public int InsertAlergia(string nombre, string desc) {
             return base.Channel.InsertAlergia(nombre, desc);
         }
@@ -1455,22 +1531,6 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> NombreDptoConsultoriosAsync(int id) {
             return base.Channel.NombreDptoConsultoriosAsync(id);
-        }
-        
-        public System.Data.DataSet ListaDireccion() {
-            return base.Channel.ListaDireccion();
-        }
-        
-        public System.Threading.Tasks.Task<System.Data.DataSet> ListaDireccionAsync() {
-            return base.Channel.ListaDireccionAsync();
-        }
-        
-        public int InsertDireccion(string pais, string departamento, string municipio) {
-            return base.Channel.InsertDireccion(pais, departamento, municipio);
-        }
-        
-        public System.Threading.Tasks.Task<int> InsertDireccionAsync(string pais, string departamento, string municipio) {
-            return base.Channel.InsertDireccionAsync(pais, departamento, municipio);
         }
     }
 }

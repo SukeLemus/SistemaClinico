@@ -403,6 +403,7 @@
     <Content Include="Views\Consultas\GenerarPrescripcion.cshtml" />
     <Content Include="Views\Usuarios\IndexPacientesAgregar.cshtml" />
     <Content Include="Views\Usuarios\InformacionMedica.cshtml" />
+    <Content Include="Views\Usuarios\agregarA.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -2,6 +2,39 @@
 <wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ListaDireccion">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListaDireccionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaDireccionResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertDireccion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pais" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="departamento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="municipio" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertDireccionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertDireccionResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="UpdateDireccion">
         <s:complexType>
           <s:sequence>
@@ -425,6 +458,23 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Select_AlergiasP">
+        <s:complexType />
+      </s:element>
+      <s:element name="Select_AlergiasPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Select_AlergiasPResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Select_EnfermedadesPaciente">
         <s:complexType>
           <s:sequence>
@@ -523,6 +573,21 @@
                 </s:sequence>
               </s:complexType>
             </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertar_AlergiasPaciente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idpaciente" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="idalergia" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertar_AlergiasPacienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="insertar_AlergiasPacienteResult" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -824,6 +889,27 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="TodoslosPacientesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PacienteID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PacienteIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PacienteIDResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1307,6 +1393,27 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="ListaAlergiasID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaAlergiasIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaAlergiasIDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="InsertAlergia">
         <s:complexType>
           <s:sequence>
@@ -1563,41 +1670,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ListaDireccion">
-        <s:complexType />
-      </s:element>
-      <s:element name="ListaDireccionResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ListaDireccionResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="InsertDireccion">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="pais" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="departamento" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="municipio" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="InsertDireccionResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="InsertDireccionResult" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="ListaDireccionSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaDireccion" />
+  </wsdl:message>
+  <wsdl:message name="ListaDireccionSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaDireccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertDireccionSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertDireccion" />
+  </wsdl:message>
+  <wsdl:message name="InsertDireccionSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertDireccionResponse" />
+  </wsdl:message>
   <wsdl:message name="UpdateDireccionSoapIn">
     <wsdl:part name="parameters" element="tns:UpdateDireccion" />
   </wsdl:message>
@@ -1730,6 +1816,12 @@
   <wsdl:message name="Select_AlergiasPacienteSoapOut">
     <wsdl:part name="parameters" element="tns:Select_AlergiasPacienteResponse" />
   </wsdl:message>
+  <wsdl:message name="Select_AlergiasPSoapIn">
+    <wsdl:part name="parameters" element="tns:Select_AlergiasP" />
+  </wsdl:message>
+  <wsdl:message name="Select_AlergiasPSoapOut">
+    <wsdl:part name="parameters" element="tns:Select_AlergiasPResponse" />
+  </wsdl:message>
   <wsdl:message name="Select_EnfermedadesPacienteSoapIn">
     <wsdl:part name="parameters" element="tns:Select_EnfermedadesPaciente" />
   </wsdl:message>
@@ -1759,6 +1851,12 @@
   </wsdl:message>
   <wsdl:message name="MaxIdConsultaSoapOut">
     <wsdl:part name="parameters" element="tns:MaxIdConsultaResponse" />
+  </wsdl:message>
+  <wsdl:message name="insertar_AlergiasPacienteSoapIn">
+    <wsdl:part name="parameters" element="tns:insertar_AlergiasPaciente" />
+  </wsdl:message>
+  <wsdl:message name="insertar_AlergiasPacienteSoapOut">
+    <wsdl:part name="parameters" element="tns:insertar_AlergiasPacienteResponse" />
   </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
@@ -1873,6 +1971,12 @@
   </wsdl:message>
   <wsdl:message name="TodoslosPacientesSoapOut">
     <wsdl:part name="parameters" element="tns:TodoslosPacientesResponse" />
+  </wsdl:message>
+  <wsdl:message name="PacienteIDSoapIn">
+    <wsdl:part name="parameters" element="tns:PacienteID" />
+  </wsdl:message>
+  <wsdl:message name="PacienteIDSoapOut">
+    <wsdl:part name="parameters" element="tns:PacienteIDResponse" />
   </wsdl:message>
   <wsdl:message name="TodosElPersonalSoapIn">
     <wsdl:part name="parameters" element="tns:TodosElPersonal" />
@@ -2036,6 +2140,12 @@
   <wsdl:message name="ListaAlergiasSoapOut">
     <wsdl:part name="parameters" element="tns:ListaAlergiasResponse" />
   </wsdl:message>
+  <wsdl:message name="ListaAlergiasIDSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaAlergiasID" />
+  </wsdl:message>
+  <wsdl:message name="ListaAlergiasIDSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaAlergiasIDResponse" />
+  </wsdl:message>
   <wsdl:message name="InsertAlergiaSoapIn">
     <wsdl:part name="parameters" element="tns:InsertAlergia" />
   </wsdl:message>
@@ -2132,19 +2242,15 @@
   <wsdl:message name="NombreDptoConsultoriosSoapOut">
     <wsdl:part name="parameters" element="tns:NombreDptoConsultoriosResponse" />
   </wsdl:message>
-  <wsdl:message name="ListaDireccionSoapIn">
-    <wsdl:part name="parameters" element="tns:ListaDireccion" />
-  </wsdl:message>
-  <wsdl:message name="ListaDireccionSoapOut">
-    <wsdl:part name="parameters" element="tns:ListaDireccionResponse" />
-  </wsdl:message>
-  <wsdl:message name="InsertDireccionSoapIn">
-    <wsdl:part name="parameters" element="tns:InsertDireccion" />
-  </wsdl:message>
-  <wsdl:message name="InsertDireccionSoapOut">
-    <wsdl:part name="parameters" element="tns:InsertDireccionResponse" />
-  </wsdl:message>
   <wsdl:portType name="ClinicaWebServiceSoap">
+    <wsdl:operation name="ListaDireccion">
+      <wsdl:input message="tns:ListaDireccionSoapIn" />
+      <wsdl:output message="tns:ListaDireccionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertDireccion">
+      <wsdl:input message="tns:InsertDireccionSoapIn" />
+      <wsdl:output message="tns:InsertDireccionSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="UpdateDireccion">
       <wsdl:input message="tns:UpdateDireccionSoapIn" />
       <wsdl:output message="tns:UpdateDireccionSoapOut" />
@@ -2233,6 +2339,10 @@
       <wsdl:input message="tns:Select_AlergiasPacienteSoapIn" />
       <wsdl:output message="tns:Select_AlergiasPacienteSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Select_AlergiasP">
+      <wsdl:input message="tns:Select_AlergiasPSoapIn" />
+      <wsdl:output message="tns:Select_AlergiasPSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Select_EnfermedadesPaciente">
       <wsdl:input message="tns:Select_EnfermedadesPacienteSoapIn" />
       <wsdl:output message="tns:Select_EnfermedadesPacienteSoapOut" />
@@ -2252,6 +2362,10 @@
     <wsdl:operation name="MaxIdConsulta">
       <wsdl:input message="tns:MaxIdConsultaSoapIn" />
       <wsdl:output message="tns:MaxIdConsultaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="insertar_AlergiasPaciente">
+      <wsdl:input message="tns:insertar_AlergiasPacienteSoapIn" />
+      <wsdl:output message="tns:insertar_AlergiasPacienteSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -2328,6 +2442,10 @@
     <wsdl:operation name="TodoslosPacientes">
       <wsdl:input message="tns:TodoslosPacientesSoapIn" />
       <wsdl:output message="tns:TodoslosPacientesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PacienteID">
+      <wsdl:input message="tns:PacienteIDSoapIn" />
+      <wsdl:output message="tns:PacienteIDSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="TodosElPersonal">
       <wsdl:input message="tns:TodosElPersonalSoapIn" />
@@ -2437,6 +2555,10 @@
       <wsdl:input message="tns:ListaAlergiasSoapIn" />
       <wsdl:output message="tns:ListaAlergiasSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="ListaAlergiasID">
+      <wsdl:input message="tns:ListaAlergiasIDSoapIn" />
+      <wsdl:output message="tns:ListaAlergiasIDSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="InsertAlergia">
       <wsdl:input message="tns:InsertAlergiaSoapIn" />
       <wsdl:output message="tns:InsertAlergiaSoapOut" />
@@ -2501,17 +2623,27 @@
       <wsdl:input message="tns:NombreDptoConsultoriosSoapIn" />
       <wsdl:output message="tns:NombreDptoConsultoriosSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="ListaDireccion">
-      <wsdl:input message="tns:ListaDireccionSoapIn" />
-      <wsdl:output message="tns:ListaDireccionSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="InsertDireccion">
-      <wsdl:input message="tns:InsertDireccionSoapIn" />
-      <wsdl:output message="tns:InsertDireccionSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ClinicaWebServiceSoap" type="tns:ClinicaWebServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListaDireccion">
+      <soap:operation soapAction="http://tempuri.org/ListaDireccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDireccion">
+      <soap:operation soapAction="http://tempuri.org/InsertDireccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UpdateDireccion">
       <soap:operation soapAction="http://tempuri.org/UpdateDireccion" style="document" />
       <wsdl:input>
@@ -2710,6 +2842,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Select_AlergiasP">
+      <soap:operation soapAction="http://tempuri.org/Select_AlergiasP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Select_EnfermedadesPaciente">
       <soap:operation soapAction="http://tempuri.org/Select_EnfermedadesPaciente" style="document" />
       <wsdl:input>
@@ -2748,6 +2889,15 @@
     </wsdl:operation>
     <wsdl:operation name="MaxIdConsulta">
       <soap:operation soapAction="http://tempuri.org/MaxIdConsulta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertar_AlergiasPaciente">
+      <soap:operation soapAction="http://tempuri.org/insertar_AlergiasPaciente" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2919,6 +3069,15 @@
     </wsdl:operation>
     <wsdl:operation name="TodoslosPacientes">
       <soap:operation soapAction="http://tempuri.org/TodoslosPacientes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PacienteID">
+      <soap:operation soapAction="http://tempuri.org/PacienteID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3169,6 +3328,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListaAlergiasID">
+      <soap:operation soapAction="http://tempuri.org/ListaAlergiasID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="InsertAlergia">
       <soap:operation soapAction="http://tempuri.org/InsertAlergia" style="document" />
       <wsdl:input>
@@ -3313,27 +3481,27 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ListaDireccion">
-      <soap:operation soapAction="http://tempuri.org/ListaDireccion" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InsertDireccion">
-      <soap:operation soapAction="http://tempuri.org/InsertDireccion" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ClinicaWebServiceSoap12" type="tns:ClinicaWebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListaDireccion">
+      <soap12:operation soapAction="http://tempuri.org/ListaDireccion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDireccion">
+      <soap12:operation soapAction="http://tempuri.org/InsertDireccion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UpdateDireccion">
       <soap12:operation soapAction="http://tempuri.org/UpdateDireccion" style="document" />
       <wsdl:input>
@@ -3532,6 +3700,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Select_AlergiasP">
+      <soap12:operation soapAction="http://tempuri.org/Select_AlergiasP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Select_EnfermedadesPaciente">
       <soap12:operation soapAction="http://tempuri.org/Select_EnfermedadesPaciente" style="document" />
       <wsdl:input>
@@ -3570,6 +3747,15 @@
     </wsdl:operation>
     <wsdl:operation name="MaxIdConsulta">
       <soap12:operation soapAction="http://tempuri.org/MaxIdConsulta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertar_AlergiasPaciente">
+      <soap12:operation soapAction="http://tempuri.org/insertar_AlergiasPaciente" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3741,6 +3927,15 @@
     </wsdl:operation>
     <wsdl:operation name="TodoslosPacientes">
       <soap12:operation soapAction="http://tempuri.org/TodoslosPacientes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PacienteID">
+      <soap12:operation soapAction="http://tempuri.org/PacienteID" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3991,6 +4186,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListaAlergiasID">
+      <soap12:operation soapAction="http://tempuri.org/ListaAlergiasID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="InsertAlergia">
       <soap12:operation soapAction="http://tempuri.org/InsertAlergia" style="document" />
       <wsdl:input>
@@ -4128,24 +4332,6 @@
     </wsdl:operation>
     <wsdl:operation name="NombreDptoConsultorios">
       <soap12:operation soapAction="http://tempuri.org/NombreDptoConsultorios" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ListaDireccion">
-      <soap12:operation soapAction="http://tempuri.org/ListaDireccion" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InsertDireccion">
-      <soap12:operation soapAction="http://tempuri.org/InsertDireccion" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
