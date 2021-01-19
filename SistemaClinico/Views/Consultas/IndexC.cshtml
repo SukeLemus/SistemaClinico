@@ -1,5 +1,4 @@
-﻿@*@model IEnumerable<SistemaClinico.Models.ConsultaPac>*@
-@model IPagedList<SistemaClinico.Models.ConsultaPac>
+﻿@model IPagedList<SistemaClinico.Models.ConsultaPac>
 @{
     ViewBag.Title = "Index";
 }
@@ -7,11 +6,11 @@
 @using PagedList.Mvc;
 @using SistemaClinico.Controllers;
 
-<div class="titulo_general"><h1>Mis Consultas</h1></div>
+<div class="titulo_general"><h1>Consultas</h1></div>
 
 @*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
 <table class="table">
     <tr>
         <th>
@@ -44,12 +43,12 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.NOMBRE)
-           
+
                 @Html.DisplayFor(modelItem => item.APELLIDO)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NOMBRES)
-           
+
                 @Html.DisplayFor(modelItem => item.APELLIDOS)
             </td>
             <td>
@@ -69,7 +68,7 @@
             </td>
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
-                @Html.ActionLink("Detalles", "Details", new {id= item.ID_CONSULTA}) 
+                @Html.ActionLink("Detalles", "DetailsC", new { id = item.ID_CONSULTA })
                 @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
             </td>
         </tr>

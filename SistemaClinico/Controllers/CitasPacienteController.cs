@@ -144,6 +144,48 @@ namespace SistemaClinico.Controllers
             return listaS;
 
         }
+        public static List<ListadoCitasPaciente> TodasLasCitasSegunCitaID(int idcita)
+        {
+            List<ListadoCitasPaciente> listaS = new List<ListadoCitasPaciente>();
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient citas = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+            DataSet ds = citas.lista_citas_comp_id(idcita);
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                int id = int.Parse(dr["ID_CITAS"].ToString());
+                int idpaciente = int.Parse(dr["ID_PACIENTE"].ToString());
+                string nombrepaciente = dr["NOMBRE"].ToString();
+                string apellidopaciente = dr["APELLIDO"].ToString();
+                string telefono = dr["TELEFONO"].ToString();
+                string correo = dr["CORREO"].ToString();
+                string fecha = dr["FECHA"].ToString();
+                string hora = dr["HORA"].ToString();
+                string turno = dr["TURNO"].ToString();
+                string tipocita = dr["TIPO_CITA"].ToString();
+                int iddepa = int.Parse(dr["ID_DEPARTAMENTO"].ToString());
+                string nombredepa = dr["NOMBRE_DEPARTAMENTO"].ToString();
+                string descripcion = dr["DESCRIPCION"].ToString();
+                string estado = dr["ESTADO"].ToString();
+                ListadoCitasPaciente US = new ListadoCitasPaciente();
+                US.ID = id;
+                US.ID_PACIENTE = idpaciente;
+                US.NOMBRE = nombrepaciente;
+                US.APELLIDO = apellidopaciente;
+                US.TELEFONO = telefono;
+                US.CORREO = correo;
+                US.FECHA = fecha.Remove(10);
+                US.HORA = hora;
+                US.TURNO = turno;
+                US.TIPO_CITA = tipocita;
+                US.ID_DEPARTAMENTO = iddepa;
+                US.NOMBRE_DEPARTAMENTO = nombredepa;
+                US.DESCRIPCION = descripcion;
+                US.ESTADO = estado;
+                listaS.Add(US);
+            }
+            return listaS;
+
+        }
 
         public static List<ListadoCitasPaciente> TodasLasCitasSegunpacienteAceptada()
         {
@@ -361,9 +403,9 @@ namespace SistemaClinico.Controllers
         // GET: CitasPaciente/Details/5
         public ActionResult Details(int id)
         {
-            List<ListadoCitasPaciente> detallesConsulta = TodasLasCitasSegunpacienteID(id);
+            List<ListadoCitasPaciente> detallesConsulta = TodasLasCitasSegunCitaID(id);
 
-            var cita = detallesConsulta.Single(m => m.ID_PACIENTE == id);
+            var cita = detallesConsulta.Single(m => m.ID == id);
 
             return View(cita);
         

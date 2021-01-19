@@ -6,7 +6,7 @@
 
 <div class="titulo_general"><h1>Mis Consultas Médicas</h1></div>
 
-<div>
+@*<div>
     <h4>Detalles de la consulta</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -83,7 +83,7 @@
         </dd>
 
     </dl>
-</div>
+</div>*@
 @*<p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.ID_CONSULTA }) |
         @Html.ActionLink("Back to List", "Index")
@@ -96,7 +96,7 @@
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>Detalle de la Cita</h4>
+    <h4>Detalle de la Consulta</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @*@Html.HiddenFor(model => model.ID_PACIENTE)*@

@@ -12,6 +12,63 @@ namespace SistemaClinico.Controllers
     public class UsuariosController : Controller
     {
 
+        //Tratamientos
+        public List<Tratamiento> listaTP()
+        {
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient log2 = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+            List<Tratamiento> Tr = new List<Tratamiento>();
+            DataSet ds = log2.Select_TratamientosP();
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                int id = int.Parse(dr["ID_TRATAMIENTO"].ToString());
+                int idp = int.Parse(dr["ID_PACIENTE"].ToString());
+                int idm = int.Parse(dr["ID_MEDICAMENTO"].ToString());
+                string nombre = dr["NOMBRE_MEDICAMENTO"].ToString();
+                string ciclo = dr["CICLO_CONSUMO"].ToString();
+
+                Tratamiento trat = new Tratamiento();
+                trat.ID = id;
+                trat.ID_PACIENTE = idp;
+                trat.ID_MEDICAMENTO = idm;
+                trat.NOMBRE_MEDICAMENTO = nombre;
+                trat.CICLO_CONSUMO = ciclo;
+
+                Tr.Add(trat);
+
+            }
+            return Tr;
+        }
+
+        public int confrepetidoT(int idenf, int idsint)
+        {
+
+            List<Tratamiento> enfsint = listaTP();
+            int datorep = 0;
+            //var datopaciente = enfsint.Single(m => m.ID_ENFERMEDAD == idenf && m.ID_SINTOMA == idsint);
+            try
+            {
+                var comprobando = enfsint.Single(m => m.ID_PACIENTE == idenf && m.ID_MEDICAMENTO == idsint);
+                if (comprobando != null)
+                {
+                    datorep = 1;
+                }
+                else
+                {
+                    datorep = 0;
+                }
+            }
+            catch
+            {
+                datorep = 0;
+
+            }
+            return datorep;
+
+
+        }
+
+
+
         //Enfermedad R
         public List<EnfermedadPaciente> listaEP()
         {
@@ -784,7 +841,130 @@ namespace SistemaClinico.Controllers
             }
             return RedirectToAction("agregarE", "Usuarios", new { id = id });
         }
+        //Tratamientos
+        public ActionResult agregarT(int id)
+        {
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient alerWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
 
+            //Lista medicamento
+            /**************MEDICAMENTO ***************************************************/
+            DataSet ds = alerWS.lista_medicamentos();
+            List<Medicamento> listaT = new List<Medicamento>();
+            var selectListT = new List<SelectListItem>();
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                int idm = int.Parse(dr["ID_MEDICAMENTO"].ToString());
+                // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
+                string nombrem = dr["NOMBRE_MEDICAMENTO"].ToString();
+
+                Medicamento me = new Medicamento();
+                me.id = idm;
+                me.NOMBRE_MEDICAMENTO = nombrem;
+                listaT.Add(me);
+
+                selectListT.Add(new SelectListItem
+                {
+                    Value = me.id.ToString(),
+                    Text = me.NOMBRE_MEDICAMENTO
+                });
+            }
+
+            ViewData["ListaMedicamento"] = selectListT;
+
+            //sacando nombre paciente
+
+            DataSet ds2 = alerWS.PacienteID(id);
+            RegistroPacienteUsuario p = new RegistroPacienteUsuario();
+
+            foreach (DataRow dr2 in ds2.Tables[0].Rows)
+            {
+
+                string nombre = dr2["NOMBRE"].ToString();
+                string apellido = dr2["APELLIDO"].ToString();
+
+                p.NOMBRE = nombre;
+                p.APELLIDO = apellido;
+
+
+            }
+
+            ViewData["nombrep"] = p.NOMBRE + " " + p.APELLIDO;
+
+            //Lista tratamiento paciente
+
+            DataSet ds3 = alerWS.Select_TratamientosPaciente(id);
+            List<Tratamiento> listaTratamiento = new List<Tratamiento>();
+            var selectListTratamiento = new List<SelectListItem>();
+
+            foreach (DataRow dr3 in ds3.Tables[0].Rows)
+            {
+                int idmedicamento = int.Parse(dr3["ID_MEDICAMENTO"].ToString());
+                // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
+                string nombremedicamento = dr3["NOMBRE_MEDICAMENTO"].ToString();
+                string ciclo = dr3["CICLO_CONSUMO"].ToString();
+
+                Tratamiento t = new Tratamiento();
+                t.ID_MEDICAMENTO = idmedicamento;
+                t.NOMBRE_MEDICAMENTO = nombremedicamento;
+                t.CICLO_CONSUMO = ciclo;
+                listaTratamiento.Add(t);
+
+                selectListTratamiento.Add(new SelectListItem
+                {
+                    Value = t.ID_MEDICAMENTO.ToString(),
+                    Text = t.NOMBRE_MEDICAMENTO + " " + t.CICLO_CONSUMO
+                });
+            }
+
+            ViewData["ListaTratamientoID"] = selectListTratamiento;
+            ViewData["idpaciente"] = id;
+            return View();
+        }
+        [HttpPost]
+
+        public ActionResult agregarT(int id, FormCollection collection)
+        {
+
+            if (Session["Rol"] != null && Session["Rol"].Equals(3))
+            {
+                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient alerWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+
+
+
+                try
+                {
+
+
+                    int datorep = confrepetidoT(id, int.Parse(collection["ID_MEDICAMENTO"].ToString()));
+                    if (datorep == 0)
+                    {
+                        Tratamiento trata = new Models.Tratamiento();
+                        trata.ID_PACIENTE = id;
+                        trata.ID_MEDICAMENTO = int.Parse(collection["ID_MEDICAMENTO"]);
+                        trata.CICLO_CONSUMO = collection["CICLO_CONSUMO"];
+                        alerWS.insertar_TratamientoPaciente(trata.ID_PACIENTE, trata.ID_MEDICAMENTO, trata.CICLO_CONSUMO);
+                    }
+                    else
+                    {
+                        TempData["UserMessage"] = "ya existe ese tratamiento para este paciente";
+                        return RedirectToAction("agregarT", "Usuarios", new { id = id });
+                    }
+
+                }
+                catch
+                {
+                    // return View();
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                Response.Redirect("Index");
+            }
+            return RedirectToAction("agregarT", "Usuarios", new { id = id });
+        }
 
         public ActionResult InformacionMedica(int id)
         {
@@ -899,17 +1079,19 @@ namespace SistemaClinico.Controllers
             {
                 int idTratamiento = int.Parse(dr5["ID_MEDICAMENTO"].ToString());
                 string nombreTratamiento = dr5["NOMBRE_MEDICAMENTO"].ToString();
+                string ciclo = dr5["CICLO_CONSUMO"].ToString();
 
                 Tratamiento trata = new Tratamiento();
                 trata.ID = idTratamiento;
                 trata.NOMBRE_MEDICAMENTO = nombreTratamiento;
+                trata.CICLO_CONSUMO = ciclo;
 
                 listaTratamiento.Add(trata);
 
-                selectListFracturas.Add(new SelectListItem
+                selectListTratamiento.Add(new SelectListItem
                 {
                     Value = trata.ID.ToString(),
-                    Text = trata.NOMBRE_MEDICAMENTO
+                    Text = trata.NOMBRE_MEDICAMENTO + " " + trata.CICLO_CONSUMO
                 });
             }
             ViewData["ListaTratamiento"] = selectListTratamiento;

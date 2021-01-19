@@ -160,12 +160,33 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_citas_comp_segun_id", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataSet> lista_citas_comp_segun_idAsync(int idpaciente);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_citas_comp_id", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet lista_citas_comp_id(int idcita);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_citas_comp_id", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> lista_citas_comp_idAsync(int idcita);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_consultas_comp_segun_id", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Data.DataSet lista_consultas_comp_segun_id(int idpaciente);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_consultas_comp_segun_id", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataSet> lista_consultas_comp_segun_idAsync(int idpaciente);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_consultas_comp_id", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet lista_consultas_comp_id(int idconsulta);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_consultas_comp_id", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> lista_consultas_comp_idAsync(int idconsulta);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_consultas_comp", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet lista_consultas_comp();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_consultas_comp", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> lista_consultas_compAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lista_citas_comp_finalizada", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -272,6 +293,13 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Select_TratamientosPaciente", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataSet> Select_TratamientosPacienteAsync(int idPaciente);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Select_TratamientosP", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet Select_TratamientosP();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Select_TratamientosP", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> Select_TratamientosPAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/MaxIdConsulta", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Data.DataSet MaxIdConsulta();
@@ -306,6 +334,13 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/insertar_EnfermedadPaciente", ReplyAction="*")]
         System.Threading.Tasks.Task<int> insertar_EnfermedadPacienteAsync(int idpaciente, int idenfermedad);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/insertar_TratamientoPaciente", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int insertar_TratamientoPaciente(int idpaciente, int idmedicamento, string ciclo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/insertar_TratamientoPaciente", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> insertar_TratamientoPacienteAsync(int idpaciente, int idmedicamento, string ciclo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorld", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -943,12 +978,36 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
             return base.Channel.lista_citas_comp_segun_idAsync(idpaciente);
         }
         
+        public System.Data.DataSet lista_citas_comp_id(int idcita) {
+            return base.Channel.lista_citas_comp_id(idcita);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> lista_citas_comp_idAsync(int idcita) {
+            return base.Channel.lista_citas_comp_idAsync(idcita);
+        }
+        
         public System.Data.DataSet lista_consultas_comp_segun_id(int idpaciente) {
             return base.Channel.lista_consultas_comp_segun_id(idpaciente);
         }
         
         public System.Threading.Tasks.Task<System.Data.DataSet> lista_consultas_comp_segun_idAsync(int idpaciente) {
             return base.Channel.lista_consultas_comp_segun_idAsync(idpaciente);
+        }
+        
+        public System.Data.DataSet lista_consultas_comp_id(int idconsulta) {
+            return base.Channel.lista_consultas_comp_id(idconsulta);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> lista_consultas_comp_idAsync(int idconsulta) {
+            return base.Channel.lista_consultas_comp_idAsync(idconsulta);
+        }
+        
+        public System.Data.DataSet lista_consultas_comp() {
+            return base.Channel.lista_consultas_comp();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> lista_consultas_compAsync() {
+            return base.Channel.lista_consultas_compAsync();
         }
         
         public System.Data.DataSet lista_citas_comp_finalizada() {
@@ -1071,6 +1130,14 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
             return base.Channel.Select_TratamientosPacienteAsync(idPaciente);
         }
         
+        public System.Data.DataSet Select_TratamientosP() {
+            return base.Channel.Select_TratamientosP();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> Select_TratamientosPAsync() {
+            return base.Channel.Select_TratamientosPAsync();
+        }
+        
         public System.Data.DataSet MaxIdConsulta() {
             return base.Channel.MaxIdConsulta();
         }
@@ -1109,6 +1176,14 @@ namespace SistemaClinico.SistemaClinicoSoapWS {
         
         public System.Threading.Tasks.Task<int> insertar_EnfermedadPacienteAsync(int idpaciente, int idenfermedad) {
             return base.Channel.insertar_EnfermedadPacienteAsync(idpaciente, idenfermedad);
+        }
+        
+        public int insertar_TratamientoPaciente(int idpaciente, int idmedicamento, string ciclo) {
+            return base.Channel.insertar_TratamientoPaciente(idpaciente, idmedicamento, ciclo);
+        }
+        
+        public System.Threading.Tasks.Task<int> insertar_TratamientoPacienteAsync(int idpaciente, int idmedicamento, string ciclo) {
+            return base.Channel.insertar_TratamientoPacienteAsync(idpaciente, idmedicamento, ciclo);
         }
         
         public string HelloWorld() {

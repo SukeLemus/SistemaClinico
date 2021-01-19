@@ -183,6 +183,90 @@ namespace SistemaClinico.Controllers
 
         }
 
+        public static List<ConsultaPac> TodasLasConsultasSegunID(int idconsul)
+        {
+            List<ConsultaPac> listaS = new List<ConsultaPac>();
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient citas = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+            DataSet ds = citas.lista_consultas_comp_id(idconsul);
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                //int id = int.Parse(dr["ID_CITAS"].ToString());
+                //int idpaciente = int.Parse(dr["ID_PACIENTE"].ToString());
+                int idconsulta = int.Parse(dr["ID_CONSULTA"].ToString());
+                int idpaciente = int.Parse(dr["ID_PACIENTE"].ToString());
+                string nombrepaciente = dr["NOMBRE"].ToString();
+                string apellidopaciente = dr["APELLIDO"].ToString();
+                string nombreDoctor = dr["NOMBRES"].ToString();
+                string apellidoDoctor = dr["APELLIDOS"].ToString();
+                string fecha = dr["FECHA"].ToString();
+                string hora = dr["HORA"].ToString();
+                string tipoCita = dr["TIPO_CITA"].ToString();
+                string descripcion = dr["DESCRIPCION"].ToString();
+                string diagnostico = dr["DIAGNOSTICO"].ToString();
+
+
+                ConsultaPac consultaPac = new ConsultaPac();
+                consultaPac.ID_CONSULTA = idconsulta;
+                consultaPac.ID_PACIENTE = idpaciente;
+                consultaPac.NOMBRE = nombrepaciente;
+                consultaPac.APELLIDO = apellidopaciente;
+                consultaPac.NOMBRES = nombreDoctor;
+                consultaPac.APELLIDOS = apellidoDoctor;
+                consultaPac.FECHA = fecha.ToString().Remove(10);
+                consultaPac.HORA = hora;
+                consultaPac.TIPO_CITA = tipoCita;
+                consultaPac.DESCRIPCION = descripcion;
+                consultaPac.DIAGNOSTICO = diagnostico;
+
+                listaS.Add(consultaPac);
+            }
+            return listaS;
+
+        }
+
+        public static List<ConsultaPac> TodasLasConsultas()
+        {
+            List<ConsultaPac> listaS = new List<ConsultaPac>();
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient citas = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+            DataSet ds = citas.lista_consultas_comp();
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                //int id = int.Parse(dr["ID_CITAS"].ToString());
+                //int idpaciente = int.Parse(dr["ID_PACIENTE"].ToString());
+                int idconsulta = int.Parse(dr["ID_CONSULTA"].ToString());
+                int idpaciente = int.Parse(dr["ID_PACIENTE"].ToString());
+                string nombrepaciente = dr["NOMBRE"].ToString();
+                string apellidopaciente = dr["APELLIDO"].ToString();
+                string nombreDoctor = dr["NOMBRES"].ToString();
+                string apellidoDoctor = dr["APELLIDOS"].ToString();
+                string fecha = dr["FECHA"].ToString();
+                string hora = dr["HORA"].ToString();
+                string tipoCita = dr["TIPO_CITA"].ToString();
+                string descripcion = dr["DESCRIPCION"].ToString();
+                string diagnostico = dr["DIAGNOSTICO"].ToString();
+
+
+                ConsultaPac consultaPac = new ConsultaPac();
+                consultaPac.ID_CONSULTA = idconsulta;
+                consultaPac.ID_PACIENTE = idpaciente;
+                consultaPac.NOMBRE = nombrepaciente;
+                consultaPac.APELLIDO = apellidopaciente;
+                consultaPac.NOMBRES = nombreDoctor;
+                consultaPac.APELLIDOS = apellidoDoctor;
+                consultaPac.FECHA = fecha.ToString().Remove(10);
+                consultaPac.HORA = hora;
+                consultaPac.TIPO_CITA = tipoCita;
+                consultaPac.DESCRIPCION = descripcion;
+                consultaPac.DIAGNOSTICO = diagnostico;
+
+                listaS.Add(consultaPac);
+            }
+            return listaS;
+
+        }
+
         public ActionResult GeneracionConstancias(int? i, string BuscarNombre)
         {
 
@@ -230,6 +314,22 @@ namespace SistemaClinico.Controllers
             return View(citas.ToPagedList(i ?? 1, 3));
         }
 
+        public ActionResult IndexC(int? i, string BuscarNombre)
+        {
+
+
+            //int idpa = int.Parse(Session["id"].ToString());
+
+            var citas = from e in TodasLasConsultas()
+                            //orderby e.nombre
+                        select e;
+            if (!String.IsNullOrEmpty(BuscarNombre))
+            {
+                citas = citas.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+            }
+            return View(citas.ToPagedList(i ?? 1, 3));
+        }
+
 
         public ActionResult GenerarPrescripcion(int id)
         {
@@ -265,9 +365,19 @@ namespace SistemaClinico.Controllers
         public ActionResult Details(int id)
         {
 
-            List<ConsultaPac> detallesConsulta = TodasLasConsultasSegunpacienteID(id);
+            List<ConsultaPac> detallesConsulta = TodasLasConsultasSegunID(id);
 
-            var con = detallesConsulta.Single(m => m.ID_PACIENTE == id);
+            var con = detallesConsulta.Single(m => m.ID_CONSULTA == id);
+
+            return View(con);
+        }
+
+        public ActionResult DetailsC(int id)
+        {
+
+            List<ConsultaPac> detallesConsulta = TodasLasConsultasSegunID(id);
+
+            var con = detallesConsulta.Single(m => m.ID_CONSULTA == id);
 
             return View(con);
         }

@@ -407,6 +407,9 @@
     <Content Include="Views\Usuarios\agregarF.cshtml" />
     <Content Include="Views\Usuarios\agregarC.cshtml" />
     <Content Include="Views\Usuarios\agregarE.cshtml" />
+    <Content Include="Views\Usuarios\agregarT.cshtml" />
+    <Content Include="Views\Consultas\IndexC.cshtml" />
+    <Content Include="Views\Consultas\DetailsC.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

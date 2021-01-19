@@ -74,7 +74,7 @@
             </td>
             <td class="td_lista">
                 @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |*@
-                @Html.ActionLink("Detalles", "Details", new { id = int.Parse(Session["id"].ToString()) })
+                @Html.ActionLink("Detalles", "Details", new { id = item.ID })
                 @*@Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
             </td>
         </tr>
