@@ -311,7 +311,7 @@
                                 <img src="~/Content/Images/expediente.png" class="imgicono" />
                             </a>
                             <div class="dropdown-content">
-                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                <a class="nav-link text-dark" href="@Url.Action("InformacionMedica", "Usuarios", new { id = Session["id"]  })">
                                     Mi informacion Medica
                                 </a>
                                 <a class="nav-link text-dark" href="@Url.Action("Index", "CitasPaciente")">
@@ -588,7 +588,7 @@
                                 <a class="nav-link text-dark" href="@Url.Action("IndexPacientesAgregar", "Usuarios")">
                                     Información médica
                                 </a>
-                                <a class="nav-link text-dark" href="@Url.Action("Index", "Sintomas")">
+                                <a class="nav-link text-dark" href="@Url.Action("ConstanciaPaciente", "Usuarios")">
                                     Constancias médicas
                                 </a>
                                 <a class="nav-link text-dark" href="@Url.Action("PrescripcionPaciente", "Usuarios")">

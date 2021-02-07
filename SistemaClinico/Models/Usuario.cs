@@ -69,6 +69,8 @@ namespace SistemaClinico.Models
 
     }
 
+ 
+
     public class DireccionesUsuario
     {
         public int ID { get; set; }

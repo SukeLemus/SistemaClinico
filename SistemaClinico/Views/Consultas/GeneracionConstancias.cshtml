@@ -14,9 +14,7 @@
     </p>*@
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayName("Paciente ")
-        </th>
+      
 
         <th>
             @Html.DisplayName("Doctor ")
@@ -27,12 +25,7 @@
         <th>
             @Html.DisplayName("Hora ")
         </th>
-        <th>
-            @Html.DisplayName("Tipo cita ")
-        </th>
-        <th>
-            @Html.DisplayName("Descripción ")
-        </th>
+   
         <th>
             @Html.DisplayName("Diagnóstico ")
         </th>
@@ -42,11 +35,7 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NOMBRE)
-
-                @Html.DisplayFor(modelItem => item.APELLIDO)
-            </td>
+        
             <td>
                 @Html.DisplayFor(modelItem => item.NOMBRES)
 
@@ -58,12 +47,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.HORA)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TIPO_CITA)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DESCRIPCION)
-            </td>
+       
             <td>
                 @Html.DisplayFor(modelItem => item.DIAGNOSTICO)
             </td>

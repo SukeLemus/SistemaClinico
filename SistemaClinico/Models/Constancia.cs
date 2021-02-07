@@ -22,5 +22,7 @@ namespace SistemaClinico.Models
         public string FECHA { get; set; }
         public string HORA { get; set; }
         public string DIAGNOSTICO { get; set; }
+
+        public string TELEFONO_DOCTOR { get; set; }
     }
 }

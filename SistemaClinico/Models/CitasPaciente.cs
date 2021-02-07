@@ -12,6 +12,14 @@ namespace SistemaClinico.Models
         public int ID { get; set; }
         [Required]
         public int ID_PACIENTE { get; set; }
+
+        [Required]
+        public string NOMBRE { get; set; }
+        [Required]
+        public string APELLIDO { get; set; }
+        [Required]
+        public string TELEFONO { get; set; }
+
         [Required]
         public string FECHA { get; set; }
         [Required]
@@ -26,6 +34,9 @@ namespace SistemaClinico.Models
         public string DESCRIPCION { get; set; }
         [Required]
         public string ESTADO { get; set; }
+
+
+       
     }
 
     public class ListadoCitasPaciente

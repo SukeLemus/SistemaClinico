@@ -1,0 +1,29 @@
+﻿@model SistemaClinico.Models.ConstanciaPDF
+
+@{
+    ViewBag.Title = "ConstanciaDetalle";
+}
+
+<h2>ConstanciaDetalle</h2>
+
+<div>
+    <h4>ConstanciaPDF</h4>
+    <hr />
+    
+    <table class="table">
+        <tr>
+            <td>Paciente: @ViewData["paciente"].ToString()</td><td>Doctor: @ViewData["doctor"].ToString()</td><td>@ViewData["telefono"].ToString()</td>
+        </tr>
+        <tr>
+            <td>Fecha: @ViewData["fecha"]</td><td>Hora: @ViewData["hora"]</td>
+        </tr>
+        <tr>
+            <td>Diagnóstico: @ViewData["diagnostico"]</td>
+        </tr>
+    </table>
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

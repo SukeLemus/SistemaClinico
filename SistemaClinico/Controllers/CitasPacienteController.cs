@@ -1,4 +1,5 @@
 ﻿using SistemaClinico.Models;
+using SistemaClinico.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,10 +7,17 @@ using System.Linq;
 using System.Web;
 using PagedList;
 using System.Web.Mvc;
+using Twilio;
+using Twilio.AspNet.Common;
+using Twilio.AspNet.Mvc;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.TwiML;
+using Twilio.Types;
+
 
 namespace SistemaClinico.Controllers
 {
-    public class CitasPacienteController : Controller
+    public class CitasPacienteController : TwilioController
     {
         //GET TODO LOS PACIENTES
         public static List<RegistroPacienteUsuario> TodosUsuarios()
@@ -281,6 +289,9 @@ namespace SistemaClinico.Controllers
             {
                 int id = int.Parse(dr["ID_CITAS"].ToString());
                 int idpaciente = int.Parse(dr["ID_PACIENTE"].ToString());
+                string nombre = dr["NOMBRE"].ToString();
+                string apellido = dr["APELLIDO"].ToString();
+                string telefono = dr["TELEFONO"].ToString();
                 string fecha = dr["FECHA"].ToString();
                 string hora = dr["HORA"].ToString();
                 string turno = dr["TURNO"].ToString();
@@ -291,6 +302,9 @@ namespace SistemaClinico.Controllers
                 CitasPaciente US = new CitasPaciente();
                 US.ID = id;
                 US.ID_PACIENTE = idpaciente;
+                US.NOMBRE = nombre;
+                US.APELLIDO = apellido;
+                US.TELEFONO = telefono;
                 US.FECHA = fecha;
                 US.HORA = hora;
                 US.TURNO = turno;
@@ -912,21 +926,71 @@ namespace SistemaClinico.Controllers
         [HttpPost]
         public ActionResult Edit(int id2, int id3, FormCollection collection)
         {
+            //string nombre = "";
+            //string apellido = "";
+            //string paciente = "";
+
             SistemaClinicoSoapWS.ClinicaWebServiceSoapClient updatecita = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
 
             List<CitasPaciente> deplist = TodasLasCitas();
-      
+            //List<ListadoCitasPaciente> smsList = TodasLasCitasSegunpacienteID(id2);
 
-                try
+            //DataSet datosPaciente = updatecita.PacienteID(id2);
+            //foreach (DataRow dr in datosPaciente.Tables[0].Rows)
+            //{
+            //    nombre = dr["NOMBRE"].ToString();
+            //    apellido = dr["APELLIDO"].ToString();
+            //    paciente = nombre + " " + apellido;
+            //    ViewData["paciente"] = paciente;
+            //}
+
+
+            try
                 {
                 var depa = deplist.Single(m => m.ID == id2);
+                //var depa2 = smsList.Single(m => m.ID == id2);
 
                 if (TryUpdateModel(depa))
                     {
                         updatecita.UpdateCita(id2, depa.ID_PACIENTE, depa.FECHA, depa.HORA, depa.TURNO, depa.TIPO_CITA, depa.ID_DEPARTAMENTO, depa.DESCRIPCION, "ACEPTADA");
-                        return RedirectToAction("ListadoCitasPaciente");
+
+                  
+
+                    var accountSid = "ACff74ce0458777d0270f694481bf73641";
+                    var authToken = "469a8d4266ae6a9e0c81274f214cfed0";
+
+                    TwilioClient.Init(accountSid, authToken);
+
+                    var messageOptions = new CreateMessageOptions(
+                        new PhoneNumber("+503"+depa.TELEFONO));
+                    messageOptions.From = new PhoneNumber("+18283684074");
+                    messageOptions.Body = "Estimad@: " + depa.NOMBRE+ " "+depa.APELLIDO+" su cita está confirmada para el día: "+depa.FECHA+ " a la hora: "+depa.HORA;
+
+                    var message = MessageResource.Create(messageOptions);
+                    Console.WriteLine(message.Body);
+
+
+                    return RedirectToAction("ListadoCitasPaciente");
 
                     }
+
+                //codigo para API de sms
+                //string accountSid = Environment.GetEnvironmentVariable("ACff74ce0458777d0270f694481bf73641");
+                //string authToken = Environment.GetEnvironmentVariable("469a8d4266ae6a9e0c81274f214cfed0");
+
+                //TwilioClient.Init(accountSid, authToken);
+
+                //var message = MessageResource.Create(
+                //body: "Hola soy Datanet.",
+                //from: new Twilio.Types.PhoneNumber("+18283684074"),
+                //to: new Twilio.Types.PhoneNumber("+50360453391")
+                //);
+
+                //Console.WriteLine(message.Sid);
+
+                
+
+
 
                 return View(depa);
             }
