@@ -954,16 +954,14 @@ namespace SistemaClinico.Controllers
                     {
                         updatecita.UpdateCita(id2, depa.ID_PACIENTE, depa.FECHA, depa.HORA, depa.TURNO, depa.TIPO_CITA, depa.ID_DEPARTAMENTO, depa.DESCRIPCION, "ACEPTADA");
 
-                  
-
-                    var accountSid = "ACff74ce0458777d0270f694481bf73641";
-                    var authToken = "469a8d4266ae6a9e0c81274f214cfed0";
+                    var accountSid = "ACe61cf5016212b999fa489c6698bd7103";
+                    var authToken = "371703560eaf4bc28b89f7a9365f4758";
 
                     TwilioClient.Init(accountSid, authToken);
 
                     var messageOptions = new CreateMessageOptions(
-                        new PhoneNumber("+503"+depa.TELEFONO));
-                    messageOptions.From = new PhoneNumber("+18283684074");
+                    new PhoneNumber("+503"+depa.TELEFONO));
+                    messageOptions.From = new PhoneNumber("+17158008408");
                     messageOptions.Body = "Estimad@: " + depa.NOMBRE+ " "+depa.APELLIDO+" su cita está confirmada para el día: "+depa.FECHA+ " a la hora: "+depa.HORA;
 
                     var message = MessageResource.Create(messageOptions);
