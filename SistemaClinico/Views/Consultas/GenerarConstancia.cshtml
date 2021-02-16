@@ -1,10 +1,133 @@
 ﻿@model SistemaClinico.Models.ConstanciaPDF
 
 @{
-    //Layout = null;
+    Layout = null;
 }
 
-<h2>Consulta Médica</h2>
+<html>
+<head>
+    <title>Reporte</title>
+    <meta charset="utf-8">
+    <style>
+        hr {
+            height: 5px;
+            background-color: black;
+        }
+    </style>
+
+    <link rel="stylesheet" href="~/Content/TableCSS.css" />
+    <link rel="stylesheet" href="~/Content/Tablas.css" />
+</head>
+<body>
+    <br /><br />
+
+
+    <hr />
+    <div style='text-align:right'><p style="font-size:25px">Datanet SV</p></div>
+    <hr />
+    <br /><br />
+    <img src="~/Content/Images/banergeneral2.jpg" />
+    @*Titulo del reporte*@
+    <br /><br />
+    <br /><br />
+    <div style='text-align:center'><p style="font-size:55px">Constancia Médica</p></div>
+
+    <p style="font-size:25px">
+        Por medio de este documento hago constar que el paciente @Html.DisplayFor(model => model.NOMBRE)  @Html.DisplayFor(model => model.APELLIDO) se le realizó su evaluación
+        médica en la fecha  @Html.DisplayFor(model => model.FECHA) del presente en el siguiente horario @Html.DisplayFor(model => model.HORA),
+        y se le extiende la constacia médica para los usos que estime conveniente
+    </p>
+    <br /><br /><br /><br />
+    <p style="font-size:50px">Diagnóstico</p>
+    <p style="font-size:25px">@Html.DisplayFor(model => model.DIAGNOSTICO)</p>
+
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <footer>
+        <center>
+            <div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <table>
+                    <tr>
+                        <th>Att. @Html.DisplayFor(model => model.NOMBRES)  @Html.DisplayFor(model => model.APELLIDOS)</th>
+
+                        <th><center><img src="~/Content/Images/sello_datanet.jpg" /></center></th>
+
+                    </tr>
+
+                    
+                    <tr>
+                        <td> ________________________________________ <br /><center>Doctor Asignado</center></td>
+                        
+                        
+                  
+                        
+
+                        <td>
+                            &nbsp; &nbsp; &nbsp; ________________________________________ @*<center><img src="~/Content/Images/sello_datanet.jpg" /></center>*@<br />
+                            <center>Sello</center>
+                        </td>
+
+                    </tr>
+                </table>
+
+                <!--<table>
+                    <tr>
+                        <th>Att.--> @*@Html.DisplayFor(model => model.NOMBRES)  @Html.DisplayFor(model => model.APELLIDOS)*@<!--</th>
+                        <th>-->@*<img src="~/Content/Images/sello_datanet.jpg" />*@<!--</th>
+                    </tr>
+                    <tr>
+                        <td>________________________________________ </td>
+                        <td>________________________________________ </td>
+                    </tr>
+                    <tr>
+                        <td><center>Doctor Asignado</center></td>
+                        <td><center>Sello</center></td>
+                    </tr>
+                </table>-->
+
+            </div>
+        </center>
+    </footer>
+    <center>
+
+        @*<div class="container2">
+            <table class="table2">
+                <tr>
+                    <th style="font-size: 20px">Paciente</th>
+                    <th style="background-color:white">Doctor</th>
+                    <th style="background-color:white">Fecha</th>
+                    <th style="background-color:white">Hora</th>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayFor(model => model.NOMBRE) @Html.DisplayFor(model => model.APELLIDO)</td>
+                    <td>@Html.DisplayFor(model => model.NOMBRES) @Html.DisplayFor(model => model.APELLIDOS)</td>
+                    <td>@Html.DisplayFor(model => model.FECHA)</td>
+                    <td>@Html.DisplayFor(model => model.HORA)</td>
+
+                </tr>
+            </table>*@
+        <!--<table>
+            <tr>
+                <th>Diagnóstico</th>
+            </tr>
+            <tr>
+                <td>-->
+        @*@Html.DisplayFor(model => model.DIAGNOSTICO*@
+        <!--)</td>
+            </tr>
+        </table>
+        </div>-->
+
+    </center>
+
+
+</body>
+</html>
+
+@*<h2>Consulta Médica</h2>
 <link rel="stylesheet" href="~/Content/TableCSS.css" />
 <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
 <link rel="stylesheet" href="~/Content/sheetslider.min.css" />
@@ -13,86 +136,15 @@
 <link rel="stylesheet" href="~/Content/Tablas.css" />
 <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 <link href="~/Content/css/bootstrap-timepicker.min.css" rel="stylesheet" />
-<link href="~/Content/css/bootstrap-timepicker.css" rel="stylesheet" />
-<hr />
+<link href="~/Content/css/bootstrap-timepicker.css" rel="stylesheet" />*@
+<!--<hr />
 <div>
-    <h4>Esta constancia médica tiene validéz únicamente si esta debidamente sellada por la administración del centro y la firma y sello del médico que le atendió</h4>
+    <h4>
+        Por medio de este documento hago constar que el paciente--> @*@Html.DisplayFor(model => model.NOMBRE)*@ <!--se le realizo su evaluacion
+        medica en la fecha-->  @*@Html.DisplayFor(model => model.FECHA)*@ <!--del presente en el siguiente horario--> @*@Html.DisplayFor(model => model.HORA)*@<!--,
+        y se le extiende la constacia medica para los usos que estime conveniente
+    </h4>
     <hr />
-    @*<dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.ID_CONSTANCIA)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ID_CONSTANCIA)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.ID_CONSULTA)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ID_CONSULTA)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.NOMBRE)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.NOMBRE)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.APELLIDO)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.APELLIDO)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.NOMBRES)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.NOMBRES)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.APELLIDOS)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.APELLIDOS)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.FECHA)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.FECHA)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.HORA)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.HORA)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.DIAGNOSTICO)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.DIAGNOSTICO)
-            </dd>
-
-        </dl>*@
-
 
     <table class="table">
         <tr>
@@ -103,12 +155,13 @@
 
         </tr>
         <tr>
-            <td>@Html.DisplayFor(model => model.NOMBRE) @Html.DisplayFor(model => model.APELLIDO)</td>
-            <td>@Html.DisplayFor(model => model.NOMBRES) @Html.DisplayFor(model => model.APELLIDOS)</td>
-            <td>@Html.DisplayFor(model => model.FECHA)</td>
-            <td>@Html.DisplayFor(model => model.HORA)</td>
+            <td>-->@*@Html.DisplayFor(model => model.NOMBRE) @Html.DisplayFor(model => model.APELLIDO)*@<!--</td>
+            <td>-->@*@Html.DisplayFor(model => model.NOMBRES) @Html.DisplayFor(model => model.APELLIDOS)*@<!--</td>
+            <td>-->@*@Html.DisplayFor(model => model.FECHA)*@<!--</td>
+            <td>-->@*@Html.DisplayFor(model => model.HORA)*@<!--</td>
 
         </tr>
+
        
     </table>
 
@@ -117,7 +170,7 @@
             <th>Diagnóstico</th>
         </tr>
         <tr>
-            <td>@Html.DisplayFor(model => model.DIAGNOSTICO)</td>
+            <td>-->@*@Html.DisplayFor(model => model.DIAGNOSTICO)*@<!--</td>
         </tr>
     </table>
 </div>
@@ -143,11 +196,5 @@
         </tr>
     </table>
 
-</div>
+</div>-->
 
-
-
-@*<p>
-        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>*@

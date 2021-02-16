@@ -248,6 +248,7 @@
     <Content Include="Content\Images\medicamentos.png" />
     <Content Include="Content\Images\medicos.jpg" />
     <Content Include="Content\Images\pacientes.png" />
+    <Content Include="Content\Images\sello_datanet.jpg" />
     <Content Include="Content\Images\solicitud.png" />
     <Content Include="Content\Images\Twitter.png" />
     <Content Include="Content\js\bootstrap-timepicker.js" />

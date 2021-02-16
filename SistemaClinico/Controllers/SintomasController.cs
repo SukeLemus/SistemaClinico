@@ -71,9 +71,9 @@ namespace SistemaClinico.Controllers
             }
             return new ViewAsPdf(Sintoma.ToPagedList(i ?? 1, 50))
             {
-                //PageSize = Rotativa.Options.Size.A4,
+                PageSize = Rotativa.Options.Size.A4,
                 FileName = "ReporteTodosLosSintomas.pdf" //para que se abra en otra pestaña y se baja
-                //,PageMargins = new Rotativa.Options.Margins(40, 10, 10, 10)
+                ,PageMargins = new Rotativa.Options.Margins(40, 10, 10, 10)
             };
             //return View();
         }
