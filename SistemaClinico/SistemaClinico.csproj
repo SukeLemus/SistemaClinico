@@ -241,12 +241,21 @@
     <Content Include="Content\Images\expediente.png" />
     <Content Include="Content\Images\facebook.jpg" />
     <Content Include="Content\Images\historial.png" />
+    <Content Include="Content\Images\icono-alerta2.png" />
+    <Content Include="Content\Images\ilustracion-btnregistro.png" />
+    <Content Include="Content\Images\ilustracion-enfermedades.png" />
+    <Content Include="Content\Images\ilustracion-login.png" />
+    <Content Include="Content\Images\ilustracion-registro.png" />
+    <Content Include="Content\Images\ilustracion-sintomas.png" />
+    <Content Include="Content\Images\ilustracion-solicita.png" />
     <Content Include="Content\Images\info.png" />
     <Content Include="Content\Images\infogeneral.png" />
     <Content Include="Content\Images\logo utec.png" />
     <Content Include="Content\Images\logo_utec_solo_letras.png" />
     <Content Include="Content\Images\medicamentos.png" />
     <Content Include="Content\Images\medicos.jpg" />
+    <Content Include="Content\Images\menu-registro.png" />
+    <Content Include="Content\Images\menu-solicitarcita.png" />
     <Content Include="Content\Images\pacientes.png" />
     <Content Include="Content\Images\sello_datanet.jpg" />
     <Content Include="Content\Images\solicitud.png" />
@@ -436,6 +445,7 @@
     <Content Include="Views\Usuarios\ConstanciaPaciente.cshtml" />
     <Content Include="Views\Usuarios\ListadoConsultasConstancia.cshtml" />
     <Content Include="Views\Usuarios\ConstanciaDetalle.cshtml" />
+    <Content Include="Views\Home\SoliRegistro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

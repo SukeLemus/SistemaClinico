@@ -13,6 +13,11 @@ namespace SistemaClinico.Controllers
         {      
             return View();
         }
+
+        public ActionResult SoliRegistro()
+        {
+            return View();
+        }
         public ActionResult Datanetsv()
         {
             ViewBag.Message = "Your application description page.";

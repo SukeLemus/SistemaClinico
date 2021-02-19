@@ -40,7 +40,7 @@ namespace SistemaClinico.Controllers
             {
                 Sintoma = Sintoma.Where(c => c.nombre.ToLower().Contains(BuscarNombre.ToLower()));
             }
-            return View(Sintoma.ToPagedList(i ?? 1, 3));
+            return View(Sintoma.ToPagedList(i ?? 1, 5));
             //return View();
         }
         public ActionResult Reporte2(int? i, string BuscarNombre)

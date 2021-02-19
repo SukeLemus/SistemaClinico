@@ -11,29 +11,35 @@
 
 
 <div class="titulo_general"><h1>Síntomas</h1></div>
-@using (Html.BeginForm("Index", "Sintomas", FormMethod.Get))
-{
 
-
-    <p class="buscador">
-        Nombre: @Html.TextBox("BuscarNombre")
-
-        <input type="submit" value="Buscar" />
-    </p>
-}
-<div class="titulo_contactenos">
-    <h2>Síntomas Comunes</h2>
-</div>
-<div class="contenido_contactenos">
-    <p>
-        A continuación se muestra el listado de los síntomas mas comunes, debe considerar que la
-        información que se visualiza es solo una referencia informativa y en caso de presentar alguno de
-        ellos, debe evitar automedicarse y solicitar un diagnóstico médico profesional, en Clínica Datanet puede
-        solicitar una consulta médica en caso de manifestar alguno de los sintomas, solo registrese y comience a usar nuestros servicios.
-
-    </p>
+<div class="titulo_alerta">
+                <h2>Tomar en cuenta <img class="" src="~/Content/Images/icono-alerta2.png" height="50" width="50" /></h2>
 </div>
 
+<div class="contenido_sintomas">
+    
+    <table align="center" WIDTH="80%">
+        <tr>
+            <td>
+                <p>
+                    A continuación se muestra el listado de los síntomas mas comunes, debe considerar que la
+                    información que se visualiza es solo una referencia informativa y en caso de presentar alguno de
+                    ellos, debe evitar automedicarse y solicitar un diagnóstico médico profesional, en Clínica Datanet puede
+                    solicitar una consulta médica en caso de manifestar alguno de los sintomas, solo registrese y comience a usar nuestros servicios.
+
+                </p>
+            </td>
+            <td>
+                <img class="" src="~/Content/Images/ilustracion-sintomas.png" height="200" width="325" />
+
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+<br />
+<br />
 @if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
 {
 
@@ -47,76 +53,99 @@ else
         @Html.ActionLink("Reporte Sintoma", "Reporte2")
     </p>
 }
+@using (Html.BeginForm("Index", "Sintomas", FormMethod.Get))
+{
 
 
+    @*<p class="buscador">
+            Nombre: @Html.TextBox("BuscarNombre", "", new { @class = "busca" })
+
+            <input type="submit" value="Buscar" />
+        </p>*@
+
+    <div class="box">
+        <div class="container-4">
+            <input type="search" id="BuscarNombre" name="BuscarNombre" placeholder="Buscador" />
+            <button type="submit" class="icon"><i class="fa fa-search"></i></button>
+        </div>
+    </div>
+
+
+}
+<br />
+<br />
+<div class="titulo_contactenos">
+    <h2>Listado de Sintomas</h2>
+</div>
+<br />
 <table id="table_id" class="table_lista">
     <tr class="tr_lista">
         <th class="th_lista">
             @*@Html.DisplayNameFor(model => model.First().nombre)*@
-            Nombre
+            Sintoma
         </th>
         <th class="th_lista">
             Descripción
             @*@Html.DisplayNameFor(model => model.First().descripcion)*@
         </th>
 
+        @if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
+        {
+            // @Url.Action("Index", "Home");
+            // @Response.Redirect("~/Views/Home/Index", true);
+
+        }
+        else
+        {
+            <th class="th_lista"> Opciones</th>
+        }
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr class="tr_lista">
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
             @if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
             {
                 // @Url.Action("Index", "Home");
                 // @Response.Redirect("~/Views/Home/Index", true);
-
             }
             else
             {
-                <th class="th_lista"> Opciones</th>
-            }
-
-    </tr>
-        @foreach (var item in Model)
-        {
-            <tr class="tr_lista">
                 <td class="td_lista">
-                    @Html.DisplayFor(modelItem => item.nombre)
-                </td>
-                <td class="td_lista">
-                    @Html.DisplayFor(modelItem => item.descripcion)
-                </td>
-                @if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
-                {
-                    // @Url.Action("Index", "Home");
-                    // @Response.Redirect("~/Views/Home/Index", true);
-                }
-                else
-                {
-                    <td class="td_lista">
-                        <table align="center">
-                            <tr>
-                                @*<td>
+                    <table align="center">
+                        <tr>
+                            @*<td>
                                     @Html.ActionLink("Detalles", "Details", new { id = item.id })
                                     <br>
                                 </td>*@
-                                @*<td>
+                            @*<td>
                                     &nbsp;-&nbsp;
                                 </td>*@
-                                <td>
-                                    @Html.ActionLink("Editar", "Edit", new { id = item.id })
-                                    <br>
-                                </td>
-                                <td>
-                                    &nbsp;-&nbsp;
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                }
+                            <td>
+                                @Html.ActionLink("Editar", "Edit", new { id = item.id })
+                                <br>
+                            </td>
+                            <td>
+                                &nbsp;-&nbsp;
+                            </td>
+                            <td>
+                                @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            }
 
-            </tr>
-        }
+        </tr>
+    }
 
-    </table>
+</table>
 
 @*<nav aria-label="Page navigation example">
         <ul class="pagination">

@@ -9,6 +9,73 @@
 @using SistemaClinico.Controllers;
 
 <div class="titulo_general"><h1>Enfermedades</h1></div>
+<div class="titulo_alerta">
+    <h2>Tomar en cuenta <img class="" src="~/Content/Images/icono-alerta2.png" height="50" width="50" /></h2>
+</div>
+
+<div class="contenido_sintomas">
+
+    <table align="center" WIDTH="90%">
+        <tr>
+            <td>
+                <p>
+                    La salud y la enfermedad son parte integral de la vida, del proceso biológico y de las interacciones
+                    medio ambientales y sociales. Generalmente, se entiende a la enfermedad como la pérdida de la salud, cuyo
+                    efecto negativo es consecuencia de una alteración estructural o funcional de un órgano a cualquier nivel.
+                    <br />
+                    <br />
+                    La experiencia de enfermedad es la vivencia de un proceso que implica cambios o modificaciones de un estado previo. Se divide en cinco etapas:
+                    <br />
+                    <div class="listado">
+                        <ol>
+                            <li type="disc">Fase I, en la que se experimenta el síntoma.</li>
+                            <li type="disc">Fase I, en la que se experimenta el síntoma.</li>
+                            <li type="disc">Fase II, en la que se asume el papel de enfermo.</li>
+                            <li type="disc">Fase III, en la que se toma contacto con el agente de salud.</li>
+                            <li type="disc">Fase IV, en la que el enfermo se hace dependiente del servicio de salud.</li>
+                            <li type="disc">Fase V, en la que tiene lugar la rehabilitación o recuperación o aceptación del estado de enfermedad si este es crónico.</li>
+
+                        </ol>
+                       
+                    </div>
+                    
+
+                </p>
+            </td>
+            <td>
+                <img class="" src="~/Content/Images/ilustracion-enfermedades.png" height="225" width="325" />
+
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+<br />
+<br />
+
+@using (Html.BeginForm("Index", "Enfermedades", FormMethod.Get))
+{
+
+
+    @*<p class="buscador">
+            Nombre: @Html.TextBox("BuscarNombre", "", new { @class = "busca" })
+
+            <input type="submit" value="Buscar" />
+        </p>*@
+
+    <div class="box">
+        <div class="container-4">
+            <input type="search" id="BuscarNombre" name="BuscarNombre" placeholder="Buscador" />
+            <button type="submit" class="icon"><i class="fa fa-search"></i></button>
+        </div>
+    </div>
+
+
+}
+<br />
+<br />
+<br />
 
 @if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
 {
@@ -27,7 +94,7 @@ else
     <tr class="tr_lista">
         <th class="th_lista">
             @*@Html.DisplayNameFor(model => model.First().nombre_enfermedad)*@
-            Nombre Enfermedad
+            Enfermedad
         </th>
         <th class="th_lista">
             Descripción

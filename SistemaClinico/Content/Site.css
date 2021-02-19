@@ -1,6 +1,110 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
+.listado {
+    text-align: left;
+}
 
+.list {
+    font-weight: bolder;
+}
+
+.titulo_alerta {
+    color: darkred;
+}
+
+.contenido_sintomas {
+    font-size: 16px;
+    font-family: sans-serif;
+    text-align: center;
+    font-weight: normal;
+}
+
+
+.box {
+    float: right;
+}
+
+.container-4 {
+    overflow: hidden;
+    width: 200px;
+    vertical-align: middle;
+    white-space: nowrap;
+    margin: 0px auto;
+}
+
+    .container-4 input#BuscarNombre {
+        width: 200px;
+        height: 35px;
+        background: #009688;
+        border: none;
+        font-size: 14pt;
+        float: left;
+        color: #FFFFFF;
+        padding-left: 15px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+    }
+
+        .container-4 input#BuscarNombre::-webkit-input-placeholder {
+            color: #A8DCF5;
+        }
+
+        .container-4 input#BuscarNombre:-moz-placeholder { /* Firefox 18- */
+            color: #A8DCF5;
+        }
+
+        .container-4 input#BuscarNombre::-moz-placeholder { /* Firefox 19+ */
+            color: #A8DCF5;
+        }
+
+        .container-4 input#BuscarNombre:-ms-input-placeholder {
+            color: #A8DCF5;
+        }
+
+    .container-4 button.icon {
+        -webkit-border-top-right-radius: 8px;
+        -webkit-border-bottom-right-radius: 8px;
+        -moz-border-radius-topright: 8px;
+        -moz-border-radius-bottomright: 8px;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        border: none;
+        background: white;
+        height: 35px;
+        width: 50px;
+        color: #000000;
+        opacity: 1;
+        font-size: 14pt;
+        -webkit-transition: all .55s ease;
+        -moz-transition: all .55s ease;
+        -ms-transition: all .55s ease;
+        -o-transition: all .55s ease;
+        transition: all .55s ease;
+    }
+
+    .container-4:hover button.icon, .container-4:active button.icon, .container-4:focus button.icon {
+        outline: none;
+        opacity: 1;
+        margin-left: -50px;
+    }
+
+        .container-4:hover button.icon:hover {
+            background: #26C5EC;
+        }
+
+.contenido {
+    font-size: 15px;
+    font-family: sans-serif;
+}
+    .contenido h2 {
+        font-size: 25px;
+        font-family: sans-serif;
+    }
+
+.circular--square {
+    border-radius: 50%;
+}
 
 .buscador {
 
@@ -227,6 +331,7 @@ html {
     html {
         font-size: 12px;
         font-style: normal;
+
     }
 
     .imgSlider {
@@ -298,6 +403,7 @@ html {
 }
 
 body {
+    
     /* Margin bottom by footer height */
     margin-bottom: 60px;
 }

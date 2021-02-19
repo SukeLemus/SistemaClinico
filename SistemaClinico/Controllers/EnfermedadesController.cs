@@ -62,7 +62,7 @@ namespace SistemaClinico.Controllers
             {
                 Enfermedad = Enfermedad.Where(c => c.nombre_enfermedad.ToLower().Contains(BuscarNombre.ToLower()));
             }
-            return View(Enfermedad.ToPagedList(i ?? 1, 3));
+            return View(Enfermedad.ToPagedList(i ?? 1, 5));
         }
         // GET: Enfermedades/Details/5
         public ActionResult Details(int id)

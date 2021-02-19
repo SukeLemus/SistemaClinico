@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+@*<h1>PROBANDO VARIABLES DE SESION: @Session["User"]</h1>*@
+
+<div class="titulo_general"><h1>¿Quieres realizar una Cita?</h1></div>
+<br />
+<div class="contenido">
+    <table class="tablas_abc">
+        <tr>
+            <td>
+                <div class="titulo_alerta">
+                    <h2><img class="" src="~/Content/Images/icono-alerta2.png" height="50" width="50" /> Para poder brindarte nuestros servicios y poder realizar una cita debes seguir los siguientes pasos: </h2>
+                </div>
+                <div class="titulo_contactenos">
+                    <center>
+
+
+                        <div class="msj_parrafo">
+                            <div class="listado">
+                                <ol class="list">
+                                    <li type="disc">Paso 1:</li>
+                                    <p>
+                                        Debes REGISTRARTE, para hacerlo debes dirigirte al menu en la opcion de registro que se encuentra en la esquina superior derecha como se muestra en la imagen o dando un clikc <a href="@Url.Action("Create", "Registro")"> AQUI:  </a>
+                                        <br />
+                                        <center>
+                                        <img src="~/Content/Images/menu-registro.png" / height="35" width="800"></center>
+</p>
+                                    <li type="disc">Paso 2:</li>
+                                    <p>
+                                        Veras un formulario el cual debes llenar con los datos que te pide, no te preocupes si no puedes llenar todo el formulario no todos los campos son requeridos
+                                        <br />
+                                        <center>
+                                            <img src="~/Content/Images/ilustracion-registro.png" height="475" width="375" /></center>
+</p>
+                                    <li type="disc">Paso 3:</li>
+                                    <p>
+                                        Una vez lleno debes precionar el boton verde llamado Registrarse
+                                        <br />
+                                        <center>
+                                            <img src="~/Content/Images/ilustracion-btnregistro.png" height="50" width="100" /></center>
+</p>
+                                    <li type="disc">
+                                        Paso 4:
+                                        <p>
+                                            Ahora que ya estas registrado puede inciar sesion con tu usuario y contraseña que nos proporcionaste, para ello debes dar click en el boton Login o dando un clikc <a href="@Url.Action("LoginV", "Login")"> AQUI: </a>
+                                            <br />
+                                            <center>
+                                                <img src="~/Content/Images/ilustracion-login.png" height="200" width="400" />
+                                            </center>
+                                        </p>
+                                    </li>
+                                    <li type="disc">Paso 5:
+                                        <p>
+                                           Estamos listos para atenderte, solo debes dirigirte a la opcion Atencion al paciente y luego a solicitar cita
+                                            <br />
+                                            <center>
+                                                <img src="~/Content/Images/menu-solicitarcita.png" height="150" width="200" />
+                                            </center>
+                                        </p>
+                                    </li>
+                                    <li type="disc">Paso 6:  
+                                        <p>
+                                            Ahora solo te queda llenar el formulario y quedarte pendiente porque te llegara un mensaje de texto al numero de telefono que nos proporcionaste, en el mensaje se te mencionara la hora y la fecha a la que debes asistir a realizar tu consulta
+                                            <br />
+                                            <center>
+                                                <img src="~/Content/Images/ilustracion-solicita.png" height="200" width="400" />
+                                            </center>
+                                        </p>
+                                    </li>
+
+                                </ol>
+
+                            </div>
+
+                        </div>
+                    </center>
+                </div>
+            </td>
+
+            @*<td>
+                <div class="imagen_presentacion circular--square">
+                    <img class="circular--square" src="~/Content/Images/medicos.jpg" />
+                </div>
+            </td>*@
+        </tr>
+
+    </table>
+</div>
