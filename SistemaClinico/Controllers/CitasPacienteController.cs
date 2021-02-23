@@ -954,18 +954,23 @@ namespace SistemaClinico.Controllers
                     {
                         updatecita.UpdateCita(id2, depa.ID_PACIENTE, depa.FECHA, depa.HORA, depa.TURNO, depa.TIPO_CITA, depa.ID_DEPARTAMENTO, depa.DESCRIPCION, "ACEPTADA");
 
-                    var accountSid = "ACe61cf5016212b999fa489c6698bd7103";
-                    var authToken = "b67f0438ab53d5a99afb3aca71978a9e";
+                    /************************* SMS ******************************************/
 
-                    TwilioClient.Init(accountSid, authToken);
 
-                    var messageOptions = new CreateMessageOptions(
-                    new PhoneNumber("+503" + depa.TELEFONO));
-                    messageOptions.From = new PhoneNumber("+17158008408");
-                    messageOptions.Body = "Estimad@: " + depa.NOMBRE + " " + depa.APELLIDO + " su cita está confirmada para el día: " + depa.FECHA + " a la hora: " + depa.HORA;
+                    //var accountSid = "ACe61cf5016212b999fa489c6698bd7103";
+                    //var authToken = "b67f0438ab53d5a99afb3aca71978a9e";
 
-                    var message = MessageResource.Create(messageOptions);
-                    Console.WriteLine(message.Body);
+                    //TwilioClient.Init(accountSid, authToken);
+
+                    //var messageOptions = new CreateMessageOptions(
+                    //new PhoneNumber("+503" + depa.TELEFONO));
+                    //messageOptions.From = new PhoneNumber("+17158008408");
+                    //messageOptions.Body = "Estimad@: " + depa.NOMBRE + " " + depa.APELLIDO + " su cita está confirmada para el día: " + depa.FECHA + " a la hora: " + depa.HORA;
+
+                    //var message = MessageResource.Create(messageOptions);
+                    //Console.WriteLine(message.Body);
+
+                    /*********************** SMS ********************************************/
 
 
                     return RedirectToAction("ListadoCitasPaciente");

@@ -33,6 +33,7 @@ namespace SistemaClinico.Controllers
                 string cicloConsumo = dr["CICLO_CONSUMO"].ToString();
                 string viaAdministracion = dr["VIA_ADMI"].ToString();
                 string instruccionesAdicionales = dr["INSTRUCCIONES_AD"].ToString();
+                string diagnostico = dr["DIAGNOSTICO"].ToString();
 
 
                 PrescripcionPDF prescri = new PrescripcionPDF();
@@ -48,6 +49,7 @@ namespace SistemaClinico.Controllers
                 prescri.CICLO_CONSUMO = cicloConsumo;
                 prescri.VIA_ADMI = viaAdministracion;
                 prescri.INSTRUCCIONES_AD = instruccionesAdicionales;
+                prescri.DIAGNOSTICO = instruccionesAdicionales;
 
                 listaS.Add(prescri);
             }
@@ -334,14 +336,27 @@ namespace SistemaClinico.Controllers
         public ActionResult GenerarPrescripcion(int id)
         {
 
-
+            
 
             var citas = from e in Prescripciones(id)
                             //orderby e.nombre
                         select e;
-      
-            return View(citas);
+            
+            return new ViewAsPdf(citas);
         }
+
+        //public ActionResult GenerarPrescripcion(int id)
+        //{
+
+        //    List<PrescripcionPDF> presPDF = Prescripciones(id);
+
+        //    var citas = presPDF.Single(m => m.ID_PRESCRIPCION == id);
+
+        //    return new ViewAsPdf(citas)
+        //    {
+        //        FileName = "Prescipcion_consulta.pdf"
+        //    };
+        //}
 
 
 

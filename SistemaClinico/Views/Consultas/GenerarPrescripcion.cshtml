@@ -9,43 +9,49 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+<h2>
+    Paciente:@foreach (var item in Model)
+    {
+      
+                @Html.DisplayFor(modelItem => item.NOMBRE)
+
+    }
+</h2>
 <table class="table">
     <tr>
+      
         <th>
-            @Html.DisplayNameFor(model => model.ID_PRESCRIPCION)
+            Nonbre Paciente
+            @*@Html.DisplayNameFor(model => model.NOMBRE)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ID_CONSULTA)
+            Apellido Paciente
+            @*@Html.DisplayNameFor(model => model.APELLIDO)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NOMBRE)
+            @*@Html.DisplayNameFor(model => model.NOMBRES)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.APELLIDO)
+            @*@Html.DisplayNameFor(model => model.APELLIDOS)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NOMBRES)
+            @*@Html.DisplayNameFor(model => model.FECHA)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.APELLIDOS)
+            @*@Html.DisplayNameFor(model => model.HORA)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FECHA)
+            @*@Html.DisplayNameFor(model => model.NOMBRE_MEDICAMENTO)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HORA)
+            @*@Html.DisplayNameFor(model => model.CICLO_CONSUMO)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NOMBRE_MEDICAMENTO)
+            @*@Html.DisplayNameFor(model => model.VIA_ADMI)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CICLO_CONSUMO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VIA_ADMI)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.INSTRUCCIONES_AD)
+            @*@Html.DisplayNameFor(model => model.INSTRUCCIONES_AD)*@
         </th>
         <th></th>
     </tr>

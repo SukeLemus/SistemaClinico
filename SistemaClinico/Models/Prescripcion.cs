@@ -29,7 +29,7 @@ namespace SistemaClinico.Models
         public string CICLO_CONSUMO { get; set; }
         public string VIA_ADMI { get; set; }
         public string INSTRUCCIONES_AD { get; set; }
-          
+        public string DIAGNOSTICO { get; set; }
     }
 
     public class PrescripcionPaciente
