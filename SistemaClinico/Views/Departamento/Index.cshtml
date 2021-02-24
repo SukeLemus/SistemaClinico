@@ -11,15 +11,15 @@
 {
 
 
-<p class="buscador">
+    <div class="filtro">
+        @*Nombre: @Html.TextBox("BuscarActivo", value: "ACTIVO")*@
+        @*@Html.DropDownList("BuscarActivo", (IEnumerable<SelectListItem>)@ViewData["chompipollo"], "Seleccione un Sintoma")*@
+        @Html.DropDownList("BuscarActivo", (IEnumerable<SelectListItem>)@ViewData["listaEstado"], "-- Estatus--", new { @class = "select-css" })
+        <button type="submit" class="icon"><i class="fa fa-search"></i></button>
+        @*<input type="submit" value="Filtrar" />*@
+    </div>
 
 
-
-    @*Nombre: @Html.TextBox("BuscarActivo", value: "ACTIVO")*@
-    @*@Html.DropDownList("BuscarActivo", (IEnumerable<SelectListItem>)@ViewData["chompipollo"], "Seleccione un Sintoma")*@
-    @Html.DropDownList("BuscarActivo", (IEnumerable<SelectListItem>)@ViewData["listaEstado"], "-- Ver estatus departamentos --")
-    <input type="submit" value="Filtrar" />
-</p>
 }
 <p>
     @Html.ActionLink("Nuevo Departamento", "Create")

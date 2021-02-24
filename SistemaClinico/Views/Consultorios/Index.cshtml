@@ -9,11 +9,30 @@
 
 <div class="titulo_general"><h1>Consultorios</h1></div>
 
-<p class="buscador">
-    Nombre: @Html.TextBox("BuscarNombre")
+@*<p class="buscador">
+        Nombre: @Html.TextBox("BuscarNombre")
 
-    <input type="submit" value="Buscar" />
-</p>
+        <input type="submit" value="Buscar" />
+    </p>*@
+
+
+@using (Html.BeginForm("Index", "Consultorios", FormMethod.Get))
+{
+
+
+<div class="filtro">
+    @*Nombre: @Html.TextBox("BuscarActivo", value: "ACTIVO")*@
+    @*@Html.DropDownList("BuscarActivo", (IEnumerable<SelectListItem>)@ViewData["chompipollo"], "Seleccione un Sintoma")*@
+    @Html.DropDownList("BuscarActivo", (IEnumerable<SelectListItem>)@ViewData["listaEstado"], "-- Estatus --", new { @class = "select-css" })
+    <button type="submit" class="icon"><i class="fa fa-search"></i></button>
+    @*<input type="submit" value="Filtrar" />*@
+</div>
+
+
+}
+<br />
+<br />
+
 <p>
     @Html.ActionLink("Crear nuevo consultorio", "Create")
 </p>
@@ -40,7 +59,7 @@
     @foreach (var item in Model)
     {
         <tr class="tr_lista">
-         
+
             <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.NOMBRE_CONSULTORIO)
             </td>

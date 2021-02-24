@@ -10,6 +10,29 @@
 <div class="titulo_general"><h1>Lista de Personal</h1></div>
 <br />
 
+@using (Html.BeginForm("Index", "UsuariosPersonal", FormMethod.Get))
+{
+
+
+    @*<p class="buscador">
+            Nombre: @Html.TextBox("BuscarNombre", "", new { @class = "busca" })
+
+            <input type="submit" value="Buscar" />
+        </p>*@
+
+    <div class="box">
+        <div class="container-4">
+            <input type="search" id="BuscarNombre" name="BuscarNombre" placeholder="¿A quien buscas?" />
+            <button type="submit" class="icon"><i class="fa fa-search"></i></button>
+        </div>
+    </div>
+
+
+}
+<br />
+<br />
+
+
 <p>
     @Html.ActionLink("Crear nuevo personal", "Create")
 </p>
@@ -35,12 +58,12 @@
             Consultorio Asignado
         </th>
         <!--<th class="th_lista">-->
-            @*@Html.DisplayNameFor(model => model.NOMBRE_DEPARTAMENTO)*@
-            <!--Departamento
+        @*@Html.DisplayNameFor(model => model.NOMBRE_DEPARTAMENTO)*@
+        <!--Departamento
         </th>
         <th class="th_lista">-->
-            @*@Html.DisplayNameFor(model => model.NOMBRE_AREA)*@
-            <!--Area
+        @*@Html.DisplayNameFor(model => model.NOMBRE_AREA)*@
+        <!--Area
         </th>-->
         <th class="th_lista">
             @*@Html.DisplayNameFor(model => model.NOMBRE_ROL)*@
@@ -68,17 +91,17 @@
                 @Html.DisplayFor(modelItem => item.NOMBRE_CONSULTORIO)
             </td>
             @*<td class="td_lista">
-                @Html.DisplayFor(modelItem => item.NOMBRE_DEPARTAMENTO)
-            </td>
-            <td class="td_lista">
-                @Html.DisplayFor(modelItem => item.NOMBRE_AREA)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.NOMBRE_DEPARTAMENTO)
+                </td>
+                <td class="td_lista">
+                    @Html.DisplayFor(modelItem => item.NOMBRE_AREA)
+                </td>*@
             <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.NOMBRE_ROL)
             </td>
             <td class="td_lista">
                 @Html.ActionLink("Editar", "Edit", new { id = item.ID_PERSONAL }) |
-                @Html.ActionLink("Detalles", "Details", new {  id=item.ID_PERSONAL }) 
+                @Html.ActionLink("Detalles", "Details", new { id = item.ID_PERSONAL })
                 @*@Html.ActionLink("Delete", "Delete", new { id = item.ID_PERSONAL })*@
             </td>
         </tr>

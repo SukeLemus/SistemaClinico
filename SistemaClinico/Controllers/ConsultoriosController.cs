@@ -47,6 +47,22 @@ namespace SistemaClinico.Controllers
         // GET: Consultorios
         public ActionResult Index(int? i, string BuscarActivo)
         {
+
+            List<SelectListItem> listaEstados = new List<SelectListItem>();
+
+            listaEstados.Add(new SelectListItem
+            {
+                Text = "Activo",
+                Value = "ACTIVO"
+            });
+            listaEstados.Add(new SelectListItem
+            {
+                Text = "Inactivo",
+                Value = "INACTIVO"
+            });
+
+            ViewData["listaEstado"] = listaEstados;
+
             var Consultorio = from e in ListaConsultorios()
                                select e;
 

@@ -11,16 +11,13 @@
 @using (Html.BeginForm("Index", "Medicamentos", FormMethod.Get))
 {
 
-
-    <p class="buscador">
-
-
-
+    <div class="filtro">
         @*Nombre: @Html.TextBox("BuscarActivo", value: "ACTIVO")*@
         @*@Html.DropDownList("BuscarActivo", (IEnumerable<SelectListItem>)@ViewData["chompipollo"], "Seleccione un Sintoma")*@
-        @Html.DropDownList("BuscarTipo", (IEnumerable<SelectListItem>)@ViewData["listaTipo"], "-- Ver tipo de medicamentos --")
-        <input type="submit" value="Filtrar" />
-    </p>
+        @Html.DropDownList("BuscarTipo", (IEnumerable<SelectListItem>)@ViewData["listaTipo"], "-- Tipo Medicamento --", new { @class = "select-css" })
+        <button type="submit" class="icon"><i class="fa fa-search"></i></button>
+        @*<input type="submit" value="Filtrar" />*@
+    </div>
 }
 <p>
     @Html.ActionLink("Crear Nuevo Medicamento", "Create")
