@@ -20,22 +20,30 @@
 {
 
 
-<div class="filtro">
-    @*Nombre: @Html.TextBox("BuscarActivo", value: "ACTIVO")*@
-    @*@Html.DropDownList("BuscarActivo", (IEnumerable<SelectListItem>)@ViewData["chompipollo"], "Seleccione un Sintoma")*@
-    @Html.DropDownList("BuscarActivo", (IEnumerable<SelectListItem>)@ViewData["listaEstado"], "-- Estatus --", new { @class = "select-css" })
-    <button type="submit" class="icon"><i class="fa fa-search"></i></button>
-    @*<input type="submit" value="Filtrar" />*@
-</div>
+    <div class="filtro">
+        @*Nombre: @Html.TextBox("BuscarActivo", value: "ACTIVO")*@
+        @*@Html.DropDownList("BuscarActivo", (IEnumerable<SelectListItem>)@ViewData["chompipollo"], "Seleccione un Sintoma")*@
+        @Html.DropDownList("BuscarActivo", (IEnumerable<SelectListItem>)@ViewData["listaEstado"], "-- Estatus --", new { @class = "select-css" })
+        <button type="submit" class="icon"><i class="fa fa-search"></i></button>
+        @*<input type="submit" value="Filtrar" />*@
+    </div>
 
 
+}
+@if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
+{
+
+}
+else
+{
+
+    <p>
+        @Html.ActionLink("Crear nuevo consultorio", "Create")
+    </p>
 }
 <br />
 <br />
 
-<p>
-    @Html.ActionLink("Crear nuevo consultorio", "Create")
-</p>
 <table class="table_lista">
     <tr class="tr_lista">
         <th class="th_lista">
@@ -50,34 +58,50 @@
         <th class="th_lista">
             @Html.DisplayName("Departamento")
         </th>
-        <th class="th_lista">
-            @Html.DisplayName("Opciones")
+        @if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
+        {
 
-        </th>
+        }
+        else
+        {
+            <th class="th_lista">
+                @Html.DisplayName("Opciones")
+
+            </th>
+        }
+
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr class="tr_lista">
+<tr class="tr_lista">
 
-            <td class="td_lista">
-                @Html.DisplayFor(modelItem => item.NOMBRE_CONSULTORIO)
-            </td>
-            <td class="td_lista">
-                @Html.DisplayFor(modelItem => item.NIVEL)
-            </td>
-            <td class="td_lista">
-                @Html.DisplayFor(modelItem => item.ESTADO)
-            </td>
-            <td class="td_lista">
-                @Html.DisplayFor(modelItem => item.NOM)
-            </td>
-            <td class="td_lista">
-                @Html.ActionLink("Editar", "Edit", new { id = item.ID }) @*|*@
-                @*@Html.ActionLink("Details", "Details", new { id = item.ID }) |*@
-                @*@Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
-            </td>
-        </tr>
+    <td class="td_lista">
+        @Html.DisplayFor(modelItem => item.NOMBRE_CONSULTORIO)
+    </td>
+    <td class="td_lista">
+        @Html.DisplayFor(modelItem => item.NIVEL)
+    </td>
+    <td class="td_lista">
+        @Html.DisplayFor(modelItem => item.ESTADO)
+    </td>
+    <td class="td_lista">
+        @Html.DisplayFor(modelItem => item.NOM)
+    </td>
+    @if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
+    {
+
+    }
+    else
+    {
+        <td class="td_lista">
+            @Html.ActionLink("Editar", "Edit", new { id = item.ID }) @*|*@
+            @*@Html.ActionLink("Details", "Details", new { id = item.ID }) |*@
+            @*@Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+        </td>
+    }
+
+</tr>
     }
 
 </table>

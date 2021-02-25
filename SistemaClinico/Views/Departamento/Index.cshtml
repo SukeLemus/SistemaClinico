@@ -21,9 +21,18 @@
 
 
 }
-<p>
-    @Html.ActionLink("Nuevo Departamento", "Create")
-</p>
+@if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
+{
+
+}
+else
+{
+    <p>
+        @Html.ActionLink("Nuevo Departamento", "Create")
+    </p>
+}
+<br />
+<br />
 <table class="table_lista">
     <tr class="tr_lista">
         <th class="th_lista">
@@ -41,9 +50,17 @@
         <th class="th_lista">
             @Html.DisplayName("Area")
         </th>
-        <th class="th_lista">
-            @Html.DisplayName("Acciones")
-        </th>
+        @if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
+        {
+
+        }
+        else
+        {
+            <th class="th_lista">
+                @Html.DisplayName("Acciones")
+            </th>
+        }
+
     </tr>
 
     @foreach (var item in Model)
@@ -64,11 +81,20 @@
             <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.NOM)
             </td>
-            <td class="td_lista">
-                @Html.ActionLink("Editar", "Edit", new { id = item.ID }) 
-                @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
-                @*@Html.ActionLink("Inactivar", "Inactivo", new { id = item.ID })*@
-            </td>
+            @if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
+            {
+
+            }
+            else
+            {
+                <td class="td_lista">
+                    @Html.ActionLink("Editar", "Edit", new { id = item.ID })
+                    @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
+                    @*@Html.ActionLink("Inactivar", "Inactivo", new { id = item.ID })*@
+                </td>
+            }
+
+
         </tr>
     }
 

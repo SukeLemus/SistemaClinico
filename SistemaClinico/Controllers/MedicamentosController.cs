@@ -127,84 +127,7 @@ namespace SistemaClinico.Controllers
         // GET: Medicamentos/Create
         public ActionResult Create()
         {
-            List<SelectListItem> listaEstados = new List<SelectListItem>();
-            listaEstados.Add(new SelectListItem
-            {
-                Text = "Activo",
-                Value = "ACTIVO"
-            });
-            listaEstados.Add(new SelectListItem
-            {
-                Text = "Inactivo",
-                Value = "INACTIVO"
-            });
-            ViewData["listaEstado"] = listaEstados;
-
-            //Para la lista de presentacion 
-
-            List<SelectListItem> listaPresentacion = new List<SelectListItem>();
-            listaPresentacion.Add(new SelectListItem
-            {
-                Text = "Líquido",
-                Value = "LIQUIDO"
-            });
-            listaPresentacion.Add(new SelectListItem
-            {
-                Text = "Tableta",
-                Value = "TABLETA"
-            });
-            listaPresentacion.Add(new SelectListItem
-            {
-                Text = "Píldora",
-                Value = "PILDORA"
-            });
-            listaPresentacion.Add(new SelectListItem
-            {
-                Text = "Inyectable",
-                Value = "INYECTABLE"
-            });
-            listaPresentacion.Add(new SelectListItem
-            {
-                Text = "Tópico",
-                Value = "TOPICO"
-            });
-            ViewData["listaPresentacion"] = listaPresentacion;
-
-
-            return View();
-        }
-
-        // POST: Medicamentos/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            //try
-            //{
-                // TODO: Add insert logic here
-
-                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient swMed = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
-                Medicamento nuevoMed = new Medicamento();
-                nuevoMed.NOMBRE_MEDICAMENTO = collection["NOMBRE_MEDICAMENTO"];
-                nuevoMed.DESCRIPCION_MEDICAMENTO = collection["DESCRIPCION_MEDICAMENTO"];
-                nuevoMed.CANTIDAD = int.Parse(collection["CANTIDAD"]);
-                nuevoMed.PRESENTACION = collection["PRESENTACION"];
-                nuevoMed.PRECIO_UNITARIO = double.Parse(collection["PRECIO_UNITARIO"]);
-                nuevoMed.ESTADO = collection["ESTADO"];
-                swMed.Insert_Medicamento(nuevoMed.NOMBRE_MEDICAMENTO, nuevoMed.DESCRIPCION_MEDICAMENTO, nuevoMed.CANTIDAD, nuevoMed.PRESENTACION, nuevoMed.PRECIO_UNITARIO, nuevoMed.ESTADO);
-               
-            //}
-            //catch
-            //{
-            //    return RedirectToAction("Index");
-            //}
-            return RedirectToActionPermanent("Index");
-        }
-
-        // GET: Medicamentos/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            List<Medicamento> sintList = TodosMedicamentos();
-            if (id.HasValue)
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
                 List<SelectListItem> listaEstados = new List<SelectListItem>();
                 listaEstados.Add(new SelectListItem
@@ -249,10 +172,103 @@ namespace SistemaClinico.Controllers
                 });
                 ViewData["listaPresentacion"] = listaPresentacion;
 
-                var sint = sintList.Single(m => m.id == id);
-                return View(sint);
+
+                return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
+        }
+
+        // POST: Medicamentos/Create
+        [HttpPost]
+        public ActionResult Create(FormCollection collection)
+        {
+            //try
+            //{
+                // TODO: Add insert logic here
+
+                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient swMed = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+                Medicamento nuevoMed = new Medicamento();
+                nuevoMed.NOMBRE_MEDICAMENTO = collection["NOMBRE_MEDICAMENTO"];
+                nuevoMed.DESCRIPCION_MEDICAMENTO = collection["DESCRIPCION_MEDICAMENTO"];
+                nuevoMed.CANTIDAD = int.Parse(collection["CANTIDAD"]);
+                nuevoMed.PRESENTACION = collection["PRESENTACION"];
+                nuevoMed.PRECIO_UNITARIO = double.Parse(collection["PRECIO_UNITARIO"]);
+                nuevoMed.ESTADO = collection["ESTADO"];
+                swMed.Insert_Medicamento(nuevoMed.NOMBRE_MEDICAMENTO, nuevoMed.DESCRIPCION_MEDICAMENTO, nuevoMed.CANTIDAD, nuevoMed.PRESENTACION, nuevoMed.PRECIO_UNITARIO, nuevoMed.ESTADO);
+               
+            //}
+            //catch
+            //{
+            //    return RedirectToAction("Index");
+            //}
+            return RedirectToActionPermanent("Index");
+        }
+
+        // GET: Medicamentos/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
+            {
+                List<Medicamento> sintList = TodosMedicamentos();
+                if (id.HasValue)
+                {
+                    List<SelectListItem> listaEstados = new List<SelectListItem>();
+                    listaEstados.Add(new SelectListItem
+                    {
+                        Text = "Activo",
+                        Value = "ACTIVO"
+                    });
+                    listaEstados.Add(new SelectListItem
+                    {
+                        Text = "Inactivo",
+                        Value = "INACTIVO"
+                    });
+                    ViewData["listaEstado"] = listaEstados;
+
+                    //Para la lista de presentacion 
+
+                    List<SelectListItem> listaPresentacion = new List<SelectListItem>();
+                    listaPresentacion.Add(new SelectListItem
+                    {
+                        Text = "Líquido",
+                        Value = "LIQUIDO"
+                    });
+                    listaPresentacion.Add(new SelectListItem
+                    {
+                        Text = "Tableta",
+                        Value = "TABLETA"
+                    });
+                    listaPresentacion.Add(new SelectListItem
+                    {
+                        Text = "Píldora",
+                        Value = "PILDORA"
+                    });
+                    listaPresentacion.Add(new SelectListItem
+                    {
+                        Text = "Inyectable",
+                        Value = "INYECTABLE"
+                    });
+                    listaPresentacion.Add(new SelectListItem
+                    {
+                        Text = "Tópico",
+                        Value = "TOPICO"
+                    });
+                    ViewData["listaPresentacion"] = listaPresentacion;
+
+                    var sint = sintList.Single(m => m.id == id);
+                    return View(sint);
+                }
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
         }
 
         // POST: Medicamentos/Edit/5
@@ -282,13 +298,21 @@ namespace SistemaClinico.Controllers
         // GET: Medicamentos/Delete/5
         public ActionResult Delete(int? id)
         {
-            List<Medicamento> MedList = MedtList();
-            if (id.HasValue)
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                var sint = MedList.Single(m => m.id == id);
-                return View(sint);
+                List<Medicamento> MedList = MedtList();
+                if (id.HasValue)
+                {
+                    var sint = MedList.Single(m => m.id == id);
+                    return View(sint);
+                }
+                return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+          
         }
 
         // POST: Medicamentos/Delete/5

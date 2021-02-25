@@ -36,14 +36,22 @@ namespace SistemaClinico.Controllers
         // GET: Alergias
         public ActionResult Index(int? i, string BuscarNombre)
         {
-            var Aler = from e in ListaAlergias()
-                           //orderby e.nombre
-                       select e;
-            if (!String.IsNullOrEmpty(BuscarNombre))
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                Aler = Aler.Where(c => c.NOMBRE_ALERGIA.ToLower().Contains(BuscarNombre.ToLower()));
+                var Aler = from e in ListaAlergias()
+                               //orderby e.nombre
+                           select e;
+                if (!String.IsNullOrEmpty(BuscarNombre))
+                {
+                    Aler = Aler.Where(c => c.NOMBRE_ALERGIA.ToLower().Contains(BuscarNombre.ToLower()));
+                }
+                return View(Aler.ToPagedList(i ?? 1, 3));
             }
-            return View(Aler.ToPagedList(i ?? 1, 3));
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+          
         }
 
         // GET: Alergias/Details/5
@@ -55,7 +63,15 @@ namespace SistemaClinico.Controllers
         // GET: Alergias/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
         }
 
         // POST: Alergias/Create
@@ -88,13 +104,21 @@ namespace SistemaClinico.Controllers
         // GET: Alergias/Edit/5
         public ActionResult Edit(int? id)
         {
-            List<Alergias> listaAler = ListaAlergias();
-            if (id.HasValue)
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                var aler = listaAler.Single(m => m.ID == id);
-                return View(aler);
+                List<Alergias> listaAler = ListaAlergias();
+                if (id.HasValue)
+                {
+                    var aler = listaAler.Single(m => m.ID == id);
+                    return View(aler);
+                }
+                return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
         }
 
         // POST: Alergias/Edit/5
@@ -123,13 +147,21 @@ namespace SistemaClinico.Controllers
         // GET: Alergias/Delete/5
         public ActionResult Delete(int? id)
         {
-            List<Alergias> listaAlergias = ListaAlergias();
-            if (id.HasValue)
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                var aler = listaAlergias.Single(m => m.ID == id);
-                return View(aler);
+                List<Alergias> listaAlergias = ListaAlergias();
+                if (id.HasValue)
+                {
+                    var aler = listaAlergias.Single(m => m.ID == id);
+                    return View(aler);
+                }
+                return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
         }
 
         // POST: Alergias/Delete/5

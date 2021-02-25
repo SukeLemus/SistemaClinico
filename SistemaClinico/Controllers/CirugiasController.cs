@@ -35,14 +35,22 @@ namespace SistemaClinico.Controllers
         // GET: Cirugias
         public ActionResult Index(int? i, string BuscarNombre)
         {
-            var Ciru = from e in ListaCirugias()
-                           //orderby e.nombre
-                       select e;
-            if (!String.IsNullOrEmpty(BuscarNombre))
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                Ciru = Ciru.Where(c => c.NOMBRE_CIRUGIA.ToLower().Contains(BuscarNombre.ToLower()));
+                var Ciru = from e in ListaCirugias()
+                               //orderby e.nombre
+                           select e;
+                if (!String.IsNullOrEmpty(BuscarNombre))
+                {
+                    Ciru = Ciru.Where(c => c.NOMBRE_CIRUGIA.ToLower().Contains(BuscarNombre.ToLower()));
+                }
+                return View(Ciru.ToPagedList(i ?? 1, 3));
             }
-            return View(Ciru.ToPagedList(i ?? 1, 3));
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+          
         }
 
         // GET: Cirugias/Details/5
@@ -54,7 +62,15 @@ namespace SistemaClinico.Controllers
         // GET: Cirugias/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
         }
 
         // POST: Cirugias/Create
@@ -87,13 +103,21 @@ namespace SistemaClinico.Controllers
         // GET: Cirugias/Edit/5
         public ActionResult Edit(int? id)
         {
-            List<Cirugias> listaCiru = ListaCirugias();
-            if (id.HasValue)
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                var ciru = listaCiru.Single(m => m.ID == id);
-                return View(ciru);
+                List<Cirugias> listaCiru = ListaCirugias();
+                if (id.HasValue)
+                {
+                    var ciru = listaCiru.Single(m => m.ID == id);
+                    return View(ciru);
+                }
+                return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
         }
 
         // POST: Cirugias/Edit/5
@@ -122,13 +146,21 @@ namespace SistemaClinico.Controllers
         // GET: Cirugias/Delete/5
         public ActionResult Delete(int? id)
         {
-            List<Cirugias> listaCiru = ListaCirugias();
-            if (id.HasValue)
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                var ciru = listaCiru.Single(m => m.ID == id);
-                return View(ciru);
+                List<Cirugias> listaCiru = ListaCirugias();
+                if (id.HasValue)
+                {
+                    var ciru = listaCiru.Single(m => m.ID == id);
+                    return View(ciru);
+                }
+                return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        
         }
 
         // POST: Cirugias/Delete/5

@@ -272,64 +272,95 @@ namespace SistemaClinico.Controllers
         public ActionResult GeneracionConstancias(int? i, string BuscarNombre)
         {
 
-            int idpa = int.Parse(Session["id"].ToString());
-
-            var citas = from e in TodasLasConsultasSegunpacienteID(idpa)
-                            //orderby e.nombre
-                        select e;
-            if (!String.IsNullOrEmpty(BuscarNombre))
+            if (Session["Rol"] != null && Session["Rol"].Equals(1))
             {
-                citas = citas.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+                int idpa = int.Parse(Session["id"].ToString());
+
+                var citas = from e in TodasLasConsultasSegunpacienteID(idpa)
+                                //orderby e.nombre
+                            select e;
+                if (!String.IsNullOrEmpty(BuscarNombre))
+                {
+                    citas = citas.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+                }
+                return View(citas.ToPagedList(i ?? 1, 3));
             }
-            return View(citas.ToPagedList(i ?? 1, 3));
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+           
         }
 
         public ActionResult GeneracionPrescripcion(int? i, string BuscarNombre)
         {
 
-            int idpa = int.Parse(Session["id"].ToString());
-
-            var citas = from e in TodasLasConsultasSegunpacienteID(idpa)
-                            //orderby e.nombre
-                        select e;
-            if (!String.IsNullOrEmpty(BuscarNombre))
+            if (Session["Rol"] != null && Session["Rol"].Equals(1))
             {
-                citas = citas.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+                int idpa = int.Parse(Session["id"].ToString());
+
+                var citas = from e in TodasLasConsultasSegunpacienteID(idpa)
+                                //orderby e.nombre
+                            select e;
+                if (!String.IsNullOrEmpty(BuscarNombre))
+                {
+                    citas = citas.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+                }
+                return View(citas.ToPagedList(i ?? 1, 3));
             }
-            return View(citas.ToPagedList(i ?? 1, 3));
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+          
         }
 
         // GET: Consultas
         public ActionResult Index(int? i, string BuscarNombre)
         {
-
-
-            int idpa = int.Parse(Session["id"].ToString());
-
-            var citas = from e in TodasLasConsultasSegunpacienteID(idpa)
-                            //orderby e.nombre
-                        select e;
-            if (!String.IsNullOrEmpty(BuscarNombre))
+            if (Session["Rol"] != null && Session["Rol"].Equals(1))
             {
-                citas = citas.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+                int idpa = int.Parse(Session["id"].ToString());
+
+                var citas = from e in TodasLasConsultasSegunpacienteID(idpa)
+                                //orderby e.nombre
+                            select e;
+                if (!String.IsNullOrEmpty(BuscarNombre))
+                {
+                    citas = citas.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+                }
+                return View(citas.ToPagedList(i ?? 1, 3));
             }
-            return View(citas.ToPagedList(i ?? 1, 3));
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+           
         }
 
         public ActionResult IndexC(int? i, string BuscarNombre)
         {
-
-
-            //int idpa = int.Parse(Session["id"].ToString());
-
-            var citas = from e in TodasLasConsultas()
-                            //orderby e.nombre
-                        select e;
-            if (!String.IsNullOrEmpty(BuscarNombre))
+            if (Session["Rol"] != null && Session["Rol"].Equals(3))
             {
-                citas = citas.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+                //int idpa = int.Parse(Session["id"].ToString());
+
+                var citas = from e in TodasLasConsultas()
+                                //orderby e.nombre
+                            select e;
+                if (!String.IsNullOrEmpty(BuscarNombre))
+                {
+                    citas = citas.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+                }
+                return View(citas.ToPagedList(i ?? 1, 3));
             }
-            return View(citas.ToPagedList(i ?? 1, 3));
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            
         }
 
 
@@ -389,12 +420,19 @@ namespace SistemaClinico.Controllers
 
         public ActionResult DetailsC(int id)
         {
+            if (Session["Rol"] != null && Session["Rol"].Equals(3))
+            {
+                List<ConsultaPac> detallesConsulta = TodasLasConsultasSegunID(id);
 
-            List<ConsultaPac> detallesConsulta = TodasLasConsultasSegunID(id);
+                var con = detallesConsulta.Single(m => m.ID_CONSULTA == id);
 
-            var con = detallesConsulta.Single(m => m.ID_CONSULTA == id);
-
-            return View(con);
+                return View(con);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
 
         // GET: Consultas/Create

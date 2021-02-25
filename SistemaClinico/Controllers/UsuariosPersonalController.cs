@@ -95,247 +95,504 @@ namespace SistemaClinico.Controllers
         // GET: UsuariosPersonal
         public ActionResult Index(int? i, string BuscarNombre)
         {
-            var personal = from e in TodosElPersonal()
-                               //orderby e.nombre
-                           select e;
-            if (!String.IsNullOrEmpty(BuscarNombre))
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                personal = personal.Where(c => c.NOMBRES.ToLower().Contains(BuscarNombre.ToLower()));
+                var personal = from e in TodosElPersonal()
+                                   //orderby e.nombre
+                               select e;
+                if (!String.IsNullOrEmpty(BuscarNombre))
+                {
+                    personal = personal.Where(c => c.NOMBRES.ToLower().Contains(BuscarNombre.ToLower()));
+                }
+                return View(personal.ToPagedList(i ?? 1, 10));
             }
-            return View(personal.ToPagedList(i ?? 1, 10));
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
 
         // GET: UsuariosPersonal/Details/5
         public ActionResult Details(int? id)
         {
-            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient dep = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
-
-            //Llenar lista de departamentos
-            DataSet ds = dep.ListaDepa();
-
-            var selectListDepa = new List<SelectListItem>();
-
-            foreach (DataRow dr in ds.Tables[0].Rows)
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
+                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient dep = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
 
+                //Llenar lista de departamentos
+                DataSet ds = dep.ListaDepa();
 
-                selectListDepa.Add(new SelectListItem
+                var selectListDepa = new List<SelectListItem>();
+
+                foreach (DataRow dr in ds.Tables[0].Rows)
                 {
-                    Value = dr["ID_DEPARTAMENTO"].ToString(),
-                    Text = dr["NOMBRE_DEPARTAMENTO"].ToString()
-                });
-            }
-            ViewData["listaDepartamentos"] = selectListDepa;
 
-            //llenar lista de roles
-            DataSet ds2 = dep.ListaRol();
 
-            var selectListRol = new List<SelectListItem>();
-
-            foreach (DataRow dr2 in ds2.Tables[0].Rows)
-            {
-
-                if (!dr2["ID_ROL"].ToString().Equals("1"))
-                {
-                    selectListRol.Add(new SelectListItem
+                    selectListDepa.Add(new SelectListItem
                     {
-                        Value = dr2["ID_ROL"].ToString(),
-                        Text = dr2["NOMBRE_ROL"].ToString()
+                        Value = dr["ID_DEPARTAMENTO"].ToString(),
+                        Text = dr["NOMBRE_DEPARTAMENTO"].ToString()
                     });
                 }
+                ViewData["listaDepartamentos"] = selectListDepa;
 
+                //llenar lista de roles
+                DataSet ds2 = dep.ListaRol();
 
-            }
-            ViewData["listaRoles"] = selectListRol;
+                var selectListRol = new List<SelectListItem>();
 
-            //Llenar una lista de muinicipios
-            DataSet ds3 = dep.ListaDireccion();
-
-            var selectListDir = new List<SelectListItem>();
-
-            foreach (DataRow dr3 in ds3.Tables[0].Rows)
-            {
-                selectListDir.Add(new SelectListItem
+                foreach (DataRow dr2 in ds2.Tables[0].Rows)
                 {
-                    Value = dr3["ID_DIRECCION"].ToString(),
-                    Text = dr3["MUNICIPIO"].ToString()
-                });
 
-            }
-            ViewData["listaDirecciones"] = selectListDir;
-
-
-            //lista de genero
-            var selectListGen = new List<SelectListItem>();
-            selectListGen.Add(new SelectListItem
-            {
-                Value = "MASCULINO",
-                Text = "Masculino"
-            });
-            selectListGen.Add(new SelectListItem
-            {
-                Value = "FEMENINO",
-                Text = "Femenino"
-            });
-            ViewData["listaGeneros"] = selectListGen;
+                    if (!dr2["ID_ROL"].ToString().Equals("1"))
+                    {
+                        selectListRol.Add(new SelectListItem
+                        {
+                            Value = dr2["ID_ROL"].ToString(),
+                            Text = dr2["NOMBRE_ROL"].ToString()
+                        });
+                    }
 
 
+                }
+                ViewData["listaRoles"] = selectListRol;
 
+                //Llenar una lista de muinicipios
+                DataSet ds3 = dep.ListaDireccion();
 
-            //Lista de consultorios
-            DataSet ds4 = dep.ListaConsultorio();
+                var selectListDir = new List<SelectListItem>();
 
-            var selectListConsul = new List<SelectListItem>();
-
-            foreach (DataRow dr4 in ds4.Tables[0].Rows)
-            {
-                selectListConsul.Add(new SelectListItem
+                foreach (DataRow dr3 in ds3.Tables[0].Rows)
                 {
-                    Value = dr4["ID_CONSULTORIO"].ToString(),
-                    Text = dr4["NOMBRE_CONSULTORIO"].ToString()
+                    selectListDir.Add(new SelectListItem
+                    {
+                        Value = dr3["ID_DIRECCION"].ToString(),
+                        Text = dr3["MUNICIPIO"].ToString()
+                    });
+
+                }
+                ViewData["listaDirecciones"] = selectListDir;
+
+
+                //lista de genero
+                var selectListGen = new List<SelectListItem>();
+                selectListGen.Add(new SelectListItem
+                {
+                    Value = "MASCULINO",
+                    Text = "Masculino"
                 });
+                selectListGen.Add(new SelectListItem
+                {
+                    Value = "FEMENINO",
+                    Text = "Femenino"
+                });
+                ViewData["listaGeneros"] = selectListGen;
 
+
+
+
+                //Lista de consultorios
+                DataSet ds4 = dep.ListaConsultorio();
+
+                var selectListConsul = new List<SelectListItem>();
+
+                foreach (DataRow dr4 in ds4.Tables[0].Rows)
+                {
+                    selectListConsul.Add(new SelectListItem
+                    {
+                        Value = dr4["ID_CONSULTORIO"].ToString(),
+                        Text = dr4["NOMBRE_CONSULTORIO"].ToString()
+                    });
+
+                }
+                ViewData["listaConsultorios"] = selectListConsul;
+
+
+                List<UsuarioPersonal> PaList = TodosPersonal();
+                if (id.HasValue)
+                {
+                    var p = PaList.Single(m => m.ID_PERSONAL == id);
+                    return View(p);
+                }
+                return View();
             }
-            ViewData["listaConsultorios"] = selectListConsul;
-
-
-            List<UsuarioPersonal> PaList = TodosPersonal();
-            if (id.HasValue)
+            else
             {
-                var p = PaList.Single(m => m.ID_PERSONAL == id);
-                return View(p);
+                return RedirectToAction("Index", "Home");
             }
-            return View();
+         
 
         }
         public ActionResult miperfil(int? id)
         {
-            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient dep = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
-
-            //Llenar lista de departamentos
-            DataSet ds = dep.ListaDepa();
-
-            var selectListDepa = new List<SelectListItem>();
-
-            foreach (DataRow dr in ds.Tables[0].Rows)
+            if (Session["Rol"] != null && Session["Rol"].Equals(2))
             {
-
-
-                selectListDepa.Add(new SelectListItem
+                if (Session["id"].Equals(id))
                 {
-                    Value = dr["ID_DEPARTAMENTO"].ToString(),
-                    Text = dr["NOMBRE_DEPARTAMENTO"].ToString()
-                });
-            }
-            ViewData["listaDepartamentos"] = selectListDepa;
+                    SistemaClinicoSoapWS.ClinicaWebServiceSoapClient dep = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
 
-            //llenar lista de roles
-            DataSet ds2 = dep.ListaRol();
+                    //Llenar lista de departamentos
+                    DataSet ds = dep.ListaDepa();
 
-            var selectListRol = new List<SelectListItem>();
+                    var selectListDepa = new List<SelectListItem>();
 
-            foreach (DataRow dr2 in ds2.Tables[0].Rows)
-            {
-
-                if (!dr2["ID_ROL"].ToString().Equals("1"))
-                {
-                    selectListRol.Add(new SelectListItem
+                    foreach (DataRow dr in ds.Tables[0].Rows)
                     {
-                        Value = dr2["ID_ROL"].ToString(),
-                        Text = dr2["NOMBRE_ROL"].ToString()
+
+
+                        selectListDepa.Add(new SelectListItem
+                        {
+                            Value = dr["ID_DEPARTAMENTO"].ToString(),
+                            Text = dr["NOMBRE_DEPARTAMENTO"].ToString()
+                        });
+                    }
+                    ViewData["listaDepartamentos"] = selectListDepa;
+
+                    //llenar lista de roles
+                    DataSet ds2 = dep.ListaRol();
+
+                    var selectListRol = new List<SelectListItem>();
+
+                    foreach (DataRow dr2 in ds2.Tables[0].Rows)
+                    {
+
+                        if (!dr2["ID_ROL"].ToString().Equals("1"))
+                        {
+                            selectListRol.Add(new SelectListItem
+                            {
+                                Value = dr2["ID_ROL"].ToString(),
+                                Text = dr2["NOMBRE_ROL"].ToString()
+                            });
+                        }
+
+
+                    }
+                    ViewData["listaRoles"] = selectListRol;
+
+                    //Llenar una lista de muinicipios
+                    DataSet ds3 = dep.ListaDireccion();
+
+                    var selectListDir = new List<SelectListItem>();
+
+                    foreach (DataRow dr3 in ds3.Tables[0].Rows)
+                    {
+                        selectListDir.Add(new SelectListItem
+                        {
+                            Value = dr3["ID_DIRECCION"].ToString(),
+                            Text = dr3["MUNICIPIO"].ToString()
+                        });
+
+                    }
+                    ViewData["listaDirecciones"] = selectListDir;
+
+
+                    //lista de genero
+                    var selectListGen = new List<SelectListItem>();
+                    selectListGen.Add(new SelectListItem
+                    {
+                        Value = "MASCULINO",
+                        Text = "Masculino"
                     });
+                    selectListGen.Add(new SelectListItem
+                    {
+                        Value = "FEMENINO",
+                        Text = "Femenino"
+                    });
+                    ViewData["listaGeneros"] = selectListGen;
+
+
+
+
+                    //Lista de consultorios
+                    DataSet ds4 = dep.ListaConsultorio();
+
+                    var selectListConsul = new List<SelectListItem>();
+
+                    foreach (DataRow dr4 in ds4.Tables[0].Rows)
+                    {
+                        selectListConsul.Add(new SelectListItem
+                        {
+                            Value = dr4["ID_CONSULTORIO"].ToString(),
+                            Text = dr4["NOMBRE_CONSULTORIO"].ToString()
+                        });
+
+                    }
+                    ViewData["listaConsultorios"] = selectListConsul;
+
+
+                    List<UsuarioPersonal> PaList = TodosPersonal();
+                    if (id.HasValue)
+                    {
+                        var p = PaList.Single(m => m.ID_PERSONAL == id);
+                        return View(p);
+                    }
+                    return View();
                 }
-
-
-            }
-            ViewData["listaRoles"] = selectListRol;
-
-            //Llenar una lista de muinicipios
-            DataSet ds3 = dep.ListaDireccion();
-
-            var selectListDir = new List<SelectListItem>();
-
-            foreach (DataRow dr3 in ds3.Tables[0].Rows)
-            {
-                selectListDir.Add(new SelectListItem
+                else
                 {
-                    Value = dr3["ID_DIRECCION"].ToString(),
-                    Text = dr3["MUNICIPIO"].ToString()
-                });
-
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            ViewData["listaDirecciones"] = selectListDir;
-
-
-            //lista de genero
-            var selectListGen = new List<SelectListItem>();
-            selectListGen.Add(new SelectListItem
+            else if (Session["Rol"] != null && Session["Rol"].Equals(3))
             {
-                Value = "MASCULINO",
-                Text = "Masculino"
-            });
-            selectListGen.Add(new SelectListItem
-            {
-                Value = "FEMENINO",
-                Text = "Femenino"
-            });
-            ViewData["listaGeneros"] = selectListGen;
-
-
-
-
-            //Lista de consultorios
-            DataSet ds4 = dep.ListaConsultorio();
-
-            var selectListConsul = new List<SelectListItem>();
-
-            foreach (DataRow dr4 in ds4.Tables[0].Rows)
-            {
-                selectListConsul.Add(new SelectListItem
+                if (Session["id"].Equals(id))
                 {
-                    Value = dr4["ID_CONSULTORIO"].ToString(),
-                    Text = dr4["NOMBRE_CONSULTORIO"].ToString()
-                });
+                    SistemaClinicoSoapWS.ClinicaWebServiceSoapClient dep = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
 
+                    //Llenar lista de departamentos
+                    DataSet ds = dep.ListaDepa();
+
+                    var selectListDepa = new List<SelectListItem>();
+
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+
+
+                        selectListDepa.Add(new SelectListItem
+                        {
+                            Value = dr["ID_DEPARTAMENTO"].ToString(),
+                            Text = dr["NOMBRE_DEPARTAMENTO"].ToString()
+                        });
+                    }
+                    ViewData["listaDepartamentos"] = selectListDepa;
+
+                    //llenar lista de roles
+                    DataSet ds2 = dep.ListaRol();
+
+                    var selectListRol = new List<SelectListItem>();
+
+                    foreach (DataRow dr2 in ds2.Tables[0].Rows)
+                    {
+
+                        if (!dr2["ID_ROL"].ToString().Equals("1"))
+                        {
+                            selectListRol.Add(new SelectListItem
+                            {
+                                Value = dr2["ID_ROL"].ToString(),
+                                Text = dr2["NOMBRE_ROL"].ToString()
+                            });
+                        }
+
+
+                    }
+                    ViewData["listaRoles"] = selectListRol;
+
+                    //Llenar una lista de muinicipios
+                    DataSet ds3 = dep.ListaDireccion();
+
+                    var selectListDir = new List<SelectListItem>();
+
+                    foreach (DataRow dr3 in ds3.Tables[0].Rows)
+                    {
+                        selectListDir.Add(new SelectListItem
+                        {
+                            Value = dr3["ID_DIRECCION"].ToString(),
+                            Text = dr3["MUNICIPIO"].ToString()
+                        });
+
+                    }
+                    ViewData["listaDirecciones"] = selectListDir;
+
+
+                    //lista de genero
+                    var selectListGen = new List<SelectListItem>();
+                    selectListGen.Add(new SelectListItem
+                    {
+                        Value = "MASCULINO",
+                        Text = "Masculino"
+                    });
+                    selectListGen.Add(new SelectListItem
+                    {
+                        Value = "FEMENINO",
+                        Text = "Femenino"
+                    });
+                    ViewData["listaGeneros"] = selectListGen;
+
+
+
+
+                    //Lista de consultorios
+                    DataSet ds4 = dep.ListaConsultorio();
+
+                    var selectListConsul = new List<SelectListItem>();
+
+                    foreach (DataRow dr4 in ds4.Tables[0].Rows)
+                    {
+                        selectListConsul.Add(new SelectListItem
+                        {
+                            Value = dr4["ID_CONSULTORIO"].ToString(),
+                            Text = dr4["NOMBRE_CONSULTORIO"].ToString()
+                        });
+
+                    }
+                    ViewData["listaConsultorios"] = selectListConsul;
+
+
+                    List<UsuarioPersonal> PaList = TodosPersonal();
+                    if (id.HasValue)
+                    {
+                        var p = PaList.Single(m => m.ID_PERSONAL == id);
+                        return View(p);
+                    }
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            ViewData["listaConsultorios"] = selectListConsul;
+                else if (Session["Rol"] != null && Session["Rol"].Equals(4))
+                {
+                    if (Session["id"].Equals(id))
+                    {
+                        SistemaClinicoSoapWS.ClinicaWebServiceSoapClient dep = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+                    //Llenar lista de departamentos
+                    DataSet ds = dep.ListaDepa();
+
+                    var selectListDepa = new List<SelectListItem>();
+
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
 
 
-            List<UsuarioPersonal> PaList = TodosPersonal();
-            if (id.HasValue)
+                        selectListDepa.Add(new SelectListItem
+                        {
+                            Value = dr["ID_DEPARTAMENTO"].ToString(),
+                            Text = dr["NOMBRE_DEPARTAMENTO"].ToString()
+                        });
+                    }
+                    ViewData["listaDepartamentos"] = selectListDepa;
+
+                    //llenar lista de roles
+                    DataSet ds2 = dep.ListaRol();
+
+                    var selectListRol = new List<SelectListItem>();
+
+                    foreach (DataRow dr2 in ds2.Tables[0].Rows)
+                    {
+
+                        if (!dr2["ID_ROL"].ToString().Equals("1"))
+                        {
+                            selectListRol.Add(new SelectListItem
+                            {
+                                Value = dr2["ID_ROL"].ToString(),
+                                Text = dr2["NOMBRE_ROL"].ToString()
+                            });
+                        }
+
+
+                    }
+                    ViewData["listaRoles"] = selectListRol;
+
+                    //Llenar una lista de muinicipios
+                    DataSet ds3 = dep.ListaDireccion();
+
+                    var selectListDir = new List<SelectListItem>();
+
+                    foreach (DataRow dr3 in ds3.Tables[0].Rows)
+                    {
+                        selectListDir.Add(new SelectListItem
+                        {
+                            Value = dr3["ID_DIRECCION"].ToString(),
+                            Text = dr3["MUNICIPIO"].ToString()
+                        });
+
+                    }
+                    ViewData["listaDirecciones"] = selectListDir;
+
+
+                    //lista de genero
+                    var selectListGen = new List<SelectListItem>();
+                    selectListGen.Add(new SelectListItem
+                    {
+                        Value = "MASCULINO",
+                        Text = "Masculino"
+                    });
+                    selectListGen.Add(new SelectListItem
+                    {
+                        Value = "FEMENINO",
+                        Text = "Femenino"
+                    });
+                    ViewData["listaGeneros"] = selectListGen;
+
+
+
+
+                    //Lista de consultorios
+                    DataSet ds4 = dep.ListaConsultorio();
+
+                    var selectListConsul = new List<SelectListItem>();
+
+                    foreach (DataRow dr4 in ds4.Tables[0].Rows)
+                    {
+                        selectListConsul.Add(new SelectListItem
+                        {
+                            Value = dr4["ID_CONSULTORIO"].ToString(),
+                            Text = dr4["NOMBRE_CONSULTORIO"].ToString()
+                        });
+
+                    }
+                    ViewData["listaConsultorios"] = selectListConsul;
+
+
+                    List<UsuarioPersonal> PaList = TodosPersonal();
+                    if (id.HasValue)
+                    {
+                        var p = PaList.Single(m => m.ID_PERSONAL == id);
+                        return View(p);
+                    }
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+
+            else
             {
-                var p = PaList.Single(m => m.ID_PERSONAL == id);
-                return View(p);
+                return RedirectToAction("Index", "Home");
             }
-            return View();
+
+          
 
         }
         // GET: UsuariosPersonal/Create
         public ActionResult Create()
         {
-            //llenar lista de roles
-            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient dep2 = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
-            DataSet ds2 = dep2.ListaRol();
-
-            var selectListRol = new List<SelectListItem>();
-
-            foreach (DataRow dr2 in ds2.Tables[0].Rows)
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
+                //llenar lista de roles
+                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient dep2 = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+                DataSet ds2 = dep2.ListaRol();
 
-                if (!dr2["ID_ROL"].ToString().Equals("1"))
+                var selectListRol = new List<SelectListItem>();
+
+                foreach (DataRow dr2 in ds2.Tables[0].Rows)
                 {
-                    selectListRol.Add(new SelectListItem
+
+                    if (!dr2["ID_ROL"].ToString().Equals("1"))
                     {
-                        Value = dr2["ID_ROL"].ToString(),
-                        Text = dr2["NOMBRE_ROL"].ToString()
-                    });
+                        selectListRol.Add(new SelectListItem
+                        {
+                            Value = dr2["ID_ROL"].ToString(),
+                            Text = dr2["NOMBRE_ROL"].ToString()
+                        });
+                    }
+
+
                 }
+                ViewData["listaRoles2"] = selectListRol;
 
-
+                return View();
             }
-            ViewData["listaRoles2"] = selectListRol;
-
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+          
         }
 
         // POST: UsuariosPersonal/Create
@@ -427,118 +684,126 @@ namespace SistemaClinico.Controllers
         // GET: UsuariosPersonal/Edit/5
         public ActionResult Edit(int? id)
         {
-            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient dep = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
-
-            //Llenar lista de departamentos
-            DataSet ds = dep.ListaDepa();
-
-            var selectListDepa = new List<SelectListItem>();
-
-            foreach (DataRow dr in ds.Tables[0].Rows)
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
+                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient dep = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
 
+                //Llenar lista de departamentos
+                DataSet ds = dep.ListaDepa();
 
-                selectListDepa.Add(new SelectListItem
+                var selectListDepa = new List<SelectListItem>();
+
+                foreach (DataRow dr in ds.Tables[0].Rows)
                 {
-                    Value = dr["ID_DEPARTAMENTO"].ToString(),
-                    Text = dr["NOMBRE_DEPARTAMENTO"].ToString()
-                });
-            }
-            ViewData["listaDepartamentos"]= selectListDepa;
 
-            //llenar lista de roles
-            DataSet ds2 = dep.ListaRol();
 
-            var selectListRol = new List<SelectListItem>();
-
-            foreach (DataRow dr2 in ds2.Tables[0].Rows)
-            {
-
-                if (!dr2["ID_ROL"].ToString().Equals("1"))
-                {
-                    selectListRol.Add(new SelectListItem
+                    selectListDepa.Add(new SelectListItem
                     {
-                        Value = dr2["ID_ROL"].ToString(),
-                        Text = dr2["NOMBRE_ROL"].ToString()
+                        Value = dr["ID_DEPARTAMENTO"].ToString(),
+                        Text = dr["NOMBRE_DEPARTAMENTO"].ToString()
                     });
                 }
-                   
-            
-            }
-            ViewData["listaRoles"] = selectListRol;
+                ViewData["listaDepartamentos"] = selectListDepa;
 
-            //Llenar una lista de muinicipios
-            DataSet ds3 = dep.ListaDireccion();
+                //llenar lista de roles
+                DataSet ds2 = dep.ListaRol();
 
-            var selectListDir = new List<SelectListItem>();
+                var selectListRol = new List<SelectListItem>();
 
-            foreach (DataRow dr3 in ds3.Tables[0].Rows)
-            {
-                     selectListDir.Add(new SelectListItem
+                foreach (DataRow dr2 in ds2.Tables[0].Rows)
+                {
+
+                    if (!dr2["ID_ROL"].ToString().Equals("1"))
+                    {
+                        selectListRol.Add(new SelectListItem
+                        {
+                            Value = dr2["ID_ROL"].ToString(),
+                            Text = dr2["NOMBRE_ROL"].ToString()
+                        });
+                    }
+
+
+                }
+                ViewData["listaRoles"] = selectListRol;
+
+                //Llenar una lista de muinicipios
+                DataSet ds3 = dep.ListaDireccion();
+
+                var selectListDir = new List<SelectListItem>();
+
+                foreach (DataRow dr3 in ds3.Tables[0].Rows)
+                {
+                    selectListDir.Add(new SelectListItem
                     {
                         Value = dr3["ID_DIRECCION"].ToString(),
                         Text = dr3["MUNICIPIO"].ToString()
                     });
-           
-            }
-            ViewData["listaDirecciones"] = selectListDir;
+
+                }
+                ViewData["listaDirecciones"] = selectListDir;
 
 
-            //lista de genero
-            var selectListGen = new List<SelectListItem>();
-            selectListGen.Add(new SelectListItem
-            {
-                Value = "MASCULINO",
-                Text = "Masculino"
-            });
-            selectListGen.Add(new SelectListItem
-            {
-                Value = "FEMENINO",
-                Text = "Femenino"
-            });
-            ViewData["listaGeneros"] = selectListGen;
-
-
-            //lista de Estados
-            var selectListEstado = new List<SelectListItem>();
-            selectListEstado.Add(new SelectListItem
-            {
-                Value = "ACTIVO",
-                Text = "Activo"
-            });
-            selectListEstado.Add(new SelectListItem
-            {
-                Value = "INACTIVO",
-                Text = "Inactivo"
-            });
-            ViewData["listaEstados"] = selectListEstado;
-
-            //Lista de consultorios
-            DataSet ds4 = dep.ListaConsultorio();
-
-            var selectListConsul = new List<SelectListItem>();
-
-            foreach (DataRow dr4 in ds4.Tables[0].Rows)
-            {
-                selectListConsul.Add(new SelectListItem
+                //lista de genero
+                var selectListGen = new List<SelectListItem>();
+                selectListGen.Add(new SelectListItem
                 {
-                    Value = dr4["ID_CONSULTORIO"].ToString(),
-                    Text = dr4["NOMBRE_CONSULTORIO"].ToString()
+                    Value = "MASCULINO",
+                    Text = "Masculino"
                 });
+                selectListGen.Add(new SelectListItem
+                {
+                    Value = "FEMENINO",
+                    Text = "Femenino"
+                });
+                ViewData["listaGeneros"] = selectListGen;
 
+
+                //lista de Estados
+                var selectListEstado = new List<SelectListItem>();
+                selectListEstado.Add(new SelectListItem
+                {
+                    Value = "ACTIVO",
+                    Text = "Activo"
+                });
+                selectListEstado.Add(new SelectListItem
+                {
+                    Value = "INACTIVO",
+                    Text = "Inactivo"
+                });
+                ViewData["listaEstados"] = selectListEstado;
+
+                //Lista de consultorios
+                DataSet ds4 = dep.ListaConsultorio();
+
+                var selectListConsul = new List<SelectListItem>();
+
+                foreach (DataRow dr4 in ds4.Tables[0].Rows)
+                {
+                    selectListConsul.Add(new SelectListItem
+                    {
+                        Value = dr4["ID_CONSULTORIO"].ToString(),
+                        Text = dr4["NOMBRE_CONSULTORIO"].ToString()
+                    });
+
+                }
+                ViewData["listaConsultorios"] = selectListConsul;
+
+
+                List<UsuarioPersonal> PaList = TodosPersonal();
+                if (id.HasValue)
+                {
+                    var p = PaList.Single(m => m.ID_PERSONAL == id);
+                    string pass = p.PASSWORD;
+                    ViewData["pass"] = pass;
+                    return View(p);
+                }
+                return View();
             }
-            ViewData["listaConsultorios"] = selectListConsul;
-
-
-            List<UsuarioPersonal> PaList = TodosPersonal();
-            if (id.HasValue)
+            else
             {
-                var p = PaList.Single(m => m.ID_PERSONAL == id);
-                string pass = p.PASSWORD;
-                ViewData["pass"] = pass;
-                return View(p);
+                return RedirectToAction("Index", "Home");
             }
-            return View();
+           
         }
 
         // POST: UsuariosPersonal/Edit/5

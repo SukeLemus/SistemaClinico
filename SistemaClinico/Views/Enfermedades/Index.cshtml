@@ -102,14 +102,16 @@ else
         </th>
         @if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
         {
-            // @Url.Action("Index", "Home");
-            // @Response.Redirect("~/Views/Home/Index", true);
+            @*@Url.Action("Index", "Home");
+            @Response.Redirect("~/Views/Home/Index", true);*@
+            <th class="th_lista"> Opciones</th>
 
         }
         else
         {
             <th class="th_lista"> Opciones</th>
         }
+
     </tr>
 
     @foreach (var item in Model)
@@ -125,10 +127,20 @@ else
             {
                 // @Url.Action("Index", "Home");
                 // @Response.Redirect("~/Views/Home/Index", true);
+        <td class="td_lista">
+            <table align="center">
+                <tr>
+                    <td>
+                        @Html.ActionLink("Detalles", "Details", new { id = item.id })
+                        <br>
+                    </td>
+                </tr>
+            </table>
+        </td>
             }
             else
             {
-                <td class="td_lista">
+<td class="td_lista">
                     <table align="center">
                         <tr>
                             <td>

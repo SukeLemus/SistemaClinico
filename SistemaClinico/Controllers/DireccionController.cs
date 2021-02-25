@@ -37,27 +37,50 @@ namespace SistemaClinico.Controllers
         // GET: Direccion
         public ActionResult Index(int? i, string BuscarNombre)
         {
-            var Direc = from e in ListaDireccion()
-                           //orderby e.nombre
-                       select e;
-            if (!String.IsNullOrEmpty(BuscarNombre))
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                Direc = Direc.Where(c => c.PAIS.ToLower().Contains(BuscarNombre.ToLower()) || c.DEPARTAMENTO.ToLower().Contains(BuscarNombre.ToLower()) || c.MUNICIPIO.ToLower().Contains(BuscarNombre.ToLower()));
+                var Direc = from e in ListaDireccion()
+                                //orderby e.nombre
+                            select e;
+                if (!String.IsNullOrEmpty(BuscarNombre))
+                {
+                    Direc = Direc.Where(c => c.PAIS.ToLower().Contains(BuscarNombre.ToLower()) || c.DEPARTAMENTO.ToLower().Contains(BuscarNombre.ToLower()) || c.MUNICIPIO.ToLower().Contains(BuscarNombre.ToLower()));
+                }
+                return View(Direc.ToPagedList(i ?? 1, 3));
             }
-            return View(Direc.ToPagedList(i ?? 1, 3));
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
         }
 
         // GET: Direccion/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
         }
 
         // GET: Direccion/Create
         public ActionResult Create()
         {
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
-            return View();
         }
 
         // POST: Direccion/Create
@@ -91,13 +114,21 @@ namespace SistemaClinico.Controllers
         // GET: Direccion/Edit/5
         public ActionResult Edit(int? id)
         {
-            List<Direccion> listaDirec = ListaDireccion();
-            if (id.HasValue)
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                var dire = listaDirec.Single(m => m.ID == id);
-                return View(dire);
+                List<Direccion> listaDirec = ListaDireccion();
+                if (id.HasValue)
+                {
+                    var dire = listaDirec.Single(m => m.ID == id);
+                    return View(dire);
+                }
+                return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
         }
     
 
@@ -127,13 +158,21 @@ namespace SistemaClinico.Controllers
         // GET: Direccion/Delete/5
         public ActionResult Delete(int? id)
         {
-            List<Direccion> listadirec = ListaDireccion();
-            if (id.HasValue)
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                var dire = listadirec.Single(m => m.ID == id);
-                return View(dire);
+                List<Direccion> listadirec = ListaDireccion();
+                if (id.HasValue)
+                {
+                    var dire = listadirec.Single(m => m.ID == id);
+                    return View(dire);
+                }
+                return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
         }
 
         // POST: Direccion/Delete/5

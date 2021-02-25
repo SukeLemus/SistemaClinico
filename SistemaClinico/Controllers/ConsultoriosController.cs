@@ -82,34 +82,49 @@ namespace SistemaClinico.Controllers
         // GET: Consultorios/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
         }
 
         // GET: Consultorios/Create
         public ActionResult Create()
         {
-           
-
-            //lista de nombres de Departamentos
-            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient depaWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
-            var selectList = new List<SelectListItem>();
-            DataSet ds = depaWS.ListaDepa();
-
-            foreach (DataRow dr in ds.Tables[0].Rows)
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                string id = dr["ID_DEPARTAMENTO"].ToString();
-                string nombre_dpto = dr["NOMBRE_DEPARTAMENTO"].ToString();
 
-                selectList.Add(new SelectListItem
+                //lista de nombres de Departamentos
+                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient depaWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+                var selectList = new List<SelectListItem>();
+                DataSet ds = depaWS.ListaDepa();
+
+                foreach (DataRow dr in ds.Tables[0].Rows)
                 {
-                    Value = id,
-                    Text = nombre_dpto,
-                });
+                    string id = dr["ID_DEPARTAMENTO"].ToString();
+                    string nombre_dpto = dr["NOMBRE_DEPARTAMENTO"].ToString();
+
+                    selectList.Add(new SelectListItem
+                    {
+                        Value = id,
+                        Text = nombre_dpto,
+                    });
+                }
+                ViewData["ListaNombreDeptos"] = selectList;
+
+
+                return View();
             }
-            ViewData["ListaNombreDeptos"] = selectList;
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
-
-            return View();
         }
 
         // POST: Consultorios/Create
@@ -147,52 +162,60 @@ namespace SistemaClinico.Controllers
         // GET: Consultorios/Edit/5
         public ActionResult Edit(int? id)
         {
-            List<SelectListItem> listaEstados = new List<SelectListItem>();
-            List<SelectListItem> listaDepa = new List<SelectListItem>();
-
-            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient depaWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
-            DataSet ds = depaWS.ListaDepa();
-
-            listaEstados.Add(new SelectListItem
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                Text = "Activo",
-                Value = "ACTIVO"
-            });
-            listaEstados.Add(new SelectListItem
-            {
-                Text = "Inactivo",
-                Value = "INACTIVO"
-            });
+                List<SelectListItem> listaEstados = new List<SelectListItem>();
+                List<SelectListItem> listaDepa = new List<SelectListItem>();
 
-            ViewData["estados"] = listaEstados;
+                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient depaWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+                DataSet ds = depaWS.ListaDepa();
 
-            List<Consultorio> consultlist = ListaConsultorios();
-            if (id.HasValue)
-            {
-                var consul = consultlist.Single(m => m.ID == id);
+                listaEstados.Add(new SelectListItem
+                {
+                    Text = "Activo",
+                    Value = "ACTIVO"
+                });
+                listaEstados.Add(new SelectListItem
+                {
+                    Text = "Inactivo",
+                    Value = "INACTIVO"
+                });
+
                 ViewData["estados"] = listaEstados;
 
-                foreach (DataRow dr in ds.Tables[0].Rows)
+                List<Consultorio> consultlist = ListaConsultorios();
+                if (id.HasValue)
                 {
-                    string idDepa = dr["ID_DEPARTAMENTO"].ToString();
-                    string nombre = dr["NOMBRE_DEPARTAMENTO"].ToString();
+                    var consul = consultlist.Single(m => m.ID == id);
+                    ViewData["estados"] = listaEstados;
 
-
-                    listaDepa.Add(new SelectListItem
+                    foreach (DataRow dr in ds.Tables[0].Rows)
                     {
-                        Text = nombre,
-                        Value = idDepa
-                    });
+                        string idDepa = dr["ID_DEPARTAMENTO"].ToString();
+                        string nombre = dr["NOMBRE_DEPARTAMENTO"].ToString();
+
+
+                        listaDepa.Add(new SelectListItem
+                        {
+                            Text = nombre,
+                            Value = idDepa
+                        });
+                    }
+
+                    ViewData["listaDepa"] = listaDepa;
+
+                    return View(consul);
                 }
 
-                ViewData["listaDepa"] = listaDepa;
 
-                return View(consul);
+
+                return View();
             }
-
-
-
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+          
         }
 
         // POST: Consultorios/Edit/5
@@ -234,16 +257,24 @@ namespace SistemaClinico.Controllers
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-            try
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                // TODO: Add delete logic here
+                try
+                {
+                    // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return View();
+                }
             }
-            catch
+            else
             {
-                return View();
+                return RedirectToAction("Index", "Home");
             }
+          
         }
     }
 }

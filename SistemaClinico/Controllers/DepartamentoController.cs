@@ -85,34 +85,49 @@ namespace SistemaClinico.Controllers
         // GET: Departamento/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // GET: Departamento/Create
         public ActionResult Create()
         {
-            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient depaWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
-            var selectList = new List<SelectListItem>();
-            DataSet ds = depaWS.ListaAreas();
-
-            foreach (DataRow dr in ds.Tables[0].Rows)
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                string id = dr["ID_AREA"].ToString();
-                string nombre_area = dr["NOMBRE_AREA"].ToString();
+                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient depaWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+                var selectList = new List<SelectListItem>();
+                DataSet ds = depaWS.ListaAreas();
 
-                selectList.Add(new SelectListItem
+                foreach (DataRow dr in ds.Tables[0].Rows)
                 {
-                    Value = id,
-                    Text = nombre_area,
-                });
+                    string id = dr["ID_AREA"].ToString();
+                    string nombre_area = dr["NOMBRE_AREA"].ToString();
+
+                    selectList.Add(new SelectListItem
+                    {
+                        Value = id,
+                        Text = nombre_area,
+                    });
+                }
+                ViewData["ListaNombreAreas"] = selectList;
+
+
+
+
+
+                return View();
             }
-            ViewData["ListaNombreAreas"] = selectList;
-
-         
-
-
-
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+          
         }
 
         // POST: Departamento/Create
@@ -148,52 +163,60 @@ namespace SistemaClinico.Controllers
         // GET: Departamento/Edit/5
         public ActionResult Edit(int? id)
         {
-            List<SelectListItem> listaEstados = new List<SelectListItem>();
-            List<SelectListItem> listaArea = new List<SelectListItem>();
-
-            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient depaWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
-            DataSet ds = depaWS.ListaAreas();
-
-            listaEstados.Add(new SelectListItem
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                Text = "Activo",
-                Value = "ACTIVO"
-            });
-            listaEstados.Add(new SelectListItem
-            {
-                Text = "Inactivo",
-                Value = "INACTIVO"
-            });
+                List<SelectListItem> listaEstados = new List<SelectListItem>();
+                List<SelectListItem> listaArea = new List<SelectListItem>();
 
-            //ViewData["estados"] = listaEstados;
+                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient depaWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+                DataSet ds = depaWS.ListaAreas();
 
-            List<Departamento> deplist = ListaDepartamentos();
-            if (id.HasValue)
-            {
-                var depa = deplist.Single(m => m.ID == id);
-                ViewData["estados"] = listaEstados;
-
-                foreach (DataRow dr in ds.Tables[0].Rows)
+                listaEstados.Add(new SelectListItem
                 {
-                    string idArea = dr["ID_AREA"].ToString();
-                    string nombre = dr["NOMBRE_AREA"].ToString();
+                    Text = "Activo",
+                    Value = "ACTIVO"
+                });
+                listaEstados.Add(new SelectListItem
+                {
+                    Text = "Inactivo",
+                    Value = "INACTIVO"
+                });
 
+                //ViewData["estados"] = listaEstados;
 
-                    listaArea.Add(new SelectListItem
+                List<Departamento> deplist = ListaDepartamentos();
+                if (id.HasValue)
+                {
+                    var depa = deplist.Single(m => m.ID == id);
+                    ViewData["estados"] = listaEstados;
+
+                    foreach (DataRow dr in ds.Tables[0].Rows)
                     {
-                        Text = nombre,
-                        Value = idArea
-                    });  
+                        string idArea = dr["ID_AREA"].ToString();
+                        string nombre = dr["NOMBRE_AREA"].ToString();
+
+
+                        listaArea.Add(new SelectListItem
+                        {
+                            Text = nombre,
+                            Value = idArea
+                        });
+                    }
+
+                    ViewData["listaAreas"] = listaArea;
+
+                    return View(depa);
                 }
 
-                ViewData["listaAreas"] = listaArea;
 
-                return View(depa);
+
+                return View();
             }
-
-            
-
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
         }
 
         // POST: Departamento/Edit/5

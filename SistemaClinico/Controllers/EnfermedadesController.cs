@@ -101,7 +101,14 @@ namespace SistemaClinico.Controllers
         // GET: Enfermedades/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         public ActionResult DeleteSintEnf(int? id, int? idenf, string nSint, string nEnf)
         {
@@ -229,13 +236,21 @@ namespace SistemaClinico.Controllers
         // GET: Enfermedades/Edit/5
         public ActionResult Edit(int? id)
         {
-            List<Enfermedad> enfList = TodosLosEnfermedades();
-            if (id.HasValue)
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                var enfe = enfList.Single(m => m.id == id);
-                return View(enfe);
+                List<Enfermedad> enfList = TodosLosEnfermedades();
+                if (id.HasValue)
+                {
+                    var enfe = enfList.Single(m => m.id == id);
+                    return View(enfe);
+                }
+                return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+          
         }
         // POST: Enfermedades/Edit/5
         [HttpPost]
@@ -280,13 +295,21 @@ namespace SistemaClinico.Controllers
         // GET: Enfermedades/Delete/5
         public ActionResult Delete(int? Id)
         {
-            List<Enfermedad> sintList2 = TodosLosEnfermedades();
-            if (Id.HasValue)
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                var sint2 = sintList2.Single(m => m.id == Id);
-                return View(sint2);
+                List<Enfermedad> sintList2 = TodosLosEnfermedades();
+                if (Id.HasValue)
+                {
+                    var sint2 = sintList2.Single(m => m.id == Id);
+                    return View(sint2);
+                }
+                return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
         }
         // POST: Enfermedades/Delete/5
         [HttpPost]

@@ -104,7 +104,15 @@ namespace SistemaClinico.Controllers
         // GET: Sintomas/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
         }
         public void precargarCreate()
         {
@@ -141,13 +149,21 @@ namespace SistemaClinico.Controllers
         // GET: Sintomas/Edit/5
         public ActionResult Edit(int? id)
         {
-            List<Sintoma> sintList = TodosLosSintomas();
-            if (id.HasValue)
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                var sint = sintList.Single(m => m.id == id);
-                return View(sint);
-            }                
-            return View();
+                List<Sintoma> sintList = TodosLosSintomas();
+                if (id.HasValue)
+                {
+                    var sint = sintList.Single(m => m.id == id);
+                    return View(sint);
+                }
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
         }
         // POST: Sintomas/Edit/5
         [HttpPost]
@@ -174,13 +190,21 @@ namespace SistemaClinico.Controllers
         // GET: Sintomas/Delete/5
         public ActionResult Delete(int? id)
         {
-            List<Sintoma> sintList = TodosLosSintomas();
-            if(id.HasValue)
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                var sint = sintList.Single(m => m.id == id);
-                return View(sint);
-            }          
-                       return View();
+                List<Sintoma> sintList = TodosLosSintomas();
+                if (id.HasValue)
+                {
+                    var sint = sintList.Single(m => m.id == id);
+                    return View(sint);
+                }
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
         // POST: Sintomas/Delete/5
         [HttpPost]

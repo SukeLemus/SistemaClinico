@@ -36,27 +36,50 @@ namespace SistemaClinico.Controllers
         // GET: Areas
         public ActionResult Index(int? i, string BuscarNombre)
         {
-            var Area = from e in ListaAreas()
-                              //orderby e.nombre
-                          select e;
-            if (!String.IsNullOrEmpty(BuscarNombre))
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                Area = Area.Where(c => c.NOMBRE_AREA.ToLower().Contains(BuscarNombre.ToLower()));
+                var Area = from e in ListaAreas()
+                               //orderby e.nombre
+                           select e;
+                if (!String.IsNullOrEmpty(BuscarNombre))
+                {
+                    Area = Area.Where(c => c.NOMBRE_AREA.ToLower().Contains(BuscarNombre.ToLower()));
+                }
+                return View(Area.ToPagedList(i ?? 1, 3));
             }
-            return View(Area.ToPagedList(i ?? 1, 3));
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+          
       
         }
 
         // GET: Areas/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // GET: Areas/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
         }
 
         // POST: Areas/Create
@@ -88,13 +111,21 @@ namespace SistemaClinico.Controllers
         // GET: Areas/Edit/5
         public ActionResult Edit(int? id)
         {
-            List<Area> listaAreas = ListaAreas();
-            if (id.HasValue)
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                var area = listaAreas.Single(m => m.ID == id);
-                return View(area);
+                List<Area> listaAreas = ListaAreas();
+                if (id.HasValue)
+                {
+                    var area = listaAreas.Single(m => m.ID == id);
+                    return View(area);
+                }
+                return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
 
         // POST: Areas/Edit/5
@@ -123,13 +154,21 @@ namespace SistemaClinico.Controllers
         // GET: Areas/Delete/5
         public ActionResult Delete(int? id)
         {
-            List<Area> listaAreas = ListaAreas();
-            if (id.HasValue)
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                var area = listaAreas.Single(m => m.ID == id);
-                return View(area);
+                List<Area> listaAreas = ListaAreas();
+                if (id.HasValue)
+                {
+                    var area = listaAreas.Single(m => m.ID == id);
+                    return View(area);
+                }
+                return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
         }
 
         // POST: Areas/Delete/5

@@ -35,14 +35,22 @@ namespace SistemaClinico.Controllers
         // GET: Fracturas
         public ActionResult Index(int? i, string BuscarNombre)
         {
-            var frac = from e in ListaFracturas()
-                           //orderby e.nombre
-                       select e;
-            if (!String.IsNullOrEmpty(BuscarNombre))
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                frac = frac.Where(c => c.NOMBRE_FRACTURA.ToLower().Contains(BuscarNombre.ToLower()));
+                var frac = from e in ListaFracturas()
+                               //orderby e.nombre
+                           select e;
+                if (!String.IsNullOrEmpty(BuscarNombre))
+                {
+                    frac = frac.Where(c => c.NOMBRE_FRACTURA.ToLower().Contains(BuscarNombre.ToLower()));
+                }
+                return View(frac.ToPagedList(i ?? 1, 3));
             }
-            return View(frac.ToPagedList(i ?? 1, 3));
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+          
         }
 
         // GET: Fracturas/Details/5
@@ -54,7 +62,14 @@ namespace SistemaClinico.Controllers
         // GET: Fracturas/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Fracturas/Create
@@ -87,13 +102,21 @@ namespace SistemaClinico.Controllers
         // GET: Fracturas/Edit/5
         public ActionResult Edit(int? id)
         {
-            List<Fracturas> listafrac = ListaFracturas();
-            if (id.HasValue)
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                var frac = listafrac.Single(m => m.ID == id);
-                return View(frac);
+                List<Fracturas> listafrac = ListaFracturas();
+                if (id.HasValue)
+                {
+                    var frac = listafrac.Single(m => m.ID == id);
+                    return View(frac);
+                }
+                return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+          
         }
 
         // POST: Fracturas/Edit/5
@@ -122,13 +145,21 @@ namespace SistemaClinico.Controllers
         // GET: Fracturas/Delete/5
         public ActionResult Delete(int? id)
         {
-            List<Fracturas> listafrac = ListaFracturas();
-            if (id.HasValue)
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                var frac = listafrac.Single(m => m.ID == id);
-                return View(frac);
+                List<Fracturas> listafrac = ListaFracturas();
+                if (id.HasValue)
+                {
+                    var frac = listafrac.Single(m => m.ID == id);
+                    return View(frac);
+                }
+                return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+         
         }
 
         // POST: Fracturas/Delete/5

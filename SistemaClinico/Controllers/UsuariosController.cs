@@ -444,80 +444,88 @@ namespace SistemaClinico.Controllers
 
         public ActionResult agregarA(int id)
         {
-            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient alerWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
-
-            //Lista Alergias
-            /**************ALERGIAS ***************************************************/
-            DataSet ds = alerWS.ListaAlergias();
-            List<Alergias> listaAler = new List<Alergias>();
-            var selectListAlergias = new List<SelectListItem>();
-
-            foreach (DataRow dr in ds.Tables[0].Rows)
+            if (Session["Rol"] != null && Session["Rol"].Equals(3))
             {
-                int idAlergia = int.Parse(dr["ID_ALERGIA"].ToString());
-                // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
-                string nombreAlergia = dr["NOMBRE_ALERGIA"].ToString();
+                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient alerWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
 
-                Alergias alerg = new Alergias();
-                alerg.ID = idAlergia;
-                alerg.NOMBRE_ALERGIA = nombreAlergia;
-                listaAler.Add(alerg);
+                //Lista Alergias
+                /**************ALERGIAS ***************************************************/
+                DataSet ds = alerWS.ListaAlergias();
+                List<Alergias> listaAler = new List<Alergias>();
+                var selectListAlergias = new List<SelectListItem>();
 
-                selectListAlergias.Add(new SelectListItem
+                foreach (DataRow dr in ds.Tables[0].Rows)
                 {
-                    Value = alerg.ID.ToString(),
-                    Text = alerg.NOMBRE_ALERGIA
-                });
-            }
+                    int idAlergia = int.Parse(dr["ID_ALERGIA"].ToString());
+                    // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
+                    string nombreAlergia = dr["NOMBRE_ALERGIA"].ToString();
 
-            ViewData["ListaAlergias"] = selectListAlergias;
+                    Alergias alerg = new Alergias();
+                    alerg.ID = idAlergia;
+                    alerg.NOMBRE_ALERGIA = nombreAlergia;
+                    listaAler.Add(alerg);
 
-            //sacando nombre paciente
+                    selectListAlergias.Add(new SelectListItem
+                    {
+                        Value = alerg.ID.ToString(),
+                        Text = alerg.NOMBRE_ALERGIA
+                    });
+                }
 
-            DataSet ds2 = alerWS.PacienteID(id);
-            RegistroPacienteUsuario p = new RegistroPacienteUsuario();
+                ViewData["ListaAlergias"] = selectListAlergias;
 
-            foreach (DataRow dr2 in ds2.Tables[0].Rows)
-            {
+                //sacando nombre paciente
 
-                string nombre = dr2["NOMBRE"].ToString();
-                string apellido = dr2["APELLIDO"].ToString();
+                DataSet ds2 = alerWS.PacienteID(id);
+                RegistroPacienteUsuario p = new RegistroPacienteUsuario();
 
-                p.NOMBRE = nombre;
-                p.APELLIDO = apellido;
-
-
-            }
-
-            ViewData["nombrep"] = p.NOMBRE + " " + p.APELLIDO;
-
-            //Lista Alergia Tratamiento
-
-            DataSet ds3 = alerWS.Select_AlergiasPaciente(id);
-            List<AlergiasPaciente> listaAler3 = new List<AlergiasPaciente>();
-            var selectListAlergias3 = new List<SelectListItem>();
-
-            foreach (DataRow dr3 in ds3.Tables[0].Rows)
-            {
-                int idAlergia3 = int.Parse(dr3["ID_ALERGIA"].ToString());
-                // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
-                string nombreAlergia3 = dr3["NOMBRE_ALERGIA"].ToString();
-
-                AlergiasPaciente aler3 = new AlergiasPaciente();
-                aler3.ID = idAlergia3;
-                aler3.NOMBRE_ALERGIA = nombreAlergia3;
-                listaAler3.Add(aler3);
-
-                selectListAlergias3.Add(new SelectListItem
+                foreach (DataRow dr2 in ds2.Tables[0].Rows)
                 {
-                    Value = aler3.ID.ToString(),
-                    Text = aler3.NOMBRE_ALERGIA
-                });
-            }
 
-            ViewData["ListaAlergiasID"] = selectListAlergias3;
-            ViewData["idpaciente"] = id;
-            return View();
+                    string nombre = dr2["NOMBRE"].ToString();
+                    string apellido = dr2["APELLIDO"].ToString();
+
+                    p.NOMBRE = nombre;
+                    p.APELLIDO = apellido;
+
+
+                }
+
+                ViewData["nombrep"] = p.NOMBRE + " " + p.APELLIDO;
+
+                //Lista Alergia Tratamiento
+
+                DataSet ds3 = alerWS.Select_AlergiasPaciente(id);
+                List<AlergiasPaciente> listaAler3 = new List<AlergiasPaciente>();
+                var selectListAlergias3 = new List<SelectListItem>();
+
+                foreach (DataRow dr3 in ds3.Tables[0].Rows)
+                {
+                    int idAlergia3 = int.Parse(dr3["ID_ALERGIA"].ToString());
+                    // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
+                    string nombreAlergia3 = dr3["NOMBRE_ALERGIA"].ToString();
+
+                    AlergiasPaciente aler3 = new AlergiasPaciente();
+                    aler3.ID = idAlergia3;
+                    aler3.NOMBRE_ALERGIA = nombreAlergia3;
+                    listaAler3.Add(aler3);
+
+                    selectListAlergias3.Add(new SelectListItem
+                    {
+                        Value = aler3.ID.ToString(),
+                        Text = aler3.NOMBRE_ALERGIA
+                    });
+                }
+
+                ViewData["ListaAlergiasID"] = selectListAlergias3;
+                ViewData["idpaciente"] = id;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
         [HttpPost]
 
@@ -565,80 +573,88 @@ namespace SistemaClinico.Controllers
 
         public ActionResult agregarF(int id)
         {
-            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient alerWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
-
-            //Lista Alergias
-            /**************ALERGIAS ***************************************************/
-            DataSet ds = alerWS.ListaFracturas();
-            List<Fracturas> listaF = new List<Fracturas>();
-            var selectListF = new List<SelectListItem>();
-
-            foreach (DataRow dr in ds.Tables[0].Rows)
+            if (Session["Rol"] != null && Session["Rol"].Equals(3))
             {
-                int idf = int.Parse(dr["ID_FRACTURAS"].ToString());
-                // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
-                string nombref = dr["NOMBRE_FRACTURA"].ToString();
+                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient alerWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
 
-                Fracturas fa = new Fracturas();
-                fa.ID = idf;
-                fa.NOMBRE_FRACTURA = nombref;
-                listaF.Add(fa);
+                //Lista Alergias
+                /**************ALERGIAS ***************************************************/
+                DataSet ds = alerWS.ListaFracturas();
+                List<Fracturas> listaF = new List<Fracturas>();
+                var selectListF = new List<SelectListItem>();
 
-                selectListF.Add(new SelectListItem
+                foreach (DataRow dr in ds.Tables[0].Rows)
                 {
-                    Value = fa.ID.ToString(),
-                    Text = fa.NOMBRE_FRACTURA
-                });
-            }
+                    int idf = int.Parse(dr["ID_FRACTURAS"].ToString());
+                    // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
+                    string nombref = dr["NOMBRE_FRACTURA"].ToString();
 
-            ViewData["ListaFracturas"] = selectListF;
+                    Fracturas fa = new Fracturas();
+                    fa.ID = idf;
+                    fa.NOMBRE_FRACTURA = nombref;
+                    listaF.Add(fa);
 
-            //sacando nombre paciente
+                    selectListF.Add(new SelectListItem
+                    {
+                        Value = fa.ID.ToString(),
+                        Text = fa.NOMBRE_FRACTURA
+                    });
+                }
 
-            DataSet ds2 = alerWS.PacienteID(id);
-            RegistroPacienteUsuario p = new RegistroPacienteUsuario();
+                ViewData["ListaFracturas"] = selectListF;
 
-            foreach (DataRow dr2 in ds2.Tables[0].Rows)
-            {
+                //sacando nombre paciente
 
-                string nombre = dr2["NOMBRE"].ToString();
-                string apellido = dr2["APELLIDO"].ToString();
+                DataSet ds2 = alerWS.PacienteID(id);
+                RegistroPacienteUsuario p = new RegistroPacienteUsuario();
 
-                p.NOMBRE = nombre;
-                p.APELLIDO = apellido;
-
-
-            }
-
-            ViewData["nombrep"] = p.NOMBRE + " " + p.APELLIDO;
-
-            //Lista Fractura paciente
-
-            DataSet ds3 = alerWS.Select_FracturasPaciente(id);
-            List<FracturasPaciente> listafrac = new List<FracturasPaciente>();
-            var selectListfractura = new List<SelectListItem>();
-
-            foreach (DataRow dr3 in ds3.Tables[0].Rows)
-            {
-                int idfrac = int.Parse(dr3["ID_FRACTURAS"].ToString());
-                // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
-                string nombrefrac = dr3["NOMBRE_FRACTURA"].ToString();
-
-                FracturasPaciente f = new FracturasPaciente();
-                f.ID_FRACTURAS = idfrac;
-                f.NOMBRE_FRACTURA = nombrefrac;
-                listafrac.Add(f);
-
-                selectListfractura.Add(new SelectListItem
+                foreach (DataRow dr2 in ds2.Tables[0].Rows)
                 {
-                    Value = f.ID_FRACTURAS.ToString(),
-                    Text = f.NOMBRE_FRACTURA
-                });
-            }
 
-            ViewData["ListaFracturasID"] = selectListfractura;
-            ViewData["idpaciente"] = id;
-            return View();
+                    string nombre = dr2["NOMBRE"].ToString();
+                    string apellido = dr2["APELLIDO"].ToString();
+
+                    p.NOMBRE = nombre;
+                    p.APELLIDO = apellido;
+
+
+                }
+
+                ViewData["nombrep"] = p.NOMBRE + " " + p.APELLIDO;
+
+                //Lista Fractura paciente
+
+                DataSet ds3 = alerWS.Select_FracturasPaciente(id);
+                List<FracturasPaciente> listafrac = new List<FracturasPaciente>();
+                var selectListfractura = new List<SelectListItem>();
+
+                foreach (DataRow dr3 in ds3.Tables[0].Rows)
+                {
+                    int idfrac = int.Parse(dr3["ID_FRACTURAS"].ToString());
+                    // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
+                    string nombrefrac = dr3["NOMBRE_FRACTURA"].ToString();
+
+                    FracturasPaciente f = new FracturasPaciente();
+                    f.ID_FRACTURAS = idfrac;
+                    f.NOMBRE_FRACTURA = nombrefrac;
+                    listafrac.Add(f);
+
+                    selectListfractura.Add(new SelectListItem
+                    {
+                        Value = f.ID_FRACTURAS.ToString(),
+                        Text = f.NOMBRE_FRACTURA
+                    });
+                }
+
+                ViewData["ListaFracturasID"] = selectListfractura;
+                ViewData["idpaciente"] = id;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
         }
         [HttpPost]
 
@@ -688,80 +704,88 @@ namespace SistemaClinico.Controllers
 
         public ActionResult agregarC(int id)
         {
-            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient alerWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
-
-            //Lista Alergias
-            /**************ALERGIAS ***************************************************/
-            DataSet ds = alerWS.ListaCirugias();
-            List<Cirugias> listaC = new List<Cirugias>();
-            var selectListC = new List<SelectListItem>();
-
-            foreach (DataRow dr in ds.Tables[0].Rows)
+            if (Session["Rol"] != null && Session["Rol"].Equals(3))
             {
-                int idc = int.Parse(dr["ID_CIRUGIA"].ToString());
-                // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
-                string nombrec = dr["NOMBRE_CIRUGIA"].ToString();
+                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient alerWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
 
-                Cirugias ci = new Cirugias();
-                ci.ID = idc;
-                ci.NOMBRE_CIRUGIA = nombrec;
-                listaC.Add(ci);
+                //Lista Alergias
+                /**************ALERGIAS ***************************************************/
+                DataSet ds = alerWS.ListaCirugias();
+                List<Cirugias> listaC = new List<Cirugias>();
+                var selectListC = new List<SelectListItem>();
 
-                selectListC.Add(new SelectListItem
+                foreach (DataRow dr in ds.Tables[0].Rows)
                 {
-                    Value = ci.ID.ToString(),
-                    Text = ci.NOMBRE_CIRUGIA
-                });
-            }
+                    int idc = int.Parse(dr["ID_CIRUGIA"].ToString());
+                    // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
+                    string nombrec = dr["NOMBRE_CIRUGIA"].ToString();
 
-            ViewData["ListaCirugias"] = selectListC;
+                    Cirugias ci = new Cirugias();
+                    ci.ID = idc;
+                    ci.NOMBRE_CIRUGIA = nombrec;
+                    listaC.Add(ci);
 
-            //sacando nombre paciente
+                    selectListC.Add(new SelectListItem
+                    {
+                        Value = ci.ID.ToString(),
+                        Text = ci.NOMBRE_CIRUGIA
+                    });
+                }
 
-            DataSet ds2 = alerWS.PacienteID(id);
-            RegistroPacienteUsuario p = new RegistroPacienteUsuario();
+                ViewData["ListaCirugias"] = selectListC;
 
-            foreach (DataRow dr2 in ds2.Tables[0].Rows)
-            {
+                //sacando nombre paciente
 
-                string nombre = dr2["NOMBRE"].ToString();
-                string apellido = dr2["APELLIDO"].ToString();
+                DataSet ds2 = alerWS.PacienteID(id);
+                RegistroPacienteUsuario p = new RegistroPacienteUsuario();
 
-                p.NOMBRE = nombre;
-                p.APELLIDO = apellido;
-
-
-            }
-
-            ViewData["nombrep"] = p.NOMBRE + " " + p.APELLIDO;
-
-            //Lista Fractura paciente
-
-            DataSet ds3 = alerWS.Select_CirugiasPaciente(id);
-            List<CirugiasPaciente> listaCirugia = new List<CirugiasPaciente>();
-            var selectListCirugia = new List<SelectListItem>();
-
-            foreach (DataRow dr3 in ds3.Tables[0].Rows)
-            {
-                int idCirugia = int.Parse(dr3["ID_CIRUGIA"].ToString());
-                // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
-                string nombrecirugia = dr3["NOMBRE_CIRUGIA"].ToString();
-
-                CirugiasPaciente c = new CirugiasPaciente();
-                c.ID_CIRUGIA = idCirugia;
-                c.NOMBRE_CIRUGIA = nombrecirugia;
-                listaCirugia.Add(c);
-
-                selectListCirugia.Add(new SelectListItem
+                foreach (DataRow dr2 in ds2.Tables[0].Rows)
                 {
-                    Value = c.ID_CIRUGIA.ToString(),
-                    Text = c.NOMBRE_CIRUGIA
-                });
-            }
 
-            ViewData["ListaCirugiaID"] = selectListCirugia;
-            ViewData["idpaciente"] = id;
-            return View();
+                    string nombre = dr2["NOMBRE"].ToString();
+                    string apellido = dr2["APELLIDO"].ToString();
+
+                    p.NOMBRE = nombre;
+                    p.APELLIDO = apellido;
+
+
+                }
+
+                ViewData["nombrep"] = p.NOMBRE + " " + p.APELLIDO;
+
+                //Lista Fractura paciente
+
+                DataSet ds3 = alerWS.Select_CirugiasPaciente(id);
+                List<CirugiasPaciente> listaCirugia = new List<CirugiasPaciente>();
+                var selectListCirugia = new List<SelectListItem>();
+
+                foreach (DataRow dr3 in ds3.Tables[0].Rows)
+                {
+                    int idCirugia = int.Parse(dr3["ID_CIRUGIA"].ToString());
+                    // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
+                    string nombrecirugia = dr3["NOMBRE_CIRUGIA"].ToString();
+
+                    CirugiasPaciente c = new CirugiasPaciente();
+                    c.ID_CIRUGIA = idCirugia;
+                    c.NOMBRE_CIRUGIA = nombrecirugia;
+                    listaCirugia.Add(c);
+
+                    selectListCirugia.Add(new SelectListItem
+                    {
+                        Value = c.ID_CIRUGIA.ToString(),
+                        Text = c.NOMBRE_CIRUGIA
+                    });
+                }
+
+                ViewData["ListaCirugiaID"] = selectListCirugia;
+                ViewData["idpaciente"] = id;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+          
         }
         [HttpPost]
 
@@ -810,80 +834,88 @@ namespace SistemaClinico.Controllers
         //Enfermedades 
         public ActionResult agregarE(int id)
         {
-            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient alerWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
-
-            //Lista Enfermedad
-            /**************ENFERMEDAD ***************************************************/
-            DataSet ds = alerWS.lista_enfermedades();
-            List<Enfermedad> listaE = new List<Enfermedad>();
-            var selectListE = new List<SelectListItem>();
-
-            foreach (DataRow dr in ds.Tables[0].Rows)
+            if (Session["Rol"] != null && Session["Rol"].Equals(3))
             {
-                int ide = int.Parse(dr["ID_ENFERMEDAD"].ToString());
-                // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
-                string nombree = dr["NOMBRE_ENFERMEDAD"].ToString();
+                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient alerWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
 
-                Enfermedad ef = new Enfermedad();
-                ef.id = ide;
-                ef.nombre_enfermedad = nombree;
-                listaE.Add(ef);
+                //Lista Enfermedad
+                /**************ENFERMEDAD ***************************************************/
+                DataSet ds = alerWS.lista_enfermedades();
+                List<Enfermedad> listaE = new List<Enfermedad>();
+                var selectListE = new List<SelectListItem>();
 
-                selectListE.Add(new SelectListItem
+                foreach (DataRow dr in ds.Tables[0].Rows)
                 {
-                    Value = ef.id.ToString(),
-                    Text = ef.nombre_enfermedad
-                });
-            }
+                    int ide = int.Parse(dr["ID_ENFERMEDAD"].ToString());
+                    // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
+                    string nombree = dr["NOMBRE_ENFERMEDAD"].ToString();
 
-            ViewData["ListaEnfermedad"] = selectListE;
+                    Enfermedad ef = new Enfermedad();
+                    ef.id = ide;
+                    ef.nombre_enfermedad = nombree;
+                    listaE.Add(ef);
 
-            //sacando nombre paciente
+                    selectListE.Add(new SelectListItem
+                    {
+                        Value = ef.id.ToString(),
+                        Text = ef.nombre_enfermedad
+                    });
+                }
 
-            DataSet ds2 = alerWS.PacienteID(id);
-            RegistroPacienteUsuario p = new RegistroPacienteUsuario();
+                ViewData["ListaEnfermedad"] = selectListE;
 
-            foreach (DataRow dr2 in ds2.Tables[0].Rows)
-            {
+                //sacando nombre paciente
 
-                string nombre = dr2["NOMBRE"].ToString();
-                string apellido = dr2["APELLIDO"].ToString();
+                DataSet ds2 = alerWS.PacienteID(id);
+                RegistroPacienteUsuario p = new RegistroPacienteUsuario();
 
-                p.NOMBRE = nombre;
-                p.APELLIDO = apellido;
-
-
-            }
-
-            ViewData["nombrep"] = p.NOMBRE + " " + p.APELLIDO;
-
-            //Lista Enfermedad paciente
-
-            DataSet ds3 = alerWS.Select_EnfermedadesPaciente(id);
-            List<EnfermedadPaciente> listaEnfermedad = new List<EnfermedadPaciente>();
-            var selectListEnfermedad = new List<SelectListItem>();
-
-            foreach (DataRow dr3 in ds3.Tables[0].Rows)
-            {
-                int idenfermedad = int.Parse(dr3["ID_ENFERMEDAD"].ToString());
-                // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
-                string nombreenfermedad = dr3["NOMBRE_ENFERMEDAD"].ToString();
-
-                EnfermedadPaciente c = new EnfermedadPaciente();
-                c.ID_ENFERMEDAD = idenfermedad;
-                c.NOMBRE_ENFERMEDAD = nombreenfermedad;
-                listaEnfermedad.Add(c);
-
-                selectListEnfermedad.Add(new SelectListItem
+                foreach (DataRow dr2 in ds2.Tables[0].Rows)
                 {
-                    Value = c.ID_ENFERMEDAD.ToString(),
-                    Text = c.NOMBRE_ENFERMEDAD
-                });
-            }
 
-            ViewData["ListaEnfermedadID"] = selectListEnfermedad;
-            ViewData["idpaciente"] = id;
-            return View();
+                    string nombre = dr2["NOMBRE"].ToString();
+                    string apellido = dr2["APELLIDO"].ToString();
+
+                    p.NOMBRE = nombre;
+                    p.APELLIDO = apellido;
+
+
+                }
+
+                ViewData["nombrep"] = p.NOMBRE + " " + p.APELLIDO;
+
+                //Lista Enfermedad paciente
+
+                DataSet ds3 = alerWS.Select_EnfermedadesPaciente(id);
+                List<EnfermedadPaciente> listaEnfermedad = new List<EnfermedadPaciente>();
+                var selectListEnfermedad = new List<SelectListItem>();
+
+                foreach (DataRow dr3 in ds3.Tables[0].Rows)
+                {
+                    int idenfermedad = int.Parse(dr3["ID_ENFERMEDAD"].ToString());
+                    // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
+                    string nombreenfermedad = dr3["NOMBRE_ENFERMEDAD"].ToString();
+
+                    EnfermedadPaciente c = new EnfermedadPaciente();
+                    c.ID_ENFERMEDAD = idenfermedad;
+                    c.NOMBRE_ENFERMEDAD = nombreenfermedad;
+                    listaEnfermedad.Add(c);
+
+                    selectListEnfermedad.Add(new SelectListItem
+                    {
+                        Value = c.ID_ENFERMEDAD.ToString(),
+                        Text = c.NOMBRE_ENFERMEDAD
+                    });
+                }
+
+                ViewData["ListaEnfermedadID"] = selectListEnfermedad;
+                ViewData["idpaciente"] = id;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+          
         }
         [HttpPost]
 
@@ -931,82 +963,90 @@ namespace SistemaClinico.Controllers
         //Tratamientos
         public ActionResult agregarT(int id)
         {
-            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient alerWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
-
-            //Lista medicamento
-            /**************MEDICAMENTO ***************************************************/
-            DataSet ds = alerWS.lista_medicamentos();
-            List<Medicamento> listaT = new List<Medicamento>();
-            var selectListT = new List<SelectListItem>();
-
-            foreach (DataRow dr in ds.Tables[0].Rows)
+            if (Session["Rol"] != null && Session["Rol"].Equals(3))
             {
-                int idm = int.Parse(dr["ID_MEDICAMENTO"].ToString());
-                // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
-                string nombrem = dr["NOMBRE_MEDICAMENTO"].ToString();
+                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient alerWS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
 
-                Medicamento me = new Medicamento();
-                me.id = idm;
-                me.NOMBRE_MEDICAMENTO = nombrem;
-                listaT.Add(me);
+                //Lista medicamento
+                /**************MEDICAMENTO ***************************************************/
+                DataSet ds = alerWS.lista_medicamentos();
+                List<Medicamento> listaT = new List<Medicamento>();
+                var selectListT = new List<SelectListItem>();
 
-                selectListT.Add(new SelectListItem
+                foreach (DataRow dr in ds.Tables[0].Rows)
                 {
-                    Value = me.id.ToString(),
-                    Text = me.NOMBRE_MEDICAMENTO
-                });
-            }
+                    int idm = int.Parse(dr["ID_MEDICAMENTO"].ToString());
+                    // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
+                    string nombrem = dr["NOMBRE_MEDICAMENTO"].ToString();
 
-            ViewData["ListaMedicamento"] = selectListT;
+                    Medicamento me = new Medicamento();
+                    me.id = idm;
+                    me.NOMBRE_MEDICAMENTO = nombrem;
+                    listaT.Add(me);
 
-            //sacando nombre paciente
+                    selectListT.Add(new SelectListItem
+                    {
+                        Value = me.id.ToString(),
+                        Text = me.NOMBRE_MEDICAMENTO
+                    });
+                }
 
-            DataSet ds2 = alerWS.PacienteID(id);
-            RegistroPacienteUsuario p = new RegistroPacienteUsuario();
+                ViewData["ListaMedicamento"] = selectListT;
 
-            foreach (DataRow dr2 in ds2.Tables[0].Rows)
-            {
+                //sacando nombre paciente
 
-                string nombre = dr2["NOMBRE"].ToString();
-                string apellido = dr2["APELLIDO"].ToString();
+                DataSet ds2 = alerWS.PacienteID(id);
+                RegistroPacienteUsuario p = new RegistroPacienteUsuario();
 
-                p.NOMBRE = nombre;
-                p.APELLIDO = apellido;
-
-
-            }
-
-            ViewData["nombrep"] = p.NOMBRE + " " + p.APELLIDO;
-
-            //Lista tratamiento paciente
-
-            DataSet ds3 = alerWS.Select_TratamientosPaciente(id);
-            List<Tratamiento> listaTratamiento = new List<Tratamiento>();
-            var selectListTratamiento = new List<SelectListItem>();
-
-            foreach (DataRow dr3 in ds3.Tables[0].Rows)
-            {
-                int idmedicamento = int.Parse(dr3["ID_MEDICAMENTO"].ToString());
-                // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
-                string nombremedicamento = dr3["NOMBRE_MEDICAMENTO"].ToString();
-                string ciclo = dr3["CICLO_CONSUMO"].ToString();
-
-                Tratamiento t = new Tratamiento();
-                t.ID_MEDICAMENTO = idmedicamento;
-                t.NOMBRE_MEDICAMENTO = nombremedicamento;
-                t.CICLO_CONSUMO = ciclo;
-                listaTratamiento.Add(t);
-
-                selectListTratamiento.Add(new SelectListItem
+                foreach (DataRow dr2 in ds2.Tables[0].Rows)
                 {
-                    Value = t.ID_MEDICAMENTO.ToString(),
-                    Text = t.NOMBRE_MEDICAMENTO + " " + t.CICLO_CONSUMO
-                });
-            }
 
-            ViewData["ListaTratamientoID"] = selectListTratamiento;
-            ViewData["idpaciente"] = id;
-            return View();
+                    string nombre = dr2["NOMBRE"].ToString();
+                    string apellido = dr2["APELLIDO"].ToString();
+
+                    p.NOMBRE = nombre;
+                    p.APELLIDO = apellido;
+
+
+                }
+
+                ViewData["nombrep"] = p.NOMBRE + " " + p.APELLIDO;
+
+                //Lista tratamiento paciente
+
+                DataSet ds3 = alerWS.Select_TratamientosPaciente(id);
+                List<Tratamiento> listaTratamiento = new List<Tratamiento>();
+                var selectListTratamiento = new List<SelectListItem>();
+
+                foreach (DataRow dr3 in ds3.Tables[0].Rows)
+                {
+                    int idmedicamento = int.Parse(dr3["ID_MEDICAMENTO"].ToString());
+                    // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
+                    string nombremedicamento = dr3["NOMBRE_MEDICAMENTO"].ToString();
+                    string ciclo = dr3["CICLO_CONSUMO"].ToString();
+
+                    Tratamiento t = new Tratamiento();
+                    t.ID_MEDICAMENTO = idmedicamento;
+                    t.NOMBRE_MEDICAMENTO = nombremedicamento;
+                    t.CICLO_CONSUMO = ciclo;
+                    listaTratamiento.Add(t);
+
+                    selectListTratamiento.Add(new SelectListItem
+                    {
+                        Value = t.ID_MEDICAMENTO.ToString(),
+                        Text = t.NOMBRE_MEDICAMENTO + " " + t.CICLO_CONSUMO
+                    });
+                }
+
+                ViewData["ListaTratamientoID"] = selectListTratamiento;
+                ViewData["idpaciente"] = id;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
         }
         [HttpPost]
 
@@ -1056,199 +1096,370 @@ namespace SistemaClinico.Controllers
         public ActionResult InformacionMedica(int id)
         {
             //agregar listas viewdata de paciente
-
-
-            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient WS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
-
-            /**************ALERGIAS ***************************************************/
-            DataSet ds = WS.Select_AlergiasPaciente(id);
-            List<Alergias> listaAler = new List<Alergias>();
-            var selectListAlergias = new List<SelectListItem>();
-
-            foreach (DataRow dr in ds.Tables[0].Rows)
+            if (Session["Rol"] != null && Session["Rol"].Equals(1))
             {
-                int idAlergia = int.Parse(dr["ID_ALERGIA"].ToString());
-                // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
-                string nombreAlergia = dr["NOMBRE_ALERGIA"].ToString();
 
-                Alergias aler = new Alergias();
-                aler.ID = idAlergia;
-                aler.NOMBRE_ALERGIA = nombreAlergia;
-                listaAler.Add(aler);
+                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient WS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
 
-                selectListAlergias.Add(new SelectListItem
+                /**************ALERGIAS ***************************************************/
+                DataSet ds = WS.Select_AlergiasPaciente(id);
+                List<Alergias> listaAler = new List<Alergias>();
+                var selectListAlergias = new List<SelectListItem>();
+
+                foreach (DataRow dr in ds.Tables[0].Rows)
                 {
-                    Value = aler.ID.ToString(),
-                    Text = aler.NOMBRE_ALERGIA
-                });
+                    int idAlergia = int.Parse(dr["ID_ALERGIA"].ToString());
+                    // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
+                    string nombreAlergia = dr["NOMBRE_ALERGIA"].ToString();
+
+                    Alergias aler = new Alergias();
+                    aler.ID = idAlergia;
+                    aler.NOMBRE_ALERGIA = nombreAlergia;
+                    listaAler.Add(aler);
+
+                    selectListAlergias.Add(new SelectListItem
+                    {
+                        Value = aler.ID.ToString(),
+                        Text = aler.NOMBRE_ALERGIA
+                    });
+                }
+
+                ViewData["ListaAlergias"] = selectListAlergias;
+                /*******************************************************************************/
+
+                /************** ENFERMEDADES ***************************************************/
+                DataSet ds2 = WS.Select_EnfermedadesPaciente(id);
+                List<Enfermedad> listaEnfer = new List<Enfermedad>();
+                var selectListEnfermedades = new List<SelectListItem>();
+                foreach (DataRow dr2 in ds2.Tables[0].Rows)
+                {
+                    int idEnfermedad = int.Parse(dr2["ID_ENFERMEDAD"].ToString());
+                    string nombreEnfermedad = dr2["NOMBRE_ENFERMEDAD"].ToString();
+
+                    Enfermedad enfer = new Enfermedad();
+                    enfer.id = idEnfermedad;
+                    enfer.nombre_enfermedad = nombreEnfermedad;
+
+                    listaEnfer.Add(enfer);
+
+                    selectListEnfermedades.Add(new SelectListItem
+                    {
+                        Value = enfer.id.ToString(),
+                        Text = enfer.nombre_enfermedad
+                    });
+                }
+                ViewData["ListaEnfermedades"] = selectListEnfermedades;
+                /*******************************************************************************/
+
+                /************** CIRUGIAS *******************************************************/
+                DataSet ds3 = WS.Select_CirugiasPaciente(id);
+                List<Cirugias> listaCirug = new List<Cirugias>();
+                var selectListCirugias = new List<SelectListItem>();
+                foreach (DataRow dr3 in ds3.Tables[0].Rows)
+                {
+                    int idCirugia = int.Parse(dr3["ID_CIRUGIA"].ToString());
+                    string nombreCirugia = dr3["NOMBRE_CIRUGIA"].ToString();
+
+                    Cirugias ciru = new Cirugias();
+                    ciru.ID = idCirugia;
+                    ciru.NOMBRE_CIRUGIA = nombreCirugia;
+
+                    listaCirug.Add(ciru);
+
+                    selectListCirugias.Add(new SelectListItem
+                    {
+                        Value = ciru.ID.ToString(),
+                        Text = ciru.NOMBRE_CIRUGIA
+                    });
+                }
+                ViewData["ListaCirugias"] = selectListCirugias;
+                /*******************************************************************************/
+
+                /************** FRACTURAS ******************************************************/
+                DataSet ds4 = WS.Select_FracturasPaciente(id);
+                List<Fracturas> listaFract = new List<Fracturas>();
+                var selectListFracturas = new List<SelectListItem>();
+                foreach (DataRow dr4 in ds4.Tables[0].Rows)
+                {
+                    int idFractura = int.Parse(dr4["ID_FRACTURAS"].ToString());
+                    string nombreFractura = dr4["NOMBRE_FRACTURA"].ToString();
+
+                    Fracturas fractu = new Fracturas();
+                    fractu.ID = idFractura;
+                    fractu.NOMBRE_FRACTURA = nombreFractura;
+
+                    listaFract.Add(fractu);
+
+                    selectListFracturas.Add(new SelectListItem
+                    {
+                        Value = fractu.ID.ToString(),
+                        Text = fractu.NOMBRE_FRACTURA
+                    });
+                }
+                ViewData["ListaFracturas"] = selectListFracturas;
+                /*******************************************************************************/
+
+                /************** TRATAMIENTOS ***************************************************/
+                DataSet ds5 = WS.Select_TratamientosPaciente(id);
+                List<Tratamiento> listaTratamiento = new List<Tratamiento>();
+                var selectListTratamiento = new List<SelectListItem>();
+                foreach (DataRow dr5 in ds5.Tables[0].Rows)
+                {
+                    int idTratamiento = int.Parse(dr5["ID_MEDICAMENTO"].ToString());
+                    string nombreTratamiento = dr5["NOMBRE_MEDICAMENTO"].ToString();
+                    string ciclo = dr5["CICLO_CONSUMO"].ToString();
+
+                    Tratamiento trata = new Tratamiento();
+                    trata.ID = idTratamiento;
+                    trata.NOMBRE_MEDICAMENTO = nombreTratamiento;
+                    trata.CICLO_CONSUMO = ciclo;
+
+                    listaTratamiento.Add(trata);
+
+                    selectListTratamiento.Add(new SelectListItem
+                    {
+                        Value = trata.ID.ToString(),
+                        Text = trata.NOMBRE_MEDICAMENTO + " " + trata.CICLO_CONSUMO
+                    });
+                }
+                ViewData["ListaTratamiento"] = selectListTratamiento;
+                /*******************************************************************************/
+
+
+                var usu = from e in TodosUsuarios()
+                              //orderby e.nombre
+                          select e;
+
+                var p = usu.Single(m => m.id == id);
+
+                ViewData["paciente"] = p.NOMBRE + p.APELLIDO;
+
+                return View(p);
+            }else if (Session["Rol"] != null && Session["Rol"].Equals(3))
+            {
+
+
+                    SistemaClinicoSoapWS.ClinicaWebServiceSoapClient WS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+                    /**************ALERGIAS ***************************************************/
+                    DataSet ds = WS.Select_AlergiasPaciente(id);
+                    List<Alergias> listaAler = new List<Alergias>();
+                    var selectListAlergias = new List<SelectListItem>();
+
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        int idAlergia = int.Parse(dr["ID_ALERGIA"].ToString());
+                        // string idAlergia = dr["ID_ALERGIA_PADECIDA"].ToString();
+                        string nombreAlergia = dr["NOMBRE_ALERGIA"].ToString();
+
+                        Alergias aler = new Alergias();
+                        aler.ID = idAlergia;
+                        aler.NOMBRE_ALERGIA = nombreAlergia;
+                        listaAler.Add(aler);
+
+                        selectListAlergias.Add(new SelectListItem
+                        {
+                            Value = aler.ID.ToString(),
+                            Text = aler.NOMBRE_ALERGIA
+                        });
+                    }
+
+                    ViewData["ListaAlergias"] = selectListAlergias;
+                    /*******************************************************************************/
+
+                    /************** ENFERMEDADES ***************************************************/
+                    DataSet ds2 = WS.Select_EnfermedadesPaciente(id);
+                    List<Enfermedad> listaEnfer = new List<Enfermedad>();
+                    var selectListEnfermedades = new List<SelectListItem>();
+                    foreach (DataRow dr2 in ds2.Tables[0].Rows)
+                    {
+                        int idEnfermedad = int.Parse(dr2["ID_ENFERMEDAD"].ToString());
+                        string nombreEnfermedad = dr2["NOMBRE_ENFERMEDAD"].ToString();
+
+                        Enfermedad enfer = new Enfermedad();
+                        enfer.id = idEnfermedad;
+                        enfer.nombre_enfermedad = nombreEnfermedad;
+
+                        listaEnfer.Add(enfer);
+
+                        selectListEnfermedades.Add(new SelectListItem
+                        {
+                            Value = enfer.id.ToString(),
+                            Text = enfer.nombre_enfermedad
+                        });
+                    }
+                    ViewData["ListaEnfermedades"] = selectListEnfermedades;
+                    /*******************************************************************************/
+
+                    /************** CIRUGIAS *******************************************************/
+                    DataSet ds3 = WS.Select_CirugiasPaciente(id);
+                    List<Cirugias> listaCirug = new List<Cirugias>();
+                    var selectListCirugias = new List<SelectListItem>();
+                    foreach (DataRow dr3 in ds3.Tables[0].Rows)
+                    {
+                        int idCirugia = int.Parse(dr3["ID_CIRUGIA"].ToString());
+                        string nombreCirugia = dr3["NOMBRE_CIRUGIA"].ToString();
+
+                        Cirugias ciru = new Cirugias();
+                        ciru.ID = idCirugia;
+                        ciru.NOMBRE_CIRUGIA = nombreCirugia;
+
+                        listaCirug.Add(ciru);
+
+                        selectListCirugias.Add(new SelectListItem
+                        {
+                            Value = ciru.ID.ToString(),
+                            Text = ciru.NOMBRE_CIRUGIA
+                        });
+                    }
+                    ViewData["ListaCirugias"] = selectListCirugias;
+                    /*******************************************************************************/
+
+                    /************** FRACTURAS ******************************************************/
+                    DataSet ds4 = WS.Select_FracturasPaciente(id);
+                    List<Fracturas> listaFract = new List<Fracturas>();
+                    var selectListFracturas = new List<SelectListItem>();
+                    foreach (DataRow dr4 in ds4.Tables[0].Rows)
+                    {
+                        int idFractura = int.Parse(dr4["ID_FRACTURAS"].ToString());
+                        string nombreFractura = dr4["NOMBRE_FRACTURA"].ToString();
+
+                        Fracturas fractu = new Fracturas();
+                        fractu.ID = idFractura;
+                        fractu.NOMBRE_FRACTURA = nombreFractura;
+
+                        listaFract.Add(fractu);
+
+                        selectListFracturas.Add(new SelectListItem
+                        {
+                            Value = fractu.ID.ToString(),
+                            Text = fractu.NOMBRE_FRACTURA
+                        });
+                    }
+                    ViewData["ListaFracturas"] = selectListFracturas;
+                    /*******************************************************************************/
+
+                    /************** TRATAMIENTOS ***************************************************/
+                    DataSet ds5 = WS.Select_TratamientosPaciente(id);
+                    List<Tratamiento> listaTratamiento = new List<Tratamiento>();
+                    var selectListTratamiento = new List<SelectListItem>();
+                    foreach (DataRow dr5 in ds5.Tables[0].Rows)
+                    {
+                        int idTratamiento = int.Parse(dr5["ID_MEDICAMENTO"].ToString());
+                        string nombreTratamiento = dr5["NOMBRE_MEDICAMENTO"].ToString();
+                        string ciclo = dr5["CICLO_CONSUMO"].ToString();
+
+                        Tratamiento trata = new Tratamiento();
+                        trata.ID = idTratamiento;
+                        trata.NOMBRE_MEDICAMENTO = nombreTratamiento;
+                        trata.CICLO_CONSUMO = ciclo;
+
+                        listaTratamiento.Add(trata);
+
+                        selectListTratamiento.Add(new SelectListItem
+                        {
+                            Value = trata.ID.ToString(),
+                            Text = trata.NOMBRE_MEDICAMENTO + " " + trata.CICLO_CONSUMO
+                        });
+                    }
+                    ViewData["ListaTratamiento"] = selectListTratamiento;
+                    /*******************************************************************************/
+
+
+                    var usu = from e in TodosUsuarios()
+                                  //orderby e.nombre
+                              select e;
+
+                    var p = usu.Single(m => m.id == id);
+
+                    ViewData["paciente"] = p.NOMBRE + p.APELLIDO;
+
+                    return View(p);
+                }
+            else
+            {
+                return RedirectToAction("Index", "Home");
             }
 
-            ViewData["ListaAlergias"]= selectListAlergias;
-            /*******************************************************************************/
-
-            /************** ENFERMEDADES ***************************************************/
-            DataSet ds2 = WS.Select_EnfermedadesPaciente(id);
-            List<Enfermedad> listaEnfer = new List<Enfermedad>();
-            var selectListEnfermedades = new List<SelectListItem>();
-            foreach (DataRow dr2 in ds2.Tables[0].Rows)
-            {
-                int idEnfermedad = int.Parse(dr2["ID_ENFERMEDAD"].ToString());
-                string nombreEnfermedad = dr2["NOMBRE_ENFERMEDAD"].ToString();
-
-                Enfermedad enfer = new Enfermedad();
-                enfer.id = idEnfermedad;
-                enfer.nombre_enfermedad = nombreEnfermedad;
-
-                listaEnfer.Add(enfer);
-
-                selectListEnfermedades.Add(new SelectListItem
-                {
-                    Value = enfer.id.ToString(),
-                    Text = enfer.nombre_enfermedad
-                });
-            }
-            ViewData["ListaEnfermedades"] = selectListEnfermedades;
-            /*******************************************************************************/
-
-            /************** CIRUGIAS *******************************************************/
-            DataSet ds3 = WS.Select_CirugiasPaciente(id);
-            List<Cirugias> listaCirug = new List<Cirugias>();
-            var selectListCirugias = new List<SelectListItem>();
-            foreach (DataRow dr3 in ds3.Tables[0].Rows)
-            {
-                int idCirugia = int.Parse(dr3["ID_CIRUGIA"].ToString());
-                string nombreCirugia = dr3["NOMBRE_CIRUGIA"].ToString();
-
-                Cirugias ciru = new Cirugias();
-                ciru.ID = idCirugia;
-                ciru.NOMBRE_CIRUGIA = nombreCirugia;
-
-                listaCirug.Add(ciru);
-
-                selectListCirugias.Add(new SelectListItem
-                {
-                    Value = ciru.ID.ToString(),
-                    Text = ciru.NOMBRE_CIRUGIA
-                });
-            }
-            ViewData["ListaCirugias"] = selectListCirugias;
-            /*******************************************************************************/
-
-            /************** FRACTURAS ******************************************************/
-            DataSet ds4 = WS.Select_FracturasPaciente(id);
-            List<Fracturas> listaFract = new List<Fracturas>();
-            var selectListFracturas = new List<SelectListItem>();
-            foreach (DataRow dr4 in ds4.Tables[0].Rows)
-            {
-                int idFractura = int.Parse(dr4["ID_FRACTURAS"].ToString());
-                string nombreFractura = dr4["NOMBRE_FRACTURA"].ToString();
-
-                Fracturas fractu = new Fracturas();
-                fractu.ID = idFractura;
-                fractu.NOMBRE_FRACTURA = nombreFractura;
-
-                listaFract.Add(fractu);
-
-                selectListFracturas.Add(new SelectListItem
-                {
-                    Value = fractu.ID.ToString(),
-                    Text = fractu.NOMBRE_FRACTURA
-                });
-            }
-            ViewData["ListaFracturas"] = selectListFracturas;
-            /*******************************************************************************/
-
-            /************** TRATAMIENTOS ***************************************************/
-            DataSet ds5 = WS.Select_TratamientosPaciente(id);
-            List<Tratamiento> listaTratamiento = new List<Tratamiento>();
-            var selectListTratamiento = new List<SelectListItem>();
-            foreach (DataRow dr5 in ds5.Tables[0].Rows)
-            {
-                int idTratamiento = int.Parse(dr5["ID_MEDICAMENTO"].ToString());
-                string nombreTratamiento = dr5["NOMBRE_MEDICAMENTO"].ToString();
-                string ciclo = dr5["CICLO_CONSUMO"].ToString();
-
-                Tratamiento trata = new Tratamiento();
-                trata.ID = idTratamiento;
-                trata.NOMBRE_MEDICAMENTO = nombreTratamiento;
-                trata.CICLO_CONSUMO = ciclo;
-
-                listaTratamiento.Add(trata);
-
-                selectListTratamiento.Add(new SelectListItem
-                {
-                    Value = trata.ID.ToString(),
-                    Text = trata.NOMBRE_MEDICAMENTO + " " + trata.CICLO_CONSUMO
-                });
-            }
-            ViewData["ListaTratamiento"] = selectListTratamiento;
-            /*******************************************************************************/
-
-
-            var usu = from e in TodosUsuarios()
-                          //orderby e.nombre
-                      select e;
-
-            var p = usu.Single(m => m.id == id);
-
-            ViewData["paciente"] = p.NOMBRE + p.APELLIDO;
-
-            return View(p);
         }
         /***********************************************************************************/
         /********* Muestra el listado de Pacientes y de ahi ver sus Constancias **************/
         /***********************************************************************************/
         public ActionResult ConstanciaPaciente(int? i, string BuscarNombre)
         {
-            var usuarios = from e in TodosUsuarioMunicipio()
-                           select e;
+            if (Session["Rol"] != null && Session["Rol"].Equals(3))
+            {
+                var usuarios = from e in TodosUsuarioMunicipio()
+                               select e;
 
-            return View(usuarios.ToPagedList(i ?? 1, 10));
+                return View(usuarios.ToPagedList(i ?? 1, 10));
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
         public ActionResult ListadoConsultasConstancia(int? i, int idPaciente, string BuscarNombre)
         {
-            var usuarios = from e in TodasLasConsultasSegunID(idPaciente)
-                           select e;
+            if (Session["Rol"] != null && Session["Rol"].Equals(3))
+            {
+                var usuarios = from e in TodasLasConsultasSegunID(idPaciente)
+                               select e;
 
-            return View(usuarios.ToPagedList(i ?? 1, 10));
+                return View(usuarios.ToPagedList(i ?? 1, 10));
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
 
         public ActionResult ConstanciaDetalle(int idconsulta)
         {
-            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient WS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
-            DataSet ds = WS.Select_IDConstancia(idconsulta);
-
-            foreach (DataRow dr in ds.Tables[0].Rows)
+            if (Session["Rol"] != null && Session["Rol"].Equals(3))
             {
-               // Basado en el modelo: ConstanciaPDF
-                string nombrePaciente = dr["NOMBRE"].ToString();
-                string apellidoPaciente = dr["APELLIDO"].ToString();
-                string nombreDoctor = dr["NOMBRES"].ToString();
-                string apellidoDoctor = dr["APELLIDOS"].ToString();
-                string fecha = dr["FECHA"].ToString();
-                string telefono = dr["TELEFONO"].ToString();
-                string hora = dr["HORA"].ToString();
-                string diagnostico = dr["DIAGNOSTICO"].ToString();
+                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient WS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+                DataSet ds = WS.Select_IDConstancia(idconsulta);
 
-                ConstanciaPDF constancia = new ConstanciaPDF();
-                constancia.NOMBRE = nombrePaciente;
-                constancia.APELLIDO = apellidoPaciente;
-                constancia.NOMBRES = nombreDoctor;
-                constancia.APELLIDOS = apellidoDoctor;
-                constancia.FECHA = fecha;
-                constancia.HORA = hora;
-                constancia.DIAGNOSTICO = diagnostico;
-                constancia.TELEFONO_DOCTOR = telefono;
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    // Basado en el modelo: ConstanciaPDF
+                    string nombrePaciente = dr["NOMBRE"].ToString();
+                    string apellidoPaciente = dr["APELLIDO"].ToString();
+                    string nombreDoctor = dr["NOMBRES"].ToString();
+                    string apellidoDoctor = dr["APELLIDOS"].ToString();
+                    string fecha = dr["FECHA"].ToString();
+                    string telefono = dr["TELEFONO"].ToString();
+                    string hora = dr["HORA"].ToString();
+                    string diagnostico = dr["DIAGNOSTICO"].ToString();
 
-                ViewData["paciente"] = nombrePaciente + " " + apellidoPaciente;
-                ViewData["doctor"] = nombreDoctor+ " " + apellidoDoctor;
-                ViewData["fecha"] = fecha;
-                ViewData["hora"] = hora;
-                ViewData["diagnostico"] = diagnostico;
-                ViewData["telefono"] = telefono;
-            }
-            
+                    ConstanciaPDF constancia = new ConstanciaPDF();
+                    constancia.NOMBRE = nombrePaciente;
+                    constancia.APELLIDO = apellidoPaciente;
+                    constancia.NOMBRES = nombreDoctor;
+                    constancia.APELLIDOS = apellidoDoctor;
+                    constancia.FECHA = fecha;
+                    constancia.HORA = hora;
+                    constancia.DIAGNOSTICO = diagnostico;
+                    constancia.TELEFONO_DOCTOR = telefono;
+
+                    ViewData["paciente"] = nombrePaciente + " " + apellidoPaciente;
+                    ViewData["doctor"] = nombreDoctor + " " + apellidoDoctor;
+                    ViewData["fecha"] = fecha;
+                    ViewData["hora"] = hora;
+                    ViewData["diagnostico"] = diagnostico;
+                    ViewData["telefono"] = telefono;
+                }
+
                 return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
         }
 
 
@@ -1257,188 +1468,444 @@ namespace SistemaClinico.Controllers
         /***********************************************************************************/
         public ActionResult PrescripcionPaciente(int? i, string BuscarNombre)
         {
-            var usuarios = from e in TodosUsuarioMunicipio()                     
-                      select e;
-       
-            return View(usuarios.ToPagedList(i ?? 1, 10));
+            if (Session["Rol"] != null && Session["Rol"].Equals(3))
+            {
+                var usuarios = from e in TodosUsuarioMunicipio()
+                               select e;
+
+                return View(usuarios.ToPagedList(i ?? 1, 10));
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
         }
 
     
         public ActionResult ListadoPrescripcionPaciente( int idpaciente, int msj)
         {
-
-            if (msj==0)
+            if (Session["Rol"] != null && Session["Rol"].Equals(3))
             {
+                if (msj == 0)
+                {
 
+                }
+                else
+                {
+                    TempData["UserMessage"] = "No hay medicamentos para generar esta preescripcion";
+
+                }
+
+                var prescripciones = from e in TodasLasConsultasSegunID(idpaciente)
+                                     select e;
+
+                return View(prescripciones);
             }
             else
             {
-                TempData["UserMessage"] = "No hay medicamentos para generar esta preescripcion";
-
+                return RedirectToAction("Index", "Home");
             }
-
-            var prescripciones = from e in TodasLasConsultasSegunID(idpaciente)
-                                 select e;
-
-            return View(prescripciones);
+           
 
         }
 
         public ActionResult PrescripcionDetalle(int idconsulta, int idpaciente)
         {
-          
-
-            try
+            if (Session["Rol"] != null && Session["Rol"].Equals(3))
             {
-                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient WS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
 
-                var prescripciones = from e in ListaPrescripcionesIDPaciente(idconsulta)
-                                     select e;
-
-                ViewData["nombrePaciente"] = " ";
-                ViewData["nombreDoctor"] = " ";
-                ViewData["fecha"] = " ";
-                ViewData["hora"] = " ";
-                DataSet ds = WS.Select_IDPrescripcionUsuario2(idconsulta);
-                foreach (DataRow dr in ds.Tables[0].Rows)
+                try
                 {
-                    // string idTratamiento = int.Parse(dr["ID_MEDICAMENTO"].ToString());
-                    string nombrePaciente = dr["NOMBRE"].ToString() + " " + dr["APELLIDO"].ToString();
-                   string nombreDoctor = dr["NOMBRES"].ToString() + " " + dr["APELLIDOS"].ToString();
-                    string fecha = dr["FECHA"].ToString();
-                    string hora = dr["HORA"].ToString();
-                    //string idp = dr["ID_PACIENTE"].ToString();
-               
+                    SistemaClinicoSoapWS.ClinicaWebServiceSoapClient WS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
 
-                    ViewData["nombrePaciente"] = nombrePaciente;
-                    ViewData["nombreDoctor"] = nombreDoctor;
-                    ViewData["fecha"] = fecha.Remove(10);
-                    ViewData["hora"] = hora;
-                    //ViewData["idp"] = idp;
+                    var prescripciones = from e in ListaPrescripcionesIDPaciente(idconsulta)
+                                         select e;
+
+                    ViewData["nombrePaciente"] = " ";
+                    ViewData["nombreDoctor"] = " ";
+                    ViewData["fecha"] = " ";
+                    ViewData["hora"] = " ";
+                    DataSet ds = WS.Select_IDPrescripcionUsuario2(idconsulta);
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        // string idTratamiento = int.Parse(dr["ID_MEDICAMENTO"].ToString());
+                        string nombrePaciente = dr["NOMBRE"].ToString() + " " + dr["APELLIDO"].ToString();
+                        string nombreDoctor = dr["NOMBRES"].ToString() + " " + dr["APELLIDOS"].ToString();
+                        string fecha = dr["FECHA"].ToString();
+                        string hora = dr["HORA"].ToString();
+                        //string idp = dr["ID_PACIENTE"].ToString();
+
+
+                        ViewData["nombrePaciente"] = nombrePaciente;
+                        ViewData["nombreDoctor"] = nombreDoctor;
+                        ViewData["fecha"] = fecha.Remove(10);
+                        ViewData["hora"] = hora;
+                        //ViewData["idp"] = idp;
+                    }
+
+                    ViewData["idpaciente"] = idpaciente;
+
+                    if (ViewData["nombrePaciente"].Equals(" "))
+                    {
+
+                        //mesaje de que no existe prescripcion
+                        //Content("No hay medicamentos para generar esta preescripcion");
+                        //TempData["UserMessage"] = "ya existe esa cirugia para este paciente";
+                        return RedirectToAction("ListadoPrescripcionPaciente", "Usuarios", new { idpaciente = idpaciente, msj = 1 });
+                    }
+                    else
+                    {
+                        return View(prescripciones);
+                    }
+
+
                 }
-
-                ViewData["idpaciente"] = idpaciente;
-
-                if (ViewData["nombrePaciente"].Equals(" "))
+                catch
                 {
-                    
-                    //mesaje de que no existe prescripcion
+
+                    ////mesaje de que no existe prescripcion
                     //Content("No hay medicamentos para generar esta preescripcion");
                     //TempData["UserMessage"] = "ya existe esa cirugia para este paciente";
-                    return RedirectToAction("ListadoPrescripcionPaciente", "Usuarios", new { idpaciente = idpaciente, msj = 1 });
-                }
-                else
-                {
-                    return View(prescripciones);
+                    return RedirectToAction("ListadoPrescripcionPaciente", "Usuarios", new { idpaciente = idpaciente });
                 }
 
-                
             }
-            catch
+            else
             {
-
-                ////mesaje de que no existe prescripcion
-                //Content("No hay medicamentos para generar esta preescripcion");
-                //TempData["UserMessage"] = "ya existe esa cirugia para este paciente";
-                return RedirectToAction("ListadoPrescripcionPaciente", "Usuarios", new { idpaciente = idpaciente});
+                return RedirectToAction("Index", "Home");
             }
-            
+
 
         }
 
         // GET: Usuarios
         public ActionResult Index(int? i, string BuscarNombre)
         {
-            var usu = from e in TodosUsuarioMunicipio()
-                          //orderby e.nombre
-                      select e;
-            //if (!String.IsNullOrEmpty(BuscarNombre))
-            //{
-            //    usu = usu.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
-            //}
-            return View(usu.ToPagedList(i ?? 1, 10));
+            if (Session["Rol"] != null && Session["Rol"].Equals(2))
+            {
+                var usu = from e in TodosUsuarioMunicipio()
+                              //orderby e.nombre
+                          select e;
+                //if (!String.IsNullOrEmpty(BuscarNombre))
+                //{
+                //    usu = usu.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+                //}
+                return View(usu.ToPagedList(i ?? 1, 10));
         }
+            else if(Session["Rol"] != null && Session["Rol"].Equals(3))
+            {
+                var usu = from e in TodosUsuarioMunicipio()
+                              //orderby e.nombre
+                          select e;
+                //if (!String.IsNullOrEmpty(BuscarNombre))
+                //{
+                //    usu = usu.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+                //}
+                return View(usu.ToPagedList(i ?? 1, 10));
+            }
+            else if (Session["Rol"] != null && Session["Rol"].Equals(4))
+            {
+                var usu = from e in TodosUsuarioMunicipio()
+                              //orderby e.nombre
+                          select e;
+                //if (!String.IsNullOrEmpty(BuscarNombre))
+                //{
+                //    usu = usu.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+                //}
+                return View(usu.ToPagedList(i ?? 1, 10));
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+    }
 
-        public ActionResult IndexPacientesAgregar(int? i, string BuscarNombre)
+}
+
+public ActionResult IndexPacientesAgregar(int? i, string BuscarNombre)
         {
-            var usu = from e in TodosUsuarios()
-                          //orderby e.nombre
-                      select e;
-            //if (!String.IsNullOrEmpty(BuscarNombre))
-            //{
-            //    usu = usu.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
-            //}
-            return View(usu.ToPagedList(i ?? 1, 10));
+            if (Session["Rol"] != null && Session["Rol"].Equals(3))
+            {
+                var usu = from e in TodosUsuarios()
+                              //orderby e.nombre
+                          select e;
+                //if (!String.IsNullOrEmpty(BuscarNombre))
+                //{
+                //    usu = usu.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+                //}
+                return View(usu.ToPagedList(i ?? 1, 10));
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
         }
 
         // GET: Usuarios/Details/5
         public ActionResult Details(int? id)
         {
-            List<RegistroPacienteUsuario> PaList = TodosUsuarios();
-            if (id.HasValue)
+            if (Session["Rol"] != null && Session["Rol"].Equals(2))
             {
-                var p = PaList.Single(m => m.id == id);
-                string f = p.FECHA_NACIMIENTO.ToString().Remove(10);
-                ViewData["FECHA_NACIMIENTO"] = f.ToString();
-                return View(p);
+                List<RegistroPacienteUsuario> PaList = TodosUsuarios();
+                if (id.HasValue)
+                {
+                    var p = PaList.Single(m => m.id == id);
+                    string f = p.FECHA_NACIMIENTO.ToString().Remove(10);
+                    ViewData["FECHA_NACIMIENTO"] = f.ToString();
+                    return View(p);
+                }
+                return View();
+            }else if (Session["Rol"] != null && Session["Rol"].Equals(3))
+            {
+                List<RegistroPacienteUsuario> PaList = TodosUsuarios();
+                if (id.HasValue)
+                {
+                    var p = PaList.Single(m => m.id == id);
+                    string f = p.FECHA_NACIMIENTO.ToString().Remove(10);
+                    ViewData["FECHA_NACIMIENTO"] = f.ToString();
+                    return View(p);
+                }
+                return View();
             }
-            return View();
+            if (Session["Rol"] != null && Session["Rol"].Equals(4))
+            {
+                List<RegistroPacienteUsuario> PaList = TodosUsuarios();
+                if (id.HasValue)
+                {
+                    var p = PaList.Single(m => m.id == id);
+                    string f = p.FECHA_NACIMIENTO.ToString().Remove(10);
+                    ViewData["FECHA_NACIMIENTO"] = f.ToString();
+                    return View(p);
+                }
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
         }
         public ActionResult miperfil(int? id)
         {
-            List<RegistroPacienteUsuario> PaList = TodosUsuarios();
-            if (id.HasValue)
+            if (Session["Rol"] != null && Session["Rol"].Equals(1))
             {
-                var p = PaList.Single(m => m.id == id);
-                string f = p.FECHA_NACIMIENTO.ToString().Remove(10);
-                ViewData["FECHA_NACIMIENTO"] = f.ToString();
-                return View(p);
+                if (Session["id"].Equals(id))
+                {
+                    List<RegistroPacienteUsuario> PaList = TodosUsuarios();
+                    if (id.HasValue)
+                    {
+                        var p = PaList.Single(m => m.id == id);
+                        string f = p.FECHA_NACIMIENTO.ToString().Remove(10);
+                        ViewData["FECHA_NACIMIENTO"] = f.ToString();
+                        return View(p);
+                    }
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            return View();
+            else if (Session["Rol"] != null && Session["Rol"].Equals(2))
+            {
+                if (Session["id"].Equals(id))
+                {
+                    List<RegistroPacienteUsuario> PaList = TodosUsuarios();
+                    if (id.HasValue)
+                    {
+                        var p = PaList.Single(m => m.id == id);
+                        string f = p.FECHA_NACIMIENTO.ToString().Remove(10);
+                        ViewData["FECHA_NACIMIENTO"] = f.ToString();
+                        return View(p);
+                    }
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else if (Session["Rol"] != null && Session["Rol"].Equals(3))
+            {
+                if (Session["id"].Equals(id))
+                {
+                    List<RegistroPacienteUsuario> PaList = TodosUsuarios();
+                    if (id.HasValue)
+                    {
+                        var p = PaList.Single(m => m.id == id);
+                        string f = p.FECHA_NACIMIENTO.ToString().Remove(10);
+                        ViewData["FECHA_NACIMIENTO"] = f.ToString();
+                        return View(p);
+                    }
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else if (Session["Rol"] != null && Session["Rol"].Equals(4))
+            {
+                if (Session["id"].Equals(id))
+                {
+                    List<RegistroPacienteUsuario> PaList = TodosUsuarios();
+                    if (id.HasValue)
+                    {
+                        var p = PaList.Single(m => m.id == id);
+                        string f = p.FECHA_NACIMIENTO.ToString().Remove(10);
+                        ViewData["FECHA_NACIMIENTO"] = f.ToString();
+                        return View(p);
+                    }
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
         }
 
         // GET: Usuarios/Create
         public ActionResult Create()
         {
-            List<SelectListItem> listaSangre = new List<SelectListItem>();
-            listaSangre.Add(new SelectListItem
+            if (Session["Rol"] != null && Session["Rol"].Equals(2))
             {
-                Text = "No lo sé",
-                Value = "NO SABE"
-            });
-            listaSangre.Add(new SelectListItem
-            {
-                Text = "O-",
-                Value = "O-"
-            });
-            listaSangre.Add(new SelectListItem
-            {
-                Text = "O+",
-                Value = "O+"
-            });
-            listaSangre.Add(new SelectListItem
-            {
-                Text = "A-",
-                Value = "A-"
-            });
-            listaSangre.Add(new SelectListItem
-            {
-                Text = "A+",
-                Value = "A+"
-            });
-            listaSangre.Add(new SelectListItem
-            {
-                Text = "AB-",
-                Value = "AB-"
-            });
-            listaSangre.Add(new SelectListItem
-            {
-                Text = "AB+",
-                Value = "AB+"
-            });
-            ViewData["listaSangre"] = listaSangre;
+                List<SelectListItem> listaSangre = new List<SelectListItem>();
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "No lo sé",
+                    Value = "NO SABE"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "O-",
+                    Value = "O-"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "O+",
+                    Value = "O+"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "A-",
+                    Value = "A-"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "A+",
+                    Value = "A+"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "AB-",
+                    Value = "AB-"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "AB+",
+                    Value = "AB+"
+                });
+                ViewData["listaSangre"] = listaSangre;
 
-            return View();
+                return View();
+            }
+            else if (Session["Rol"] != null && Session["Rol"].Equals(3))
+            {
+                List<SelectListItem> listaSangre = new List<SelectListItem>();
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "No lo sé",
+                    Value = "NO SABE"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "O-",
+                    Value = "O-"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "O+",
+                    Value = "O+"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "A-",
+                    Value = "A-"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "A+",
+                    Value = "A+"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "AB-",
+                    Value = "AB-"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "AB+",
+                    Value = "AB+"
+                });
+                ViewData["listaSangre"] = listaSangre;
+
+                return View();
+            }
+            else if (Session["Rol"] != null && Session["Rol"].Equals(4))
+            {
+                List<SelectListItem> listaSangre = new List<SelectListItem>();
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "No lo sé",
+                    Value = "NO SABE"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "O-",
+                    Value = "O-"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "O+",
+                    Value = "O+"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "A-",
+                    Value = "A-"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "A+",
+                    Value = "A+"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "AB-",
+                    Value = "AB-"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "AB+",
+                    Value = "AB+"
+                });
+                ViewData["listaSangre"] = listaSangre;
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            
         }
 
         // POST: Usuarios/Create
@@ -1525,69 +1992,143 @@ namespace SistemaClinico.Controllers
         // GET: Usuarios/Edit/5
         public ActionResult Edit(int? id)
         {
-            List<SelectListItem> listaSangre = new List<SelectListItem>();
-            listaSangre.Add(new SelectListItem
+           if (Session["Rol"] != null && Session["Rol"].Equals(3))
             {
-                Text = "No lo sé",
-                Value = "NO SABE"
-            });
-            listaSangre.Add(new SelectListItem
-            {
-                Text = "O-",
-                Value = "O-"
-            });
-            listaSangre.Add(new SelectListItem
-            {
-                Text = "O+",
-                Value = "O+"
-            });
-            listaSangre.Add(new SelectListItem
-            {
-                Text = "A-",
-                Value = "A-"
-            });
-            listaSangre.Add(new SelectListItem
-            {
-                Text = "A+",
-                Value = "A+"
-            });
-            listaSangre.Add(new SelectListItem
-            {
-                Text = "AB-",
-                Value = "AB-"
-            });
-            listaSangre.Add(new SelectListItem
-            {
-                Text = "AB+",
-                Value = "AB+"
-            });
-            ViewData["listaSangre"] = listaSangre;
-            List<SelectListItem> listaEstados = new List<SelectListItem>();
+                List<SelectListItem> listaSangre = new List<SelectListItem>();
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "No lo sé",
+                    Value = "NO SABE"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "O-",
+                    Value = "O-"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "O+",
+                    Value = "O+"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "A-",
+                    Value = "A-"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "A+",
+                    Value = "A+"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "AB-",
+                    Value = "AB-"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "AB+",
+                    Value = "AB+"
+                });
+                ViewData["listaSangre"] = listaSangre;
+                List<SelectListItem> listaEstados = new List<SelectListItem>();
 
-            listaEstados.Add(new SelectListItem
-            {
-                Text = "Activo",
-                Value = "ACTIVO"
-            });
-            listaEstados.Add(new SelectListItem
-            {
-                Text = "Inactivo",
-                Value = "INACTIVO"
-            });
+                listaEstados.Add(new SelectListItem
+                {
+                    Text = "Activo",
+                    Value = "ACTIVO"
+                });
+                listaEstados.Add(new SelectListItem
+                {
+                    Text = "Inactivo",
+                    Value = "INACTIVO"
+                });
 
 
-            List<RegistroPacienteUsuario> PaList = TodosUsuarios();
-            if (id.HasValue)
-            {
-                var p = PaList.Single(m => m.id == id);
-                string f = p.FECHA_NACIMIENTO.ToString().Remove(10);
-                ViewData["FECHA_NACIMIENTO"] = f.ToString();
-                ViewData["listaEstados"] = listaEstados;
-                string pass = p.PASSWORD;
-                ViewData["pass"] = pass;
-                return View(p);
+                List<RegistroPacienteUsuario> PaList = TodosUsuarios();
+                if (id.HasValue)
+                {
+                    var p = PaList.Single(m => m.id == id);
+                    string f = p.FECHA_NACIMIENTO.ToString().Remove(10);
+                    ViewData["FECHA_NACIMIENTO"] = f.ToString();
+                    ViewData["listaEstados"] = listaEstados;
+                    string pass = p.PASSWORD;
+                    ViewData["pass"] = pass;
+                    return View(p);
+                }
+                return View();
             }
-            return View();
+            else if (Session["Rol"] != null && Session["Rol"].Equals(4))
+            {
+                List<SelectListItem> listaSangre = new List<SelectListItem>();
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "No lo sé",
+                    Value = "NO SABE"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "O-",
+                    Value = "O-"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "O+",
+                    Value = "O+"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "A-",
+                    Value = "A-"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "A+",
+                    Value = "A+"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "AB-",
+                    Value = "AB-"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "AB+",
+                    Value = "AB+"
+                });
+                ViewData["listaSangre"] = listaSangre;
+                List<SelectListItem> listaEstados = new List<SelectListItem>();
+
+                listaEstados.Add(new SelectListItem
+                {
+                    Text = "Activo",
+                    Value = "ACTIVO"
+                });
+                listaEstados.Add(new SelectListItem
+                {
+                    Text = "Inactivo",
+                    Value = "INACTIVO"
+                });
+
+
+                List<RegistroPacienteUsuario> PaList = TodosUsuarios();
+                if (id.HasValue)
+                {
+                    var p = PaList.Single(m => m.id == id);
+                    string f = p.FECHA_NACIMIENTO.ToString().Remove(10);
+                    ViewData["FECHA_NACIMIENTO"] = f.ToString();
+                    ViewData["listaEstados"] = listaEstados;
+                    string pass = p.PASSWORD;
+                    ViewData["pass"] = pass;
+                    return View(p);
+                }
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
         }
 
         // POST: Usuarios/Edit/5

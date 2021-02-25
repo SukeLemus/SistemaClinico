@@ -19,9 +19,18 @@
         @*<input type="submit" value="Filtrar" />*@
     </div>
 }
-<p>
-    @Html.ActionLink("Crear Nuevo Medicamento", "Create")
-</p>
+@if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
+{
+
+}
+else
+{
+    <p>
+        @Html.ActionLink("Crear Nuevo Medicamento", "Create")
+    </p>
+}
+<br />
+<br />
 <table id="table_id" class="table_lista">
     <tr class="tr_lista">
         <th class="th_lista">
@@ -31,11 +40,11 @@
         <!--<th class="th_lista">-->
         @*@Html.DisplayNameFor(model => model.descripcion_medicamento)*@
         <!--Descripción
-        </th>
-        <th class="th_lista">-->
+    </th>
+    <th class="th_lista">-->
         @*@Html.DisplayNameFor(model => model.catidad)*@
         <!--Cantidad
-        </th>-->
+    </th>-->
         <th class="th_lista">
             @*@Html.DisplayNameFor(model => model.presentacion)*@
             Presentación
@@ -47,40 +56,56 @@
         <!--<th class="th_lista">-->
         @*@Html.DisplayNameFor(model => model.estado)*@
         <!--Estado
-        </th>-->
-        <th class="th_lista">
-            @*@Html.DisplayNameFor(model => model.estado)*@
-            Acciones
-        </th>
+    </th>-->
+        @if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
+        {
+
+        }
+        else
+        {
+            <th class="th_lista">
+                @*@Html.DisplayNameFor(model => model.estado)*@
+                Acciones
+            </th>
+        }
+
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr class="tr_lista">
-            <td class="td_lista">
-                @Html.DisplayFor(modelItem => item.NOMBRE_MEDICAMENTO)
-            </td>
-            @*<td class="td_lista">
-                    @Html.DisplayFor(modelItem => item.DESCRIPCION_MEDICAMENTO)
-                </td>
-                <td class="td_lista">
-                    @Html.DisplayFor(modelItem => item.CANTIDAD)
-                </td>*@
-            <td class="td_lista">
-                @Html.DisplayFor(modelItem => item.PRESENTACION)
-            </td>
-            <td class="td_lista">
-                @Html.DisplayFor(modelItem => item.PRECIO_UNITARIO)
-            </td>
-            @*<td class="td_lista">
-                    @Html.DisplayFor(modelItem => item.ESTADO)
-                </td>*@
-            <td class="td_lista">
-                @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Detalle", "Details", new { id = item.id }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
-            </td>
-        </tr>
+<tr class="tr_lista">
+    <td class="td_lista">
+        @Html.DisplayFor(modelItem => item.NOMBRE_MEDICAMENTO)
+    </td>
+    @*<td class="td_lista">
+            @Html.DisplayFor(modelItem => item.DESCRIPCION_MEDICAMENTO)
+        </td>
+        <td class="td_lista">
+            @Html.DisplayFor(modelItem => item.CANTIDAD)
+        </td>*@
+    <td class="td_lista">
+        @Html.DisplayFor(modelItem => item.PRESENTACION)
+    </td>
+    <td class="td_lista">
+        @Html.DisplayFor(modelItem => item.PRECIO_UNITARIO)
+    </td>
+    @*<td class="td_lista">
+            @Html.DisplayFor(modelItem => item.ESTADO)
+        </td>*@
+    @if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
+    {
+
+    }
+    else
+    {
+        <td class="td_lista">
+            @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Detalle", "Details", new { id = item.id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
+        </td>
+    }
+
+</tr>
     }
 
 </table>
