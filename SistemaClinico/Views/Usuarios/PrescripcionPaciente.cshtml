@@ -4,66 +4,83 @@
     ViewBag.Title = "PrescripcionPaciente";
 }
 
-<div class="titulo_general"><h1>Pacientes - Prescripciones Médicas</h1></div>
+<div class="titulo_general"><h1>Prescripciones Médicas por Pacientes</h1></div>
 
-<h3>Lista de pacientes y sus prescripciones</h3>
-
-<table class="table_lista">
+@*<h3>Lista de pacientes y sus prescripciones</h3>*@
+<br />
+<br />
+<table id="table_id" class="table_lista">
     <tr class="tr_lista">
         @*<th>
-            @Html.DisplayName("ID_PACIENTE")
-        </th>
-        <th>
-            @Html.DisplayName("ID_DIRECCION")
-        </th>*@
+                @Html.DisplayName("ID_PACIENTE")
+            </th>
+            <th>
+                @Html.DisplayName("ID_DIRECCION")
+            </th>*@
         <th class="th_lista">
             @Html.DisplayName("Nombre ")
         </th>
         @*<th>
-            @Html.DisplayName(model => model.APELLIDO)
-        </th>*@
+                @Html.DisplayName(model => model.APELLIDO)
+            </th>*@
         <th class="th_lista">
             @Html.DisplayName("Teléfono ")
         </th>
         <th class="th_lista">
-            @Html.DisplayName("Municipio ")
+            @Html.DisplayName("Direccion ")
         </th>
         @*<th>
-            @Html.DisplayName("Dirección de residencia ")
-        </th>*@
+                @Html.DisplayName("Dirección de residencia ")
+            </th>*@
         <th class="th_lista">Opción</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr class="tr_lista">
-        @*<td>
-            @Html.DisplayFor(modelItem => item.ID_PACIENTE)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr class="tr_lista">
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.ID_PACIENTE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_DIRECCION)
+                </td>*@
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.NOMBRE)
+                @Html.DisplayFor(modelItem => item.APELLIDO)
+            </td>
+            @*<td>..
+                    @Html.DisplayFor(modelItem => item.APELLIDO)
+                </td>*@
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.TELEFONO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.MUNICIPIO)
+                ,
+                @Html.DisplayFor(modelItem => item.DIRECCION_COM)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.DIRECCION_COM)
+                </td>*@
+            <td class="td_lista">
+                @Html.ActionLink("Ver prescripciones", "ListadoPrescripcionPaciente", new { idpaciente = item.ID_PACIENTE, msj = 0 })
+                @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+<br />
+<table align="center">
+    <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ID_DIRECCION)
-        </td>*@
-        <td class="td_lista">
-            @Html.DisplayFor(modelItem => item.NOMBRE)
-            @Html.DisplayFor(modelItem => item.APELLIDO)
-        </td>
-        @*<td>..
-            @Html.DisplayFor(modelItem => item.APELLIDO)
-        </td>*@
-        <td class="td_lista">
-            @Html.DisplayFor(modelItem => item.TELEFONO)
-        </td>
-        <td class="td_lista">
-            @Html.DisplayFor(modelItem => item.MUNICIPIO)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.DIRECCION_COM)
-        </td>*@
-        <td class="td_lista">
-            @Html.ActionLink("Ver prescripciones", "ListadoPrescripcionPaciente", new {idpaciente = item.ID_PACIENTE, msj = 0 }) 
-            @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            <div div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input onclick="location.href='@Url.Action("Index", "Home")'" type="button" value="Volver" class="btn btn-finalizar" />
+                </div>
+            </div>
         </td>
     </tr>
-}
-
 </table>

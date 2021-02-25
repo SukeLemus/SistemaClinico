@@ -8,49 +8,67 @@
 @using PagedList.Mvc;
 @using SistemaClinico.Controllers;
 
-<h2>IndexPacientesAgregar</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
+<div class="titulo_general"><h1>Informacion medica por paciente</h1></div>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<br />
+<br />
+<table id="table_id" class="table_lista">
+    <tr class="tr_lista">
+        <th class="th_lista">
             @Html.DisplayName("Paciente")
 
-        <th>
+        <th class="th_lista">
             @Html.DisplayName("Género ")
         </th>
-        <th>
+        <th class="th_lista">
             @Html.DisplayName("Tipo sangre ")
         </th>
-        <th>
+        <th class="th_lista">
             @Html.DisplayName("Teléfono ")
         </th>
-        <th>OPCION</th>
+        <th class="th_lista">
+            @Html.DisplayName("Opciones ")
+        </th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
+        <tr class="tr_lista">
+            <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.NOMBRE)
 
                 @Html.DisplayFor(modelItem => item.APELLIDO)
             </td>
-            <td>
+            <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.GENERO)
             </td>
-            <td>
+            <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.TIPO_SANGRE)
             </td>
-            <td>
+            <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.TELEFONO)
             </td>
-            <td>
+            <td class="td_lista">
                 @Html.ActionLink("Ver informacion medica", "InformacionMedica", new { id = item.id })
             </td>
         </tr>
     }
 
+</table>
+<br />
+<br />
+<table align="center">
+    <tr>
+        <td>
+            <div div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input onclick="location.href='@Url.Action("Index", "Home")'" type="button" value="Volver" class="btn btn-finalizar" />
+                </div>
+            </div>
+        </td>
+    </tr>
 </table>

@@ -3,67 +3,93 @@
 @{
     ViewBag.Title = "ConstanciaPaciente";
 }
+<div class="titulo_general"><h1>Constancias por Paciente</h1></div>
 
-<h2>ConstanciaPaciente</h2>
-
-<p>
+@*<h2>ConstanciaPaciente</h2>*@
+<br />
+<br />
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
+</p>*@
+<table id="table_id" class="table_lista">
+    <tr class="tr_lista">
+        @*<th class="th_lista">
             @Html.DisplayNameFor(model => model.ID_PACIENTE)
         </th>
-        <th>
+        <th class="th_lista">
             @Html.DisplayNameFor(model => model.ID_DIRECCION)
-        </th>
-        <th>
+        </th>*@
+        @*<th class="th_lista">
             @Html.DisplayNameFor(model => model.NOMBRE)
-        </th>
-        <th>
+        </th>*@
+        @*<th class="th_lista">
             @Html.DisplayNameFor(model => model.APELLIDO)
-        </th>
-        <th>
+        </th>*@
+
+        @*<th class="th_lista">
             @Html.DisplayNameFor(model => model.TELEFONO)
         </th>
-        <th>
+        <th class="th_lista">
             @Html.DisplayNameFor(model => model.MUNICIPIO)
         </th>
-        <th>
+        <th class="th_lista">
             @Html.DisplayNameFor(model => model.DIRECCION_COM)
+        </th>*@
+        <th class="th_lista">
+            @Html.DisplayName("Paciente ")
         </th>
-        <th></th>
+        <th class="th_lista">
+            @Html.DisplayName("Telefono ")
+        </th>
+        <th class="th_lista">
+            @Html.DisplayName("Direccion ")
+        </th>
+        <th class="th_lista">
+            @Html.DisplayName("Opciones ")
+        </th>
     </tr>
 
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
+        <tr class="tr_lista">
+            @*<td class="td_lista">
+                @Html.DisplayFor(modelItem => item.ID_PACIENTE)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.ID_DIRECCION)
+            </td>*@
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.NOMBRE)
+
+                @Html.DisplayFor(modelItem => item.APELLIDO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.TELEFONO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.MUNICIPIO)
+                ,
+                @Html.DisplayFor(modelItem => item.DIRECCION_COM)
+            </td>
+            <td class="td_lista">
+                @Html.ActionLink("Ver Constancias", "ListadoConsultasConstancia", new { idPaciente = item.ID_PACIENTE })
+                @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+<br />
+<table align="center">
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ID_PACIENTE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ID_DIRECCION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOMBRE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.APELLIDO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TELEFONO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MUNICIPIO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DIRECCION_COM)
-        </td>
-        <td>
-            @Html.ActionLink("Ver Constancias", "ListadoConsultasConstancia", new { idPaciente = item.ID_PACIENTE}) 
-            @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            <div div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input onclick="location.href='@Url.Action("Index", "Home")'" type="button" value="Volver" class="btn btn-finalizar" />
+                </div>
+            </div>
         </td>
     </tr>
-}
-
 </table>

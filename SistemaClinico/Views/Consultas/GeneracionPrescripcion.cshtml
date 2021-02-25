@@ -12,46 +12,50 @@
 @*<p>
         @Html.ActionLink("Create New", "Create")
     </p>*@
-<table class="table">
-    <tr>
-     
+<br />
+<br />
+<table id="table_id" class="table_lista">
+    <tr class="tr_lista">
 
-        <th>
+
+        <th class="th_lista">
             @Html.DisplayName("Doctor ")
         </th>
-        <th>
+        <th class="th_lista">
             @Html.DisplayName("Fecha consulta ")
         </th>
-        <th>
+        <th class="th_lista">
             @Html.DisplayName("Hora ")
         </th>
-  
-        <th>
+
+        <th class="th_lista">
             @Html.DisplayName("Diagnóstico ")
         </th>
-        <th></th>
+        <th class="th_lista">
+            @Html.DisplayName("Opciones ")
+        </th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-    
-            <td>
+        <tr class="tr_lista">
+
+            <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.NOMBRES)
 
                 @Html.DisplayFor(modelItem => item.APELLIDOS)
             </td>
-            <td>
+            <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.FECHA)
             </td>
-            <td>
+            <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.HORA)
             </td>
-     
-            <td>
+
+            <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.DIAGNOSTICO)
             </td>
-            <td>
+            <td class="td_lista">
                 @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
                 @Html.ActionLink("Generar Prescripcion", "GenerarPrescripcion", new { id = item.ID_CONSULTA })
                 @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
@@ -59,4 +63,17 @@
         </tr>
     }
 
+</table>
+<br />
+<br />
+<table align="center">
+    <tr>
+        <td>
+            <div div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input onclick="location.href='@Url.Action("Index", "Home")'" type="button" value="Volver" class="btn btn-finalizar" />
+                </div>
+            </div>
+        </td>
+    </tr>
 </table>

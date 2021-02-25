@@ -12,11 +12,12 @@
 
 
 @*<p>
-    <a class="nav-link text-dark" href="@Url.Action("Create", "Registro")">Nuevo </a>
-</p>*@
-<div class="titulo_general"><h1>Lista de Pacientes</h1></div> <br />
+        <a class="nav-link text-dark" href="@Url.Action("Create", "Registro")">Nuevo </a>
+    </p>*@
+<div class="titulo_general"><h1>Lista de Pacientes</h1></div>
+<br />
 <p>
-  @Html.ActionLink("Crear nuevo Paciente", "Create")
+    @Html.ActionLink("Crear nuevo Paciente", "Create")
 </p>
 <table id="table_id" class="table_lista">
     <tr class="tr_lista">
@@ -69,8 +70,8 @@
 
             </td>
             <td class="td_lista">
-                @Html.ActionLink("Editar", "Edit", new {  id=item.ID_PACIENTE  }) |
-                @Html.ActionLink("Detalles", "Details", new { id=item.ID_PACIENTE }) 
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID_PACIENTE }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.ID_PACIENTE })
                 @*@Html.ActionLink("Borrar", "Delete", new { id = item.ID_PACIENTE })*@
             </td>
         </tr>
@@ -78,3 +79,16 @@
 
 </table>
 @Html.PagedListPager(Model, i => Url.Action("Index", "Usuarios", new { i, search = Request.QueryString["search"] }))
+<br />
+<br />
+<table align="center">
+    <tr>
+        <td>
+            <div div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input onclick="location.href='@Url.Action("Index", "Home")'" type="button" value="Volver" class="btn btn-finalizar" />
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
