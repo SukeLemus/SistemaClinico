@@ -58,7 +58,7 @@
             </td>
             <td class="td_lista">
                 @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
-                @Html.ActionLink("Generar Constancia", "GenerarConstancia", new { id = item.ID_CONSULTA })
+                @Html.ActionLink("Generar Constancia", "ConstanciaDetalle", new { idconsulta = item.ID_CONSULTA })
                 @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
             </td>
         </tr>
@@ -78,3 +78,4 @@
         </td>
     </tr>
 </table>
+

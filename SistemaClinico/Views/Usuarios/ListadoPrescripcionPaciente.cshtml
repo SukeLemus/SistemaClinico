@@ -8,84 +8,60 @@
         @message
     </div>
 }
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ID_CONSULTA)
+<div class="titulo_general"><h1>Prescripciones </h1></div>
+<br />
+<br />
+
+<table id="table_id" class="table_lista">
+    <tr class="tr_lista">
+        <th  class="th_lista">
+            @Html.DisplayName("Paciente ")
+
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ID_PACIENTE)
+        <th class="th_lista">
+            @Html.DisplayName("Doctor ")
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NOMBRE)
+        <th class="th_lista">
+            @Html.DisplayName("Fecha ")
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.APELLIDO)
+        <th class="th_lista">
+            @Html.DisplayName("Hora ")
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NOMBRES)
+        <th class="th_lista">
+            @Html.DisplayName("Tipo Cita ")
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.APELLIDOS)
+        <th class="th_lista">
+            @Html.DisplayName("Opciones ")
+
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FECHA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HORA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TIPO_CITA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DESCRIPCION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DIAGNOSTICO)
-        </th>
-        <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ID_CONSULTA)
+        <tr class="tr_lista">
 
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ID_PACIENTE)
-            </td>
-            <td>
+            <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.NOMBRE)
-            </td>
-            <td>
+
                 @Html.DisplayFor(modelItem => item.APELLIDO)
             </td>
-            <td>
+            <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.NOMBRES)
-            </td>
-            <td>
+
                 @Html.DisplayFor(modelItem => item.APELLIDOS)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FECHA)
             </td>
-            <td>
+            <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.HORA)
             </td>
-            <td>
+            <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.TIPO_CITA)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DESCRIPCION)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DIAGNOSTICO)
-            </td>
-            <td>
+            <td class="td_lista">
 
-                @Html.ActionLink("Detalles", "PrescripcionDetalle", new { idconsulta = item.ID_CONSULTA, idpaciente = item.ID_PACIENTE }) |
+                @Html.ActionLink("Detalles", "PrescripcionDetalle", new { idconsulta = item.ID_CONSULTA, idpaciente = item.ID_PACIENTE }) 
 
             </td>
         </tr>

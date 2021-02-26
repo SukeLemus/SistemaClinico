@@ -1832,9 +1832,50 @@ public ActionResult IndexPacientesAgregar(int? i, string BuscarNombre)
         // GET: Usuarios/Create
         public ActionResult Create()
         {
-            if (Session["Rol"] != null && Session["Rol"].Equals(2))
-            {
+
                 List<SelectListItem> listaSangre = new List<SelectListItem>();
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "No lo sé",
+                    Value = "NO SABE"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "O-",
+                    Value = "O-"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "O+",
+                    Value = "O+"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "A-",
+                    Value = "A-"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "A+",
+                    Value = "A+"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "AB-",
+                    Value = "AB-"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "AB+",
+                    Value = "AB+"
+                });
+                ViewData["listaSangre"] = listaSangre;
+
+                return View();
+
+          if (Session["Rol"] != null && Session["Rol"].Equals(2))
+            {
+                //List<SelectListItem> listaSangre = new List<SelectListItem>();
                 listaSangre.Add(new SelectListItem
                 {
                     Text = "No lo sé",
@@ -1876,7 +1917,7 @@ public ActionResult IndexPacientesAgregar(int? i, string BuscarNombre)
             }
             else if (Session["Rol"] != null && Session["Rol"].Equals(3))
             {
-                List<SelectListItem> listaSangre = new List<SelectListItem>();
+                //List<SelectListItem> listaSangre = new List<SelectListItem>();
                 listaSangre.Add(new SelectListItem
                 {
                     Text = "No lo sé",
@@ -1918,7 +1959,7 @@ public ActionResult IndexPacientesAgregar(int? i, string BuscarNombre)
             }
             else if (Session["Rol"] != null && Session["Rol"].Equals(4))
             {
-                List<SelectListItem> listaSangre = new List<SelectListItem>();
+                //List<SelectListItem> listaSangre = new List<SelectListItem>();
                 listaSangre.Add(new SelectListItem
                 {
                     Text = "No lo sé",
@@ -2050,7 +2091,73 @@ public ActionResult IndexPacientesAgregar(int? i, string BuscarNombre)
         // GET: Usuarios/Edit/5
         public ActionResult Edit(int? id)
         {
-           if (Session["Rol"] != null && Session["Rol"].Equals(3))
+            if (Session["Rol"] != null && Session["Rol"].Equals(2))
+            {
+                List<SelectListItem> listaSangre = new List<SelectListItem>();
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "No lo sé",
+                    Value = "NO SABE"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "O-",
+                    Value = "O-"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "O+",
+                    Value = "O+"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "A-",
+                    Value = "A-"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "A+",
+                    Value = "A+"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "AB-",
+                    Value = "AB-"
+                });
+                listaSangre.Add(new SelectListItem
+                {
+                    Text = "AB+",
+                    Value = "AB+"
+                });
+                ViewData["listaSangre"] = listaSangre;
+                List<SelectListItem> listaEstados = new List<SelectListItem>();
+
+                listaEstados.Add(new SelectListItem
+                {
+                    Text = "Activo",
+                    Value = "ACTIVO"
+                });
+                listaEstados.Add(new SelectListItem
+                {
+                    Text = "Inactivo",
+                    Value = "INACTIVO"
+                });
+
+
+                List<RegistroPacienteUsuario> PaList = TodosUsuarios();
+                if (id.HasValue)
+                {
+                    var p = PaList.Single(m => m.id == id);
+                    string f = p.FECHA_NACIMIENTO.ToString().Remove(10);
+                    ViewData["FECHA_NACIMIENTO"] = f.ToString();
+                    ViewData["listaEstados"] = listaEstados;
+                    string pass = p.PASSWORD;
+                    ViewData["pass"] = pass;
+                    return View(p);
+                }
+                return View();
+            }
+            else if (Session["Rol"] != null && Session["Rol"].Equals(3))
             {
                 List<SelectListItem> listaSangre = new List<SelectListItem>();
                 listaSangre.Add(new SelectListItem

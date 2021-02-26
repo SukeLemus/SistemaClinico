@@ -4,26 +4,189 @@
     ViewBag.Title = "ConstanciaDetalle";
 }
 
-<h2>ConstanciaDetalle</h2>
+<div class="titulo_general"><h1>Detalles de Constancia</h1></div>
+<br />
+<br />
+@*<center>
+        <table align="center" class="" width="500" height="250">
+            <tr>
+                <td>
+                    <div class="form-group">
+                        @Html.Label("Doctor:", htmlAttributes: new { @class = "control-label col-md-1" })
 
-<div>
-    <h4>ConstanciaPDF</h4>
-    <hr />
-    
-    <table class="table">
-        <tr>
-            <td>Paciente: @ViewData["paciente"].ToString()</td><td>Doctor: @ViewData["doctor"].ToString()</td><td>@ViewData["telefono"].ToString()</td>
-        </tr>
-        <tr>
-            <td>Fecha: @ViewData["fecha"]</td><td>Hora: @ViewData["hora"]</td>
-        </tr>
-        <tr>
-            <td>Diagnóstico: @ViewData["diagnostico"]</td>
-        </tr>
-    </table>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Editor("doctor", @ViewData["doctor"].ToString(), new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+
+                        @Html.Label("Por medio de este documento hago constar que el Paciente:", htmlAttributes: new { @class = "control-label " })
+                    </div>
+
+                </td>
+                <td>
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            @Html.Editor("paciente", @ViewData["paciente"].ToString(), new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        </div>
+
+                    </div>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        @Html.Label("Telefono:", htmlAttributes: new { @class = "control-label col-md-1" })
+
+                    </div>
+                </td>
+                <td>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Editor("telefono", @ViewData["telefono"].ToString(), new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        @Html.Label("se le realizó su evaluación médica en la fecha :", htmlAttributes: new { @class = "control-label col-md-1" })
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Editor("fecha", @ViewData["fecha"].ToString(), new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        @Html.Label("Hora:", htmlAttributes: new { @class = "control-label col-md-1" })
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Editor("hora", @ViewData["hora"].ToString(), new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        @Html.Label("Diagnostico:", htmlAttributes: new { @class = "control-label col-md-1" })
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+               @Html.Label("Diagnostico:", htmlAttributes: new { @class = "control-label col-md-1" })
+                        <div class="col-md-10">
+                            @Html.TextArea("diagnostico", @ViewData["diagnostico"].ToString(), new { @class = "form-control", disabled = "disabled" })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </center>*@
+@*<center>*@
+<hr />
+<div class="parrafoscentrados">
+    <div class="parrafoscentradoshijo">
+        <p style="font-size:20px;">
+            <div class="titulo_constancia"><h2><b>Unidad de Salud DatanetSV</b></h2></div>
+            <hr />
+            <br />
+            <br />
+        <p style="font-size:20px;">
+            Yo, <b>Dr.@ViewData["doctor"].ToString()</b> por medio de este documento hago constar <br />
+            que el paciente <b>@ViewData["paciente"].ToString()</b> se le realizó su evaluación médica en la fecha <b> @ViewData["fecha"].ToString().Remove(10) </b> <br />
+            del presente año en el siguiente horario <b>@ViewData["hora"].ToString()</b>, y se le extiende la constacia médica <br />
+            para los usos que estime conveniente<br />
+        </p>
+        <hr />
+        <br />
+        <br />
+        <br />
+        <p style="font-size:20px;">
+            Diagnostico: @ViewData["diagnostico"].ToString()
+        </p>
+        <br />
+        <hr />
+        <br />
+        <br />
+        <br />
+        <p>
+            <table align="center">
+                <tr>
+                    <th>Att. @ViewData["doctor"].ToString()</th>
+
+                    <th><center><img src="~/Content/Images/sello_datanet.jpg" /></center></th>
+
+                </tr>
+
+
+                <tr>
+                    <td> ________________________________________ <br /><center>Doctor Asignado</center></td>
+
+
+
+
+
+                    <td>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  ________________________________________ @*<center><img src="~/Content/Images/sello_datanet.jpg" /></center>*@<br />
+                        <center>Sello</center>
+                    </td>
+
+                </tr>
+            </table>
+        </p>
+        </p>
+
+    </div>
 
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<hr />
+<br />
+<table align="center">
+    <tr>
+        <td>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input value="Generar PDF" class="btn btn-success" />
+                </div>
+            </div>
+        </td>
+        <td>&nbsp;  &nbsp; &nbsp;  &nbsp;</td>
+        <td>
+            <div div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input onclick="location.href='@Url.Action("ListadoConsultasConstancia", "Usuarios", new { idpaciente = @ViewData["idpaciente"], msj = 0 })'" type="button" value="Volver" class="btn btn-finalizar" />
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+@*</center>*@
+
+

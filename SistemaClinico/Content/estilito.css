@@ -64,3 +64,20 @@ h4{
     .titulo_datanetsv h1 {
         color: #10A6F1;
     }
+.titulo_constancia {
+}
+
+    .titulo_constancia h1 {
+        text-align: right;
+        color: black;
+    }
+
+    .titulo_constancia h2 {
+        text-align: right;
+        color: black;
+        
+    }
+    .titulo_constancia h4 {
+        text-align: left;
+        color: black;
+    }

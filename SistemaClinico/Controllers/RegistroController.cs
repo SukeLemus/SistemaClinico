@@ -60,6 +60,8 @@ namespace SistemaClinico.Controllers
             return View();
         }
         // GET: Registro2/Create
+
+
         public ActionResult Create()
         {
             List<SelectListItem> listaSangre = new List<SelectListItem>();
@@ -104,30 +106,43 @@ namespace SistemaClinico.Controllers
         // POST: Registro2/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection, string Municipio)
-        {         
+        {
             try
             {
                 SistemaClinicoSoapWS.ClinicaWebServiceSoapClient swEnf = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
-                
+
                 RegistroPaciente2 nuevoPaciente = new RegistroPaciente2();
-                nuevoPaciente.NOMBRE = collection["NOMBRE"];
-                nuevoPaciente.APELLIDO = collection["APELLIDO"];
-                nuevoPaciente.DUI = collection["DUI"];
-                nuevoPaciente.NIT = collection["NIT"];
-                nuevoPaciente.GENERO = collection["GENERO"]; //DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")
-                nuevoPaciente.FECHA_NACIMIENTO = collection["FECHA_NACIMIENTO"];
-                nuevoPaciente.TIPO_SANGRE = collection["TIPO_SANGRE"];
-                nuevoPaciente.TELEFONO = collection["TELEFONO"];
-                nuevoPaciente.CORREO = collection["CORREO"];
-                nuevoPaciente.ID_DIRECCION = int.Parse(collection["Municipio"]);               
-                nuevoPaciente.DIRECCION_COM = collection["DIRECCION_COM"];
-                nuevoPaciente.ID_ROL = 1;
-                nuevoPaciente.ESTADO = "ACTIVO";
-                nuevoPaciente.USUARIO = collection["USUARIO"];
-                nuevoPaciente.PASSWORD = collection["PASSWORD"];
-                swEnf.InsertPaciente(nuevoPaciente.NOMBRE, nuevoPaciente.APELLIDO, nuevoPaciente.DUI, nuevoPaciente.NIT, nuevoPaciente.GENERO, nuevoPaciente.FECHA_NACIMIENTO, nuevoPaciente.TIPO_SANGRE, nuevoPaciente.TELEFONO,
-                    nuevoPaciente.CORREO, nuevoPaciente.ID_DIRECCION, nuevoPaciente.DIRECCION_COM, nuevoPaciente.ESTADO, nuevoPaciente.USUARIO, nuevoPaciente.PASSWORD);
-                return RedirectToAction("Index", "Home");
+               string pass1 = nuevoPaciente.PASSWORD = collection["PASSWORD"];
+               string pass2 = nuevoPaciente.PASSWORDR = collection["PASSWORDR"];
+                if (pass1.Equals(pass2))
+                {
+
+                    nuevoPaciente.NOMBRE = collection["NOMBRE"];
+                    nuevoPaciente.APELLIDO = collection["APELLIDO"];
+                    nuevoPaciente.DUI = collection["DUI"];
+                    nuevoPaciente.NIT = collection["NIT"];
+                    nuevoPaciente.GENERO = collection["GENERO"]; //DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")
+                    nuevoPaciente.FECHA_NACIMIENTO = collection["FECHA_NACIMIENTO"];
+                    nuevoPaciente.TIPO_SANGRE = collection["TIPO_SANGRE"];
+                    nuevoPaciente.TELEFONO = collection["TELEFONO"];
+                    nuevoPaciente.CORREO = collection["CORREO"];
+                    nuevoPaciente.ID_DIRECCION = int.Parse(collection["Municipio"]);
+                    nuevoPaciente.DIRECCION_COM = collection["DIRECCION_COM"];
+                    nuevoPaciente.ID_ROL = 1;
+                    nuevoPaciente.ESTADO = "ACTIVO";
+                    nuevoPaciente.USUARIO = collection["USUARIO"];
+                    nuevoPaciente.PASSWORD = collection["PASSWORD"];
+                    swEnf.InsertPaciente(nuevoPaciente.NOMBRE, nuevoPaciente.APELLIDO, nuevoPaciente.DUI, nuevoPaciente.NIT, nuevoPaciente.GENERO, nuevoPaciente.FECHA_NACIMIENTO, nuevoPaciente.TIPO_SANGRE, nuevoPaciente.TELEFONO,
+                        nuevoPaciente.CORREO, nuevoPaciente.ID_DIRECCION, nuevoPaciente.DIRECCION_COM, nuevoPaciente.ESTADO, nuevoPaciente.USUARIO, nuevoPaciente.PASSWORD);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    TempData["UserMessage"] = "la contraseña no coincide";
+                    return View();
+                }
+
+                
             }
             catch
             {

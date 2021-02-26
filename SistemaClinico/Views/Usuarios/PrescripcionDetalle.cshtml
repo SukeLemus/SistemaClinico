@@ -4,81 +4,131 @@
     ViewBag.Title = "PrescripcionDetalle";
 }
 
-<h2>PrescripcionDetalle</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-<div class="form-group">
-    @Html.Label("Paciente", htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.Editor("nombrePaciente", @ViewData["nombrePaciente"].ToString(), new { htmlAttributes = new { @class = "form-control", disabled ="disabled"} })
-    </div>
-</div>
-
-<div class="form-group">
-    @Html.Label("Doctor", htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.Editor("nombreDoctor", @ViewData["nombreDoctor"].ToString(), new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-    </div>
-</div>
-
-<div class="form-group">
-    @Html.Label("Fecha", htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.Editor("fecha", @ViewData["fecha"].ToString(), new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-    </div>
-</div>
-
-<div class="form-group">
-    @Html.Label("hora", htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.Editor("hora", @ViewData["hora"].ToString(), new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-    </div>
-</div>
-
-<table class="table">
+<div class="titulo_general"><h1>Detalles de Prescripcion</h1></div>
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<br />
+<br />
+<table align="center" width="700" height="100">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NOMBRE_MEDICAMENTO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CICLO_CONSUMO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VIA_ADMI)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.INSTRUCCIONES_AD)
-        </th>
-        <th></th>
+        <td>
+            <div class="form-group">
+                @Html.Label("Paciente", htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-12">
+                    @Html.Editor("nombrePaciente", @ViewData["nombrePaciente"].ToString(), new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="form-group">
+                @Html.Label("Doctor", htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-12">
+                    @Html.Editor("nombreDoctor", @ViewData["nombreDoctor"].ToString(), new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                </div>
+            </div>
+        </td>
     </tr>
 
-@foreach (var item in Model) {
     <tr>
-      
         <td>
-            @Html.DisplayFor(modelItem => item.NOMBRE_MEDICAMENTO)
+            <div class="form-group">
+                @Html.Label("Fecha", htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-12">
+                    @Html.Editor("fecha", @ViewData["fecha"].ToString(), new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                </div>
+            </div>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CICLO_CONSUMO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VIA_ADMI)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.INSTRUCCIONES_AD)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            <div class="form-group">
+                @Html.Label("hora", htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-12">
+                    @Html.Editor("hora", @ViewData["hora"].ToString(), new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                </div>
+            </div>
         </td>
     </tr>
-}
 
 </table>
+
+
+<br />
+<br />
+
+
+<table id="table_id" class="table_lista">
+    <tr class="tr_lista">
+        <th class="th_lista">
+            @Html.DisplayName("Nombre Medicamento")
+        </th>
+        <th class="th_lista">
+            @Html.DisplayName("Ciclo de Consumo")
+        </th>
+        <th class="th_lista">
+            @Html.DisplayName("Via de Administracion")
+        </th>
+        <th class="th_lista">
+            @Html.DisplayName("Instrucciones Adicionales")
+        </th>
+        @*<th></th>*@
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="tr_lista">
+
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.NOMBRE_MEDICAMENTO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.CICLO_CONSUMO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.VIA_ADMI)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.INSTRUCCIONES_AD)
+            </td>
+
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>*@
+        </tr>
+    }
+
+</table>
+<br />
+<br />
+<br />
+<br />
+<table align="center">
+    <tr>
+        <th>Att. @ViewData["nombreDoctor"].ToString()</th>
+
+        <th><center><img src="~/Content/Images/sello_datanet.jpg" /></center></th>
+
+    </tr>
+
+
+    <tr>
+        <td> ________________________________________ <br /><center>Doctor Asignado</center></td>
+
+
+
+
+
+        <td>
+            &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  ________________________________________ @*<center><img src="~/Content/Images/sello_datanet.jpg" /></center>*@<br />
+            <center>Sello</center>
+        </td>
+
+    </tr>
+</table>
+<br />
+<br />
 <table align="center">
     <tr>
         <td>

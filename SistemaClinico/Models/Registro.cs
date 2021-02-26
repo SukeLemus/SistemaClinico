@@ -9,43 +9,104 @@ namespace SistemaClinico.Models
 {
     public class RegistroPaciente2
     {
+        //public int id { get; set; }
+        ////[Required(ErrorMessage = "mensaje personalizado")]
+        //[Required]
+        //public String NOMBRE { get; set; }
+        //[Required]
+        //public String APELLIDO { get; set; }
+        //[MinLength(9)]
+        //[MaxLength(9)]
+        //public String DUI { get; set; }
+        //[MinLength(14)]
+        //[MaxLength(14)]
+        //public String NIT { get; set; }
+        //[Required]
+        //public String GENERO { get; set; }
+        //[Required(ErrorMessage = "* Elija su fecha de nacimiento")]
+        //public string FECHA_NACIMIENTO { get; set; }
+        //[Required]
+
+        //public String TIPO_SANGRE { get; set; }
+        //[Required]
+        //[Phone]
+        //[MinLength(8)]
+        //[MaxLength(8)]
+        //public String TELEFONO { get; set; }
+        //[Required]
+        //[EmailAddress]
+        //public String CORREO { get; set; }
+        //[Required]
+        //public int ID_DIRECCION { get; set; }
+        //[Required]
+        //public String DIRECCION_COM { get; set; }
+        //[Required]
+        //public int ID_ROL { get; set; }
+        //[Required]
+        //public String ESTADO { get; set; }
+        //[Required]
+        //public String USUARIO { get; set; }
+        //[Required]
+        //public String PASSWORD { get; set; }
         public int id { get; set; }
+
         //[Required(ErrorMessage = "mensaje personalizado")]
-        [Required]
+        [Required(ErrorMessage = "* El Nombre es obligatorio")]
         public String NOMBRE { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "* El Apellido es obligatorio")]
         public String APELLIDO { get; set; }
+
         [MinLength(9)]
         [MaxLength(9)]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "* Solo se permiten números.")]
         public String DUI { get; set; }
+
+        [RegularExpression("^[0-9]*$", ErrorMessage = "* Solo se permiten números.")]
         [MinLength(14)]
         [MaxLength(14)]
         public String NIT { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "* Elija su género")]
         public String GENERO { get; set; }
+
         [Required(ErrorMessage = "* Elija su fecha de nacimiento")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public string FECHA_NACIMIENTO { get; set; }
+
+        [Required(ErrorMessage = "* El Tipo de sangre es obligatorio (si no lo sabe elija 'No lo sé')")]
         public String TIPO_SANGRE { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "* El Teléfono es obligatorio")]
         [Phone]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "* Solo se permiten números.")]
         [MinLength(8)]
         [MaxLength(8)]
         public String TELEFONO { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "* El e-mail es obligatorio")]
         [EmailAddress]
         public String CORREO { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "* El Municipio es obligatorio")]
         public int ID_DIRECCION { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "* la Dirección es obligatoria")]
         public String DIRECCION_COM { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "* El Rol es obligatorio")]
         public int ID_ROL { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "* El Estado es obligatorio")]
         public String ESTADO { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "* El Usuario es obligatorio")]
         public String USUARIO { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "* La Contraseña es obligatoria")]
         public String PASSWORD { get; set; }
+        [Required]
+        public String PASSWORDR { get; set; }
 
     }
 
@@ -95,5 +156,6 @@ namespace SistemaClinico.Models
         public String ESTADO { get; set; }
         public String USUARIO2 { get; set; }
         public String PASSWORD2 { get; set; }
+        public String PASSWORD2R { get; set; }
     }
 }

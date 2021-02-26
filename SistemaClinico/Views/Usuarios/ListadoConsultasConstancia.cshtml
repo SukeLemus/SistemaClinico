@@ -4,90 +4,68 @@
     ViewBag.Title = "ListadoConsultasConstancia";
 }
 
-<h2>ListadoConsultasConstancia</h2>
 
-<p>
+<div class="titulo_general"><h1>Constancias</h1></div>
+<br />
+<br />
+
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ID_CONSULTA)
+    <tr class="tr_lista">
+
+        <th class="th_lista">
+            @Html.DisplayName("Paciente ")
+
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ID_PACIENTE)
+        <th class="th_lista">
+            @Html.DisplayName("Doctor ")
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NOMBRE)
+        <th class="th_lista">
+            @Html.DisplayName("Fecha ")
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.APELLIDO)
+        <th class="th_lista">
+            @Html.DisplayName("Hora ")
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NOMBRES)
+        <th class="th_lista">
+            @Html.DisplayName("Tipo Cita ")
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.APELLIDOS)
+        <th class="th_lista">
+            @Html.DisplayName("Opciones ")
+
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FECHA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HORA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TIPO_CITA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DESCRIPCION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DIAGNOSTICO)
-        </th>
-        <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ID_CONSULTA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ID_PACIENTE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOMBRE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.APELLIDO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOMBRES)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.APELLIDOS)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FECHA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HORA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TIPO_CITA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DESCRIPCION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DIAGNOSTICO)
-        </td>
-        <td>
-            @Html.ActionLink("Detalle Constancia", "ConstanciaDetalle", new { idconsulta = item.ID_CONSULTA  }) 
-            @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr class="tr_lista">
+
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.NOMBRE)
+
+                @Html.DisplayFor(modelItem => item.APELLIDO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.NOMBRES)
+
+                @Html.DisplayFor(modelItem => item.APELLIDOS)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.FECHA)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.HORA)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.TIPO_CITA)
+            </td>
+            <td class="td_lista">
+                @Html.ActionLink("Detalles", "ConstanciaDetalle", new { idconsulta = item.ID_CONSULTA })
+                @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+    }
 
 </table>

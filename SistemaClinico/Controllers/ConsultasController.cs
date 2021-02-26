@@ -771,5 +771,51 @@ namespace SistemaClinico.Controllers
                 return View();
             }
         }
+        public ActionResult ConstanciaDetalle(int idconsulta)
+        {
+            if (Session["Rol"] != null && Session["Rol"].Equals(1))
+            {
+                SistemaClinicoSoapWS.ClinicaWebServiceSoapClient WS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+                DataSet ds = WS.Select_IDConstancia(idconsulta);
+
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    // Basado en el modelo: ConstanciaPDF
+                    string nombrePaciente = dr["NOMBRE"].ToString();
+                    string apellidoPaciente = dr["APELLIDO"].ToString();
+                    string nombreDoctor = dr["NOMBRES"].ToString();
+                    string apellidoDoctor = dr["APELLIDOS"].ToString();
+                    string fecha = dr["FECHA"].ToString();
+                    string telefono = dr["TELEFONO"].ToString();
+                    string hora = dr["HORA"].ToString();
+                    string diagnostico = dr["DIAGNOSTICO"].ToString();
+
+                    ConstanciaPDF constancia = new ConstanciaPDF();
+                    constancia.NOMBRE = nombrePaciente;
+                    constancia.APELLIDO = apellidoPaciente;
+                    constancia.NOMBRES = nombreDoctor;
+                    constancia.APELLIDOS = apellidoDoctor;
+                    constancia.FECHA = fecha;
+                    constancia.HORA = hora;
+                    constancia.DIAGNOSTICO = diagnostico;
+                    constancia.TELEFONO_DOCTOR = telefono;
+
+                    ViewData["paciente"] = nombrePaciente + " " + apellidoPaciente;
+                    ViewData["doctor"] = nombreDoctor + " " + apellidoDoctor;
+                    ViewData["fecha"] = fecha;
+                    ViewData["hora"] = hora;
+                    ViewData["diagnostico"] = diagnostico;
+                    ViewData["telefono"] = telefono;
+                }
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+        }
+
     }
 }

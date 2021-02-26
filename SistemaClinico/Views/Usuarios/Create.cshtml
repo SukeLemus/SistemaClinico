@@ -5,9 +5,16 @@
 @{
     ViewBag.Title = "Create";
 }
+@if (Session["Rol"] == null || Session["Rol"].Equals(1) || Session["Rol"].Equals(2) || Session["Rol"].Equals(3))
+{
+    <div class="titulo_general"><h1>Registro</h1></div>
 
-<div class="titulo_general"><h1>Crear nuevo Paciente</h1></div>
+}
+else
+{
+    <div class="titulo_general"><h1>Crear nuevo Paciente</h1></div>
 
+}
 <p>Con el siguiente formulario se puede registrar un nuevo paciente en el sistema</p>
 
 @using (Html.BeginForm())
