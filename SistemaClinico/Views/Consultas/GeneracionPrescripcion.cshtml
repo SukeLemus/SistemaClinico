@@ -57,7 +57,8 @@
             </td>
             <td class="td_lista">
                 @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
-                @Html.ActionLink("Generar Prescripcion", "GenerarPrescripcion", new { id = item.ID_CONSULTA })
+                <a href="@Url.Action("PrescripcionDetalle", "Usuarios", new { idconsulta = item.ID_CONSULTA, idpaciente = item.ID_PACIENTE })">Ver prescripcion</a>
+        
                 @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
             </td>
         </tr>

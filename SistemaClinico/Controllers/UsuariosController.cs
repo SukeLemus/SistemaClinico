@@ -1485,7 +1485,7 @@ namespace SistemaClinico.Controllers
     
         public ActionResult ListadoPrescripcionPaciente( int idpaciente, int msj)
         {
-            if (Session["Rol"] != null && Session["Rol"].Equals(3))
+             if (Session["Rol"] != null && Session["Rol"].Equals(3))
             {
                 if (msj == 0)
                 {
@@ -1512,7 +1512,65 @@ namespace SistemaClinico.Controllers
 
         public ActionResult PrescripcionDetalle(int idconsulta, int idpaciente)
         {
-            if (Session["Rol"] != null && Session["Rol"].Equals(3))
+            if (Session["Rol"] != null && Session["Rol"].Equals(1))
+            {
+
+                try
+                {
+                    SistemaClinicoSoapWS.ClinicaWebServiceSoapClient WS = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+                    var prescripciones = from e in ListaPrescripcionesIDPaciente(idconsulta)
+                                         select e;
+
+                    ViewData["nombrePaciente"] = " ";
+                    ViewData["nombreDoctor"] = " ";
+                    ViewData["fecha"] = " ";
+                    ViewData["hora"] = " ";
+                    DataSet ds = WS.Select_IDPrescripcionUsuario2(idconsulta);
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        // string idTratamiento = int.Parse(dr["ID_MEDICAMENTO"].ToString());
+                        string nombrePaciente = dr["NOMBRE"].ToString() + " " + dr["APELLIDO"].ToString();
+                        string nombreDoctor = dr["NOMBRES"].ToString() + " " + dr["APELLIDOS"].ToString();
+                        string fecha = dr["FECHA"].ToString();
+                        string hora = dr["HORA"].ToString();
+                        //string idp = dr["ID_PACIENTE"].ToString();
+
+
+                        ViewData["nombrePaciente"] = nombrePaciente;
+                        ViewData["nombreDoctor"] = nombreDoctor;
+                        ViewData["fecha"] = fecha.Remove(10);
+                        ViewData["hora"] = hora;
+                        //ViewData["idp"] = idp;
+                    }
+
+                    ViewData["idpaciente"] = idpaciente;
+
+                    if (ViewData["nombrePaciente"].Equals(" "))
+                    {
+
+                        //mesaje de que no existe prescripcion
+                        //Content("No hay medicamentos para generar esta preescripcion");
+                        //TempData["UserMessage"] = "ya existe esa cirugia para este paciente";
+                        return RedirectToAction("ListadoPrescripcionPaciente", "Usuarios", new { idpaciente = idpaciente, msj = 1 });
+                    }
+                    else
+                    {
+                        return View(prescripciones);
+                    }
+
+
+                }
+                catch
+                {
+
+                    ////mesaje de que no existe prescripcion
+                    //Content("No hay medicamentos para generar esta preescripcion");
+                    //TempData["UserMessage"] = "ya existe esa cirugia para este paciente";
+                    return RedirectToAction("ListadoPrescripcionPaciente", "Usuarios", new { idpaciente = idpaciente });
+                }
+
+            }else if (Session["Rol"] != null && Session["Rol"].Equals(3))
             {
 
                 try
