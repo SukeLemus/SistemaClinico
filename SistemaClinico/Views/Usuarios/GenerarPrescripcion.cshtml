@@ -1,0 +1,174 @@
+﻿@model IEnumerable<SistemaClinico.Models.PrescripcionPDF>
+
+@{
+    Layout = null;
+    string diagnostico = "";
+}
+
+
+<html>
+<head>
+    <title>Reporte</title>
+    <meta charset="utf-8">
+    <style>
+        hr {
+            height: 5px;
+            background-color: black;
+        }
+    </style>
+
+    <link rel="stylesheet" href="~/Content/TableCSS.css" />
+    <link rel="stylesheet" href="~/Content/Tablas.css" />
+</head>
+<body>
+
+    <br /><br />
+
+
+    <hr />
+    <div style='text-align:right'><p style="font-size:25px">Unidad de Salud DatanetSV</p></div>
+    <hr />
+    <br /><br />
+    <img src="~/Content/Images/banergeneral2.jpg" />
+    @*Titulo del reporte*@
+    <br /><br />
+    <br /><br />
+    <div style='text-align:center'><p style="font-size:55px">Prescripción de medicamentos </p></div>
+
+
+    <table align="center" width="700" height="100">
+        <tr>
+
+            <th><p style="font-size:25px;">Paciente</p></th>
+            <th><p style="font-size:25px;">Doctor</p></th>
+
+        </tr>
+        <tr>
+
+            <td><p style="font-size:25px;">@ViewData["paciente"].ToString()</p></td>
+            <td><p style="font-size:25px;">@ViewData["doctor"].ToString()</p></td>
+
+        </tr>
+        <tr>
+
+            <th><p style="font-size:25px;">Fecha</p></th>
+            <th><p style="font-size:25px;">Hora</p></th>
+
+        </tr>
+        <tr>
+
+            <td><p style="font-size:25px;">@ViewData["fecha"].ToString().Remove(10)</p></td>
+            <td><p style="font-size:25px;">@ViewData["hora"].ToString()</p></td>
+
+        </tr>
+    </table>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <table class="table">
+        <tr>
+
+            <th>
+                <p style="font-size:25px;"> @Html.DisplayName("Medicamento")</p>
+            </th>
+            <th>
+                <p style="font-size:25px;"> @Html.DisplayName("Dosis")</p>
+            </th>
+            <th>
+                <p style="font-size:25px;">@Html.DisplayName("Vía de consumo")</p>
+            </th>
+            <th>
+                <p style="font-size:25px;">@Html.DisplayName("Instrucciones adicionales")</p>
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    <p style="font-size:25px;">@Html.DisplayFor(modelItem => item.NOMBRE_MEDICAMENTO)</p>
+                </td>
+                <td>
+                    <p style="font-size:25px;">@Html.DisplayFor(modelItem => item.CICLO_CONSUMO)</p>
+                </td>
+                <td>
+                    <p style="font-size:25px;">@Html.DisplayFor(modelItem => item.VIA_ADMI)</p>
+                </td>
+                <td>
+                    <p style="font-size:25px;">@Html.DisplayFor(modelItem => item.INSTRUCCIONES_AD)</p>
+                </td>
+                <td>
+                    @{
+                        diagnostico = item.DIAGNOSTICO.ToString();
+                    }
+                </td>
+
+            </tr>
+        }
+
+    </table>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <table>
+        <tr>
+            <th><p style="font-size:25px;">Diagnóstico</p></th>
+        </tr>
+        <tr>
+            <td>
+                <p style="font-size:25px;"> @diagnostico</p>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <table>
+        <tr>
+            <th>Att.@ViewData["doctor"].ToString()</th>
+
+            <th><center><img src="~/Content/Images/sello_datanet.jpg" /></center></th>
+
+        </tr>
+
+
+        <tr>
+            <td> ________________________________________ <br /><center>Doctor Asignado</center></td>
+
+
+
+
+
+            <td>
+                &nbsp; &nbsp; &nbsp; ________________________________________ @*<center><img src="~/Content/Images/sello_datanet.jpg" /></center>*@<br />
+                <center>Sello</center>
+            </td>
+
+        </tr>
+    </table>
+
+</body>
+</html>
+
+
+

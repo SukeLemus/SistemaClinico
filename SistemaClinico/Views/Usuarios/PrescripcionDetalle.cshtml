@@ -2,7 +2,9 @@
 
 @{
     ViewBag.Title = "PrescripcionDetalle";
+
 }
+
 
 
 <div class="titulo_general"><h1>Detalles de Prescripcion</h1></div>
@@ -58,9 +60,13 @@
 
 
 <table id="table_id" class="table_lista">
+
+   
     <tr class="tr_lista">
         <th class="th_lista">
-            @Html.DisplayName("Nombre Medicamento")
+            <p style="font-size:20px;">
+                @Html.DisplayName("Nombre Medicamento")
+                </p>
         </th>
         <th class="th_lista">
             @Html.DisplayName("Ciclo de Consumo")
@@ -73,7 +79,7 @@
         </th>
         @*<th></th>*@
     </tr>
-
+   
     @foreach (var item in Model)
     {
         <tr class="tr_lista">
@@ -96,6 +102,8 @@
                     @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                 </td>*@
+
+            
         </tr>
     }
 
@@ -134,7 +142,10 @@
         <td>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input value="Generar PDF" class="btn btn-success" />
+
+                    <button class="btn btn-success">@Html.ActionLink("Generar Prescripción", "GenerarPrescripcion", new { id = @ViewData["IdConsulta"] })</button>
+                    
+
                 </div>
             </div>
         </td>

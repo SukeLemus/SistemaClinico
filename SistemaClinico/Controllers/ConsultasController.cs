@@ -789,6 +789,7 @@ namespace SistemaClinico.Controllers
                     string telefono = dr["TELEFONO"].ToString();
                     string hora = dr["HORA"].ToString();
                     string diagnostico = dr["DIAGNOSTICO"].ToString();
+                    int idConsulta = idconsulta;
 
                     ConstanciaPDF constancia = new ConstanciaPDF();
                     constancia.NOMBRE = nombrePaciente;
@@ -799,6 +800,7 @@ namespace SistemaClinico.Controllers
                     constancia.HORA = hora;
                     constancia.DIAGNOSTICO = diagnostico;
                     constancia.TELEFONO_DOCTOR = telefono;
+                    constancia.ID_CONSULTA = idConsulta;
 
                     ViewData["paciente"] = nombrePaciente + " " + apellidoPaciente;
                     ViewData["doctor"] = nombreDoctor + " " + apellidoDoctor;
@@ -806,6 +808,7 @@ namespace SistemaClinico.Controllers
                     ViewData["hora"] = hora;
                     ViewData["diagnostico"] = diagnostico;
                     ViewData["telefono"] = telefono;
+                    ViewData["idConsulta"] = idConsulta;
                 }
 
                 return View();

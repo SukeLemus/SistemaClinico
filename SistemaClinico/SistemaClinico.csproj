@@ -447,6 +447,7 @@
     <Content Include="Views\Usuarios\ConstanciaDetalle.cshtml" />
     <Content Include="Views\Home\SoliRegistro.cshtml" />
     <Content Include="Views\Consultas\ConstanciaDetalle.cshtml" />
+    <Content Include="Views\Usuarios\GenerarPrescripcion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

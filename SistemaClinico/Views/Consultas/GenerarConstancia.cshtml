@@ -23,19 +23,20 @@
 
 
     <hr />
-    <div style='text-align:right'><p style="font-size:25px">Datanet SV</p></div>
+    <div style='text-align:right'><p style="font-size:25px">Unidad de Salud DatanetSV</p></div>
     <hr />
     <br /><br />
     <img src="~/Content/Images/banergeneral2.jpg" />
     @*Titulo del reporte*@
     <br /><br />
     <br /><br />
-    <div style='text-align:center'><p style="font-size:55px">Constancia Médica</p></div>
+    <div style='text-align:center'><p style="font-size:55px">Constancia Médica </p></div>
 
     <p style="font-size:25px">
-        Por medio de este documento hago constar que el paciente @Html.DisplayFor(model => model.NOMBRE)  @Html.DisplayFor(model => model.APELLIDO) se le realizó su evaluación
-        médica en la fecha  @Html.DisplayFor(model => model.FECHA) del presente en el siguiente horario @Html.DisplayFor(model => model.HORA),
-        y se le extiende la constacia médica para los usos que estime conveniente
+        Yo, <b>Dr.@Html.DisplayFor(model => model.NOMBRES)  @Html.DisplayFor(model => model.APELLIDOS)</b> por medio de este documento hago constar <br />
+        que el paciente <b> @Html.DisplayFor(model => model.NOMBRE)  @Html.DisplayFor(model => model.APELLIDO)</b> se le realizó su evaluación médica en la fecha <b> @Html.DisplayFor(model => model.FECHA) </b> <br />
+        del presente año en el siguiente horario <b> @Html.DisplayFor(model => model.HORA)</b>, y se le extiende la constacia médica <br />
+        para los usos que estime conveniente<br />
     </p>
     <br /><br /><br /><br />
     <p style="font-size:50px">Diagnóstico</p>

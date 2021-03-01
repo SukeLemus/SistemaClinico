@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using PagedList;
 using System.Data;
 using SistemaClinico.Models;
+using Rotativa;
 
 namespace SistemaClinico.Controllers
 {
@@ -1434,6 +1435,7 @@ namespace SistemaClinico.Controllers
                     string telefono = dr["TELEFONO"].ToString();
                     string hora = dr["HORA"].ToString();
                     string diagnostico = dr["DIAGNOSTICO"].ToString();
+                    int idConsulta = idconsulta;
 
                     ConstanciaPDF constancia = new ConstanciaPDF();
                     constancia.NOMBRE = nombrePaciente;
@@ -1444,6 +1446,7 @@ namespace SistemaClinico.Controllers
                     constancia.HORA = hora;
                     constancia.DIAGNOSTICO = diagnostico;
                     constancia.TELEFONO_DOCTOR = telefono;
+                    constancia.ID_CONSULTA = idConsulta;
 
                     ViewData["paciente"] = nombrePaciente + " " + apellidoPaciente;
                     ViewData["doctor"] = nombreDoctor + " " + apellidoDoctor;
@@ -1451,6 +1454,7 @@ namespace SistemaClinico.Controllers
                     ViewData["hora"] = hora;
                     ViewData["diagnostico"] = diagnostico;
                     ViewData["telefono"] = telefono;
+                    ViewData["IdConsulta"] = constancia.ID_CONSULTA;
                 }
 
                 return View();
@@ -1526,6 +1530,7 @@ namespace SistemaClinico.Controllers
                     ViewData["nombreDoctor"] = " ";
                     ViewData["fecha"] = " ";
                     ViewData["hora"] = " ";
+                    ViewData["IdConsulta"] = 0;
                     DataSet ds = WS.Select_IDPrescripcionUsuario2(idconsulta);
                     foreach (DataRow dr in ds.Tables[0].Rows)
                     {
@@ -1541,6 +1546,7 @@ namespace SistemaClinico.Controllers
                         ViewData["nombreDoctor"] = nombreDoctor;
                         ViewData["fecha"] = fecha.Remove(10);
                         ViewData["hora"] = hora;
+                        ViewData["IdConsulta"] = idconsulta;
                         //ViewData["idp"] = idp;
                     }
 
@@ -2460,6 +2466,83 @@ public ActionResult IndexPacientesAgregar(int? i, string BuscarNombre)
             }
         }
 
+        //prescripcion
+        public static List<PrescripcionPDF> Prescripciones(int idPrescri)
+        {
+            List<PrescripcionPDF> listaS = new List<PrescripcionPDF>();
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient prescripcion = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+
+            DataSet ds = prescripcion.Select_IDPrescripcion(idPrescri);
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                int idPrescripcion = int.Parse(dr["ID_PRESCRIPCION"].ToString());
+                int idConsulta = int.Parse(dr["ID_CONSULTA"].ToString());
+                string nombrepaciente = dr["NOMBRE"].ToString();
+                string apellidopaciente = dr["APELLIDO"].ToString();
+                string nombreDoctor = dr["NOMBRES"].ToString();
+                string apellidoDoctor = dr["APELLIDOS"].ToString();
+                string fecha = dr["FECHA"].ToString();
+                string hora = dr["HORA"].ToString();
+                string nombreMedicamento = dr["NOMBRE_MEDICAMENTO"].ToString();
+                string cicloConsumo = dr["CICLO_CONSUMO"].ToString();
+                string viaAdministracion = dr["VIA_ADMI"].ToString();
+                string instruccionesAdicionales = dr["INSTRUCCIONES_AD"].ToString();
+                string diagnostico = dr["DIAGNOSTICO"].ToString();
+
+
+                PrescripcionPDF prescri = new PrescripcionPDF();
+                prescri.ID_PRESCRIPCION = idPrescripcion;
+                prescri.ID_CONSULTA = idConsulta;
+                prescri.NOMBRE = nombrepaciente;
+                prescri.APELLIDO = apellidopaciente;
+                prescri.NOMBRES = nombreDoctor;
+                prescri.APELLIDOS = apellidoDoctor;
+                prescri.FECHA = fecha.ToString().Remove(10);
+                prescri.HORA = hora;
+                prescri.NOMBRE_MEDICAMENTO = nombreMedicamento;
+                prescri.CICLO_CONSUMO = cicloConsumo;
+                prescri.VIA_ADMI = viaAdministracion;
+                prescri.INSTRUCCIONES_AD = instruccionesAdicionales;
+                prescri.DIAGNOSTICO = diagnostico;
+
+                
+
+                listaS.Add(prescri);
+            }
+            return listaS;
+
+        }
+        public ActionResult GenerarPrescripcion(int id)
+        {
+            SistemaClinicoSoapWS.ClinicaWebServiceSoapClient prescripcion = new SistemaClinicoSoapWS.ClinicaWebServiceSoapClient();
+            DataSet ds = prescripcion.Select_IDConstancia(id);
+
+            string paciente = "";
+            string doctor = "";
+            string fecha = "";
+            string hora= "";
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                 paciente = dr["NOMBRE"].ToString()+ dr["APELLIDO"].ToString();
+                 doctor = dr["NOMBRES"].ToString()+ dr["APELLIDOS"].ToString();
+                 fecha = dr["FECHA"].ToString();
+                 hora = dr["HORA"].ToString();
+            }
+
+                var citas = from e in Prescripciones(id)
+                            //orderby e.nombre
+                        select e;
+            ViewData["paciente"] = paciente;
+            ViewData["doctor"] = doctor;
+            ViewData["fecha"] = fecha;
+            ViewData["hora"] = hora;
+
+            return new ViewAsPdf(citas)
+            {
+                FileName = "Comprobante_prescripcion.pdf"
+            };
+        }
 
 
 
