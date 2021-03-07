@@ -166,13 +166,14 @@
 
 </div>
 <hr />
-<br />
 <table align="center">
     <tr>
         <td>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input value="Generar PDF" class="btn btn-success" />
+
+                    <input onclick="location.href='@Url.Action("GenerarConstancia", "Consultas", new { id = @ViewData["idConsulta"] })'" type="button" value="Generar Constancia" class="btn btn-success" />
+                    @*<button class="btn btn-success">@Html.ActionLink("Generar Constancia", "GenerarConstancia", new { id = @ViewData["idConsulta"] })</button>*@
                 </div>
             </div>
         </td>
@@ -180,7 +181,7 @@
         <td>
             <div div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input onclick="location.href='@Url.Action("ListadoConsultasConstancia", "Usuarios", new { idpaciente = @ViewData["idpaciente"], msj = 0 })'" type="button" value="Volver" class="btn btn-finalizar" />
+                    <input onclick="location.href='@Url.Action("GeneracionConstancias", "Consultas", new { idpaciente = @ViewData["idpaciente"], msj = 0 })'" type="button" value="Volver" class="btn btn-finalizar" />
                 </div>
             </div>
         </td>
