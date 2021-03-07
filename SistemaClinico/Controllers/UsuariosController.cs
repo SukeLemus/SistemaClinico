@@ -1590,6 +1590,7 @@ namespace SistemaClinico.Controllers
                     ViewData["nombreDoctor"] = " ";
                     ViewData["fecha"] = " ";
                     ViewData["hora"] = " ";
+                    ViewData["IdConsulta"] = 0;
                     DataSet ds = WS.Select_IDPrescripcionUsuario2(idconsulta);
                     foreach (DataRow dr in ds.Tables[0].Rows)
                     {
@@ -1605,6 +1606,7 @@ namespace SistemaClinico.Controllers
                         ViewData["nombreDoctor"] = nombreDoctor;
                         ViewData["fecha"] = fecha.Remove(10);
                         ViewData["hora"] = hora;
+                        ViewData["IdConsulta"] = idconsulta;
                         //ViewData["idp"] = idp;
                     }
 
