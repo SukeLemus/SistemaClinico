@@ -1,5 +1,7 @@
-﻿@model IEnumerable<SistemaClinico.Models.ListadoCitasPaciente>
-
+﻿@*@model IEnumerable<SistemaClinico.Models.ListadoCitasPaciente>*@
+@model IPagedList<SistemaClinico.Models.ListadoCitasPaciente>
+@using PagedList;
+@using PagedList.Mvc;
 <div class="titulo_general"><h1>Agenda de Citas</h1></div>
 
 <hr />
@@ -30,30 +32,31 @@
 
     @foreach (var item in Model)
     {
-<tr class="tr_lista">
-    <td class="td_lista">
-        @Html.DisplayFor(modelItem => item.NOMBRE)
+        <tr class="tr_lista">
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.NOMBRE)
 
-        @Html.DisplayFor(modelItem => item.APELLIDO)
-    </td>
-    <td class="td_lista">
-        @Html.DisplayFor(modelItem => item.FECHA)
-    </td>
-    <td class="td_lista">
-        @Html.DisplayFor(modelItem => item.HORA)
-    </td>
-    <td class="td_lista">
-        @Html.DisplayFor(modelItem => item.TURNO)
-    </td>
-    <td class="td_lista">
-        @Html.DisplayFor(modelItem => item.TIPO_CITA)
-    </td>
-    <td class="td_lista">
-        @Html.ActionLink("Finalizar Cita", "FinalizarCita", new { id2 = item.ID, id3 = item.ID_PACIENTE }) |
-        @Html.ActionLink("Detalles", "DetailsCitaAceptada", new { id2 = item.ID, id3 = item.ID_PACIENTE })
-        @*@Html.ActionLink("Delete", "Delete", new { id=item.ID })*@
-    </td>
-</tr>
+                @Html.DisplayFor(modelItem => item.APELLIDO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.FECHA)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.HORA)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.TURNO)
+            </td>
+            <td class="td_lista">
+                @Html.DisplayFor(modelItem => item.TIPO_CITA)
+            </td>
+            <td class="td_lista">
+                @Html.ActionLink("Finalizar Cita", "FinalizarCita", new { id2 = item.ID, id3 = item.ID_PACIENTE }) |
+                @Html.ActionLink("Detalles", "DetailsCitaAceptada", new { id2 = item.ID, id3 = item.ID_PACIENTE })
+                @*@Html.ActionLink("Delete", "Delete", new { id=item.ID })*@
+            </td>
+        </tr>
     }
 
 </table>
+@Html.PagedListPager(Model, i => Url.Action("ListadoCitasPacienteAceptada", "CitasPaciente", new { i, search = Request.QueryString["search"] }))

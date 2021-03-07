@@ -1485,9 +1485,9 @@ namespace SistemaClinico.Controllers
             }
 
         }
-
+        
     
-        public ActionResult ListadoPrescripcionPaciente( int idpaciente, int msj)
+        public ActionResult ListadoPrescripcionPaciente(int? i, int idpaciente, int msj)
         {
              if (Session["Rol"] != null && Session["Rol"].Equals(3))
             {
@@ -1504,7 +1504,7 @@ namespace SistemaClinico.Controllers
                 var prescripciones = from e in TodasLasConsultasSegunID(idpaciente)
                                      select e;
 
-                return View(prescripciones);
+                return View(prescripciones.ToPagedList(i ?? 1, 10));
             }
             else
             {

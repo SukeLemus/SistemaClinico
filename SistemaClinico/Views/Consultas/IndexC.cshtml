@@ -32,8 +32,8 @@
             @Html.DisplayName("Tipo cita ")
         </th>
         @*<th class="th_lista">
-            @Html.DisplayName("Descripción ")
-        </th>*@
+                @Html.DisplayName("Descripción ")
+            </th>*@
         <th class="th_lista">
             @Html.DisplayName("Diagnóstico ")
         </th>
@@ -66,8 +66,8 @@
                 @Html.DisplayFor(modelItem => item.TIPO_CITA)
             </td>
             @*<td class="td_lista">
-                @Html.DisplayFor(modelItem => item.DESCRIPCION)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.DESCRIPCION)
+                </td>*@
             <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.DIAGNOSTICO)
             </td>
@@ -93,3 +93,5 @@
         </td>
     </tr>
 </table>
+
+@Html.PagedListPager(Model, i => Url.Action("IndexC", "Consultas", new { i, search = Request.QueryString["search"] }))

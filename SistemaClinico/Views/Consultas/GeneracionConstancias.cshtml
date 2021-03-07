@@ -79,3 +79,4 @@
     </tr>
 </table>
 
+@Html.PagedListPager(Model, i => Url.Action("GeneracionConstancias", "Consultas", new { i, search = Request.QueryString["search"] }))

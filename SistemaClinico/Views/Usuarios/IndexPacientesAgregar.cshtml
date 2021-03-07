@@ -72,3 +72,5 @@
         </td>
     </tr>
 </table>
+
+@Html.PagedListPager(Model, i => Url.Action("IndexPacientesAgregar", "Usuarios", new { i, search = Request.QueryString["search"] }))

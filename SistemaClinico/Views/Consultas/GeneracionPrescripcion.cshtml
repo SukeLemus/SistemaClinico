@@ -58,7 +58,7 @@
             <td class="td_lista">
                 @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
                 <a href="@Url.Action("PrescripcionDetalle", "Usuarios", new { idconsulta = item.ID_CONSULTA, idpaciente = item.ID_PACIENTE })">Ver prescripcion</a>
-        
+
                 @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
             </td>
         </tr>
@@ -78,3 +78,5 @@
         </td>
     </tr>
 </table>
+
+@Html.PagedListPager(Model, i => Url.Action("GeneracionPrescripcion", "Consultas", new { i, search = Request.QueryString["search"] }))

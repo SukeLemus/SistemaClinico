@@ -1,4 +1,8 @@
-﻿@model IEnumerable<SistemaClinico.Models.ConsultaPac>
+﻿@*@model IEnumerable<SistemaClinico.Models.ConsultaPac>*@
+@model IPagedList<SistemaClinico.Models.ConsultaPac>
+@using PagedList;
+@using PagedList.Mvc;
+
 
 @if (TempData["UserMessage"] != null)
 {
@@ -14,7 +18,7 @@
 
 <table id="table_id" class="table_lista">
     <tr class="tr_lista">
-        <th  class="th_lista">
+        <th class="th_lista">
             @Html.DisplayName("Paciente ")
 
         </th>
@@ -61,10 +65,11 @@
             </td>
             <td class="td_lista">
 
-                @Html.ActionLink("Detalles", "PrescripcionDetalle", new { idconsulta = item.ID_CONSULTA, idpaciente = item.ID_PACIENTE }) 
+                @Html.ActionLink("Detalles", "PrescripcionDetalle", new { idconsulta = item.ID_CONSULTA, idpaciente = item.ID_PACIENTE })
 
             </td>
         </tr>
     }
 
 </table>
+@Html.PagedListPager(Model, i => Url.Action("ListadoPrescripcionPaciente", "Usuarios", new { i, search = Request.QueryString["search"] }))

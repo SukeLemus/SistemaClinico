@@ -1,5 +1,7 @@
-﻿@model IEnumerable<SistemaClinico.Models.UsuarioMunicipio>
-
+﻿@*@model IEnumerable<SistemaClinico.Models.UsuarioMunicipio>*@
+@model IPagedList<SistemaClinico.Models.UsuarioMunicipio>
+@using PagedList;
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "ConstanciaPaciente";
 }
@@ -9,32 +11,32 @@
 <br />
 <br />
 @*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
 <table id="table_id" class="table_lista">
     <tr class="tr_lista">
         @*<th class="th_lista">
-            @Html.DisplayNameFor(model => model.ID_PACIENTE)
-        </th>
-        <th class="th_lista">
-            @Html.DisplayNameFor(model => model.ID_DIRECCION)
-        </th>*@
+                @Html.DisplayNameFor(model => model.ID_PACIENTE)
+            </th>
+            <th class="th_lista">
+                @Html.DisplayNameFor(model => model.ID_DIRECCION)
+            </th>*@
         @*<th class="th_lista">
-            @Html.DisplayNameFor(model => model.NOMBRE)
-        </th>*@
+                @Html.DisplayNameFor(model => model.NOMBRE)
+            </th>*@
         @*<th class="th_lista">
-            @Html.DisplayNameFor(model => model.APELLIDO)
-        </th>*@
+                @Html.DisplayNameFor(model => model.APELLIDO)
+            </th>*@
 
         @*<th class="th_lista">
-            @Html.DisplayNameFor(model => model.TELEFONO)
-        </th>
-        <th class="th_lista">
-            @Html.DisplayNameFor(model => model.MUNICIPIO)
-        </th>
-        <th class="th_lista">
-            @Html.DisplayNameFor(model => model.DIRECCION_COM)
-        </th>*@
+                @Html.DisplayNameFor(model => model.TELEFONO)
+            </th>
+            <th class="th_lista">
+                @Html.DisplayNameFor(model => model.MUNICIPIO)
+            </th>
+            <th class="th_lista">
+                @Html.DisplayNameFor(model => model.DIRECCION_COM)
+            </th>*@
         <th class="th_lista">
             @Html.DisplayName("Paciente ")
         </th>
@@ -53,11 +55,11 @@
     {
         <tr class="tr_lista">
             @*<td class="td_lista">
-                @Html.DisplayFor(modelItem => item.ID_PACIENTE)
-            </td>
-            <td class="td_lista">
-                @Html.DisplayFor(modelItem => item.ID_DIRECCION)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.ID_PACIENTE)
+                </td>
+                <td class="td_lista">
+                    @Html.DisplayFor(modelItem => item.ID_DIRECCION)
+                </td>*@
             <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.NOMBRE)
 
@@ -93,3 +95,5 @@
         </td>
     </tr>
 </table>
+
+@Html.PagedListPager(Model, i => Url.Action("ConstanciaPaciente", "Usuarios", new { i, search = Request.QueryString["search"] }))

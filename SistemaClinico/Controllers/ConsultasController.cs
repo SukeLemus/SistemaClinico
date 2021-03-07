@@ -283,7 +283,7 @@ namespace SistemaClinico.Controllers
                 {
                     citas = citas.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
                 }
-                return View(citas.ToPagedList(i ?? 1, 3));
+                return View(citas.ToPagedList(i ?? 1, 2));
             }
             else
             {
@@ -307,7 +307,7 @@ namespace SistemaClinico.Controllers
                 {
                     citas = citas.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
                 }
-                return View(citas.ToPagedList(i ?? 1, 3));
+                return View(citas.ToPagedList(i ?? 1, 2));
             }
             else
             {
@@ -330,7 +330,7 @@ namespace SistemaClinico.Controllers
                 {
                     citas = citas.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
                 }
-                return View(citas.ToPagedList(i ?? 1, 3));
+                return View(citas.ToPagedList(i ?? 1, 2));
             }
             else
             {

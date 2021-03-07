@@ -1,4 +1,7 @@
-﻿@model IEnumerable<SistemaClinico.Models.ConsultaPac>
+﻿@*@model IEnumerable<SistemaClinico.Models.ConsultaPac>*@
+@model IPagedList<SistemaClinico.Models.ConsultaPac>
+@using PagedList;
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "ListadoConsultasConstancia";
@@ -10,8 +13,8 @@
 <br />
 
 @*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
 <table class="table">
     <tr class="tr_lista">
 
@@ -69,3 +72,4 @@
     }
 
 </table>
+@Html.PagedListPager(Model, i => Url.Action("ListadoConsultasConstancia", "Usuarios", new { i, search = Request.QueryString["search"] }))

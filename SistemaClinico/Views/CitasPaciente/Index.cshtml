@@ -23,12 +23,12 @@
         </th>
 
         @*<th class="th_lista">
-            @Html.DisplayName("Descripción ")
-        </th>*@
+                @Html.DisplayName("Descripción ")
+            </th>*@
 
         @*<th class="th_lista">
-            @Html.DisplayName("Turno ")
-        </th>*@
+                @Html.DisplayName("Turno ")
+            </th>*@
         <th class="th_lista">
             @Html.DisplayName("Fecha ")
         </th>
@@ -57,12 +57,12 @@
 
 
             @*<td class="td_lista">
-                @Html.DisplayFor(modelItem => item.DESCRIPCION)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.DESCRIPCION)
+                </td>*@
 
             @*<td class="td_lista">
-                @Html.DisplayFor(modelItem => item.TURNO)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.TURNO)
+                </td>*@
             <td class="td_lista">
                 @Html.DisplayFor(modelItem => item.FECHA)
             </td>
@@ -97,3 +97,5 @@
         </td>
     </tr>
 </table>
+
+@Html.PagedListPager(Model, i => Url.Action("Index", "CitasPaciente", new { i, search = Request.QueryString["search"] }))

@@ -1,5 +1,7 @@
-﻿@model IEnumerable<SistemaClinico.Models.ListadoCitasPaciente>
-
+﻿@*@model IEnumerable<SistemaClinico.Models.ListadoCitasPaciente>*@
+@model IPagedList<SistemaClinico.Models.ListadoCitasPaciente>
+@using PagedList;
+@using PagedList.Mvc;
 <div class="titulo_general"><h1>Agenda de Citas</h1></div>
 
 <hr />
@@ -57,3 +59,4 @@
     }
 
 </table>
+@Html.PagedListPager(Model, i => Url.Action("AgendaCitaDoctor", "CitasPaciente", new { i, search = Request.QueryString["search"] }))
