@@ -1101,9 +1101,10 @@ namespace SistemaClinico.Controllers
                 catch
                 {
                     // return View();
+                   
                     return RedirectToAction("Index");
                 }
-
+                
             }
             else
             {
@@ -1248,14 +1249,14 @@ namespace SistemaClinico.Controllers
 
 
                     var accountSid = "ACe61cf5016212b999fa489c6698bd7103";
-                    var authToken = "4804d7e4d31eeaa1ea41b3d55c6543b1";
+                    var authToken = "073e3e50ec5448e77b4e68ff8548b9e7";
 
                     TwilioClient.Init(accountSid, authToken);
 
                     var messageOptions = new CreateMessageOptions(
                     new PhoneNumber("+503" + depa.TELEFONO));
                     messageOptions.From = new PhoneNumber("+17158008408");
-                    messageOptions.Body = "Estimad@: " + depa.NOMBRE + " " + depa.APELLIDO + " su cita está confirmada para el día: " + depa.FECHA + " a la hora: " + depa.HORA;
+                    messageOptions.Body = "Estimad@: " + depa.NOMBRE + " " + depa.APELLIDO + " su cita está confirmada para el día: " + depa.FECHA + " a la hora: " + depa.HORA + ", tambien puede verificar en nuestra APP";
 
                     var message = MessageResource.Create(messageOptions);
                     Console.WriteLine(message.Body);
