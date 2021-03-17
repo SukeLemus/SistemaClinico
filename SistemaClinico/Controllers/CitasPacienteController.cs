@@ -1247,18 +1247,18 @@ namespace SistemaClinico.Controllers
                     /************************* SMS ******************************************/
 
 
-                    //var accountSid = "ACe61cf5016212b999fa489c6698bd7103";
-                    //var authToken = "b67f0438ab53d5a99afb3aca71978a9e";
+                    var accountSid = "ACe61cf5016212b999fa489c6698bd7103";
+                    var authToken = "4804d7e4d31eeaa1ea41b3d55c6543b1";
 
-                    //TwilioClient.Init(accountSid, authToken);
+                    TwilioClient.Init(accountSid, authToken);
 
-                    //var messageOptions = new CreateMessageOptions(
-                    //new PhoneNumber("+503" + depa.TELEFONO));
-                    //messageOptions.From = new PhoneNumber("+17158008408");
-                    //messageOptions.Body = "Estimad@: " + depa.NOMBRE + " " + depa.APELLIDO + " su cita está confirmada para el día: " + depa.FECHA + " a la hora: " + depa.HORA;
+                    var messageOptions = new CreateMessageOptions(
+                    new PhoneNumber("+503" + depa.TELEFONO));
+                    messageOptions.From = new PhoneNumber("+17158008408");
+                    messageOptions.Body = "Estimad@: " + depa.NOMBRE + " " + depa.APELLIDO + " su cita está confirmada para el día: " + depa.FECHA + " a la hora: " + depa.HORA;
 
-                    //var message = MessageResource.Create(messageOptions);
-                    //Console.WriteLine(message.Body);
+                    var message = MessageResource.Create(messageOptions);
+                    Console.WriteLine(message.Body);
 
                     /*********************** SMS ********************************************/
 

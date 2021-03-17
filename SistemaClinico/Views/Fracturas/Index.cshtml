@@ -8,10 +8,28 @@
 @using SistemaClinico.Controllers;
 
 <div class="titulo_general"><h1>Fracturas</h1></div>
+<br />
+<br />
+
+@using (Html.BeginForm("Index", "Fracturas", FormMethod.Get))
+{
+    <div class="box">
+        <div class="container-4">
+            <input type="search" id="BuscarNombre" name="BuscarNombre" placeholder="Buscar una fractura" />
+            <button type="submit" class="icon"><i class="fa fa-search"></i></button>
+        </div>
+    </div>
+}
+
+
 
 <p>
     @Html.ActionLink("Crear Nueva Fractura", "Create")
 </p>
+<br />
+<br />
+<br />
+
 <table class="table_lista">
     <tr class="tr_lista">
         <th class="th_lista">

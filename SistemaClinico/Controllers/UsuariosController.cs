@@ -1371,6 +1371,7 @@ namespace SistemaClinico.Controllers
                                   //orderby e.nombre
                               select e;
 
+
                     var p = usu.Single(m => m.id == id);
 
                     ViewData["paciente"] = p.NOMBRE + p.APELLIDO;
@@ -1392,7 +1393,10 @@ namespace SistemaClinico.Controllers
             {
                 var usuarios = from e in TodosUsuarioMunicipio()
                                select e;
-
+                if (!String.IsNullOrEmpty(BuscarNombre))
+                {
+                    usuarios = usuarios.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+                }
                 return View(usuarios.ToPagedList(i ?? 1, 10));
             }
             else
@@ -1476,6 +1480,11 @@ namespace SistemaClinico.Controllers
             {
                 var usuarios = from e in TodosUsuarioMunicipio()
                                select e;
+
+                if (!String.IsNullOrEmpty(BuscarNombre))
+                {
+                    usuarios = usuarios.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+                }
 
                 return View(usuarios.ToPagedList(i ?? 1, 10));
             }
@@ -1653,10 +1662,10 @@ namespace SistemaClinico.Controllers
                 var usu = from e in TodosUsuarioMunicipio()
                               //orderby e.nombre
                           select e;
-                //if (!String.IsNullOrEmpty(BuscarNombre))
-                //{
-                //    usu = usu.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
-                //}
+                if (!String.IsNullOrEmpty(BuscarNombre))
+                {
+                    usu = usu.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+                }
                 return View(usu.ToPagedList(i ?? 1, 10));
         }
             else if(Session["Rol"] != null && Session["Rol"].Equals(3))
@@ -1664,10 +1673,10 @@ namespace SistemaClinico.Controllers
                 var usu = from e in TodosUsuarioMunicipio()
                               //orderby e.nombre
                           select e;
-                //if (!String.IsNullOrEmpty(BuscarNombre))
-                //{
-                //    usu = usu.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
-                //}
+                if (!String.IsNullOrEmpty(BuscarNombre))
+                {
+                    usu = usu.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+                }
                 return View(usu.ToPagedList(i ?? 1, 10));
             }
             else if (Session["Rol"] != null && Session["Rol"].Equals(4))
@@ -1675,10 +1684,10 @@ namespace SistemaClinico.Controllers
                 var usu = from e in TodosUsuarioMunicipio()
                               //orderby e.nombre
                           select e;
-                //if (!String.IsNullOrEmpty(BuscarNombre))
-                //{
-                //    usu = usu.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
-                //}
+                if (!String.IsNullOrEmpty(BuscarNombre))
+                {
+                    usu = usu.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+                }
                 return View(usu.ToPagedList(i ?? 1, 10));
             }
             else
@@ -1695,10 +1704,10 @@ public ActionResult IndexPacientesAgregar(int? i, string BuscarNombre)
                 var usu = from e in TodosUsuarios()
                               //orderby e.nombre
                           select e;
-                //if (!String.IsNullOrEmpty(BuscarNombre))
-                //{
-                //    usu = usu.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
-                //}
+                if (!String.IsNullOrEmpty(BuscarNombre))
+                {
+                    usu = usu.Where(c => c.NOMBRE.ToLower().Contains(BuscarNombre.ToLower()));
+                }
                 return View(usu.ToPagedList(i ?? 1, 10));
             }
             else
